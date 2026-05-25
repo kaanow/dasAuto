@@ -1,0 +1,280 @@
+{% extends "base.html" %}
+{% block title %}{{ v.short_name }} — BC Family Vehicle Browser{% endblock %}
+
+{% block content %}
+<div class="detail-layout">
+
+  <!-- ── Left column: profile + scores ──────────────────────────────────── -->
+  <div class="detail-main">
+
+    <!-- Header -->
+    <div class="detail-header">
+      <div class="detail-rank-badge rank-{{ v.rank }}">
+        #{{ v.rank }}
+      </div>
+      <div class="detail-title-block">
+        <div class="detail-badges">
+          <span class="pt-badge" style="background:{{ badge_color }}">{{ badge_label }}</span>
+          <span class="nu-badge nu-{{ v.new_used | lower }}">{{ v.new_used }}</span>
+          <span class="years-badge">{{ v.years }}</span>
+          {% if v.caution %}
+          <span class="caution-badge">⚠ See notes</span>
+          {% endif %}
+        </div>
+        <h1 class="detail-name">{{ v.name }}</h1>
+        <p class="detail-pt">{{ v.powertrain }}</p>
+      </div>
+      <div class="detail-header-actions">
+        <button id="fav-btn"
+                class="fav-btn-large {% if is_favourite %}fav-active{% endif %}"
+                onclick="toggleFav('{{ v.id }}')">
+          {% if is_favourite %}★ Favourited{% else %}☆ Favourite{% endif %}
+        </button>
+        <a href="/compare?ids={{ v.id }}" class="btn-ghost-sm">Compare →</a>
+        <a href="/" class="btn-ghost-sm">← All vehicles</a>
+      </div>
+    </div>
+
+    <!-- Caution banner -->
+    {% if v.caution %}
+    <div class="caution-banner">
+      <span class="caution-icon">⚠</span>
+      <span>{{ v.caution }}</span>
+    </div>
+    {% endif %}
+
+    <!-- Image gallery -->
+    {% if images %}
+    <div class="gallery">
+      <div class="gallery-main-wrap">
+        <img id="gallery-main" src="{{ images[0] }}" alt="{{ v.short_name }}"
+             class="gallery-main">
+      </div>
+      {% if images | length > 1 %}
+      <div class="gallery-thumbs">
+        {% for img in images %}
+        <img src="{{ img }}" alt="View {{ loop.index }}"
+             class="gallery-thumb {% if loop.first %}thumb-active{% endif %}"
+             onclick="setMainImage('{{ img }}', this)">
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+    {% else %}
+    <div class="gallery-placeholder">
+      <p>Images not yet downloaded.</p>
+      <p class="hint">Run: <code>python scrapers/fetch_images.py</code></p>
+    </div>
+    {% endif %}
+
+    <!-- Key specs bar -->
+    <div class="specs-bar">
+      <div class="spec-item">
+        <span class="spec-label">On-Road</span>
+        <span class="spec-val">${{ "{:,}".format(v.on_road) }}</span>
+      </div>
+      <div class="spec-item">
+        <span class="spec-label">10yr TCO</span>
+        <span class="spec-val">${{ "{:,}".format(v.tco_value) }}</span>
+      </div>
+      <div class="spec-item">
+        <span class="spec-label">Fuel Economy</span>
+        <span class="spec-val">{{ v.specs.fuel_economy }}</span>
+      </div>
+      <div class="spec-item">
+        <span class="spec-label">Range</span>
+        <span class="spec-val">{{ v.specs.range_km }}</span>
+      </div>
+      <div class="spec-item">
+        <span class="spec-label">Clearance</span>
+        <span class="spec-val">{{ v.specs.clearance_mm }} mm</span>
+      </div>
+      <div class="spec-item">
+        <span class="spec-label">Towing</span>
+        <span class="spec-val">{{ "{:,}".format(v.specs.towing_lbs) }} lbs</span>
+      </div>
+      <div class="spec-item">
+        <span class="spec-label">Cargo</span>
+        <span class="spec-val">{{ v.specs.cargo_l }} L</span>
+      </div>
+      <div class="spec-item">
+        <span class="spec-label">3rd Row</span>
+        <span class="spec-val">{{ v.specs.third_row_legroom }}</span>
+      </div>
+    </div>
+
+    <!-- Profile tabs: Why / Trade-offs / Notes -->
+    <div class="tabs">
+      <button class="tab-btn tab-active" onclick="showTab('why', this)">Why it ranks here</button>
+      <button class="tab-btn" onclick="showTab('tradeoffs', this)">Trade-offs</button>
+      <button class="tab-btn" onclick="showTab('notes', this)">My Notes</button>
+    </div>
+
+    <div id="tab-why" class="tab-panel">
+      <p class="profile-text">{{ v.why }}</p>
+    </div>
+
+    <div id="tab-tradeoffs" class="tab-panel hidden">
+      <p class="profile-text">{{ v.tradeoffs }}</p>
+    </div>
+
+    <div id="tab-notes" class="tab-panel hidden">
+      <p class="notes-hint">Your private notes about this vehicle — saved locally.</p>
+      <textarea id="note-input" class="notes-textarea"
+                placeholder="Add your notes here…">{{ note }}</textarea>
+      <div class="notes-actions">
+        <button class="btn-primary" onclick="saveNote('{{ v.id }}')">Save Note</button>
+        <span id="note-saved" class="save-confirm hidden">✓ Saved</span>
+      </div>
+    </div>
+
+    <!-- TCO Breakdown table -->
+    <div class="tco-breakdown">
+      <h3 class="section-title">10-Year Cost Breakdown</h3>
+      <div class="tco-table">
+        <div class="tco-row">
+          <span class="tco-item-label">On-road purchase price</span>
+          <span class="tco-item-val">${{ "{:,}".format(v.on_road) }}</span>
+        </div>
+        <div class="tco-row">
+          <span class="tco-item-label">10yr Fuel / Energy</span>
+          <span class="tco-item-val">+ ${{ "{:,}".format(v.fuel_10yr) }}</span>
+        </div>
+        <div class="tco-row">
+          <span class="tco-item-label">10yr Maintenance</span>
+          <span class="tco-item-val">+ ${{ "{:,}".format(v.maint_10yr) }}</span>
+        </div>
+        <div class="tco-row">
+          <span class="tco-item-label">10yr Insurance (est.)</span>
+          <span class="tco-item-val">+ ${{ "{:,}".format(v.ins_10yr) }}</span>
+        </div>
+        <div class="tco-row tco-credit">
+          <span class="tco-item-label">10yr Residual value (credit)</span>
+          <span class="tco-item-val">− ${{ "{:,}".format(v.resid_10yr) }}</span>
+        </div>
+        <div class="tco-row tco-total">
+          <span class="tco-item-label">Net 10-year TCO</span>
+          <span class="tco-item-val">${{ "{:,}".format(v.tco_value) }}</span>
+        </div>
+      </div>
+      <p class="tco-note">All values CAD. Fuel at $1.65/L or 12.5¢/kWh home / $0.38/kWh DCFC.
+      Insurance: ICBC Territory D, class 003, CDF 0.528. Canadian Black Book depreciation projections.</p>
+    </div>
+
+  </div><!-- detail-main -->
+
+  <!-- ── Right column: scores + listings ────────────────────────────────── -->
+  <aside class="detail-sidebar">
+
+    <!-- Weighted score -->
+    <div class="score-card">
+      <div class="score-card-top">
+        <span class="score-card-label">Weighted Score</span>
+        <span class="score-card-val">{{ "%.2f"|format(score) }}</span>
+      </div>
+      <div class="score-card-rank">Ranked #{{ v.rank }} of 12</div>
+
+      <!-- Radar-style score breakdown -->
+      <div class="score-breakdown">
+        {% set all_criteria = [
+          ('tco',          '10yr TCO'),
+          ('car_seat_fit', 'Car Seats'),
+          ('cargo',        'Cargo'),
+          ('third_row',    '3rd Row'),
+          ('corridor',     'Corridor'),
+          ('hitch',        'Hitch'),
+          ('reliability',  'Reliability'),
+          ('winter',       'Winter'),
+          ('fsr',          'FSR'),
+        ] %}
+        {% for key, label in all_criteria %}
+        {% set s = v.scores[key] %}
+        {% set wt = weights[key] %}
+        <div class="score-row">
+          <span class="sr-label">{{ label }}</span>
+          <div class="sr-bar-wrap">
+            <div class="sr-bar score-{{ s | int }}" style="width: {{ s * 20 }}%"></div>
+          </div>
+          <span class="sr-score">{{ "%.2f"|format(s) if s != s|int else s }}</span>
+          <span class="sr-weight">×{{ wt }}</span>
+          <span class="sr-nr">={{ "%.1f"|format(s * wt) }}</span>
+        </div>
+        {% endfor %}
+        <div class="score-total-row">
+          <span>Total</span>
+          <span class="score-total">{{ "%.2f"|format(score) }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Compare selector -->
+    <div class="compare-card">
+      <h3 class="sidebar-title">Compare with…</h3>
+      <select id="compare-select" class="compare-select"
+              onchange="goCompare('{{ v.id }}', this.value)">
+        <option value="">Select a vehicle…</option>
+        {% for other in all_vehicles %}
+        {% if other.id != v.id %}
+        <option value="{{ other.id }}">
+          #{{ other.rank }} {{ other.short_name }} ({{ other.new_used }})
+        </option>
+        {% endif %}
+        {% endfor %}
+      </select>
+    </div>
+
+    <!-- Listings panel -->
+    <div class="listings-card">
+      <h3 class="sidebar-title">Purchase Listings</h3>
+      <div id="listings-panel">
+        {% include "partials/listings.html" %}
+      </div>
+      <span id="listings-spinner" class="htmx-indicator spinner-text">Fetching…</span>
+    </div>
+
+  </aside>
+
+</div><!-- detail-layout -->
+
+<script>
+function setMainImage(src, thumb) {
+  document.getElementById('gallery-main').src = src;
+  document.querySelectorAll('.gallery-thumb').forEach(t => t.classList.remove('thumb-active'));
+  thumb.classList.add('thumb-active');
+}
+
+function showTab(name, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.add('hidden'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('tab-active'));
+  document.getElementById('tab-' + name).classList.remove('hidden');
+  btn.classList.add('tab-active');
+}
+
+function toggleFav(id) {
+  fetch(`/favourite/${id}`, {method:'POST'})
+    .then(r => r.json())
+    .then(d => {
+      const btn = document.getElementById('fav-btn');
+      btn.classList.toggle('fav-active', d.is_favourite);
+      btn.textContent = d.is_favourite ? '★ Favourited' : '☆ Favourite';
+    });
+}
+
+function saveNote(id) {
+  const note = document.getElementById('note-input').value;
+  fetch(`/note/${id}`, {
+    method: 'POST',
+    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+    body: `note=${encodeURIComponent(note)}`
+  }).then(() => {
+    const conf = document.getElementById('note-saved');
+    conf.classList.remove('hidden');
+    setTimeout(() => conf.classList.add('hidden'), 2000);
+  });
+}
+
+function goCompare(currentId, otherId) {
+  if (otherId) window.location = `/compare?ids=${currentId}&ids=${otherId}`;
+}
+</script>
+{% endblock %}

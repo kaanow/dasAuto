@@ -1,0 +1,184 @@
+{% extends "base.html" %}
+{% block title %}Compare Vehicles — BC Family Vehicle Browser{% endblock %}
+
+{% block content %}
+<div class="compare-page">
+
+  <div class="compare-header">
+    <h1>Side-by-Side Comparison</h1>
+    <p class="page-subtitle">Select up to 4 vehicles to compare</p>
+
+    <!-- Vehicle selector -->
+    <div class="compare-selectors">
+      {% for slot in range(4) %}
+      <select class="compare-sel" onchange="updateComparison()" id="sel-{{ slot }}">
+        <option value="">— Empty slot —</option>
+        {% for v in all_vehicles %}
+        <option value="{{ v.id }}"
+          {% if slot < selected|length and selected[slot].id == v.id %}selected{% endif %}>
+          #{{ v.rank }} {{ v.short_name }} ({{ v.new_used }} {{ v.years }})
+        </option>
+        {% endfor %}
+      </select>
+      {% endfor %}
+      {% if selected %}
+      <button class="copy-link-btn" onclick="copyCompareLink(this)" title="Copy comparison URL">
+        🔗 Copy link
+      </button>
+      {% endif %}
+    </div>
+  </div>
+
+  {% if selected %}
+  <div class="compare-grid cols-{{ selected | length }}">
+
+    {% for v in selected %}
+    <div class="compare-col">
+
+      <!-- Header -->
+      <div class="cmp-header" style="border-top: 4px solid {{ v.badge_color }}">
+        <div class="cmp-rank rank-{{ v.rank }}">#{{ v.rank }}</div>
+        <div class="cmp-badges">
+          <span class="pt-badge" style="background:{{ v.badge_color }}">{{ v.badge_label }}</span>
+          <span class="nu-badge nu-{{ v.new_used | lower }}">{{ v.new_used }}</span>
+        </div>
+        <h2 class="cmp-name">{{ v.short_name }}</h2>
+        <p class="cmp-years">{{ v.years }}</p>
+        <a href="/vehicle/{{ v.id }}" class="cmp-detail-link">Full profile →</a>
+      </div>
+
+      <!-- Image -->
+      <div class="cmp-image-wrap">
+        {% if v.images %}
+        <img src="{{ v.images[0] }}" alt="{{ v.short_name }}" class="cmp-image">
+        {% else %}
+        <div class="cmp-no-image">No image</div>
+        {% endif %}
+      </div>
+
+      <!-- Weighted score -->
+      <div class="cmp-score-banner">
+        <span class="cmp-score-val">{{ "%.1f"|format(v.computed_score) }}</span>
+        <span class="cmp-score-label">Weighted Score</span>
+      </div>
+
+      <!-- Specs -->
+      <div class="cmp-section">
+        <h3 class="cmp-section-title">Specs</h3>
+        {% set spec_rows = [
+          ('On-road price',    '$' ~ "{:,}".format(v.on_road)),
+          ('10yr net TCO',     '$' ~ "{:,}".format(v.tco_value)),
+          ('Fuel / energy',    v.specs.fuel_economy),
+          ('Range',            v.specs.range_km),
+          ('Ground clearance', v.specs.clearance_mm ~ ' mm'),
+          ('Towing',           "{:,}".format(v.specs.towing_lbs) ~ ' lbs'),
+          ('Cargo (3rd up)',   v.specs.cargo_l ~ ' L'),
+          ('3rd row',          v.specs.third_row_legroom),
+          ('Seats',            v.specs.seats ~ ' seats'),
+          ('Powertrain',       v.powertrain),
+        ] %}
+        <table class="cmp-table">
+          {% for label, val in spec_rows %}
+          <tr>
+            <td class="cmp-td-label">{{ label }}</td>
+            <td class="cmp-td-val">{{ val }}</td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+
+      <!-- Scores -->
+      <div class="cmp-section">
+        <h3 class="cmp-section-title">Criterion Scores</h3>
+        {% set crit_rows = [
+          ('tco',          '10yr TCO'),
+          ('car_seat_fit', 'Car Seat Fit'),
+          ('cargo',        'Cargo Utility'),
+          ('third_row',    '3rd Row Comfort'),
+          ('corridor',     'Corridor Perf.'),
+          ('hitch',        'Hitch'),
+          ('reliability',  'Reliability'),
+          ('winter',       'Winter'),
+          ('fsr',          'FSR'),
+        ] %}
+        <table class="cmp-table">
+          {% for key, label in crit_rows %}
+          {% set s = v.scores[key] %}
+          <tr>
+            <td class="cmp-td-label">{{ label }}</td>
+            <td class="cmp-td-score">
+              <div class="cmp-bar-wrap">
+                <div class="cmp-bar score-{{ s | int }}" style="width:{{ s * 20 }}%"></div>
+              </div>
+              <span class="cmp-bar-num">{{ "%.2f"|format(s) if s != s|int else s }}</span>
+            </td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+
+      <!-- 10yr cost breakdown -->
+      <div class="cmp-section">
+        <h3 class="cmp-section-title">10yr Cost Breakdown</h3>
+        <table class="cmp-table">
+          <tr><td class="cmp-td-label">Purchase</td><td class="cmp-td-val">${{ "{:,}".format(v.on_road) }}</td></tr>
+          <tr><td class="cmp-td-label">+ Fuel / Energy</td><td class="cmp-td-val">${{ "{:,}".format(v.fuel_10yr) }}</td></tr>
+          <tr><td class="cmp-td-label">+ Maintenance</td><td class="cmp-td-val">${{ "{:,}".format(v.maint_10yr) }}</td></tr>
+          <tr><td class="cmp-td-label">+ Insurance</td><td class="cmp-td-val">${{ "{:,}".format(v.ins_10yr) }}</td></tr>
+          <tr><td class="cmp-td-label">− Residual</td><td class="cmp-td-val credit">−${{ "{:,}".format(v.resid_10yr) }}</td></tr>
+          <tr class="cmp-total-row"><td class="cmp-td-label">Net TCO</td><td class="cmp-td-val"><strong>${{ "{:,}".format(v.tco_value) }}</strong></td></tr>
+        </table>
+      </div>
+
+      <!-- Why / Tradeoffs (collapsed) -->
+      <div class="cmp-section">
+        <details class="cmp-details">
+          <summary>Why it ranks here</summary>
+          <p class="cmp-profile-text">{{ v.why }}</p>
+        </details>
+        <details class="cmp-details">
+          <summary>Trade-offs</summary>
+          <p class="cmp-profile-text">{{ v.tradeoffs }}</p>
+        </details>
+        {% if v.caution %}
+        <div class="cmp-caution">⚠ {{ v.caution }}</div>
+        {% endif %}
+      </div>
+
+    </div><!-- compare-col -->
+    {% endfor %}
+
+  </div><!-- compare-grid -->
+
+  {% else %}
+  <div class="compare-empty">
+    <p>Select vehicles from the dropdowns above to compare them side by side.</p>
+  </div>
+  {% endif %}
+
+</div><!-- compare-page -->
+
+<script>
+function updateComparison() {
+  const ids = [];
+  for (let i = 0; i < 4; i++) {
+    const sel = document.getElementById('sel-' + i);
+    if (sel && sel.value) ids.push('ids=' + sel.value);
+  }
+  if (ids.length > 0) {
+    window.location = '/compare?' + ids.join('&');
+  }
+}
+
+function copyCompareLink(btn) {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    btn.textContent = '✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = '🔗 Copy link';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+</script>
+{% endblock %}

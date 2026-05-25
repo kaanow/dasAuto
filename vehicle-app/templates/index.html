@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+{% block title %}BC Family Vehicle Browser — Ranked Results{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>Family Vehicle Comparison</h1>
+  <p class="page-subtitle">12 candidates · 10-year TCO horizon · Vancouver, BC · Adjust weights below to re-rank</p>
+</div>
+
+<div class="layout">
+
+  <!-- ── Sidebar: Weight Controls ───────────────────────────────────────── -->
+  <aside class="sidebar">
+    <div class="sidebar-card">
+      <h2 class="sidebar-title">Importance Weights</h2>
+      <p class="sidebar-hint">Edit any number and click Apply to re-rank.</p>
+
+      <form id="weight-form"
+            hx-post="/rerank"
+            hx-target="#vehicle-grid"
+            hx-swap="innerHTML"
+            hx-indicator="#spinner">
+
+        <div class="weight-group">
+          <div class="weight-group-label">💰 Financial</div>
+          <div class="weight-row">
+            <label>10yr Net TCO</label>
+            <input type="number" name="w_tco" value="{{ weights.tco }}"
+                   min="0" max="5" step="0.5" class="weight-input">
+          </div>
+        </div>
+
+        <div class="weight-group">
+          <div class="weight-group-label">👨‍👩‍👧‍👦 Family Fit</div>
+          {% for key, label in [
+            ('car_seat_fit','Car Seat Fit'),
+            ('cargo','Cargo Utility'),
+            ('third_row','3rd Row Comfort')
+          ] %}
+          <div class="weight-row">
+            <label>{{ label }}</label>
+            <input type="number" name="w_{{ key }}" value="{{ weights[key] }}"
+                   min="0" max="5" step="0.5" class="weight-input">
+          </div>
+          {% endfor %}
+        </div>
+
+        <div class="weight-group">
+          <div class="weight-group-label">🛣 Journey</div>
+          {% for key, label in [
+            ('corridor','Corridor Performance'),
+            ('hitch','Hitch / Bike Rack')
+          ] %}
+          <div class="weight-row">
+            <label>{{ label }}</label>
+            <input type="number" name="w_{{ key }}" value="{{ weights[key] }}"
+                   min="0" max="5" step="0.5" class="weight-input">
+          </div>
+          {% endfor %}
+        </div>
+
+        <div class="weight-group">
+          <div class="weight-group-label">🔧 Reliability</div>
+          <div class="weight-row">
+            <label>Reliability</label>
+            <input type="number" name="w_reliability" value="{{ weights.reliability }}"
+                   min="0" max="5" step="0.5" class="weight-input">
+          </div>
+        </div>
+
+        <div class="weight-group">
+          <div class="weight-group-label">🏔 Conditions</div>
+          {% for key, label in [
+            ('winter','Winter Capability'),
+            ('fsr','FSR Capability')
+          ] %}
+          <div class="weight-row">
+            <label>{{ label }}</label>
+            <input type="number" name="w_{{ key }}" value="{{ weights[key] }}"
+                   min="0" max="5" step="0.5" class="weight-input">
+          </div>
+          {% endfor %}
+        </div>
+
+        <div class="weight-actions">
+          <button type="submit" class="btn-primary">Apply Weights</button>
+          <button type="button" class="btn-ghost" onclick="resetWeights()">Reset</button>
+          <span id="spinner" class="htmx-indicator spinner-text">Updating…</span>
+        </div>
+      </form>
+    </div>
+
+    <!-- Legend -->
+    <div class="sidebar-card legend-card">
+      <h3 class="sidebar-title">Legend</h3>
+      <div class="legend-row"><span class="badge-new">New</span> New vehicle</div>
+      <div class="legend-row"><span class="badge-used">Used</span> Used vehicle</div>
+      <div class="legend-row"><span class="score-bar-demo"></span> Score 1–5 per criterion</div>
+      <div class="legend-row">★ Favourited vehicles</div>
+      <p class="legend-note">Click any card to see full profile, images, and live listings.</p>
+    </div>
+  </aside>
+
+  <!-- ── Main Grid ───────────────────────────────────────────────────────── -->
+  <div class="grid-area">
+    <div id="vehicle-grid" class="vehicle-grid">
+      {% include "partials/vehicle_cards.html" %}
+    </div>
+  </div>
+
+</div>
+
+<script>
+// True defaults — never change even if user has edited weights
+const TRUE_DEFAULTS = {
+  tco: 3.0, car_seat_fit: 2.0, cargo: 1.0, third_row: 1.0,
+  corridor: 1.5, hitch: 0.5, reliability: 2.0, winter: 1.3, fsr: 0.5
+};
+
+function resetWeights() {
+  for (const [key, val] of Object.entries(TRUE_DEFAULTS)) {
+    const input = document.querySelector(`[name="w_${key}"]`);
+    if (input) input.value = val;
+  }
+  htmx.trigger('#weight-form', 'submit');
+}
+</script>
+{% endblock %}

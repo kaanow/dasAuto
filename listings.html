@@ -1,0 +1,143 @@
+{% if listings_data %}
+<div class="listings-header">
+  <div class="listings-meta">
+    <span class="listings-count">
+      {{ listings_data.listings | length }} listings
+      · {{ listings_data.scope_label }}
+    </span>
+    <span class="listings-age">
+      Updated {{ listings_data.fetched_at[:10] }}
+    </span>
+  </div>
+  <div class="listings-scope-controls">
+    {% for scope_key, scope_info in scopes.items() %}
+    <button class="scope-btn {% if scope_key == listings_data.scope %}scope-active{% endif %}"
+            hx-get="/listings/{{ v.id }}?scope={{ scope_key }}&force=1"
+            hx-target="#listings-panel"
+            hx-swap="innerHTML"
+            hx-indicator="#listings-spinner">
+      {{ scope_info.label }}
+    </button>
+    {% endfor %}
+    <button class="scope-btn refresh-btn"
+            hx-get="/listings/{{ v.id }}?scope={{ listings_data.scope }}&force=1"
+            hx-target="#listings-panel"
+            hx-swap="innerHTML"
+            hx-indicator="#listings-spinner">
+      ↺ Refresh
+    </button>
+  </div>
+</div>
+
+<!-- Source breakdown -->
+<div class="source-row">
+  <span class="source-count">🚗 AutoTrader: {{ listings_data.count_at }}</span>
+  <span class="source-count">📋 Craigslist: {{ listings_data.count_cl }}</span>
+</div>
+
+<!-- Listing cards -->
+{% if listings_data.listings %}
+<div class="listing-grid">
+  {% for l in listings_data.listings %}
+  <a href="{{ l.url }}" target="_blank" rel="noopener" class="listing-card">
+    {% if l.thumb %}
+    <div class="listing-thumb-wrap">
+      <img src="{{ l.thumb }}" alt="{{ l.title }}" class="listing-thumb"
+           onerror="this.parentElement.style.display='none'">
+    </div>
+    {% endif %}
+    <div class="listing-body">
+      <div class="listing-top-row">
+        <span class="listing-price">{{ l.price }}</span>
+        <span class="listing-source">{{ l.source_icon }} {{ l.source }}</span>
+      </div>
+      <div class="listing-title">{{ l.title[:60] }}</div>
+      <div class="listing-meta">
+        {% if l.year %}<span>{{ l.year }}</span>{% endif %}
+        {% if l.km %}<span>{{ l.km }}</span>{% endif %}
+        {% if l.location %}<span>📍 {{ l.location }}</span>{% endif %}
+      </div>
+      {% if l.seller %}<div class="listing-seller">{{ l.seller }}</div>{% endif %}
+    </div>
+  </a>
+  {% endfor %}
+</div>
+{% elif listings_data.blocked_warning %}
+<div class="listings-blocked">
+  <span class="blocked-icon">⚠</span>
+  <div>
+    <strong>AutoTrader temporarily unavailable</strong> — bot detection triggered.
+    This usually clears within a few minutes. Try refreshing, or browse directly
+    using the links below.
+  </div>
+</div>
+{% else %}
+<div class="listings-empty">
+  No listings found for this vehicle in this area. Try broadening the scope or check the deep links below.
+</div>
+{% endif %}
+
+<!-- Deep links -->
+<div class="deep-links-section">
+  <h4 class="deep-links-title">Search on other platforms</h4>
+  <div class="deep-links-grid">
+    {% for link in listings_data.deep_links %}
+    <a href="{{ link.url }}" target="_blank" rel="noopener" class="deep-link-card">
+      <span class="deep-link-icon">{{ link.icon }}</span>
+      <div class="deep-link-info">
+        <span class="deep-link-name">{{ link.name }}</span>
+        <span class="deep-link-desc">{{ link.description }}</span>
+      </div>
+      <span class="deep-link-arrow">→</span>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+
+{% else %}
+<!-- Not yet loaded -->
+<div class="listings-load-prompt">
+  <p>Listings cached for up to 12 hours. Click to fetch current BC listings.</p>
+  <button class="btn-primary"
+          hx-get="/listings/{{ v.id }}?scope=bc"
+          hx-target="#listings-panel"
+          hx-swap="innerHTML"
+          hx-indicator="#listings-spinner">
+    Fetch Listings
+  </button>
+  <span id="listings-spinner" class="htmx-indicator spinner-text">Fetching listings…</span>
+</div>
+
+<!-- Always show deep links even before fetch -->
+<div class="deep-links-section">
+  <h4 class="deep-links-title">Browse directly on</h4>
+  <div class="deep-links-grid">
+    <a href="{{ at_url }}" target="_blank" class="deep-link-card">
+      <span class="deep-link-icon">🚗</span>
+      <div class="deep-link-info">
+        <span class="deep-link-name">AutoTrader.ca — BC</span>
+        <span class="deep-link-desc">Pre-filtered for this vehicle</span>
+      </div>
+      <span class="deep-link-arrow">→</span>
+    </a>
+    <a href="{{ cl_url }}" target="_blank" class="deep-link-card">
+      <span class="deep-link-icon">📋</span>
+      <div class="deep-link-info">
+        <span class="deep-link-name">Craigslist Vancouver</span>
+        <span class="deep-link-desc">Private sellers</span>
+      </div>
+      <span class="deep-link-arrow">→</span>
+    </a>
+    {% for link in deep_links_default %}
+    <a href="{{ link.url }}" target="_blank" class="deep-link-card">
+      <span class="deep-link-icon">{{ link.icon }}</span>
+      <div class="deep-link-info">
+        <span class="deep-link-name">{{ link.name }}</span>
+        <span class="deep-link-desc">{{ link.description }}</span>
+      </div>
+      <span class="deep-link-arrow">→</span>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
