@@ -7,7 +7,8 @@ This file is the seed for everything else in this directory.
 
 - Two adults + three kids (car-seat era).
 - Vancouver, BC. ICBC Territory D, class 003, CDF 0.528.
-- 10-year ownership horizon: this is a long-hold decision.
+- Long-hold decision. Default planning horizon is **10 years** but the
+  app exposes a slider (4–15) — see "Time horizon" below.
 
 ## Driving profile
 
@@ -29,6 +30,30 @@ This file is the seed for everything else in this directory.
 - Residual value at year 10 is a Canadian Black Book projection;
   treated as a real credit against TCO but flagged as model risk for
   first-year vehicles.
+
+## Time horizon
+
+The 10-year default is our planning baseline but the right horizon is
+not fixed — and it materially shifts which candidate wins. Three reasons
+to test shorter horizons:
+
+1. **Powertrain warranty exposure.** Toyota's 10yr/240k hybrid battery
+   warranty is the structural moat for the three Toyota hybrids.
+   A used 2023 example bought in 2026 has 7 years remaining. At an
+   8-year ownership horizon you exit warranty one year before sale;
+   at 10 years you exit three years before sale, and the year-9–10
+   battery-failure tail risk is on you.
+2. **Residual front-loading.** Depreciation is steepest early. At
+   year 8 the credit-side of TCO is bigger as a share of purchase
+   price; at year 12 it asymptotes near scrap value. Shorter horizons
+   make expensive-to-buy vehicles look relatively better.
+3. **PHEV / BEV traction-battery warranty** has a similar cliff
+   (Kia/Hyundai 8yr/160k; Toyota 10yr/240k). At horizons under the
+   warranty period, the battery risk is the manufacturer's, not yours.
+
+The slider in the app sidebar re-ranks every vehicle live. URL is
+preserved (`?horizon=N`), so a shared link captures the horizon under
+which the ranking was generated.
 
 ## Scoring criteria & default weights
 

@@ -56,3 +56,31 @@ def rank_vehicles(vehicles, weights):
     for i, v in enumerate(scored, 1):
         v["computed_rank"] = i
     return scored
+
+
+def reframe_for_horizon(vehicles, horizon):
+    """Return shallow-copied vehicles with TCO fields re-derived at the
+    given horizon. The `scores.tco` value for each vehicle is renormalized
+    across the cohort's NEW TCO range so it remains 1..5.
+
+    Requires `recompute_tco` from the tco module to do the per-vehicle
+    re-derivation. Importing lazily here keeps the scoring module free of
+    rate-specific knowledge."""
+    from tco import recompute_tco
+    refreshed = []
+    for v in vehicles:
+        new = dict(v)
+        new["scores"] = dict(v["scores"])
+        comp = recompute_tco(v, horizon)
+        new["tco_value"]  = comp["tco_value"]
+        new["fuel_10yr"]  = comp["fuel"]    # display field; named for legacy
+        new["maint_10yr"] = comp["maint"]
+        new["ins_10yr"]   = comp["ins"]
+        new["resid_10yr"] = comp["resid"]
+        refreshed.append(new)
+    tcos = [v["tco_value"] for v in refreshed]
+    lo, hi = min(tcos), max(tcos)
+    for v in refreshed:
+        v["tco_score"] = normalize_tco_score(v["tco_value"], lo, hi)
+        v["scores"]["tco"] = v["tco_score"]
+    return refreshed

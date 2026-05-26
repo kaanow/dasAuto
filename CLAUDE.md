@@ -76,6 +76,23 @@ absent. Everything else must be present for the app to start.
   100% gas, PHEV: 50/50 gas/home, BEV: 85/15 home/DCFC) are preserved
   so a rate change doesn't re-assert consumption assumptions. Family-
   specific base rates and escalation curves live in `tco_research.md`.
+- **Variable TCO horizon:** all routes accept `?horizon=N` (4 ≤ N ≤ 15;
+  default 10). On the fly, each vehicle's components are re-derived
+  from the stored 10yr totals:
+  - **Fuel:** `fuel(N) = fuel_10yr × NPV_factor_fuel(N) / NPV_factor_fuel(10)`
+    using the powertrain's dominant fuel rate (gas for ICE/hybrid, a
+    50/50 mix for PHEV, an 85/15 mix for BEV). Captures the
+    NPV-weighted time tilt rather than just N/10.
+  - **Maintenance, insurance:** linearly `× N / 10` (flat-rate
+    methodology — no escalation/discount in the original totals).
+  - **Residual:** exponential decay between `pretax` (t=0) and
+    `resid_10yr` (t=10): `pretax × (resid_10yr / pretax)^(N/10)`.
+    Front-loads depreciation correctly.
+  - **TCO total:** `on_road + fuel + maint + ins − resid` at N.
+  - **TCO score:** renormalized over the cohort's TCO range *at the
+    chosen horizon* (so a vehicle's tco_score shifts when N changes).
+  Slider in the index sidebar drives this live via HTMX; horizon
+  propagates to detail/compare via `?horizon=N` query string.
 - **Listings:** AutoTrader scraped + cached 12 hr in SQLite (per-family
   cache.db). Craigslist scraped fresh each time. Kijiji / CarGurus /
   Facebook are deep links only.

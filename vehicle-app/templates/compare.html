@@ -44,7 +44,7 @@
         </div>
         <h2 class="cmp-name">{{ v.short_name }}</h2>
         <p class="cmp-years">{{ v.years }}</p>
-        <a href="/vehicle/{{ v.id }}{% if weights_qs %}?{{ weights_qs }}{% endif %}" class="cmp-detail-link">Full profile →</a>
+        <a href="/vehicle/{{ v.id }}{% if state_qs %}?{{ state_qs }}{% endif %}" class="cmp-detail-link">Full profile →</a>
       </div>
 
       <!-- Image -->
@@ -67,7 +67,7 @@
         <h3 class="cmp-section-title">Specs</h3>
         {% set spec_rows = [
           ('On-road price',    '$' ~ "{:,}".format(v.on_road)),
-          ('10yr net TCO',     '$' ~ "{:,}".format(v.tco_value)),
+          (horizon ~ 'yr net TCO', '$' ~ "{:,}".format(v.tco_value)),
           ('Fuel / energy',    v.specs.fuel_economy),
           ('Range',            v.specs.range_km),
           ('Ground clearance', v.specs.clearance_mm ~ ' mm'),
@@ -91,7 +91,7 @@
       <div class="cmp-section">
         <h3 class="cmp-section-title">Criterion Scores</h3>
         {% set crit_rows = [
-          ('tco',          '10yr TCO'),
+          ('tco',          horizon ~ 'yr TCO'),
           ('car_seat_fit', 'Car Seat Fit'),
           ('cargo',        'Cargo Utility'),
           ('third_row',    '3rd Row Comfort'),
@@ -117,9 +117,9 @@
         </table>
       </div>
 
-      <!-- 10yr cost breakdown -->
+      <!-- TCO breakdown at current horizon -->
       <div class="cmp-section">
-        <h3 class="cmp-section-title">10yr Cost Breakdown</h3>
+        <h3 class="cmp-section-title">{{ horizon }}yr Cost Breakdown</h3>
         <table class="cmp-table">
           <tr><td class="cmp-td-label">Purchase</td><td class="cmp-td-val">${{ "{:,}".format(v.on_road) }}</td></tr>
           <tr><td class="cmp-td-label">+ Fuel / Energy</td><td class="cmp-td-val">${{ "{:,}".format(v.fuel_10yr) }}</td></tr>
@@ -159,7 +159,7 @@
 </div><!-- compare-page -->
 
 <script>
-const WEIGHTS_QS = {{ weights_qs | tojson }};
+const STATE_QS = {{ state_qs | tojson }};
 
 function updateComparison() {
   const ids = [];
@@ -168,7 +168,7 @@ function updateComparison() {
     if (sel && sel.value) ids.push('ids=' + sel.value);
   }
   if (ids.length > 0) {
-    const extra = WEIGHTS_QS ? `&${WEIGHTS_QS}` : '';
+    const extra = STATE_QS ? `&${STATE_QS}` : '';
     window.location = '/compare?' + ids.join('&') + extra;
   }
 }

@@ -23,7 +23,12 @@ from flask import Flask, render_template, jsonify, request, send_from_directory
 
 sys.path.insert(0, str(Path(__file__).parent))
 from scrapers.listings import fetch_listings, autotrader_url, deep_links, SCOPES
-from scoring import CRITERIA_LABELS, compute_score, rank_vehicles
+from scoring import CRITERIA_LABELS, compute_score, rank_vehicles, reframe_for_horizon
+
+# Allowed horizon range for the user-facing slider.
+HORIZON_MIN = 4
+HORIZON_MAX = 15
+HORIZON_DEFAULT = 10
 
 # ── Paths ─────────────────────────────────────────────────────────────────────
 BASE = Path(__file__).parent
@@ -144,8 +149,14 @@ def load_vehicles():
 def vehicle_by_id(vid):
     return next((v for v in load_vehicles() if v["id"] == vid), None)
 
-def ranked_vehicles(weights):
-    return rank_vehicles(load_vehicles(), weights)
+def ranked_vehicles(weights, horizon=HORIZON_DEFAULT):
+    """Vehicles re-derived at the given horizon (TCO components + tco_score
+    refreshed across the cohort), then weighted-sum ranked."""
+    cohort = reframe_for_horizon(load_vehicles(), horizon) if horizon != HORIZON_DEFAULT \
+             else [dict(v) for v in load_vehicles()]
+    # Even at the default horizon, the stored tco_score already reflects
+    # the cohort normalisation, so we can skip the reframe round-trip.
+    return rank_vehicles(cohort, weights)
 
 def get_vehicle_images(vehicle_id):
     vdir = IMAGES_DIR / vehicle_id
@@ -163,7 +174,7 @@ def powertrain_badge(pt_type):
     }.get(pt_type, ("?", "#333"))
 
 
-# ── Weight URL helpers ───────────────────────────────────────────────────────
+# ── Weight + horizon URL helpers ─────────────────────────────────────────────
 def parse_weights(source):
     """Parse w_<key> values from a MultiDict; missing/garbage → user defaults."""
     weights = {}
@@ -175,20 +186,34 @@ def parse_weights(source):
             weights[key] = default
     return weights
 
-def weights_query_string(weights):
-    """Empty when weights match the user's defaults — keeps links clean."""
+def parse_horizon(source):
+    """Parse horizon param from MultiDict, clamped to [HORIZON_MIN, HORIZON_MAX].
+    Garbage / missing → HORIZON_DEFAULT."""
+    try:
+        h = int(float(source.get("horizon", HORIZON_DEFAULT)))
+    except (TypeError, ValueError):
+        return HORIZON_DEFAULT
+    return max(HORIZON_MIN, min(HORIZON_MAX, h))
+
+def url_state_qs(weights, horizon):
+    """Encode customised state as a query-string fragment (no leading ?/&).
+    Empty when both weights and horizon are at user defaults."""
+    parts = []
     defaults = default_weights()
-    if all(weights[k] == defaults[k] for k in defaults):
-        return ""
-    return "&".join(f"w_{k}={weights[k]}" for k in defaults)
+    if any(weights[k] != defaults[k] for k in defaults):
+        parts.extend(f"w_{k}={weights[k]}" for k in defaults)
+    if horizon != HORIZON_DEFAULT:
+        parts.append(f"horizon={horizon}")
+    return "&".join(parts)
 
 
 # ── Routes ───────────────────────────────────────────────────────────────────
 @app.route("/")
 def index():
     weights = parse_weights(request.args)
+    horizon = parse_horizon(request.args)
     favs = get_favourites()
-    vehicles = ranked_vehicles(weights)
+    vehicles = ranked_vehicles(weights, horizon)
     for v in vehicles:
         v["is_favourite"] = v["id"] in favs
         v["images"] = get_vehicle_images(v["id"])
@@ -196,7 +221,9 @@ def index():
     return render_template("index.html",
         vehicles=vehicles,
         weights=weights,
-        weights_qs=weights_query_string(weights),
+        horizon=horizon,
+        horizon_min=HORIZON_MIN, horizon_max=HORIZON_MAX,
+        state_qs=url_state_qs(weights, horizon),
         criteria_labels=CRITERIA_LABELS,
         scopes=SCOPES,
     )
@@ -205,8 +232,9 @@ def index():
 @app.route("/rerank", methods=["POST"])
 def rerank():
     weights = parse_weights(request.form)
+    horizon = parse_horizon(request.form)
     favs = get_favourites()
-    vehicles = ranked_vehicles(weights)
+    vehicles = ranked_vehicles(weights, horizon)
     for v in vehicles:
         v["is_favourite"] = v["id"] in favs
         v["images"] = get_vehicle_images(v["id"])
@@ -215,7 +243,8 @@ def rerank():
     return render_template("partials/vehicle_cards.html",
         vehicles=vehicles,
         weights=weights,
-        weights_qs=weights_query_string(weights),
+        horizon=horizon,
+        state_qs=url_state_qs(weights, horizon),
     )
 
 
@@ -227,11 +256,15 @@ def vehicle_detail(vehicle_id):
 
     scope = request.args.get("scope", "bc")
     weights = parse_weights(request.args)
+    horizon = parse_horizon(request.args)
 
-    all_ranked = ranked_vehicles(weights)
+    all_ranked = ranked_vehicles(weights, horizon)
     v_ranked = next(x for x in all_ranked if x["id"] == vehicle_id)
     score = v_ranked["computed_score"]
     rank = v_ranked["computed_rank"]
+    # Use the horizon-adjusted copy of v so detail-page tables/specs reflect
+    # the current horizon (TCO breakdown, fuel/maint/ins/resid, on-road).
+    v = v_ranked
 
     cached = get_cached_listings(vehicle_id, scope)
     listings_data = cached
@@ -251,7 +284,8 @@ def vehicle_detail(vehicle_id):
         score=score,
         rank=rank,
         weights=weights,
-        weights_qs=weights_query_string(weights),
+        horizon=horizon,
+        state_qs=url_state_qs(weights, horizon),
         criteria_labels=CRITERIA_LABELS,
         images=images,
         listings_data=listings_data,
@@ -302,7 +336,8 @@ def compare():
         ids = [v["id"] for v in load_vehicles()[:3]]
 
     weights = parse_weights(request.args)
-    ranked = ranked_vehicles(weights)
+    horizon = parse_horizon(request.args)
+    ranked = ranked_vehicles(weights, horizon)
     by_id = {v["id"]: v for v in ranked}
 
     selected = []
@@ -319,7 +354,8 @@ def compare():
         all_vehicles=ranked,
         criteria_labels=CRITERIA_LABELS,
         weights=weights,
-        weights_qs=weights_query_string(weights),
+        horizon=horizon,
+        state_qs=url_state_qs(weights, horizon),
     )
 
 
@@ -342,10 +378,12 @@ def serve_image(vehicle_id, filename):
 @app.route("/api/vehicles")
 def api_vehicles():
     weights = parse_weights(request.args)
-    vehicles = ranked_vehicles(weights)
+    horizon = parse_horizon(request.args)
+    vehicles = ranked_vehicles(weights, horizon)
     return jsonify([{
         "id": v["id"], "name": v["name"], "rank": v["computed_rank"],
         "score": v["computed_score"], "tco": v["tco_value"],
+        "horizon": horizon,
     } for v in vehicles])
 
 

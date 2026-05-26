@@ -128,6 +128,54 @@ class SmokeTests(unittest.TestCase):
         self.assertTrue(json.loads(r.data)["saved"])
         self.assertEqual(self.app_module.get_note("sienna-used"), "hello world")
 
+    def test_horizon_changes_tco_total(self):
+        """At 8yr vs 10yr the TCO must drop (less fuel/maint/ins) and the
+        Sienna's TCO must drop by a sensible amount (~$10-20k)."""
+        import re
+        def tco_for(horizon, vid="sienna-used"):
+            r = self.client.get(f"/vehicle/{vid}?horizon={horizon}")
+            self.assertEqual(r.status_code, 200, f"horizon={horizon}")
+            m = re.search(r"Net %d-year TCO[^$]*\$([\d,]+)" % horizon, r.data.decode())
+            self.assertIsNotNone(m, f"couldn't parse TCO at horizon={horizon}")
+            return int(m.group(1).replace(",", ""))
+        tco_10 = tco_for(10)
+        tco_8  = tco_for(8)
+        tco_12 = tco_for(12)
+        self.assertLess(tco_8, tco_10, "shorter horizon should mean lower TCO")
+        self.assertGreater(tco_12, tco_10, "longer horizon should mean higher TCO")
+        # Sanity bounds: shifts should be in the thousands, not zero or wild.
+        self.assertGreater(tco_10 - tco_8, 3000)
+        self.assertLess(tco_10 - tco_8, 25000)
+
+    def test_horizon_clamped_to_valid_range(self):
+        """Out-of-range horizons clamp; garbage falls back to default."""
+        import re
+        for raw in ("0", "99", "abc", ""):
+            r = self.client.get(f"/?horizon={raw}")
+            self.assertEqual(r.status_code, 200)
+            # The TCO column label echoes the in-use horizon — must be a
+            # plausible value (4..15).
+            labels = re.findall(r"(\d+)yr TCO", r.data.decode())
+            self.assertTrue(labels, f"no horizon label rendered for {raw!r}")
+            self.assertTrue(4 <= int(labels[0]) <= 15,
+                            f"horizon {labels[0]} out of clamp for input {raw!r}")
+
+    def test_horizon_renormalizes_tco_score(self):
+        """tco_score is renormalized over the cohort at each horizon, so
+        the API's score field for a given vehicle can shift with horizon."""
+        import re
+        r10 = self.client.get("/api/vehicles?horizon=10")
+        r6  = self.client.get("/api/vehicles?horizon=6")
+        self.assertEqual(r10.status_code, 200)
+        self.assertEqual(r6.status_code, 200)
+        scores_10 = {v["id"]: v["score"] for v in json.loads(r10.data)}
+        scores_6  = {v["id"]: v["score"] for v in json.loads(r6.data)}
+        # The Sorento has the best TCO; both horizons should rank it well.
+        # But some vehicle's relative score MUST change between the two.
+        diffs = [scores_10[k] - scores_6[k] for k in scores_10]
+        self.assertTrue(any(abs(d) > 0.05 for d in diffs),
+                        "no score shifted between horizon=10 and horizon=6")
+
     def test_image_serves(self):
         # Pick any vehicle that has at least one image on disk
         vehicles = self.app_module.load_vehicles()

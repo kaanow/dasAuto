@@ -30,8 +30,8 @@
                 onclick="toggleFav('{{ v.id }}')">
           {% if is_favourite %}★ Favourited{% else %}☆ Favourite{% endif %}
         </button>
-        <a href="/compare?ids={{ v.id }}{% if weights_qs %}&{{ weights_qs }}{% endif %}" class="btn-ghost-sm">Compare →</a>
-        <a href="/{% if weights_qs %}?{{ weights_qs }}{% endif %}" class="btn-ghost-sm">← All vehicles</a>
+        <a href="/compare?ids={{ v.id }}{% if state_qs %}&{{ state_qs }}{% endif %}" class="btn-ghost-sm">Compare →</a>
+        <a href="/{% if state_qs %}?{{ state_qs }}{% endif %}" class="btn-ghost-sm">← All vehicles</a>
       </div>
     </div>
 
@@ -74,7 +74,7 @@
         <span class="spec-val">${{ "{:,}".format(v.on_road) }}</span>
       </div>
       <div class="spec-item">
-        <span class="spec-label">10yr TCO</span>
+        <span class="spec-label">{{ horizon }}yr TCO</span>
         <span class="spec-val">${{ "{:,}".format(v.tco_value) }}</span>
       </div>
       <div class="spec-item">
@@ -130,30 +130,30 @@
 
     <!-- TCO Breakdown table -->
     <div class="tco-breakdown">
-      <h3 class="section-title">10-Year Cost Breakdown</h3>
+      <h3 class="section-title">{{ horizon }}-Year Cost Breakdown</h3>
       <div class="tco-table">
         <div class="tco-row">
           <span class="tco-item-label">On-road purchase price</span>
           <span class="tco-item-val">${{ "{:,}".format(v.on_road) }}</span>
         </div>
         <div class="tco-row">
-          <span class="tco-item-label">10yr Fuel / Energy</span>
+          <span class="tco-item-label">{{ horizon }}yr Fuel / Energy</span>
           <span class="tco-item-val">+ ${{ "{:,}".format(v.fuel_10yr) }}</span>
         </div>
         <div class="tco-row">
-          <span class="tco-item-label">10yr Maintenance</span>
+          <span class="tco-item-label">{{ horizon }}yr Maintenance</span>
           <span class="tco-item-val">+ ${{ "{:,}".format(v.maint_10yr) }}</span>
         </div>
         <div class="tco-row">
-          <span class="tco-item-label">10yr Insurance (est.)</span>
+          <span class="tco-item-label">{{ horizon }}yr Insurance (est.)</span>
           <span class="tco-item-val">+ ${{ "{:,}".format(v.ins_10yr) }}</span>
         </div>
         <div class="tco-row tco-credit">
-          <span class="tco-item-label">10yr Residual value (credit)</span>
+          <span class="tco-item-label">{{ horizon }}yr Residual value (credit)</span>
           <span class="tco-item-val">− ${{ "{:,}".format(v.resid_10yr) }}</span>
         </div>
         <div class="tco-row tco-total">
-          <span class="tco-item-label">Net 10-year TCO</span>
+          <span class="tco-item-label">Net {{ horizon }}-year TCO</span>
           <span class="tco-item-val">${{ "{:,}".format(v.tco_value) }}</span>
         </div>
       </div>
@@ -179,7 +179,7 @@
       <!-- Radar-style score breakdown -->
       <div class="score-breakdown">
         {% set all_criteria = [
-          ('tco',          '10yr TCO'),
+          ('tco',          horizon ~ 'yr TCO'),
           ('car_seat_fit', 'Car Seats'),
           ('cargo',        'Cargo'),
           ('third_row',    '3rd Row'),
@@ -275,11 +275,11 @@ function saveNote(id) {
   });
 }
 
-const WEIGHTS_QS = {{ weights_qs | tojson }};
+const STATE_QS = {{ state_qs | tojson }};
 
 function goCompare(currentId, otherId) {
   if (!otherId) return;
-  const extra = WEIGHTS_QS ? `&${WEIGHTS_QS}` : '';
+  const extra = STATE_QS ? `&${STATE_QS}` : '';
   window.location = `/compare?ids=${currentId}&ids=${otherId}${extra}`;
 }
 </script>

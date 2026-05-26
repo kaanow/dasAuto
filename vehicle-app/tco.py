@@ -58,3 +58,77 @@ def adjust_fuel_10yr(old_total, powertrain_type, old_mults, new_mults):
         quantity = (old_total * share) / old_mults[fuel]
         new_total += quantity * new_mults[fuel]
     return new_total
+
+
+# ---------------------------------------------------------------------------
+# Variable-horizon recomputation
+# ---------------------------------------------------------------------------
+#
+# Per-family rates that back the existing 10-year totals in vehicles.json.
+# When the user shifts the horizon, we re-derive fuel/maint/ins/residual at
+# the new N using these rates. The numbers here mirror what's documented in
+# user-kaan-and-tess/tco_research.md and were applied when vehicles.json was
+# rebuilt under the NPV methodology. If you fork for a new family with
+# different rates, update tco_research.md and refresh these constants in
+# parallel — they should not drift apart.
+
+BASE_HORIZON   = 10           # the horizon at which fuel_10yr etc. are stored
+DISCOUNT       = 0.055        # nominal annual
+
+_FUEL_RATES = {
+    "gas":   FuelRate(base=1.79,   escalation=0.035, name="gas"),
+    "hydro": FuelRate(base=0.1172, escalation=0.045, name="hydro"),
+    "dcfc":  FuelRate(base=0.40,   escalation=0.035, name="dcfc"),
+}
+
+
+def _powertrain_npv_scale(powertrain_type, years):
+    """Mix-weighted ratio of NPV-per-CAD-of-fuel-spend at `years` vs at
+    BASE_HORIZON. Multiplying fuel_10yr by this gives the NPV-adjusted
+    fuel cost at the new horizon, holding the analyst's per-vehicle
+    consumption mix constant.
+
+    Concretely: each fuel's NPV factor (`$1 base × sum (1+e)^t / (1+d)^t`)
+    grows with N; the *ratio* of factors at N vs 10 tells us how to
+    rescale a 10-year bucket."""
+    mix = POWERTRAIN_MIXES.get(powertrain_type, {"gas": 1.00})
+    new_weighted = 0.0
+    base_weighted = 0.0
+    for fuel, share in mix.items():
+        rate = _FUEL_RATES[fuel]
+        new_weighted  += share * npv_per_unit(rate, DISCOUNT, years)
+        base_weighted += share * npv_per_unit(rate, DISCOUNT, BASE_HORIZON)
+    return new_weighted / base_weighted
+
+
+def residual_at(pretax, resid_at_base, years, base_horizon=BASE_HORIZON):
+    """Exponential interpolation of residual value between `pretax` at
+    t=0 and `resid_at_base` at t=base_horizon. Smooth, monotonically
+    decreasing, correctly front-loads depreciation.
+
+    `pretax × (resid/pretax)^(years/base)`."""
+    if pretax <= 0 or resid_at_base <= 0:
+        # Fall back to linear if we can't anchor the exponential.
+        return pretax + (resid_at_base - pretax) * (years / base_horizon)
+    return pretax * (resid_at_base / pretax) ** (years / base_horizon)
+
+
+def recompute_tco(vehicle, horizon):
+    """Re-derive every TCO component at the given horizon. Returns a
+    dict of {fuel, maint, ins, resid, tco_value} in CAD. Does not
+    mutate `vehicle`."""
+    n = int(horizon)
+    scale = _powertrain_npv_scale(vehicle["powertrain_type"], n)
+    fuel  = vehicle["fuel_10yr"] * scale
+    # Maintenance + insurance: flat-rate, scale linearly.
+    maint = vehicle["maint_10yr"] * n / BASE_HORIZON
+    ins   = vehicle["ins_10yr"]   * n / BASE_HORIZON
+    resid = residual_at(vehicle["pretax"], vehicle["resid_10yr"], n)
+    tco_value = vehicle["on_road"] + fuel + maint + ins - resid
+    return {
+        "fuel":  round(fuel),
+        "maint": round(maint),
+        "ins":   round(ins),
+        "resid": round(resid),
+        "tco_value": round(tco_value),
+    }
