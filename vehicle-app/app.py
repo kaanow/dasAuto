@@ -480,4 +480,7 @@ if __name__ == "__main__":
     print(f"│  Ctrl+C to stop                                  │")
     print("└─────────────────────────────────────────────────┘")
     print()
-    app.run(debug=True, host="0.0.0.0", port=port)
+    # debug=True gives helpful tracebacks; use_reloader=False keeps the
+    # banner and process count to one (auto-reload isn't useful for a
+    # browsing app you only restart when you edit code).
+    app.run(debug=True, use_reloader=False, host="0.0.0.0", port=port)
