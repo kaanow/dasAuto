@@ -55,6 +55,48 @@ The slider in the app sidebar re-ranks every vehicle live. URL is
 preserved (`?horizon=N`), so a shared link captures the horizon under
 which the ranking was generated.
 
+### Warranty cliff in maintenance (pending build)
+
+Maintenance currently scales linearly with horizon, so the slider
+doesn't yet show the warranty step-change. Required model:
+
+- Add per-vehicle `warranty_years_remaining` — years of the
+  *cost-dominant* powertrain warranty left at point of purchase.
+  Examples to seed:
+  - 2026 new Toyota Grand Highlander Hybrid: 10 (full hybrid battery)
+  - 2023–24 used Grand Highlander Hybrid (bought 2026): 7
+  - 2022–23 used Toyota Highlander/Sienna Hybrid (bought 2026): 6–7
+  - 2022–23 used Kia Sorento PHEV: 5 (8yr battery − 3yr age)
+  - 2024 used Kia EV9 / Mazda CX-90 PHEV: 6
+  - 2026 new Hyundai IONIQ 9: 8 (BEV traction battery)
+  - 2022–23 used Subaru Ascent: 2 (5yr powertrain − 3yr age)
+  - 2022–23 used Hyundai Palisade / Honda Pilot / Kia Telluride: 2
+  - 2023–24 used Honda Pilot: 3
+- Maintenance formula at horizon N (preserves stored `maint_10yr`
+  total at N=10 for back-compat):
+  `in_yrs = min(N, warranty_years_remaining)`
+  `out_yrs = max(0, N − warranty_years_remaining)`
+  `maint(N) = (maint_10yr / total_at_10) × (in_yrs × IN_FACTOR + out_yrs × OUT_FACTOR)`
+  where `total_at_10 = min(10, w) × IN_FACTOR + max(0, 10 − w) × OUT_FACTOR`
+  and the chosen factor pair (suggest 0.5 / 1.5, ratio 1:3) is
+  documented in `tco.py` as a calibration constant.
+- Effect: a used Toyota hybrid with 7yr warranty remaining at horizon 8
+  reads 7×0.5 + 1×1.5 = 5.0 maint-years; at horizon 10 reads
+  7×0.5 + 3×1.5 = 8.0. So extending from 8→10 years adds 60% more
+  maintenance than the linear model would suggest.
+
+### Weight input precision (pending build)
+
+The sidebar weight inputs use `step="0.5"`, which the browser uses
+to reject any value not on the half-step grid. The default winter
+weight is 1.3, so the form is invalid on first render. Fix:
+
+- Loosen `step="0.5"` → `step="0.1"` on every `w_*` input.
+- In `parse_weights`, round each parsed value to one decimal so
+  hand-typed values like `1.34` get truncated to `1.3` server-side.
+- All nine criteria use the same `min`/`max`/`step` so behaviour is
+  uniform.
+
 ## Scoring criteria & default weights
 
 Nine criteria. TCO is continuous (1–5, derived from the 12-vehicle

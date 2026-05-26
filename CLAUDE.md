@@ -109,6 +109,22 @@ absent. Everything else must be present for the app to start.
   `at_url_override` field; `autotrader_url()` regex-rewrites the
   `prov`/`prv` fields to keep scope in sync.
 
+## Pending work (specified, not yet built)
+
+- **Warranty-cliff maintenance.** Add per-vehicle
+  `warranty_years_remaining` in vehicles.json (cost-dominant
+  powertrain warranty in years from purchase date). Replace
+  `maint(N) = maint_10yr × N/10` in `tco.recompute_tco` with a
+  two-rate model: in-warranty years cost less per year, out-of-
+  warranty years cost more. Calibrate IN_FACTOR / OUT_FACTOR so
+  the existing `maint_10yr` is preserved at N=10 (suggested 0.5 /
+  1.5, ratio 1:3). See `user-kaan-and-tess/situation.md` for seed
+  values per vehicle.
+- **Weight-input precision.** Sidebar inputs reject `1.3` (default
+  winter weight) because `step="0.5"`. Loosen to `step="0.1"` and
+  round to 1dp in `parse_weights` server-side as a truncation
+  belt-and-suspenders.
+
 ## Known issues / watch list
 
 - AutoTrader.ca uses Incapsula bot detection. Sandbox IPs get rate-
