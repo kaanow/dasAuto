@@ -1,6 +1,12 @@
 # BC Family Vehicle Browser — Session Handoff
 _Written April 5 2026 by Claude Sonnet 4.5 for the next Claude session._
 
+> **Note (May 2026):** Several items in this document are now stale.
+> The image fetcher is seed-file based (not DuckDuckGo); the flat-dump root
+> files were removed; TCO numbers use NPV-discounted escalating rates per
+> `TCO_RESEARCH_RESULTS.md`. See `CLAUDE.md` for the current architecture.
+> This file is retained as a historical record of the initial handoff.
+
 ---
 
 ## What this project is

@@ -183,7 +183,7 @@ def powertrain_badge(pt_type):
 
 @app.route("/")
 def index():
-    weights = DEFAULT_WEIGHTS.copy()
+    weights = parse_weights(request.args)
     favs = get_favourites()
     vehicles = ranked_vehicles(weights)
     for v in vehicles:
@@ -193,21 +193,36 @@ def index():
     return render_template("index.html",
         vehicles=vehicles,
         weights=weights,
+        weights_qs=weights_query_string(weights),
         criteria_labels=CRITERIA_LABELS,
         scopes=SCOPES,
     )
 
 
+def parse_weights(source):
+    """Parse w_<key> values from a MultiDict (request.form or request.args),
+    falling back to DEFAULT_WEIGHTS for any missing or unparseable entry."""
+    weights = {}
+    for key, default in DEFAULT_WEIGHTS.items():
+        try:
+            weights[key] = float(source.get(f"w_{key}", default))
+        except (TypeError, ValueError):
+            weights[key] = default
+    return weights
+
+
+def weights_query_string(weights):
+    """Encode weights as a URL query string fragment (without leading '?' or '&').
+    Returns an empty string when weights match defaults so links stay clean."""
+    if all(weights[k] == DEFAULT_WEIGHTS[k] for k in DEFAULT_WEIGHTS):
+        return ""
+    return "&".join(f"w_{k}={weights[k]}" for k in DEFAULT_WEIGHTS)
+
+
 @app.route("/rerank", methods=["POST"])
 def rerank():
     """AJAX endpoint: return re-ranked card HTML with new weights."""
-    weights = {}
-    for key in DEFAULT_WEIGHTS:
-        try:
-            weights[key] = float(request.form.get(f"w_{key}", DEFAULT_WEIGHTS[key]))
-        except ValueError:
-            weights[key] = DEFAULT_WEIGHTS[key]
-
+    weights = parse_weights(request.form)
     favs = get_favourites()
     vehicles = ranked_vehicles(weights)
     for v in vehicles:
@@ -218,6 +233,7 @@ def rerank():
     return render_template("partials/vehicle_cards.html",
         vehicles=vehicles,
         weights=weights,
+        weights_qs=weights_query_string(weights),
     )
 
 
@@ -228,10 +244,14 @@ def vehicle_detail(vehicle_id):
         return "Vehicle not found", 404
 
     scope = request.args.get("scope", "bc")
-    weights = DEFAULT_WEIGHTS.copy()
-    score = compute_score(v, weights)
+    weights = parse_weights(request.args)
 
-    # Load or fetch listings
+    # Compute rank under current weights so detail header matches index ordering
+    all_ranked = ranked_vehicles(weights)
+    v_ranked = next(x for x in all_ranked if x["id"] == vehicle_id)
+    score = v_ranked["computed_score"]
+    rank = v_ranked["computed_rank"]
+
     cached = get_cached_listings(vehicle_id, scope)
     listings_data = cached  # may be None → will show "load" button
 
@@ -241,18 +261,16 @@ def vehicle_detail(vehicle_id):
 
     badge_label, badge_color = powertrain_badge(v["powertrain_type"])
 
-    # Pre-compute listing URLs so templates can use them before listings are fetched
     at_url = autotrader_url(v, scope)
     cl_url = v.get("cr_url", "")
     dl     = deep_links(v, scope)
 
-    # All vehicles for comparison selector
-    all_vehicles = load_vehicles()
-
     return render_template("vehicle.html",
         v=v,
         score=score,
+        rank=rank,
         weights=weights,
+        weights_qs=weights_query_string(weights),
         criteria_labels=CRITERIA_LABELS,
         images=images,
         listings_data=listings_data,
@@ -262,7 +280,7 @@ def vehicle_detail(vehicle_id):
         note=note,
         badge_label=badge_label,
         badge_color=badge_color,
-        all_vehicles=all_vehicles,
+        all_vehicles=all_ranked,
         at_url=at_url,
         cl_url=cl_url,
         deep_links_default=dl,
@@ -303,22 +321,25 @@ def compare():
     if not ids:
         ids = [v["id"] for v in load_vehicles()[:3]]
 
-    weights = DEFAULT_WEIGHTS.copy()
+    weights = parse_weights(request.args)
+    ranked = ranked_vehicles(weights)
+    by_id = {v["id"]: v for v in ranked}
+
     selected = []
     for vid in ids[:4]:  # max 4
-        v = vehicle_by_id(vid)
+        v = by_id.get(vid)
         if v:
-            v = {**v, "computed_score": compute_score(v, weights)}
+            v = dict(v)
             v["images"] = get_vehicle_images(vid)
             v["badge_label"], v["badge_color"] = powertrain_badge(v["powertrain_type"])
             selected.append(v)
 
-    all_vehicles = load_vehicles()
     return render_template("compare.html",
         selected=selected,
-        all_vehicles=all_vehicles,
+        all_vehicles=ranked,
         criteria_labels=CRITERIA_LABELS,
         weights=weights,
+        weights_qs=weights_query_string(weights),
     )
 
 

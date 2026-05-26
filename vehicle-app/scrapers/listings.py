@@ -18,10 +18,18 @@ HEADERS = {
 }
 
 # Geographic scope options
+# `prov` is the AutoTrader URL path/query province segment ("ca" disables the
+# province filter for national searches).
 SCOPES = {
-    "vancouver":  {"prx": "50",  "loc": "Vancouver,+BC", "label": "Within 50 km of Vancouver"},
-    "bc":         {"prx": "-2",  "loc": "BC",             "label": "All of BC"},
-    "national":   {"prx": "-1",  "loc": "Canada",         "label": "All of Canada"},
+    "vancouver":  {"prx": "50",  "loc": "Vancouver,+BC", "prov": "bc",
+                   "prv": "British+Columbia",
+                   "label": "Within 50 km of Vancouver"},
+    "bc":         {"prx": "-2",  "loc": "BC",            "prov": "bc",
+                   "prv": "British+Columbia",
+                   "label": "All of BC"},
+    "national":   {"prx": "-1",  "loc": "Canada",        "prov": "ca",
+                   "prv": "",
+                   "label": "All of Canada"},
 }
 
 
@@ -35,20 +43,24 @@ def autotrader_url(vehicle, scope="bc"):
     # Some vehicles need a custom URL structure (e.g. Grand Highlander uses mdl= param)
     if vehicle.get("at_url_override"):
         base = vehicle["at_url_override"]
-        # Substitute scope-dependent values
+        # Substitute scope-dependent fields. The override has /<prov>/ in the path
+        # and prv=/loc=/prx= in the query — keep them all in sync with `sc`.
         base = re.sub(r"prx=-?\d+", f"prx={sc['prx']}", base)
         base = re.sub(r"loc=[^&]+", f"loc={sc['loc']}", base)
+        base = re.sub(r"prv=[^&]+", f"prv={sc['prv']}", base) if sc["prv"] else \
+               re.sub(r"&?prv=[^&]+", "", base)
+        base = re.sub(r"/cars/([^/]+)/[a-z]{2}/", f"/cars/\\1/{sc['prov']}/", base)
         return base
 
     make  = vehicle["at_make"]
     model = vehicle["at_model"]
     yr    = vehicle.get("at_years", "")
-    # Year range is a reliable filter; sts= filter is unreliable on AT and omitted
     yr_param = f"&yRng={yr}" if yr else ""
+    prv_param = f"&prv={sc['prv']}" if sc["prv"] else ""
     return (
-        f"https://www.autotrader.ca/cars/{make}/{model}/bc/"
+        f"https://www.autotrader.ca/cars/{make}/{model}/{sc['prov']}/"
         f"?rcp=15&rcs=0&srt=35"
-        f"&prx={sc['prx']}&prv=British+Columbia&loc={sc['loc']}"
+        f"&prx={sc['prx']}{prv_param}&loc={sc['loc']}"
         f"&hprc=True&wcp=True{yr_param}"
     )
 
@@ -232,9 +244,24 @@ def scrape_craigslist(vehicle, max_listings=8):
 def deep_links(vehicle, scope="bc"):
     make  = vehicle["make"]
     model = vehicle["model"]
-    yr    = vehicle["years"].split("–")[0].split("-")[0]  # first year
-    q     = quote_plus(f"{yr} {make} {model}")
     q_simple = quote_plus(f"{make} {model}")
+
+    if scope == "national":
+        cg_url = (f"https://www.cargurus.ca/Cars/l-Used-{make}-"
+                  f"{model.replace(' ','-')}-d999")
+        cg_name, cg_desc = "CarGurus (all Canada)", "Market analysis + deal ratings"
+    else:
+        cg_url = (f"https://www.cargurus.ca/Cars/l-Used-{make}-"
+                  f"{model.replace(' ','-')}-British-Columbia-d999_L167132")
+        cg_name, cg_desc = "CarGurus BC", "Market analysis + deal ratings"
+
+    # Always offer a "broaden search" link unless we're already national.
+    broaden_link = {
+        "name": "AutoTrader (all Canada)",
+        "icon": "🌐",
+        "url": autotrader_url(vehicle, scope="national"),
+        "description": "Broaden search to all of Canada"
+    } if scope != "national" else None
 
     links = [
         {
@@ -244,10 +271,10 @@ def deep_links(vehicle, scope="bc"):
             "description": "Private + dealer listings, national"
         },
         {
-            "name": "CarGurus BC",
+            "name": cg_name,
             "icon": "🔍",
-            "url": f"https://www.cargurus.ca/Cars/l-Used-{make}-{model.replace(' ','-')}-British-Columbia-d999_L167132",
-            "description": "Market analysis + deal ratings"
+            "url": cg_url,
+            "description": cg_desc
         },
         {
             "name": "Facebook Marketplace",
@@ -255,13 +282,9 @@ def deep_links(vehicle, scope="bc"):
             "url": f"https://www.facebook.com/marketplace/108449209188687/vehicles/?query={q_simple}&exact=false",
             "description": "Private sellers, Vancouver area"
         },
-        {
-            "name": "AutoTrader (all Canada)",
-            "icon": "🌐",
-            "url": autotrader_url(vehicle, scope="national"),
-            "description": "Broaden search to all of Canada"
-        },
     ]
+    if broaden_link:
+        links.append(broaden_link)
     return links
 
 

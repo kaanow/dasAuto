@@ -7,62 +7,91 @@ truth for project state — do not use user-level memory for project details. --
 ## Project summary
 Local Flask web app for browsing 12 candidate family vehicles.
 Companion to a spreadsheet/PDF comparison project for a Vancouver BC family.
-Run with: `python app.py` → http://localhost:5000
+Run with: `cd vehicle-app && python app.py` → http://localhost:5000
 
 ## Stack
 - Flask + Jinja2 templates
 - HTMX for partial page updates (re-ranking, listings fetch)
-- SQLite (data/cache.db) for listing cache, notes, favourites
-- Plain CSS (static/css/style.css) — no build step
+- SQLite (`data/cache.db`) for listing cache, notes, favourites
+- Plain CSS (`static/css/style.css`) — no build step
 - BeautifulSoup scraper for AutoTrader.ca and Craigslist Vancouver
+
+## Repo layout
+All app code lives in `vehicle-app/`. Root holds research/handoff docs only
+(`HANDOFF.md`, `IMAGE_RESEARCH_BRIEF.md`, `TCO_RESEARCH_BRIEF.md`,
+`TCO_RESEARCH_RESULTS.md`, this file). The previous flat-dump of root copies
+was removed May 2026.
 
 ## Architectural decisions
 - **Scoring:** 1 continuous TCO score (weight 3.0) + 8 qualitative criteria (1-5).
   TCO score = 1 + 4×(max_TCO − this_TCO)÷(max_TCO − min_TCO). This replaced
   5 separate financial sub-scores that were double-counting residual value.
-- **Re-ranking:** Server-side via `/rerank` POST, returns card partial HTML.
-  Weights are editable number fields, not sliders (user preference).
-- **Listings:** AutoTrader scraped + cached 12hr in SQLite. Craigslist scraped
-  fresh each time. Kijiji/CarGurus/Facebook are deep links only.
-- **Images:** Downloaded by `scrapers/fetch_images.py`. Primary source: AutoTrader.ca
-  search result thumbnails (full-res via CDN `-WxH` suffix stripping, 3 paginated
-  pages). Fallback: Wikimedia Commons with `require_make` title filter to avoid
-  place-name false matches (e.g. "Telluride" CO). Letterbox resize (no crop).
-  MD5 dedup prevents saving identical images from duplicate AT CDN URLs.
-  Run `--refresh` flag to clear and re-fetch all. AT is blocked on sandbox IPs
-  (Incapsula); run from home laptop. Stored in `images/<vehicle-id>/`.
-  App serves them via `/images/<id>/<file>`.
-- **at_url_override field:** Grand Highlander requires `mdl=Grand+Highlander`
-  query param on AT (slug-based URL returns unrelated Toyota inventory).
-  Set in vehicles.json, honoured by `autotrader_url()` in scrapers/listings.py.
+- **Weight threading:** Custom weights set on the index sidebar flow through
+  to `/vehicle/<id>` and `/compare` via `?w_<key>=<value>` query params,
+  encoded by JS at click time only when they differ from defaults. The detail
+  page rank/score and the compare page selector ordering both reflect the
+  user's current weights, not the static `rank` field in vehicles.json.
+- **TCO methodology (Apr 2026):** Per `TCO_RESEARCH_RESULTS.md`, costs are
+  modelled with escalating prices discounted to present value:
+  - Gas $1.79/L base, +3.5%/yr nominal escalation
+  - Home electricity $0.1172/kWh base, +4.5%/yr blended
+  - DCFC $0.40/kWh base, +3.5%/yr
+  - Nominal discount 5.5% (3.0% real + 2.5% CPI)
+  Per-vehicle `fuel_10yr` is computed by applying the new NPV-per-unit factors
+  to the original analyst's powertrain-bucket consumption shares (ICE/Hybrid:
+  100% gas, PHEV: 50/50 gas/home, BEV: 85/15 home/DCFC). Net rate-only effect
+  vs the prior flat-rate model is small: gas −0.3%, hydro −10.1%, DCFC −3.3%,
+  and the ranking is unchanged.
+- **Re-ranking:** Server-side via `/rerank` POST returns card partial HTML.
+  Weights are editable number fields (user preference; not sliders).
+- **Listings:** AutoTrader scraped + cached 12 hr in SQLite. Craigslist
+  scraped fresh each time. Kijiji/CarGurus/Facebook are deep links only.
+- **Scope plumbing:** Vancouver / BC / Canada scopes pass through to the AT
+  URL builder via `SCOPES[scope]` (sets `prov` path segment, `prx`, `loc`,
+  `prv`). National scope correctly uses `/ca/` and drops `prv=`. CarGurus
+  deep link also varies by scope. Override URLs in vehicles.json (e.g. Grand
+  Highlander's `mdl=`-based URL) are regex-rewritten in `autotrader_url()`
+  to keep the four scope fields in sync.
+- **Images:** Downloaded by `scrapers/fetch_images.py` from a curated
+  `data/image_seeds.json` (list of `{id, images: [{url, type, caption}], notes}`
+  per vehicle). Letterboxed to 900×600 on dark background (matches CSS
+  `#14181e`), MD5-deduped per vehicle. Run with `--refresh` to clear and
+  re-fetch. Generate `image_seeds.json` by handing `IMAGE_RESEARCH_BRIEF.md`
+  to a research agent and saving the JSON it returns.
+- **at_url_override field:** Grand Highlander needs `mdl=Grand+Highlander`
+  on AT (slug-based URL returns unrelated Toyota inventory).
+  Honoured by `autotrader_url()` in `scrapers/listings.py`.
 - **No at_status filter:** AT's `sts=New/Used` filter is unreliable — returns
   wrong vehicles. Year range (`yRng=`) is the only reliable filter used.
 
 ## Known issues / watch list
 - AutoTrader.ca uses Incapsula bot detection. Sandbox IPs get rate-limited
   after ~10 requests. Home laptop IPs are not affected.
-- Craigslist relevance filtering is fuzzy (make+model in title). Dealer spam
-  occasionally slips through.
-- UI not yet tested in a real browser — CSS may need responsive tweaks.
-- Full vehicle detail page audit was not completed before handoff.
+- Craigslist relevance filter is fuzzy (make + any model word in title).
+  Dealer spam occasionally slips through.
+- `@lru_cache` on `load_vehicles()` returns the cached list by reference.
+  Callers must shallow-copy with `{**v, ...}` before mutating (current code
+  does); nested fields like `v["specs"]` must not be mutated in-place.
 
 ## In-progress / not yet done
-- **Run `python scrapers/fetch_images.py --refresh` from home laptop** — AT is
-  Incapsula-blocked on sandbox; current images are Wikimedia-only (2-4/vehicle).
-  At home, expect 5-6/vehicle with real BC listing photos.
-- Browser testing and CSS polish pass
-- Print stylesheet for compare page
-- Full detail page audit (see HANDOFF.md for the test script)
+- **`data/image_seeds.json` not yet generated.** Until it exists, the image
+  fetcher exits with instructions. App falls back to placeholder divs.
+- **Browser/CSS polish pass** — never run in a real browser.
+- **Print stylesheet for compare page.**
 
 ## Key files
-- `data/vehicles.json` — all 12 candidates, scores, profile text, AT URLs
-- `data/cache.db` — SQLite, created on first run
-- `scrapers/listings.py` — scraper + deep link generators
-- `scrapers/fetch_images.py` — one-time image downloader
-- `app.py` — all Flask routes
-- `HANDOFF.md` — full session handoff notes for new agents
+- `vehicle-app/data/vehicles.json` — all 12 candidates, scores, profile text, AT URLs
+- `vehicle-app/data/cache.db` — SQLite, created on first run (gitignored)
+- `vehicle-app/scrapers/listings.py` — scraper + deep link generators
+- `vehicle-app/scrapers/fetch_images.py` — seed-file image downloader
+- `vehicle-app/app.py` — all Flask routes
+- `HANDOFF.md` — historical handoff notes from the original build session
 
 ## Last updated
-April 5 2026 — session 2: project scaffolded into correct directory structure,
-launch .bat created, image fetcher rewritten (AT thumbnails + Wikimedia fallback,
-letterbox crop, MD5 dedup, title validation, require_make filter).
+May 2026 — session 3: removed flat-dump root duplicates and `files.zip`;
+gitignored `cache.db` and `images/`; integrated TCO_RESEARCH_RESULTS.md
+(NPV-adjusted fuel_10yr per vehicle, renormalized tco_score, no rank
+changes); threaded weights through detail/compare so customised rankings
+persist; fixed national scope to actually go national in AT URL + CarGurus
+deep link; refreshed CLAUDE.md to match current code (HANDOFF.md retained
+as historical record).

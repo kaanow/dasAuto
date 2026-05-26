@@ -1,7 +1,7 @@
 {% for v in vehicles %}
 <div class="vehicle-card {% if v.is_favourite %}is-favourite{% endif %}"
      id="card-{{ v.id }}"
-     onclick="window.location='/vehicle/{{ v.id }}'">
+     onclick="goVehicle('{{ v.id }}')">
 
   <!-- Rank badge + favourite button -->
   <div class="card-top-row">

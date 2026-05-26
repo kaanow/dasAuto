@@ -16,7 +16,7 @@
         {% for v in all_vehicles %}
         <option value="{{ v.id }}"
           {% if slot < selected|length and selected[slot].id == v.id %}selected{% endif %}>
-          #{{ v.rank }} {{ v.short_name }} ({{ v.new_used }} {{ v.years }})
+          #{{ v.computed_rank }} {{ v.short_name }} ({{ v.new_used }} {{ v.years }})
         </option>
         {% endfor %}
       </select>
@@ -44,7 +44,7 @@
         </div>
         <h2 class="cmp-name">{{ v.short_name }}</h2>
         <p class="cmp-years">{{ v.years }}</p>
-        <a href="/vehicle/{{ v.id }}" class="cmp-detail-link">Full profile →</a>
+        <a href="/vehicle/{{ v.id }}{% if weights_qs %}?{{ weights_qs }}{% endif %}" class="cmp-detail-link">Full profile →</a>
       </div>
 
       <!-- Image -->
@@ -159,6 +159,8 @@
 </div><!-- compare-page -->
 
 <script>
+const WEIGHTS_QS = {{ weights_qs | tojson }};
+
 function updateComparison() {
   const ids = [];
   for (let i = 0; i < 4; i++) {
@@ -166,7 +168,8 @@ function updateComparison() {
     if (sel && sel.value) ids.push('ids=' + sel.value);
   }
   if (ids.length > 0) {
-    window.location = '/compare?' + ids.join('&');
+    const extra = WEIGHTS_QS ? `&${WEIGHTS_QS}` : '';
+    window.location = '/compare?' + ids.join('&') + extra;
   }
 }
 

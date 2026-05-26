@@ -9,8 +9,8 @@
 
     <!-- Header -->
     <div class="detail-header">
-      <div class="detail-rank-badge rank-{{ v.rank }}">
-        #{{ v.rank }}
+      <div class="detail-rank-badge rank-{{ rank }}">
+        #{{ rank }}
       </div>
       <div class="detail-title-block">
         <div class="detail-badges">
@@ -30,8 +30,8 @@
                 onclick="toggleFav('{{ v.id }}')">
           {% if is_favourite %}★ Favourited{% else %}☆ Favourite{% endif %}
         </button>
-        <a href="/compare?ids={{ v.id }}" class="btn-ghost-sm">Compare →</a>
-        <a href="/" class="btn-ghost-sm">← All vehicles</a>
+        <a href="/compare?ids={{ v.id }}{% if weights_qs %}&{{ weights_qs }}{% endif %}" class="btn-ghost-sm">Compare →</a>
+        <a href="/{% if weights_qs %}?{{ weights_qs }}{% endif %}" class="btn-ghost-sm">← All vehicles</a>
       </div>
     </div>
 
@@ -157,8 +157,10 @@
           <span class="tco-item-val">${{ "{:,}".format(v.tco_value) }}</span>
         </div>
       </div>
-      <p class="tco-note">All values CAD. Fuel at $1.65/L or 12.5¢/kWh home / $0.38/kWh DCFC.
-      Insurance: ICBC Territory D, class 003, CDF 0.528. Canadian Black Book depreciation projections.</p>
+      <p class="tco-note">All values CAD, NPV at 5.5% nominal discount (3.0% real + 2.5% CPI).
+      Apr 2026 base rates: gas $1.79/L (+3.5%/yr), home electricity 11.72&nbsp;¢/kWh (+4.5%/yr blended),
+      DCFC $0.40/kWh (+3.5%/yr). Insurance: ICBC Territory D, class 003, CDF 0.528.
+      Residual: Canadian Black Book projections.</p>
     </div>
 
   </div><!-- detail-main -->
@@ -172,7 +174,7 @@
         <span class="score-card-label">Weighted Score</span>
         <span class="score-card-val">{{ "%.2f"|format(score) }}</span>
       </div>
-      <div class="score-card-rank">Ranked #{{ v.rank }} of 12</div>
+      <div class="score-card-rank">Ranked #{{ rank }} of 12</div>
 
       <!-- Radar-style score breakdown -->
       <div class="score-breakdown">
@@ -216,7 +218,7 @@
         {% for other in all_vehicles %}
         {% if other.id != v.id %}
         <option value="{{ other.id }}">
-          #{{ other.rank }} {{ other.short_name }} ({{ other.new_used }})
+          #{{ other.computed_rank }} {{ other.short_name }} ({{ other.new_used }})
         </option>
         {% endif %}
         {% endfor %}
@@ -273,8 +275,12 @@ function saveNote(id) {
   });
 }
 
+const WEIGHTS_QS = {{ weights_qs | tojson }};
+
 function goCompare(currentId, otherId) {
-  if (otherId) window.location = `/compare?ids=${currentId}&ids=${otherId}`;
+  if (!otherId) return;
+  const extra = WEIGHTS_QS ? `&${WEIGHTS_QS}` : '';
+  window.location = `/compare?ids=${currentId}&ids=${otherId}${extra}`;
 }
 </script>
 {% endblock %}

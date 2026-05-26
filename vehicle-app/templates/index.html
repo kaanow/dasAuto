@@ -124,5 +124,23 @@ function resetWeights() {
   }
   htmx.trigger('#weight-form', 'submit');
 }
+
+// Read current weight inputs; build a query string only when they differ
+// from defaults so links stay clean for the common case.
+function currentWeightsQS() {
+  const params = [];
+  let differs = false;
+  for (const [key, def] of Object.entries(TRUE_DEFAULTS)) {
+    const input = document.querySelector(`[name="w_${key}"]`);
+    const val = input ? parseFloat(input.value) : def;
+    if (val !== def) differs = true;
+    params.push(`w_${key}=${val}`);
+  }
+  return differs ? '?' + params.join('&') : '';
+}
+
+function goVehicle(id) {
+  window.location = `/vehicle/${id}${currentWeightsQS()}`;
+}
 </script>
 {% endblock %}
