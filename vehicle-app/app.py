@@ -466,19 +466,23 @@ if __name__ == "__main__":
         for v in vehicles
         if (IMAGES_DIR / v["id"]).exists()
     )
-    img_pct = int(total_imgs / (len(vehicles) * 6) * 100)
+    target_imgs = len(vehicles) * 6
+    img_pct = int(total_imgs / target_imgs * 100) if target_imgs else 0
 
     url = f"http://localhost:{port}"
-    print("┌─────────────────────────────────────────────────┐")
-    print("│  BC Family Vehicle Browser                       │")
-    print("├─────────────────────────────────────────────────┤")
-    print(f"│  URL:     {url:<35}  │")
-    print(f"│  Health:  {url + '/health':<35}  │")
-    print(f"│  Images:  {total_imgs:>3} downloaded  ({img_pct}% complete)          │")
+    W = 49  # inner box width (between the two vertical bars)
+    def row(s):
+        print(f"│ {s.ljust(W - 1)}│")
+    print("┌" + "─" * W + "┐")
+    row("BC Family Vehicle Browser")
+    print("├" + "─" * W + "┤")
+    row(f"URL:     {url}")
+    row(f"Health:  {url}/health")
+    row(f"Images:  {total_imgs}/{target_imgs}  ({img_pct}% of target)")
     if total_imgs < 12:
-        print(f"│  Run: python scrapers/fetch_images.py            │")
-    print(f"│  Ctrl+C to stop                                  │")
-    print("└─────────────────────────────────────────────────┘")
+        row("Run: python scrapers/fetch_images.py")
+    row("Ctrl+C to stop")
+    print("└" + "─" * W + "┘")
     print()
     # debug=True gives helpful tracebacks; use_reloader=False keeps the
     # banner and process count to one (auto-reload isn't useful for a
