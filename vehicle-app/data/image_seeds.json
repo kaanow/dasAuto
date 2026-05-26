@@ -1,0 +1,142 @@
+[
+  {
+    "id": "grand-highlander-new",
+    "images": [
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/e/e3/2024_Toyota_Grand_Highlander_Limited%2C_front_11.22.23.jpg", "type": "exterior", "caption": "Toyota Grand Highlander Limited front 3/4 (representative of 2026 XLE Hybrid)"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/1/1c/2024_Toyota_Grand_Highlander_Limited%2C_rear_11.22.23.jpg", "type": "exterior", "caption": "Toyota Grand Highlander Limited rear 3/4"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/f/f9/2024_Toyota_Grand_Highlander_XLE_in_Midnight_Black_Metallic%2C_front_left.jpg", "type": "exterior", "caption": "Toyota Grand Highlander XLE in Midnight Black, front left"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/6/69/2024_Toyota_Grand_Highlander_XLE_in_Midnight_Black_Metallic%2C_rear_right.jpg", "type": "exterior", "caption": "Toyota Grand Highlander XLE in Midnight Black, rear right"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/6/66/2024_Toyota_Grand_Highlander_XLE_AWD_in_Blueprint%2C_Front_Right%2C_09-10-2023.jpg", "type": "exterior", "caption": "Toyota Grand Highlander XLE AWD in Blueprint, front right"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/0/07/%D0%A1%D0%B0%D0%BB%D0%BE%D0%BD_Toyota_Grand_Highlander.png", "type": "interior", "caption": "Toyota Grand Highlander dashboard / front cabin"}
+    ],
+    "notes": "Wikimedia coverage of the 2026 facelift is limited. Using high-quality 2024 Grand Highlander images (XLE and Limited trims) — the 2026 model is a minor refresh and the body / cabin layout is essentially unchanged. Includes one interior shot."
+  },
+  {
+    "id": "grand-highlander-used",
+    "images": [
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/6/6b/24_Toyota_Grand_Highlander_XLE.jpg", "type": "exterior", "caption": "2024 Toyota Grand Highlander XLE front 3/4"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/3/32/24_Toyota_Grand_Highlander_Limited.jpg", "type": "exterior", "caption": "2024 Toyota Grand Highlander Limited front 3/4"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/b/b8/2024_Toyota_Grand_Highlander_front_view.jpg", "type": "exterior", "caption": "2024 Toyota Grand Highlander front view"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/7/78/2024_Toyota_Grand_Highlander_rear_view.jpg", "type": "exterior", "caption": "2024 Toyota Grand Highlander rear view"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/6/66/2024_Toyota_Grand_Highlander_XLE_AWD_in_Blueprint%2C_Front_Right%2C_09-10-2023.jpg", "type": "exterior", "caption": "2024 Toyota Grand Highlander XLE AWD in Blueprint, front right"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/0/07/%D0%A1%D0%B0%D0%BB%D0%BE%D0%BD_Toyota_Grand_Highlander.png", "type": "interior", "caption": "Toyota Grand Highlander dashboard / front cabin"}
+    ],
+    "notes": "Only one interior shot is available on Wikimedia Commons for this model. All other available exterior shots are used."
+  },
+  {
+    "id": "sienna-used",
+    "images": [
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/0/09/2021_Toyota_Sienna_Hybrid_Limited%2C_front_1.14.21.jpg", "type": "exterior", "caption": "Toyota Sienna Hybrid (4th gen XL40) Limited front 3/4"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/4/4d/2021_Toyota_Sienna_Hybrid_Limited%2C_rear_1.14.21.jpg", "type": "exterior", "caption": "Toyota Sienna Hybrid Limited rear 3/4"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/2/22/2021_Toyota_Sienna_LE_Hybrid%2C_front_1.5.22.jpg", "type": "exterior", "caption": "Toyota Sienna LE Hybrid front 3/4"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/0/0a/Toyota_Sienna_AXLH40_2.5_Platinum_AWD_HEV_Blizzard_Pearl.jpg", "type": "exterior", "caption": "Toyota Sienna AXLH40 Platinum AWD HEV side / 3/4 view"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/e/e7/Interior_of_a_May_Mobility_Toyota_Sienna.jpg", "type": "interior", "caption": "Toyota Sienna (XL40) front cabin / dashboard"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/a/a1/TOYOTA_SIENNA_%28XL40%29_CHINA_VERSION_INTERIOR.jpg", "type": "interior", "caption": "Toyota Sienna XL40 interior (rear cabin / cargo perspective)"}
+    ],
+    "notes": "No Woodland Edition-specific photos are available on Wikimedia Commons. Used the 4th-generation (XL40) Sienna Hybrid images, which share body / cabin design with the Woodland Edition (Woodland adds raised suspension, all-weather floor liners, and a different wheel set on the same body)."
+  },
+  {
+    "id": "ascent-used",
+    "images": [
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/f/fe/23_Subaru_Ascent_Touring.jpg", "type": "exterior", "caption": "2023 Subaru Ascent Touring front 3/4"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/f/f5/22_Subaru_Ascent_Limited.jpg", "type": "exterior", "caption": "2022 Subaru Ascent Limited front 3/4"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/5/51/2023_Subaru_Ascent%2C_front_NYIAS_2023.jpg", "type": "exterior", "caption": "2023 Subaru Ascent facelift front, NYIAS 2023"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/3/3d/2023_Subaru_Ascent_IMG_5562.jpg", "type": "exterior", "caption": "2023 Subaru Ascent side / 3/4 view"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/c/c1/2019_Subaru_Ascent_rear_12.29.18.jpg", "type": "exterior", "caption": "Subaru Ascent rear 3/4 (pre-facelift body shared with 2022)"}
+    ],
+    "notes": "No interior photo of the Ascent could be confidently validated as Touring-trim on Wikimedia Commons. 2019 rear photo is included because pre-facelift body styling matches 2022 model year. Five exterior images provided; no interior shot."
+  },
+  {
+    "id": "highlander-hybrid-used",
+    "images": [
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/4/4b/Toyota_Highlander_Hybrid_%28XU70%29_1X7A6356.jpg", "type": "exterior", "caption": "Toyota Highlander Hybrid (XU70), 4th gen front 3/4"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/9/9b/2023_Toyota_Kluger_GX_front.jpg", "type": "exterior", "caption": "2023 Toyota Kluger GX (XU70, Highlander twin) front 3/4"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/a/a7/2023_Toyota_Kluger_GX_rear.jpg", "type": "exterior", "caption": "2023 Toyota Kluger GX (XU70, Highlander twin) rear 3/4"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/d/d0/2021_Toyota_Highlander_XSE%2C_front_8.28.21.jpg", "type": "exterior", "caption": "2021 Toyota Highlander XSE (XU70) front"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/6/6e/2023_Toyota_Highlander_interior.jpg", "type": "interior", "caption": "2023 Toyota Highlander dashboard / front cabin"}
+    ],
+    "notes": "Five validated images including one interior. Kluger is the international name for the same XU70 chassis used for the North American Highlander."
+  },
+  {
+    "id": "palisade-used",
+    "images": [
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/d/df/2023_Hyundai_Palisade_Ultimate_Calligraphy_in_Typhoon_Silver%2C_front_right%2C_2024-03-31.jpg", "type": "exterior", "caption": "2023 Hyundai Palisade Ultimate Calligraphy (facelift) front right"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/e/e6/2023_Hyundai_Palisade_Ultimate_Calligraphy_in_Typhoon_Silver%2C_rear_right%2C_2024-03-31.jpg", "type": "exterior", "caption": "2023 Hyundai Palisade Ultimate Calligraphy (facelift) rear right"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/1/16/Hyundai_Palisade_Calligraphy.jpg", "type": "exterior", "caption": "Hyundai Palisade Calligraphy front view"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/a/ae/Hyundai_Palisade_LX2_Steel_Graphite_%2817%29.jpg", "type": "exterior", "caption": "Hyundai Palisade LX2 Steel Graphite rear 3/4"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/0/01/2021_Hyundai_Palisade_2.2_Signature_%28Indonesia%29_interior.jpg", "type": "interior", "caption": "2021 Hyundai Palisade Signature interior / dashboard"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/b/b4/Hyundai_Palisade_Calligraphy_LX2_PE_Navy_Warm_Gray_Two-tone_%281%29.jpg", "type": "interior", "caption": "Hyundai Palisade Calligraphy LX2 PE Navy / Warm Gray two-tone interior"}
+    ],
+    "notes": ""
+  },
+  {
+    "id": "telluride-used",
+    "images": [
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/e/e9/20_Kia_Telluride_EX.jpg", "type": "exterior", "caption": "2020 Kia Telluride EX front 3/4"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/3/37/2019_Kia_Telluride_EX_V6_front_4.14.19.jpg", "type": "exterior", "caption": "Kia Telluride EX V6 front"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/2/21/2019_Kia_Telluride_EX_V6_rear_4.14.19.jpg", "type": "exterior", "caption": "Kia Telluride EX V6 rear"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/2/29/2022_Kia_Telluride_DSC_2922.jpg", "type": "exterior", "caption": "2022 Kia Telluride side / 3/4 view"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/d/d0/2022_Kia_Telluride_IMG_4265.jpg", "type": "exterior", "caption": "2022 Kia Telluride rear 3/4 view"}
+    ],
+    "notes": "No interior shot of the Telluride EX confirmed available on Wikimedia Commons. Five exterior shots provided; no validated interior URL."
+  },
+  {
+    "id": "pilot-used",
+    "images": [
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/7/71/2023_Honda_Pilot_Touring%2C_front.jpg", "type": "exterior", "caption": "2023 Honda Pilot Touring (4th gen) front 3/4"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/1/1a/2023_Honda_Pilot_Touring%2C_rear.jpg", "type": "exterior", "caption": "2023 Honda Pilot Touring rear 3/4"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/8/8a/2023_Honda_Pilot_%28front_view%29.jpg", "type": "exterior", "caption": "2023 Honda Pilot front view"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/4/4a/2023_Honda_Pilot_TrailSport%2C_rear_8.25.23.jpg", "type": "exterior", "caption": "2023 Honda Pilot TrailSport rear"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/0/06/2023_Honda_Pilot_interior.jpg", "type": "interior", "caption": "2023 Honda Pilot dashboard / front cabin"}
+    ],
+    "notes": ""
+  },
+  {
+    "id": "sorento-phev-used",
+    "images": [
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/c/c7/2020_Kia_Sorento_4_HEV_AWD_Automatic_1.6_Front_%281%29.jpg", "type": "exterior", "caption": "Kia Sorento (MQ4) Hybrid front 3/4 — same body as PHEV"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/d/dc/2020_Kia_Sorento_4_HEV_AWD_Automatic_1.6_Rear_%281%29.jpg", "type": "exterior", "caption": "Kia Sorento (MQ4) Hybrid rear 3/4 — same body as PHEV"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/6/6e/Kia_Sorento_MQ4_PE_Aurora_Black_Pearl_%281%29.jpg", "type": "exterior", "caption": "Kia Sorento MQ4 Aurora Black Pearl front 3/4"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/4/40/Kia_Sorento_MQ4_PE_Aurora_Black_Pearl_%282%29.jpg", "type": "exterior", "caption": "Kia Sorento MQ4 Aurora Black Pearl rear 3/4"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/0/0c/Kia_Sorento_MQ4_Saddle_Brown_Interior_%281%29.jpg", "type": "interior", "caption": "Kia Sorento MQ4 Saddle Brown interior / dashboard"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/2/22/Kia_Sorento_MQ4_Saddle_Brown_Interior_%284%29.jpg", "type": "interior", "caption": "Kia Sorento MQ4 Saddle Brown interior rear cabin"}
+    ],
+    "notes": "No PHEV-specific photo confirmed on Wikimedia Commons; Sorento PHEV shares body and cabin with the standard MQ4 Hybrid/ICE versions (distinguishable only by the small PHEV charge port and badge)."
+  },
+  {
+    "id": "cx90-phev-used",
+    "images": [
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/f/f5/2024_Mazda_CX-90_PHEV_Premium_in_Rhodium_White_Metallic%2C_front_left.jpg", "type": "exterior", "caption": "2024 Mazda CX-90 PHEV Premium in Rhodium White Metallic, front left"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/c/c4/2024_Mazda_CX-90_PHEV_Premium_in_Rhodium_White_Metallic%2C_front_left_%28cropped%29.jpg", "type": "exterior", "caption": "2024 Mazda CX-90 PHEV Premium front (cropped) — alternate angle"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/5/55/2024_Mazda_CX-90_PHEV_Premium_Package_in_Machine_Gray_Metallic%2C_rear_left.jpg", "type": "exterior", "caption": "2024 Mazda CX-90 PHEV Premium Package in Machine Gray Metallic, rear left"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/3/3e/2024_Mazda_CX-90_Mild_Hybrid_Inline_6_Turbo_GS-L_AWD_in_Deep_Crystal_Blue_Mica%2C_Front_Left%2C_09-10-2023.jpg", "type": "exterior", "caption": "2024 Mazda CX-90 in Deep Crystal Blue Mica, front left (same body as PHEV)"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/0/04/2024_Mazda_CX-90%2C_rear_1.18.23.jpg", "type": "exterior", "caption": "2024 Mazda CX-90 rear view"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/5/57/Mazda_CX-90_3.3_e-Skyactiv-G_AWD_HEV_Turbo_Exclusive_2024_%28interior%29.jpg", "type": "interior", "caption": "2024 Mazda CX-90 interior / dashboard (shared with PHEV)"}
+    ],
+    "notes": "Three CX-90 PHEV-specific exterior shots plus shared-platform images. The CX-90 PHEV has identical exterior styling to the inline-6 CX-90 except for badging and the charge port."
+  },
+  {
+    "id": "ev9-used",
+    "images": [
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/1/1e/Kia_EV9_Land_AWD_%282024%29_%2853625134390%29.jpg", "type": "exterior", "caption": "Kia EV9 Land AWD (2024) front 3/4"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/1/12/2025_Kia_EV9_Land_AWD_Plus_Pkg_in_Flare_Red%2C_front_left%2C_2025-04-18.jpg", "type": "exterior", "caption": "2025 Kia EV9 Land AWD Plus Pkg in Flare Red, front left"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/e/e0/Kia_EV9_1X7A2472.jpg", "type": "exterior", "caption": "Kia EV9 side / 3/4 view"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/0/09/Kia_EV9_IAA_2023_1X7A0696.jpg", "type": "exterior", "caption": "Kia EV9 rear view (IAA 2023)"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/d/db/2023_Kia_EV9_interior.png", "type": "interior", "caption": "2023 Kia EV9 dashboard / front cabin"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/f/f2/Kia_EV9_MV1_Dark_Gray_Black_Interior_%281%29.jpg", "type": "interior", "caption": "Kia EV9 Dark Gray / Black interior"}
+    ],
+    "notes": ""
+  },
+  {
+    "id": "ioniq9-new",
+    "images": [
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/9/90/Hyundai_Ioniq_9_IMG_5950.jpg", "type": "exterior", "caption": "Hyundai IONIQ 9 front 3/4"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/0/04/Hyundai_Ioniq_9_IMG_5944.jpg", "type": "exterior", "caption": "Hyundai IONIQ 9 rear 3/4"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/0/0b/2025_Hyundai_Ioniq_9_%28Front%29_at_the_2025_NYC_Auto_Show.jpg", "type": "exterior", "caption": "2025 Hyundai IONIQ 9 front view, NYC Auto Show 2025"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/a/ac/Hyundai_Ioniq_9_Auto_Zuerich_2025_DSC_2978.jpg", "type": "exterior", "caption": "Hyundai IONIQ 9 at Auto Zurich 2025"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/d/dd/2026_Hyundai_Ioniq_9.jpg", "type": "exterior", "caption": "2026 Hyundai IONIQ 9"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/5/57/Hyundai_IONIQ_9_Calligraphy_ME1_Cognac_Brown_Creamy_Beige_Two-tone_%281%29.jpg", "type": "interior", "caption": "Hyundai IONIQ 9 Calligraphy Cognac Brown / Creamy Beige interior"}
+    ],
+    "notes": ""
+  }
+]
