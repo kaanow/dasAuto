@@ -23,9 +23,15 @@ if not exist "%VEHICLE_DATA_DIR%\vehicles.json" (
 )
 
 :: --- Python ---------------------------------------------------------------
-python --version >nul 2>&1
+:: Prefer the Python launcher with an explicit 3.11+ minimum.
+set PYBIN=python
+where py >nul 2>&1
+if not errorlevel 1 (
+    py -3.11 --version >nul 2>&1 && set PYBIN=py -3.11
+)
+%PYBIN% --version >nul 2>&1
 if errorlevel 1 (
-    echo ERROR: Python not found. Install Python 3.9+ from python.org and try again.
+    echo ERROR: Python not found. Install Python 3.11+ from python.org and try again.
     pause
     exit /b 1
 )

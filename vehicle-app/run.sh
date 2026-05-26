@@ -26,16 +26,24 @@ if [ ! -f "$VEHICLE_DATA_DIR/vehicles.json" ]; then
 fi
 
 # --- Python ---------------------------------------------------------------
-if ! command -v python3 &>/dev/null; then
-  echo "ERROR: python3 not found. Install Python 3.9+ and try again."
+# Prefer 3.11+ (avoids the macOS Python 3.9 multiprocessing/LibreSSL warnings).
+# Falls back to python3 if no newer interpreter is on PATH.
+PYBIN=""
+for candidate in python3.13 python3.12 python3.11 python3; do
+  if command -v "$candidate" &>/dev/null; then
+    PYBIN="$candidate"; break
+  fi
+done
+if [ -z "$PYBIN" ]; then
+  echo "ERROR: no python3 interpreter found. Install Python 3.11+ and try again."
   exit 1
 fi
 
 # --- Venv -----------------------------------------------------------------
 VENV_DIR=".venv"
 if [ ! -d "$VENV_DIR" ]; then
-  echo "Creating virtual environment in $SKILL_DIR/$VENV_DIR..."
-  python3 -m venv "$VENV_DIR"
+  echo "Creating virtual environment in $SKILL_DIR/$VENV_DIR (using $PYBIN)..."
+  "$PYBIN" -m venv "$VENV_DIR"
 fi
 PY="$VENV_DIR/bin/python"
 PIP="$VENV_DIR/bin/pip"
@@ -80,4 +88,8 @@ echo "Starting Family Vehicle Browser on http://localhost:$PORT"
 echo "Data: $VEHICLE_DATA_DIR"
 echo "Ctrl+C to stop."
 echo
+# Suppress macOS multiprocessing.resource_tracker shutdown warning — harmless
+# semaphore-cleanup nag that occurs on signal exit regardless of Python version.
+# Filter is scoped to that one source so real warnings still surface.
+export PYTHONWARNINGS="ignore::UserWarning:multiprocessing.resource_tracker"
 exec "$PY" app.py
