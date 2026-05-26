@@ -1,28 +1,36 @@
 """
 Vehicle image downloader — seed-file based.
 
-Reads data/image_seeds.json (curated list of pre-vetted image URLs per vehicle),
-downloads each image, letterbox-resizes to 900x600 on a dark background, and
-saves to images/<vehicle-id>/00.jpg, 01.jpg, ...
+Reads <data-dir>/image_seeds.json (curated list of pre-vetted image URLs
+per vehicle), downloads each image, letterbox-resizes to 900x600 on a
+dark background, and saves to <data-dir>/images/<vehicle-id>/00.jpg, ...
 
 Usage:
     python scrapers/fetch_images.py              # skip vehicles that already have images
     python scrapers/fetch_images.py --refresh    # clear and re-fetch all
 
-Generate image_seeds.json by handing IMAGE_RESEARCH_BRIEF.md to a research agent
-and pasting the returned JSON into data/image_seeds.json.
+The data dir is taken from VEHICLE_DATA_DIR (same env var the Flask app
+uses); defaults to ../user-kaan-and-tess relative to this file. Generate
+image_seeds.json by handing briefs/image_research_brief.md to a research
+agent and pasting the returned JSON into <data-dir>/image_seeds.json.
 """
 
-import json, sys, time, hashlib
+import json, os, sys, time, hashlib
 from pathlib import Path
 from io import BytesIO
 
 import requests
 from PIL import Image, ImageDraw
 
-IMAGES_DIR  = Path(__file__).parent.parent / "images"
-DATA_FILE   = Path(__file__).parent.parent / "data" / "vehicles.json"
-SEEDS_FILE  = Path(__file__).parent.parent / "data" / "image_seeds.json"
+SKILL_ROOT = Path(__file__).parent.parent
+DATA_DIR = Path(
+    os.environ.get("VEHICLE_DATA_DIR")
+    or SKILL_ROOT.parent / "user-kaan-and-tess"
+).resolve()
+
+IMAGES_DIR  = DATA_DIR / "images"
+DATA_FILE   = DATA_DIR / "vehicles.json"
+SEEDS_FILE  = DATA_DIR / "image_seeds.json"
 
 # Wikimedia returns 429 for generic browser User-Agents. Their policy requires
 # an identifiable UA with contact info. See:

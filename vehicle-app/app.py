@@ -1,7 +1,17 @@
 """
-BC Family Vehicle Browser
-Run: python app.py
-Open: http://localhost:5000
+Family Vehicle Browser — Flask app.
+
+The skill: the routes, scoring framework (in scoring.py), TCO maths
+(in tco.py), and listings scrapers.
+
+The data: comes from a per-family directory pointed at by VEHICLE_DATA_DIR
+(default: ../user-kaan-and-tess/ relative to this file). Expected contents:
+  vehicles.json       — candidate list with per-criterion scores + TCO
+  weights.json        — default importance weights (optional; falls back
+                        to scoring.DEFAULT_WEIGHTS)
+  images/<id>/*.jpg   — galleries downloaded by scrapers/fetch_images.py
+  cache.db            — runtime SQLite (listings cache, favourites, notes;
+                        created on first run)
 """
 
 import json, os, sys, sqlite3
@@ -11,69 +21,59 @@ from functools import lru_cache
 
 from flask import Flask, render_template, jsonify, request, send_from_directory
 
-# Add scrapers to path
 sys.path.insert(0, str(Path(__file__).parent))
 from scrapers.listings import fetch_listings, autotrader_url, deep_links, SCOPES
+from scoring import CRITERIA_LABELS, compute_score, rank_vehicles
 
+# ── Paths ─────────────────────────────────────────────────────────────────────
 BASE = Path(__file__).parent
-DATA_FILE  = BASE / "data" / "vehicles.json"
-IMAGES_DIR = BASE / "images"
-DB_FILE    = BASE / "data" / "cache.db"
+
+def _resolve_data_dir():
+    """VEHICLE_DATA_DIR env var (absolute or relative to CWD) wins;
+    otherwise default to the canonical user-kaan-and-tess folder beside
+    vehicle-app/."""
+    env = os.environ.get("VEHICLE_DATA_DIR")
+    if env:
+        return Path(env).resolve()
+    return (BASE.parent / "user-kaan-and-tess").resolve()
+
+DATA_DIR    = _resolve_data_dir()
+VEHICLES_FILE = DATA_DIR / "vehicles.json"
+WEIGHTS_FILE  = DATA_DIR / "weights.json"
+IMAGES_DIR    = DATA_DIR / "images"
+DB_FILE       = DATA_DIR / "cache.db"
 
 app = Flask(__name__)
 app.config["SEND_FILE_MAX_AGE_DEFAULT"] = 0
 
-# ── Scoring weights (default, matches spreadsheet) ───────────────────────────
-DEFAULT_WEIGHTS = {
-    "tco":          3.0,
-    "car_seat_fit": 2.0,
-    "cargo":        1.0,
-    "third_row":    1.0,
-    "corridor":     1.5,
-    "hitch":        0.5,
-    "reliability":  2.0,
-    "winter":       1.3,
-    "fsr":          0.5,
+
+# ── Weights ──────────────────────────────────────────────────────────────────
+FALLBACK_WEIGHTS = {
+    "tco":          3.0, "car_seat_fit": 2.0, "cargo":       1.0,
+    "third_row":    1.0, "corridor":     1.5, "hitch":       0.5,
+    "reliability":  2.0, "winter":       1.3, "fsr":         0.5,
 }
 
-CRITERIA_LABELS = {
-    "tco":          "10yr Net TCO",
-    "car_seat_fit": "Car Seat Fit",
-    "cargo":        "Cargo Utility",
-    "third_row":    "3rd Row Comfort",
-    "corridor":     "Corridor Performance",
-    "hitch":        "Hitch / Bike Rack",
-    "reliability":  "Reliability",
-    "winter":       "Winter Capability",
-    "fsr":          "FSR Capability",
-}
+@lru_cache(maxsize=1)
+def default_weights():
+    """User's per-family defaults from weights.json, else built-in fallback."""
+    if WEIGHTS_FILE.exists():
+        with open(WEIGHTS_FILE) as f:
+            return json.load(f)
+    return dict(FALLBACK_WEIGHTS)
 
-# ── Database setup ────────────────────────────────────────────────────────────
+
+# ── Database ─────────────────────────────────────────────────────────────────
 def init_db():
     DB_FILE.parent.mkdir(parents=True, exist_ok=True)
     con = sqlite3.connect(DB_FILE)
     con.execute("""
         CREATE TABLE IF NOT EXISTS listing_cache (
-            vehicle_id TEXT,
-            scope TEXT,
-            data TEXT,
-            fetched_at TEXT,
+            vehicle_id TEXT, scope TEXT, data TEXT, fetched_at TEXT,
             PRIMARY KEY (vehicle_id, scope)
-        )
-    """)
-    con.execute("""
-        CREATE TABLE IF NOT EXISTS notes (
-            vehicle_id TEXT PRIMARY KEY,
-            note TEXT,
-            updated_at TEXT
-        )
-    """)
-    con.execute("""
-        CREATE TABLE IF NOT EXISTS favourites (
-            vehicle_id TEXT PRIMARY KEY,
-            added_at TEXT
-        )
-    """)
+        )""")
+    con.execute("CREATE TABLE IF NOT EXISTS notes (vehicle_id TEXT PRIMARY KEY, note TEXT, updated_at TEXT)")
+    con.execute("CREATE TABLE IF NOT EXISTS favourites (vehicle_id TEXT PRIMARY KEY, added_at TEXT)")
     con.commit()
     con.close()
 
@@ -134,37 +134,20 @@ def toggle_favourite(vehicle_id):
     con.close()
     return is_fav
 
-# ── Vehicle data ──────────────────────────────────────────────────────────────
+
+# ── Vehicle data ─────────────────────────────────────────────────────────────
 @lru_cache(maxsize=1)
 def load_vehicles():
-    with open(DATA_FILE) as f:
+    with open(VEHICLES_FILE) as f:
         return json.load(f)
 
 def vehicle_by_id(vid):
     return next((v for v in load_vehicles() if v["id"] == vid), None)
 
-def compute_score(vehicle, weights):
-    """Compute weighted total score given a weights dict."""
-    total = 0.0
-    scores = vehicle["scores"]
-    for key, wt in weights.items():
-        total += scores.get(key, 0) * wt
-    return round(total, 2)
-
 def ranked_vehicles(weights):
-    """Return vehicles sorted by computed score descending."""
-    vehicles = load_vehicles()
-    scored = []
-    for v in vehicles:
-        score = compute_score(v, weights)
-        scored.append({**v, "computed_score": score})
-    scored.sort(key=lambda x: x["computed_score"], reverse=True)
-    for i, v in enumerate(scored):
-        v["computed_rank"] = i + 1
-    return scored
+    return rank_vehicles(load_vehicles(), weights)
 
 def get_vehicle_images(vehicle_id):
-    """Return list of image paths for a vehicle, sorted."""
     vdir = IMAGES_DIR / vehicle_id
     if not vdir.exists():
         return []
@@ -179,8 +162,28 @@ def powertrain_badge(pt_type):
         "ice":    ("ICE", "#595959"),
     }.get(pt_type, ("?", "#333"))
 
-# ── Routes ────────────────────────────────────────────────────────────────────
 
+# ── Weight URL helpers ───────────────────────────────────────────────────────
+def parse_weights(source):
+    """Parse w_<key> values from a MultiDict; missing/garbage → user defaults."""
+    weights = {}
+    defaults = default_weights()
+    for key, default in defaults.items():
+        try:
+            weights[key] = float(source.get(f"w_{key}", default))
+        except (TypeError, ValueError):
+            weights[key] = default
+    return weights
+
+def weights_query_string(weights):
+    """Empty when weights match the user's defaults — keeps links clean."""
+    defaults = default_weights()
+    if all(weights[k] == defaults[k] for k in defaults):
+        return ""
+    return "&".join(f"w_{k}={weights[k]}" for k in defaults)
+
+
+# ── Routes ───────────────────────────────────────────────────────────────────
 @app.route("/")
 def index():
     weights = parse_weights(request.args)
@@ -199,29 +202,8 @@ def index():
     )
 
 
-def parse_weights(source):
-    """Parse w_<key> values from a MultiDict (request.form or request.args),
-    falling back to DEFAULT_WEIGHTS for any missing or unparseable entry."""
-    weights = {}
-    for key, default in DEFAULT_WEIGHTS.items():
-        try:
-            weights[key] = float(source.get(f"w_{key}", default))
-        except (TypeError, ValueError):
-            weights[key] = default
-    return weights
-
-
-def weights_query_string(weights):
-    """Encode weights as a URL query string fragment (without leading '?' or '&').
-    Returns an empty string when weights match defaults so links stay clean."""
-    if all(weights[k] == DEFAULT_WEIGHTS[k] for k in DEFAULT_WEIGHTS):
-        return ""
-    return "&".join(f"w_{k}={weights[k]}" for k in DEFAULT_WEIGHTS)
-
-
 @app.route("/rerank", methods=["POST"])
 def rerank():
-    """AJAX endpoint: return re-ranked card HTML with new weights."""
     weights = parse_weights(request.form)
     favs = get_favourites()
     vehicles = ranked_vehicles(weights)
@@ -246,14 +228,13 @@ def vehicle_detail(vehicle_id):
     scope = request.args.get("scope", "bc")
     weights = parse_weights(request.args)
 
-    # Compute rank under current weights so detail header matches index ordering
     all_ranked = ranked_vehicles(weights)
     v_ranked = next(x for x in all_ranked if x["id"] == vehicle_id)
     score = v_ranked["computed_score"]
     rank = v_ranked["computed_rank"]
 
     cached = get_cached_listings(vehicle_id, scope)
-    listings_data = cached  # may be None → will show "load" button
+    listings_data = cached
 
     favs = get_favourites()
     note = get_note(vehicle_id)
@@ -289,7 +270,6 @@ def vehicle_detail(vehicle_id):
 
 @app.route("/listings/<vehicle_id>")
 def get_listings(vehicle_id):
-    """AJAX: fetch/refresh listings for a vehicle."""
     v = vehicle_by_id(vehicle_id)
     if not v:
         return jsonify({"error": "not found"}), 404
@@ -345,14 +325,12 @@ def compare():
 
 @app.route("/favourite/<vehicle_id>", methods=["POST"])
 def favourite(vehicle_id):
-    is_fav = toggle_favourite(vehicle_id)
-    return jsonify({"is_favourite": is_fav})
+    return jsonify({"is_favourite": toggle_favourite(vehicle_id)})
 
 
 @app.route("/note/<vehicle_id>", methods=["POST"])
 def note(vehicle_id):
-    text = request.form.get("note", "")
-    save_note(vehicle_id, text)
+    save_note(vehicle_id, request.form.get("note", ""))
     return jsonify({"saved": True})
 
 
@@ -363,7 +341,7 @@ def serve_image(vehicle_id, filename):
 
 @app.route("/api/vehicles")
 def api_vehicles():
-    weights = DEFAULT_WEIGHTS.copy()
+    weights = parse_weights(request.args)
     vehicles = ranked_vehicles(weights)
     return jsonify([{
         "id": v["id"], "name": v["name"], "rank": v["computed_rank"],
@@ -376,7 +354,6 @@ def health():
     """Debug page — quick status of images, cache, and DB."""
     vehicles = load_vehicles()
 
-    # Image status
     image_status = []
     for v in vehicles:
         vdir = IMAGES_DIR / v["id"]
@@ -386,7 +363,6 @@ def health():
             "count": count, "ok": count >= 4,
         })
 
-    # Listing cache status
     con = sqlite3.connect(DB_FILE)
     cache_rows = con.execute(
         "SELECT vehicle_id, scope, fetched_at FROM listing_cache ORDER BY fetched_at DESC"
@@ -415,15 +391,15 @@ th{{background:#1F3864;color:white}}
 .back{{display:inline-block;margin-bottom:1rem;color:#2E75B6}}
 </style></head><body>
 <a class="back" href="/">← Back to app</a>
-<h1>🩺 Health Check</h1>
+<h1>Health Check</h1>
 
-<h2>Images ({total_imgs} total, {img_ok}/12 vehicles with ≥4 images)</h2>
-{"<p class='warn'>⚠ Run: python scrapers/fetch_images.py</p>" if img_ok < 12 else "<p class='ok'>✓ All vehicles have images</p>"}
+<h2>Images ({total_imgs} total, {img_ok}/{len(vehicles)} vehicles with ≥4 images)</h2>
+{"<p class='warn'>Run: python scrapers/fetch_images.py</p>" if img_ok < len(vehicles) else "<p class='ok'>All vehicles have images</p>"}
 <table><tr><th>Vehicle</th><th>Images</th><th>Status</th></tr>"""
 
     for s in image_status:
-        status = f"<span class='ok'>✓ {s['count']}</span>" if s["ok"] \
-                 else f"<span class='warn'>✗ {s['count']}</span>"
+        status = f"<span class='ok'>OK {s['count']}</span>" if s["ok"] \
+                 else f"<span class='warn'>WARN {s['count']}</span>"
         html += f"<tr><td>{s['name']}</td><td>{s['count']}</td><td>{status}</td></tr>"
 
     html += f"""</table>
@@ -445,10 +421,12 @@ th{{background:#1F3864;color:white}}
 
 <h2>Paths</h2>
 <table>
-<tr><td>App root</td><td>{BASE}</td></tr>
+<tr><td>Skill (app) root</td><td>{BASE}</td></tr>
+<tr><td>Data dir</td><td>{DATA_DIR}</td></tr>
+<tr><td>Vehicles JSON</td><td>{VEHICLES_FILE}</td></tr>
+<tr><td>Weights JSON</td><td>{WEIGHTS_FILE}{"" if WEIGHTS_FILE.exists() else " (missing — using built-in fallback)"}</td></tr>
 <tr><td>Images dir</td><td>{IMAGES_DIR}</td></tr>
 <tr><td>Database</td><td>{DB_FILE}</td></tr>
-<tr><td>Vehicles JSON</td><td>{DATA_FILE}</td></tr>
 </table>
 </body></html>"""
     return html
@@ -456,8 +434,6 @@ th{{background:#1F3864;color:white}}
 
 if __name__ == "__main__":
     init_db()
-
-    # Honour PORT env var so launchers can avoid macOS's AirPlay clash on 5000.
     port = int(os.environ.get("PORT", "5000"))
 
     vehicles = load_vehicles()
@@ -470,21 +446,19 @@ if __name__ == "__main__":
     img_pct = int(total_imgs / target_imgs * 100) if target_imgs else 0
 
     url = f"http://localhost:{port}"
-    W = 49  # inner box width (between the two vertical bars)
+    W = 49
     def row(s):
         print(f"│ {s.ljust(W - 1)}│")
     print("┌" + "─" * W + "┐")
-    row("BC Family Vehicle Browser")
+    row("Family Vehicle Browser")
     print("├" + "─" * W + "┤")
+    row(f"Data:    {DATA_DIR.name}")
     row(f"URL:     {url}")
     row(f"Health:  {url}/health")
     row(f"Images:  {total_imgs}/{target_imgs}  ({img_pct}% of target)")
-    if total_imgs < 12:
+    if total_imgs < len(vehicles):
         row("Run: python scrapers/fetch_images.py")
     row("Ctrl+C to stop")
     print("└" + "─" * W + "┘")
     print()
-    # debug=True gives helpful tracebacks; use_reloader=False keeps the
-    # banner and process count to one (auto-reload isn't useful for a
-    # browsing app you only restart when you edit code).
     app.run(debug=True, use_reloader=False, host="0.0.0.0", port=port)

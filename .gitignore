@@ -20,6 +20,7 @@ Thumbs.db
 .claude/
 
 # App runtime state (created on first run; not source)
-vehicle-app/data/cache.db
-vehicle-app/images/
 vehicle-app/.venv/
+# Per-family runtime: caches + downloaded images
+user-*/cache.db
+user-*/images/
