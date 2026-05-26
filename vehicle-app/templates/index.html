@@ -4,7 +4,7 @@
 {% block content %}
 <div class="page-header">
   <h1>Family Vehicle Comparison</h1>
-  <p class="page-subtitle">12 candidates · 10-year TCO horizon · Vancouver, BC · Adjust weights below to re-rank</p>
+  <p class="page-subtitle">{{ vehicles|length }} candidates · {{ horizon }}-year TCO horizon · Vancouver, BC · Adjust weights below to re-rank</p>
 </div>
 
 <div class="layout">
@@ -39,7 +39,7 @@
           <div class="weight-row">
             <label>{{ horizon }}yr Net TCO</label>
             <input type="number" name="w_tco" value="{{ weights.tco }}"
-                   min="0" max="5" step="0.5" class="weight-input">
+                   min="0" max="5" step="0.1" class="weight-input">
           </div>
         </div>
 
@@ -53,7 +53,7 @@
           <div class="weight-row">
             <label>{{ label }}</label>
             <input type="number" name="w_{{ key }}" value="{{ weights[key] }}"
-                   min="0" max="5" step="0.5" class="weight-input">
+                   min="0" max="5" step="0.1" class="weight-input">
           </div>
           {% endfor %}
         </div>
@@ -67,7 +67,7 @@
           <div class="weight-row">
             <label>{{ label }}</label>
             <input type="number" name="w_{{ key }}" value="{{ weights[key] }}"
-                   min="0" max="5" step="0.5" class="weight-input">
+                   min="0" max="5" step="0.1" class="weight-input">
           </div>
           {% endfor %}
         </div>
@@ -77,7 +77,7 @@
           <div class="weight-row">
             <label>Reliability</label>
             <input type="number" name="w_reliability" value="{{ weights.reliability }}"
-                   min="0" max="5" step="0.5" class="weight-input">
+                   min="0" max="5" step="0.1" class="weight-input">
           </div>
         </div>
 
@@ -90,7 +90,7 @@
           <div class="weight-row">
             <label>{{ label }}</label>
             <input type="number" name="w_{{ key }}" value="{{ weights[key] }}"
-                   min="0" max="5" step="0.5" class="weight-input">
+                   min="0" max="5" step="0.1" class="weight-input">
           </div>
           {% endfor %}
         </div>

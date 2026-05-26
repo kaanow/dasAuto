@@ -55,47 +55,40 @@ The slider in the app sidebar re-ranks every vehicle live. URL is
 preserved (`?horizon=N`), so a shared link captures the horizon under
 which the ranking was generated.
 
-### Warranty cliff in maintenance (pending build)
+### Warranty cliff in maintenance
 
-Maintenance currently scales linearly with horizon, so the slider
-doesn't yet show the warranty step-change. Required model:
+Maintenance uses a two-rate model: in-warranty years cost less, out-
+of-warranty years cost more. Each vehicle has
+`warranty_years_remaining` — years of the *cost-dominant* powertrain
+warranty left at point of purchase. Seed values:
 
-- Add per-vehicle `warranty_years_remaining` — years of the
-  *cost-dominant* powertrain warranty left at point of purchase.
-  Examples to seed:
-  - 2026 new Toyota Grand Highlander Hybrid: 10 (full hybrid battery)
-  - 2023–24 used Grand Highlander Hybrid (bought 2026): 7
-  - 2022–23 used Toyota Highlander/Sienna Hybrid (bought 2026): 6–7
-  - 2022–23 used Kia Sorento PHEV: 5 (8yr battery − 3yr age)
-  - 2024 used Kia EV9 / Mazda CX-90 PHEV: 6
-  - 2026 new Hyundai IONIQ 9: 8 (BEV traction battery)
-  - 2022–23 used Subaru Ascent: 2 (5yr powertrain − 3yr age)
-  - 2022–23 used Hyundai Palisade / Honda Pilot / Kia Telluride: 2
-  - 2023–24 used Honda Pilot: 3
-- Maintenance formula at horizon N (preserves stored `maint_10yr`
-  total at N=10 for back-compat):
-  `in_yrs = min(N, warranty_years_remaining)`
-  `out_yrs = max(0, N − warranty_years_remaining)`
-  `maint(N) = (maint_10yr / total_at_10) × (in_yrs × IN_FACTOR + out_yrs × OUT_FACTOR)`
-  where `total_at_10 = min(10, w) × IN_FACTOR + max(0, 10 − w) × OUT_FACTOR`
-  and the chosen factor pair (suggest 0.5 / 1.5, ratio 1:3) is
-  documented in `tco.py` as a calibration constant.
-- Effect: a used Toyota hybrid with 7yr warranty remaining at horizon 8
-  reads 7×0.5 + 1×1.5 = 5.0 maint-years; at horizon 10 reads
-  7×0.5 + 3×1.5 = 8.0. So extending from 8→10 years adds 60% more
-  maintenance than the linear model would suggest.
+- 2026 new Toyota Grand Highlander Hybrid / Sienna Hybrid: 10 (full
+  hybrid battery)
+- 2023–24 used Grand Highlander Hybrid (bought 2026): 7
+- 2022–23 used Toyota Highlander/Sienna Hybrid (bought 2026): 7
+- 2022–23 used Chrysler Pacifica Hybrid: 7 (10yr battery − 3yr age)
+- 2022–23 used Kia Sorento PHEV: 5 (8yr battery − 3yr age)
+- 2024 used Kia EV9 / Mazda CX-90 PHEV: 6
+- 2023–24 used Tesla Model Y: 6; 2026 new: 8 (8yr traction battery)
+- 2026 new Hyundai IONIQ 9: 8 (BEV traction battery)
+- 2022–23 used Subaru Ascent: 2 (5yr powertrain − 3yr age)
+- 2022–23 used Hyundai Palisade / Kia Telluride / Honda Odyssey /
+  Kia Carnival: 2
+- 2023–24 used Honda Pilot: 3
 
-### Weight input precision (pending build)
+Formula at horizon N (preserves stored `maint_10yr` at N=10):
 
-The sidebar weight inputs use `step="0.5"`, which the browser uses
-to reject any value not on the half-step grid. The default winter
-weight is 1.3, so the form is invalid on first render. Fix:
+  `in_yrs    = min(N, warranty_years_remaining)`
+  `out_yrs   = max(0, N − warranty_years_remaining)`
+  `now_units  = in_yrs × IN_FACTOR  + out_yrs × OUT_FACTOR`
+  `base_units = (same expression evaluated at N=BASE_HORIZON)`
+  `maint(N)   = maint_10yr × now_units / base_units`
 
-- Loosen `step="0.5"` → `step="0.1"` on every `w_*` input.
-- In `parse_weights`, round each parsed value to one decimal so
-  hand-typed values like `1.34` get truncated to `1.3` server-side.
-- All nine criteria use the same `min`/`max`/`step` so behaviour is
-  uniform.
+with `IN_FACTOR = 0.5`, `OUT_FACTOR = 1.5` (1:3 ratio). Effect for a
+used Toyota hybrid with 7yr warranty at $18k maint_10yr: N=7 → $7,875
+(linear would be $12,600); N=10 → $18,000 (preserved); N=12 → $24,750
+(linear would be $21,600). The cliff steepens beyond the warranty
+year, which is the whole point.
 
 ## Scoring criteria & default weights
 
@@ -120,10 +113,15 @@ via `?w_<key>=<val>` so a shared link captures your reranked view.
 
 ## Vehicle shortlist
 
-The 12 candidates and their per-criterion scores live in `vehicles.json`
+The 18 candidates and their per-criterion scores live in `vehicles.json`
 (this directory). Selection was based on:
-- ≥7 seats or genuine 3-row capability
-- AWD or 4WD available in Canada in the target years
+- ≥7 seats or genuine 3-row capability (Tesla Model Y is the
+  intentional exception — included for BEV benchmarking even though
+  it's 5-seat-only in Canada from 2023+)
+- AWD or 4WD available in Canada in the target years (the three
+  minivans Pacifica Hybrid, Odyssey, Carnival are FWD-only, included
+  for the structural minivan advantages: sliding doors, flat floor,
+  adult-friendly 3rd row)
 - Available used in BC at sensible price or new from a Lower Mainland dealer
 - Span of powertrains (ICE, hybrid, PHEV, BEV) so the cost/utility
   trade-offs are visible across the matrix

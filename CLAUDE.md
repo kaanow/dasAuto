@@ -37,7 +37,7 @@ vehicle-app/
 ├── templates/, static/
 ├── briefs/            # research-brief templates (image, TCO)
 ├── docs/HANDOFF.md    # original build session notes
-├── tests/test_smoke.py # 11 route + behaviour tests
+├── tests/test_smoke.py # 16 route + behaviour tests
 ├── requirements.txt
 └── run.sh, "Launch Vehicle Browser.bat"
 ```
@@ -83,8 +83,20 @@ absent. Everything else must be present for the app to start.
     using the powertrain's dominant fuel rate (gas for ICE/hybrid, a
     50/50 mix for PHEV, an 85/15 mix for BEV). Captures the
     NPV-weighted time tilt rather than just N/10.
-  - **Maintenance, insurance:** linearly `× N / 10` (flat-rate
-    methodology — no escalation/discount in the original totals).
+  - **Maintenance:** two-rate warranty-cliff model. Each vehicle has
+    `warranty_years_remaining` (cost-dominant powertrain warranty
+    left at point of purchase). In-warranty years cost
+    `MAINT_IN_WARRANTY_FACTOR` (0.5) units; out-of-warranty years
+    cost `MAINT_OUT_OF_WARRANTY_FACTOR` (1.5) units. `maint(N) =
+    maint_10yr × now_units / base_units` where `base_units` is the
+    same expression at N=10 → the stored `maint_10yr` is preserved
+    exactly at N=10 regardless of warranty value. Vehicles without
+    the field default to warranty=10 (no cliff up to N=10, gentle
+    cliff beyond). Concrete: a 7-yr-warranty hybrid at $18k
+    maint_10yr → N=7 maint $7,875 (linear was $12,600); N=12 maint
+    $24,750 (linear was $21,600).
+  - **Insurance:** linearly `× N / 10` (flat-rate methodology — no
+    escalation/discount in the original totals).
   - **Residual:** exponential decay between `pretax` (t=0) and
     `resid_10yr` (t=10): `pretax × (resid_10yr / pretax)^(N/10)`.
     Front-loads depreciation correctly.
@@ -109,22 +121,6 @@ absent. Everything else must be present for the app to start.
   `at_url_override` field; `autotrader_url()` regex-rewrites the
   `prov`/`prv` fields to keep scope in sync.
 
-## Pending work (specified, not yet built)
-
-- **Warranty-cliff maintenance.** Add per-vehicle
-  `warranty_years_remaining` in vehicles.json (cost-dominant
-  powertrain warranty in years from purchase date). Replace
-  `maint(N) = maint_10yr × N/10` in `tco.recompute_tco` with a
-  two-rate model: in-warranty years cost less per year, out-of-
-  warranty years cost more. Calibrate IN_FACTOR / OUT_FACTOR so
-  the existing `maint_10yr` is preserved at N=10 (suggested 0.5 /
-  1.5, ratio 1:3). See `user-kaan-and-tess/situation.md` for seed
-  values per vehicle.
-- **Weight-input precision.** Sidebar inputs reject `1.3` (default
-  winter weight) because `step="0.5"`. Loosen to `step="0.1"` and
-  round to 1dp in `parse_weights` server-side as a truncation
-  belt-and-suspenders.
-
 ## Known issues / watch list
 
 - AutoTrader.ca uses Incapsula bot detection. Sandbox IPs get rate-
@@ -140,10 +136,11 @@ absent. Everything else must be present for the app to start.
 
 ## Last updated
 
-May 2026 — session 4: three-layer reorg. Split vehicles/image_seeds/
-TCO research/cache.db/images into `user-kaan-and-tess/`. Extracted
-`scoring.py` and `tco.py` from `app.py`. Parameterised app by
-`VEHICLE_DATA_DIR` env var. Moved briefs into `vehicle-app/briefs/`,
-HANDOFF.md into `vehicle-app/docs/`. Added `tests/test_smoke.py` (11
-unittest cases, all passing). Updated launchers to honour the env var
-and default to user-kaan-and-tess/.
+May 2026 — session 5: shipped warranty-cliff maintenance + weight-input
+precision (both spec'd in session 4). Expanded cohort from 12 → 18:
+added Sienna Hybrid new, Pacifica Hybrid (PHEV, used), Odyssey (used),
+Carnival (used), and Tesla Model Y both new and used. Recomputed
+tco_score across the new 18-vehicle cohort (Pacifica Hybrid is the new
+TCO leader at $73.6k 10yr net, displacing Sorento PHEV). Added two new
+unittest cases (16 total, all passing). All 6 new vehicles have
+6-image Wikimedia galleries.

@@ -176,12 +176,14 @@ def powertrain_badge(pt_type):
 
 # ── Weight + horizon URL helpers ─────────────────────────────────────────────
 def parse_weights(source):
-    """Parse w_<key> values from a MultiDict; missing/garbage → user defaults."""
+    """Parse w_<key> values from a MultiDict; missing/garbage → user defaults.
+    Values are rounded to 1dp so hand-typed precision past the input's
+    step="0.1" grid (e.g. 1.34) gets normalised server-side."""
     weights = {}
     defaults = default_weights()
     for key, default in defaults.items():
         try:
-            weights[key] = float(source.get(f"w_{key}", default))
+            weights[key] = round(float(source.get(f"w_{key}", default)), 1)
         except (TypeError, ValueError):
             weights[key] = default
     return weights

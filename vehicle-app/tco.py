@@ -75,6 +75,17 @@ def adjust_fuel_10yr(old_total, powertrain_type, old_mults, new_mults):
 BASE_HORIZON   = 10           # the horizon at which fuel_10yr etc. are stored
 DISCOUNT       = 0.055        # nominal annual
 
+# Maintenance two-rate factors. The 1:3 ratio reflects the rough
+# observation that out-of-warranty repair years cost ~3× in-warranty
+# years (no covered failures, plus the failures cluster in the post-
+# warranty tail). The absolute values are arbitrary — only the ratio
+# matters because the stored `maint_10yr` is preserved at N=10 via the
+# `now_units / base_units` rescaling in `recompute_tco`. Tightening or
+# widening the cliff is a matter of tuning the ratio, not these
+# constants.
+MAINT_IN_WARRANTY_FACTOR  = 0.5
+MAINT_OUT_OF_WARRANTY_FACTOR = 1.5
+
 _FUEL_RATES = {
     "gas":   FuelRate(base=1.79,   escalation=0.035, name="gas"),
     "hydro": FuelRate(base=0.1172, escalation=0.045, name="hydro"),
@@ -113,6 +124,15 @@ def residual_at(pretax, resid_at_base, years, base_horizon=BASE_HORIZON):
     return pretax * (resid_at_base / pretax) ** (years / base_horizon)
 
 
+def _maint_units(warranty_years_remaining, years):
+    """Two-rate maintenance unit count: in-warranty years × IN_FACTOR +
+    out-of-warranty years × OUT_FACTOR. The cliff falls at
+    `warranty_years_remaining` years from purchase."""
+    in_yrs  = min(years, warranty_years_remaining)
+    out_yrs = max(0, years - warranty_years_remaining)
+    return in_yrs * MAINT_IN_WARRANTY_FACTOR + out_yrs * MAINT_OUT_OF_WARRANTY_FACTOR
+
+
 def recompute_tco(vehicle, horizon):
     """Re-derive every TCO component at the given horizon. Returns a
     dict of {fuel, maint, ins, resid, tco_value} in CAD. Does not
@@ -120,8 +140,15 @@ def recompute_tco(vehicle, horizon):
     n = int(horizon)
     scale = _powertrain_npv_scale(vehicle["powertrain_type"], n)
     fuel  = vehicle["fuel_10yr"] * scale
-    # Maintenance + insurance: flat-rate, scale linearly.
-    maint = vehicle["maint_10yr"] * n / BASE_HORIZON
+    # Maintenance: two-rate model. The stored `maint_10yr` is preserved
+    # when N == BASE_HORIZON because we rescale by (now_units / base_units),
+    # not by a hard-coded constant. Vehicles missing the warranty field
+    # default to BASE_HORIZON warranty remaining → no cliff (back-compat).
+    warranty = vehicle.get("warranty_years_remaining", BASE_HORIZON)
+    now_units  = _maint_units(warranty, n)
+    base_units = _maint_units(warranty, BASE_HORIZON)
+    maint = vehicle["maint_10yr"] * (now_units / base_units) if base_units > 0 else 0.0
+    # Insurance: flat-rate, scale linearly.
     ins   = vehicle["ins_10yr"]   * n / BASE_HORIZON
     resid = residual_at(vehicle["pretax"], vehicle["resid_10yr"], n)
     tco_value = vehicle["on_road"] + fuel + maint + ins - resid

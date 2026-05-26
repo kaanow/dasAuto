@@ -138,5 +138,77 @@
       {"url": "https://upload.wikimedia.org/wikipedia/commons/5/57/Hyundai_IONIQ_9_Calligraphy_ME1_Cognac_Brown_Creamy_Beige_Two-tone_%281%29.jpg", "type": "interior", "caption": "Hyundai IONIQ 9 Calligraphy Cognac Brown / Creamy Beige interior"}
     ],
     "notes": ""
+  },
+  {
+    "id": "sienna-new",
+    "images": [
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/5/52/Toyota_Sienna_Las_Vegas_2025.jpg", "type": "exterior", "caption": "2025 Toyota Sienna, Las Vegas — front three-quarter"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Toyota_Sienna_Las_Vegas_Fall_2024.jpg", "type": "exterior", "caption": "2024 Toyota Sienna, Las Vegas — front"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/5/5d/Toyota_Sienna_Sonoma_2023.jpg", "type": "exterior", "caption": "2023 Toyota Sienna XL40, Sonoma"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/0/0c/24_Toyota_Sienna_XSE.jpg", "type": "exterior", "caption": "2024 Toyota Sienna XSE"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/3/38/Guangqi_Robotaxi_Sienna_inner_view_4.jpg", "type": "interior", "caption": "Sienna XL40 interior — front cabin (robotaxi build, stock cabin)"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/8/84/Guangqi_Robotaxi_Sienna_inner_view_9.jpg", "type": "interior", "caption": "Sienna XL40 interior — second-row view"}
+    ],
+    "notes": "2023+ XL40 (post-facelift era) exteriors plus two China-market interiors; intentionally distinct from sienna-used (2021–22 shots)."
+  },
+  {
+    "id": "pacifica-hybrid-used",
+    "images": [
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/5/56/22_Chrysler_Pacifica_Hybrid_Touring-L.jpg", "type": "exterior", "caption": "2022 Chrysler Pacifica Hybrid Touring-L"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/d/d7/24_Chrysler_Pacifica_Hybrid_Pinnacle.jpg", "type": "exterior", "caption": "2024 Chrysler Pacifica Hybrid Pinnacle"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/9/98/2023_Chrysler_Pacifica_Hybrid_minivan_in_Velvet_Red_Pearl_Coat_charging_1of2.jpg", "type": "exterior", "caption": "2023 Pacifica Hybrid charging — Velvet Red Pearl"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/5/5f/2023_Chrysler_Pacifica_Hybrid_minivan_in_Velvet_Red_Pearl_Coat_charging_2of2.jpg", "type": "exterior", "caption": "2023 Pacifica Hybrid charging — rear three-quarter"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/e/e0/Chrysler_Pacifica_Hybrid_Touring_L_%28Facelift%29_%E2%80%93_f_02112024.jpg", "type": "exterior", "caption": "Pacifica Hybrid Touring L (facelift) — front"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/0/00/2022_Chrysler_Pacifica_interior.jpg", "type": "interior", "caption": "2022 Pacifica Touring-L dashboard (shared cabin with Hybrid)"}
+    ],
+    "notes": "Touring L–trim hybrid focus; interior shot is from the non-hybrid 2022 Pacifica but the cabin is identical."
+  },
+  {
+    "id": "odyssey-used",
+    "images": [
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/c/ca/2021_Honda_Odyssey_%28facelift%29%2C_front_12.12.20.jpg", "type": "exterior", "caption": "2021 Honda Odyssey (facelift) — front"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/a/a3/2021_Honda_Odyssey_EX-L_%28facelift%29%2C_front_1.1.21.jpg", "type": "exterior", "caption": "2021 Honda Odyssey EX-L — front three-quarter"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/a/ac/22_Honda_Odyssey_Touring.jpg", "type": "exterior", "caption": "2022 Honda Odyssey Touring"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/9/94/2023_Honda_Odyssey_%28rear_view%29.jpg", "type": "exterior", "caption": "2023 Honda Odyssey — rear"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/c/c0/Honda_Odyssey_3.5_Elite_RL6_FL_Crystal_Black_Pearl_%281%29.jpg", "type": "exterior", "caption": "Honda Odyssey 3.5 Elite RL6 facelift — Crystal Black Pearl"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/3/32/2023_Honda_Odyssey_interior.jpg", "type": "interior", "caption": "2023 Honda Odyssey Touring — dashboard"}
+    ],
+    "notes": "Post-facelift RL6 (2021+) shots covering EX-L and Touring trims."
+  },
+  {
+    "id": "carnival-used",
+    "images": [
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/3/37/2022_Kia_Carnival_from_North_Carolina.jpg", "type": "exterior", "caption": "2022 Kia Carnival — front three-quarter"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/1/12/22_Kia_Carnival_SX.jpg", "type": "exterior", "caption": "2022 Kia Carnival SX"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/b/b3/2023_Kia_Carnival_LX%2C_front_right%2C_02-06-2023.jpg", "type": "exterior", "caption": "2023 Kia Carnival LX — front right"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/2023_Kia_Carnival_LX%2C_rear_right%2C_02-06-2023.jpg", "type": "exterior", "caption": "2023 Kia Carnival LX — rear right"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/2/2d/2024_Kia_Carnival_%28KA4%29_1.jpg", "type": "exterior", "caption": "2024 Kia Carnival (KA4) — pre-facelift"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Kia_Carnival_2.2_SX_2023_%28interior%29.jpg", "type": "interior", "caption": "Kia Carnival 2.2 SX (2023) — interior/dashboard"}
+    ],
+    "notes": "Pre-facelift KA4 (2022–24) US/Korean shots with SX-trim interior."
+  },
+  {
+    "id": "model-y-new",
+    "images": [
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/a/a0/2025_Tesla_Model_Y_Juniper_Long_Range_AWD.jpg", "type": "exterior", "caption": "2025 Tesla Model Y Juniper Long Range AWD"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/0/0b/Tesla_Model_Y_Juniper_Stealth_Grey_%281%29.jpg", "type": "exterior", "caption": "Model Y Juniper — Stealth Grey"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/1/17/2025_Tesla_Model_Y_Long_Range_AWD_in_Ultra_Red%2C_front_right.jpg", "type": "exterior", "caption": "2025 Model Y Long Range AWD — Ultra Red"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/d/db/2025_Tesla_Model_Y_RWD_in_Midnight_Silver_Metallic%2C_front_right.jpg", "type": "exterior", "caption": "2025 Model Y RWD — Midnight Silver"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/9/91/Tesla_Model_Y_Juniper_Long_Range_AWD_White_%2B_Black_01.jpg", "type": "interior", "caption": "Model Y Juniper Long Range AWD — interior (white + black)"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/4/4c/Tesla_Model_Y_Juniper_Long_Range_AWD_White_%2B_Black_02.jpg", "type": "interior", "caption": "Model Y Juniper — front cabin / dashboard"}
+    ],
+    "notes": "All Juniper-refresh shots; two confirmed interior dashboard photos."
+  },
+  {
+    "id": "model-y-used",
+    "images": [
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/9/96/2022_Tesla_Model_Y_Long_Range_AWD.jpg", "type": "exterior", "caption": "2022 Tesla Model Y Long Range AWD"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/b/bd/2022_Tesla_Model_Y_Long_Range_AWD_Front.jpg", "type": "exterior", "caption": "2022 Model Y LR AWD — front"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/0/04/2022_Tesla_Model_Y_Long_Range_AWD_Rear.jpg", "type": "exterior", "caption": "2022 Model Y LR AWD — rear"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/5/5e/2023_Tesla_Model_Y_Long_Range_All-Wheel_Drive_in_Pearl_White_Multi-Coat%2C_front_right%2C_2024-09-25.jpg", "type": "exterior", "caption": "2023 Model Y LR AWD — Pearl White, front right"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/8/84/2023_Tesla_Model_Y_Long_Range_All-Wheel_Drive_in_Pearl_White_Multi-Coat%2C_rear_right%2C_2024-09-25.jpg", "type": "exterior", "caption": "2023 Model Y LR AWD — Pearl White, rear right"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/5/55/2024_Tesla_Model_Y_Long_Range_FWD_in_Pearl_White%2C_front_right.jpg", "type": "exterior", "caption": "2024 Model Y Long Range — Pearl White"}
+    ],
+    "notes": "Pre-Juniper exteriors only — Wikimedia Commons has no clear pre-refresh Model Y interior shot in the Tesla automobile dashboards category."
   }
 ]

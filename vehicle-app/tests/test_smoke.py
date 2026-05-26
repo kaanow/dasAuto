@@ -72,17 +72,22 @@ class SmokeTests(unittest.TestCase):
         self.assertEqual(r.status_code, 404)
 
     def test_custom_weights_change_rank(self):
-        """Sorento PHEV has the best TCO (score=5.00). With TCO-only
-        weighting it should land at #1; with defaults it's mid-pack."""
+        """The vehicle with the cohort's lowest TCO (tco_score=5.00)
+        must land at #1 when weighting is TCO-only."""
         import re
+        # Pick whichever vehicle has score=5 at the current horizon.
+        leader = max(self.app_module.load_vehicles(),
+                     key=lambda v: v["scores"]["tco"])
+        self.assertAlmostEqual(leader["scores"]["tco"], 5.0, places=2)
         zero = "&".join(f"w_{k}=0" for k in
                         ["car_seat_fit","cargo","third_row","corridor",
                          "hitch","reliability","winter","fsr"])
-        r = self.client.get(f"/vehicle/sorento-phev-used?w_tco=5&{zero}")
+        r = self.client.get(f"/vehicle/{leader['id']}?w_tco=5&{zero}")
         self.assertEqual(r.status_code, 200)
         m = re.search(r"Ranked #(\d+) of \d+", r.data.decode())
         self.assertIsNotNone(m)
-        self.assertEqual(m.group(1), "1")
+        self.assertEqual(m.group(1), "1",
+            f"TCO leader {leader['id']} should rank #1 under TCO-only weights")
 
     def test_rerank_tolerates_garbage(self):
         r = self.client.post("/rerank", data={
@@ -175,6 +180,54 @@ class SmokeTests(unittest.TestCase):
         diffs = [scores_10[k] - scores_6[k] for k in scores_10]
         self.assertTrue(any(abs(d) > 0.05 for d in diffs),
                         "no score shifted between horizon=10 and horizon=6")
+
+    def test_weight_precision_accepts_one_decimal(self):
+        """Build A: sidebar inputs use step="0.1" so the default winter
+        weight of 1.3 is accepted on first render. Server also rounds
+        hand-typed values past one decimal back to 1dp."""
+        from werkzeug.datastructures import MultiDict
+        # 1. HTML uses step="0.1", not step="0.5".
+        body = self.client.get("/").data.decode()
+        self.assertIn('step="0.1"', body)
+        self.assertNotIn('step="0.5"', body)
+        # 2. POST /rerank with a 2dp value still returns 200.
+        r = self.client.post("/rerank", data={"w_winter": "1.34"})
+        self.assertEqual(r.status_code, 200)
+        # 3. parse_weights truncates the server-side value to 1dp.
+        parsed = self.app_module.parse_weights(
+            MultiDict([("w_winter", "1.34")]))
+        self.assertEqual(parsed["winter"], 1.3)
+        # And a value already on the grid is unchanged.
+        parsed2 = self.app_module.parse_weights(
+            MultiDict([("w_tco", "3.0")]))
+        self.assertEqual(parsed2["tco"], 3.0)
+
+    def test_warranty_cliff_in_maintenance(self):
+        """Build B: maintenance follows a two-rate model that preserves
+        the stored maint_10yr at N=10, undershoots linear pre-cliff, and
+        overshoots linear post-cliff."""
+        import tco
+        v = next(x for x in self.app_module.load_vehicles()
+                 if x["id"] == "grand-highlander-used")
+        self.assertEqual(v["warranty_years_remaining"], 7)
+        maint_10yr = v["maint_10yr"]
+
+        m7  = tco.recompute_tco(v, 7)["maint"]
+        m10 = tco.recompute_tco(v, 10)["maint"]
+        m12 = tco.recompute_tco(v, 12)["maint"]
+
+        # 1. N=10 returns the stored value within $5 rounding tolerance.
+        self.assertLessEqual(abs(m10 - maint_10yr), 5,
+            f"maint(10)={m10} should equal stored {maint_10yr}")
+        # 2. N=7 (pure in-warranty for this vehicle) costs LESS than
+        #    the linear model would predict.
+        linear_7 = maint_10yr * 7 / 10
+        self.assertLess(m7, linear_7,
+            f"maint(7)={m7} should be < linear {linear_7:.0f} pre-cliff")
+        # 3. N=12 (out-of-warranty multiplier compounds) costs MORE.
+        linear_12 = maint_10yr * 12 / 10
+        self.assertGreater(m12, linear_12,
+            f"maint(12)={m12} should be > linear {linear_12:.0f} post-cliff")
 
     def test_image_serves(self):
         # Pick any vehicle that has at least one image on disk

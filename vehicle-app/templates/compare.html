@@ -37,7 +37,7 @@
 
       <!-- Header -->
       <div class="cmp-header" style="border-top: 4px solid {{ v.badge_color }}">
-        <div class="cmp-rank rank-{{ v.rank }}">#{{ v.rank }}</div>
+        <div class="cmp-rank rank-{{ v.computed_rank }}">#{{ v.computed_rank }}</div>
         <div class="cmp-badges">
           <span class="pt-badge" style="background:{{ v.badge_color }}">{{ v.badge_label }}</span>
           <span class="nu-badge nu-{{ v.new_used | lower }}">{{ v.new_used }}</span>

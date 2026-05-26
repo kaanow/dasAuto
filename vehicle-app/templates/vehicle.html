@@ -174,7 +174,7 @@
         <span class="score-card-label">Weighted Score</span>
         <span class="score-card-val">{{ "%.2f"|format(score) }}</span>
       </div>
-      <div class="score-card-rank">Ranked #{{ rank }} of 12</div>
+      <div class="score-card-rank">Ranked #{{ rank }} of {{ all_vehicles|length }}</div>
 
       <!-- Radar-style score breakdown -->
       <div class="score-breakdown">
