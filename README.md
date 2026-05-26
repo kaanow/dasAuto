@@ -6,32 +6,25 @@ and `HANDOFF.md` for the original build notes.
 
 ## Launch
 
-One-time setup (creates the venv, installs deps, downloads the 68 vehicle
-images from Wikimedia):
+**macOS / Linux:**
 
 ```bash
-cd vehicle-app
-python3 -m venv .venv
-.venv/bin/pip install -r requirements.txt
-.venv/bin/python scrapers/fetch_images.py
+bash vehicle-app/run.sh
 ```
 
-Start the app:
+**Windows:** double-click `vehicle-app\Launch Vehicle Browser.bat`.
+
+On first run the launcher creates a project-local virtual environment,
+installs the Python dependencies, downloads the 68 vehicle images from
+Wikimedia, and starts the server. Subsequent runs reuse all of that and
+start in under a second.
+
+By default the app serves on <http://localhost:5000>. On macOS that port
+is often held by AirPlay Receiver; `run.sh` detects this and falls back
+to 5057, then 5500, then 8080. To pin a specific port set `PORT`:
 
 ```bash
-.venv/bin/python app.py
-```
-
-Open <http://localhost:5000>.
-
-### If port 5000 is taken
-
-macOS uses port 5000 for AirPlay Receiver by default. Either disable it
-(System Settings → General → AirDrop & Handoff → AirPlay Receiver: Off),
-or change the port at the bottom of `vehicle-app/app.py`:
-
-```python
-app.run(debug=True, host="0.0.0.0", port=5057)
+PORT=5500 bash vehicle-app/run.sh
 ```
 
 ## Routes
@@ -48,10 +41,6 @@ compare pages.
 
 ## Refreshing images
 
-```bash
-.venv/bin/python scrapers/fetch_images.py --refresh
-```
-
-Adds any missing or replaces existing per-vehicle galleries from
-`data/image_seeds.json`. The seed file is curated; if you want to swap
-images, edit the URLs there and re-run with `--refresh`.
+Delete `vehicle-app/images/` and re-run the launcher — it'll re-fetch
+from `data/image_seeds.json`. To swap individual images, edit the URLs
+in that seed file first.

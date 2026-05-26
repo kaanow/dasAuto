@@ -39,7 +39,7 @@
       "seats": 8,
       "third_row_legroom": "39.5\" (adult-friendly)"
     },
-    "why": "Scores the maximum 5 on four qualitative criteria simultaneously: car seat fit, 3rd row comfort, corridor performance, and reliability. No other candidate achieves this combination. The 3rd row offers 39.5\" of legroom — genuinely adult-comfortable on a 2-hour corridor drive — while the standard 8-seat bench accommodates three car seats comfortably. Toyota's #1 Consumer Reports reliability rating and the 10-year/240,000 km hybrid battery warranty make this the lowest-risk 10-year ownership proposition. Its TCO score of 3.14 reflects a genuine advantage over the used version: the new vehicle's projected residual at year 10 (~$27,000) significantly exceeds the used version's (~$13,000).",
+    "why": "Scores the maximum 5 on four qualitative criteria simultaneously: car seat fit, 3rd row comfort, corridor performance, and reliability. No other candidate achieves this combination. The 3rd row offers 39.5\" of legroom — genuinely adult-comfortable on a 2-hour corridor drive — while the standard 8-seat bench accommodates three car seats comfortably. Toyota's #1 Consumer Reports reliability rating and the 10-year/240,000 km hybrid battery warranty make this the lowest-risk 10-year ownership proposition. Its TCO score of 3.10 reflects a genuine advantage over the used version: the new vehicle's projected residual at year 10 (~$27,000) significantly exceeds the used version's (~$13,000).",
     "tradeoffs": "At ~$62,700 on-road it is the most expensive new purchase in this comparison. Fuel costs of ~$16,900 over 10 years are substantially higher than PHEV and BEV alternatives (~$9,000–11,500 more). No plug-in capability. Whether the year-10 residual projections are reliable enough to justify buying new over the used version (rank 2) is a legitimate question — the ~$10,000 purchase price gap is real cash today; the residual difference is a projection.",
     "caution": null,
     "at_make": "toyota",
@@ -47,14 +47,6 @@
     "at_years": "2025,2026",
     "at_status": "",
     "cr_url": "https://www.craigslist.org/search/cta?query=toyota+grand+highlander+hybrid",
-    "image_queries": [
-      "2026 Toyota Grand Highlander exterior",
-      "2026 Toyota Grand Highlander interior",
-      "Toyota Grand Highlander hybrid rear",
-      "Toyota Grand Highlander cargo",
-      "Toyota Grand Highlander third row",
-      "Toyota Grand Highlander dashboard"
-    ],
     "at_url_override": "https://www.autotrader.ca/cars/toyota/bc/?rcp=15&rcs=0&srt=35&prx=-2&prv=British+Columbia&loc=BC&hprc=True&wcp=True&mdl=Grand+Highlander&yRng=2025,2026"
   },
   {
@@ -97,7 +89,7 @@
       "seats": 8,
       "third_row_legroom": "39.5\" (adult-friendly)"
     },
-    "why": "Qualitative scores are identical to the new version across every criterion — same vehicle, same capabilities. The gap from rank 1 is entirely due to a lower TCO score (2.08 vs 3.14), reflecting a higher net TCO driven by a lower projected year-10 residual on a used vehicle. At ~$52,400 on-road versus ~$62,700 new, the lower purchase price is real and substantial.",
+    "why": "Qualitative scores are identical to the new version across every criterion — same vehicle, same capabilities. The gap from rank 1 is entirely due to a lower TCO score (2.05 vs 3.10), reflecting a higher net TCO driven by a lower projected year-10 residual on a used vehicle. At ~$52,400 on-road versus ~$62,700 new, the lower purchase price is real and substantial.",
     "tradeoffs": "Same qualitative trade-offs as rank 1: high fuel cost vs PHEV/BEV, no plug-in, towing requires Hybrid MAX trim (verify at purchase). Hybrid battery warranty transfer should be verified at point of sale. A 2023–24 example will be 11–13 years old at the end of the ownership horizon. This is the better choice if you are sceptical of 10-year residual projections or prefer to avoid the premium of buying new.",
     "caution": "Verify Toyota 10yr/240,000km hybrid battery warranty transfer at purchase.",
     "at_make": "toyota",
@@ -105,13 +97,6 @@
     "at_years": "2023,2024",
     "at_status": "",
     "cr_url": "https://vancouver.craigslist.org/search/cta?query=toyota+grand+highlander",
-    "image_queries": [
-      "2023 Toyota Grand Highlander exterior",
-      "2024 Toyota Grand Highlander interior",
-      "Toyota Grand Highlander hybrid rear view",
-      "Toyota Grand Highlander third row seats",
-      "Toyota Grand Highlander cargo area"
-    ],
     "at_url_override": "https://www.autotrader.ca/cars/toyota/bc/?rcp=15&rcs=0&srt=35&prx=-2&prv=British+Columbia&loc=BC&hprc=True&wcp=True&mdl=Grand+Highlander&yRng=2023,2024"
   },
   {
@@ -161,15 +146,7 @@
     "at_model": "sienna",
     "at_years": "2022,2023",
     "at_status": "",
-    "cr_url": "https://vancouver.craigslist.org/search/cta?query=toyota+sienna+hybrid+awd",
-    "image_queries": [
-      "2022 Toyota Sienna exterior AWD",
-      "Toyota Sienna Woodland interior",
-      "Toyota Sienna sliding door",
-      "Toyota Sienna cargo space",
-      "Toyota Sienna second row seats",
-      "Toyota Sienna hybrid dashboard"
-    ]
+    "cr_url": "https://vancouver.craigslist.org/search/cta?query=toyota+sienna+hybrid+awd"
   },
   {
     "id": "ascent-used",
@@ -218,15 +195,7 @@
     "at_model": "ascent",
     "at_years": "2022,2023",
     "at_status": "",
-    "cr_url": "https://vancouver.craigslist.org/search/cta?query=subaru+ascent+touring",
-    "image_queries": [
-      "2022 Subaru Ascent exterior",
-      "Subaru Ascent X-Mode AWD",
-      "Subaru Ascent interior dashboard",
-      "Subaru Ascent third row",
-      "Subaru Ascent cargo",
-      "Subaru Ascent rear exterior"
-    ]
+    "cr_url": "https://vancouver.craigslist.org/search/cta?query=subaru+ascent+touring"
   },
   {
     "id": "highlander-hybrid-used",
@@ -268,22 +237,14 @@
       "seats": 8,
       "third_row_legroom": "~30\" — children fine; adults tight"
     },
-    "why": "Toyota #1 reliability and the 10-year/240,000 km hybrid battery warranty at the lowest purchase price of any Toyota hybrid in this comparison. The best TCO score of the three Toyota hybrid candidates at 2.96. Note: this is the standard Highlander, NOT the Grand Highlander — a smaller vehicle.",
+    "why": "Toyota #1 reliability and the 10-year/240,000 km hybrid battery warranty at the lowest purchase price of any Toyota hybrid in this comparison. The best TCO score of the three Toyota hybrid candidates at 2.92. Note: this is the standard Highlander, NOT the Grand Highlander — a smaller vehicle.",
     "tradeoffs": "The 3rd row scores a 2 — approximately 30\" of legroom, comfortable for children but not suitable for adults on a 2-hour corridor run. This is why it ranks below both Grand Highlander variants despite better TCO. Towing is 3,500 lbs. Verify 8-seat bench availability on XLE trim at purchase.",
     "caution": "Standard Highlander — NOT the Grand Highlander. Smaller interior and tighter 3rd row. Verify 8-seat bench and hybrid battery warranty transfer at purchase.",
     "at_make": "toyota",
     "at_model": "highlander",
     "at_years": "2022,2023",
     "at_status": "",
-    "cr_url": "https://vancouver.craigslist.org/search/cta?query=toyota+highlander+hybrid+xle",
-    "image_queries": [
-      "2022 Toyota Highlander Hybrid exterior",
-      "Toyota Highlander Hybrid XLE interior",
-      "Toyota Highlander Hybrid rear",
-      "Toyota Highlander Hybrid cargo",
-      "Toyota Highlander Hybrid dashboard",
-      "Toyota Highlander Hybrid seats"
-    ]
+    "cr_url": "https://vancouver.craigslist.org/search/cta?query=toyota+highlander+hybrid+xle"
   },
   {
     "id": "palisade-used",
@@ -332,15 +293,7 @@
     "at_model": "palisade",
     "at_years": "2022,2023",
     "at_status": "",
-    "cr_url": "https://vancouver.craigslist.org/search/cta?query=hyundai+palisade+awd",
-    "image_queries": [
-      "2022 Hyundai Palisade exterior",
-      "Hyundai Palisade interior luxury",
-      "Hyundai Palisade third row adults",
-      "Hyundai Palisade cargo area",
-      "Hyundai Palisade dashboard",
-      "Hyundai Palisade rear exterior"
-    ]
+    "cr_url": "https://vancouver.craigslist.org/search/cta?query=hyundai+palisade+awd"
   },
   {
     "id": "telluride-used",
@@ -389,15 +342,7 @@
     "at_model": "telluride",
     "at_years": "2022,2023",
     "at_status": "",
-    "cr_url": "https://vancouver.craigslist.org/search/cta?query=kia+telluride+awd",
-    "image_queries": [
-      "2022 Kia Telluride exterior",
-      "Kia Telluride EX interior",
-      "Kia Telluride third row",
-      "Kia Telluride cargo",
-      "Kia Telluride dashboard",
-      "Kia Telluride rear view"
-    ]
+    "cr_url": "https://vancouver.craigslist.org/search/cta?query=kia+telluride+awd"
   },
   {
     "id": "pilot-used",
@@ -446,15 +391,7 @@
     "at_model": "pilot",
     "at_years": "2023,2024",
     "at_status": "",
-    "cr_url": "https://vancouver.craigslist.org/search/cta?query=honda+pilot+2023+awd",
-    "image_queries": [
-      "2023 Honda Pilot exterior redesign",
-      "Honda Pilot removable center seat",
-      "Honda Pilot interior 2023",
-      "Honda Pilot TrailSport exterior",
-      "Honda Pilot cargo area",
-      "Honda Pilot third row"
-    ]
+    "cr_url": "https://vancouver.craigslist.org/search/cta?query=honda+pilot+2023+awd"
   },
   {
     "id": "sorento-phev-used",
@@ -503,15 +440,7 @@
     "at_model": "sorento",
     "at_years": "2022,2023",
     "at_status": "",
-    "cr_url": "https://vancouver.craigslist.org/search/cta?query=kia+sorento+phev+plug-in",
-    "image_queries": [
-      "Kia Sorento PHEV exterior",
-      "Kia Sorento plug-in hybrid interior",
-      "Kia Sorento PHEV charging port",
-      "Kia Sorento rear seats",
-      "Kia Sorento cargo area",
-      "Kia Sorento dashboard"
-    ]
+    "cr_url": "https://vancouver.craigslist.org/search/cta?query=kia+sorento+phev+plug-in"
   },
   {
     "id": "cx90-phev-used",
@@ -553,22 +482,14 @@
       "seats": 8,
       "third_row_legroom": "Kids to ~age 12"
     },
-    "why": "TCO score of 3.75 (second best in the field). Good qualitative scores on car seat fit, winter capability, and FSR. 8-seat bench standard on all trims. Premium interior quality. 203 mm clearance with i-ACTIV AWD.",
+    "why": "TCO score of 3.77 (second best in the field). Good qualitative scores on car seat fit, winter capability, and FSR. 8-seat bench standard on all trims. Premium interior quality. 203 mm clearance with i-ACTIV AWD.",
     "tradeoffs": "Reliability score of 1 — Consumer Reports rates 'well below average' in its second model year. This is the primary risk for a 10-year ownership horizon. 3.3 kW onboard charger takes ~6 hours for full charge. Thin BC used supply.",
     "caution": "Consumer Reports 'well-below average' reliability in year 2. Significant risk for 10-year ownership. Verify carefully at purchase.",
     "at_make": "mazda",
     "at_model": "cx-90",
     "at_years": "2024,2024",
     "at_status": "",
-    "cr_url": "https://vancouver.craigslist.org/search/cta?query=mazda+cx-90+phev",
-    "image_queries": [
-      "Mazda CX-90 PHEV exterior",
-      "Mazda CX-90 interior premium",
-      "Mazda CX-90 front exterior",
-      "Mazda CX-90 cargo space",
-      "Mazda CX-90 third row",
-      "Mazda CX-90 dashboard infotainment"
-    ]
+    "cr_url": "https://vancouver.craigslist.org/search/cta?query=mazda+cx-90+phev"
   },
   {
     "id": "ev9-used",
@@ -617,15 +538,7 @@
     "at_model": "ev9",
     "at_years": "2024,2024",
     "at_status": "",
-    "cr_url": "https://vancouver.craigslist.org/search/cta?query=kia+ev9+electric",
-    "image_queries": [
-      "Kia EV9 exterior front",
-      "Kia EV9 interior",
-      "Kia EV9 rear exterior",
-      "Kia EV9 charging",
-      "Kia EV9 cargo space",
-      "Kia EV9 dashboard screen"
-    ]
+    "cr_url": "https://vancouver.craigslist.org/search/cta?query=kia+ev9+electric"
   },
   {
     "id": "ioniq9-new",
@@ -668,20 +581,12 @@
       "third_row_legroom": "Best BEV 3rd row — adults OK"
     },
     "why": "Best BEV 3rd row in the comparison (score 4), widest interior, 539 km of range, 800V/350 kW charging. May be the most compelling BEV to revisit in 2027 once reliability data accumulates and used examples appear.",
-    "tradeoffs": "First-year model with no reliability history — score 2. TCO score of 1.95 near top of range due to $75,100 purchase price. Ground clearance of 177 mm is the lowest of all 12 candidates. Not the right choice to buy new today, but worth watching for a 2027 used purchase.",
+    "tradeoffs": "First-year model with no reliability history — score 2. TCO score of 2.01 near top of range due to $75,100 purchase price. Ground clearance of 177 mm is the lowest of all 12 candidates. Not the right choice to buy new today, but worth watching for a 2027 used purchase.",
     "caution": "First-year model (2026) — no reliability history. Consider waiting for 2027 used examples with established track record.",
     "at_make": "hyundai",
     "at_model": "ioniq%209",
     "at_years": "2026,2026",
     "at_status": "",
-    "cr_url": "https://vancouver.craigslist.org/search/cta?query=hyundai+ioniq+9",
-    "image_queries": [
-      "Hyundai IONIQ 9 exterior 2026",
-      "Hyundai IONIQ 9 interior",
-      "IONIQ 9 third row seats",
-      "Hyundai IONIQ 9 front design",
-      "IONIQ 9 cargo area",
-      "IONIQ 9 charging port"
-    ]
+    "cr_url": "https://vancouver.craigslist.org/search/cta?query=hyundai+ioniq+9"
   }
 ]

@@ -457,6 +457,9 @@ th{{background:#1F3864;color:white}}
 if __name__ == "__main__":
     init_db()
 
+    # Honour PORT env var so launchers can avoid macOS's AirPlay clash on 5000.
+    port = int(os.environ.get("PORT", "5000"))
+
     vehicles = load_vehicles()
     total_imgs = sum(
         len(list((IMAGES_DIR / v["id"]).glob("*.jpg")))
@@ -465,15 +468,16 @@ if __name__ == "__main__":
     )
     img_pct = int(total_imgs / (len(vehicles) * 6) * 100)
 
+    url = f"http://localhost:{port}"
     print("┌─────────────────────────────────────────────────┐")
-    print("│  🚗  BC Family Vehicle Browser                   │")
+    print("│  BC Family Vehicle Browser                       │")
     print("├─────────────────────────────────────────────────┤")
-    print(f"│  URL:     http://localhost:5000                  │")
-    print(f"│  Health:  http://localhost:5000/health           │")
+    print(f"│  URL:     {url:<35}  │")
+    print(f"│  Health:  {url + '/health':<35}  │")
     print(f"│  Images:  {total_imgs:>3} downloaded  ({img_pct}% complete)          │")
     if total_imgs < 12:
-        print(f"│  ⚠  Run: python scrapers/fetch_images.py        │")
+        print(f"│  Run: python scrapers/fetch_images.py            │")
     print(f"│  Ctrl+C to stop                                  │")
     print("└─────────────────────────────────────────────────┘")
     print()
-    app.run(debug=True, host="0.0.0.0", port=5000)
+    app.run(debug=True, host="0.0.0.0", port=port)
