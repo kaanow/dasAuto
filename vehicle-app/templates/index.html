@@ -4,7 +4,7 @@
 {% block content %}
 <div class="page-header">
   <h1>Family Vehicle Comparison</h1>
-  <p class="page-subtitle">{{ vehicles|length }} candidates · {{ horizon }}-year TCO horizon · Vancouver, BC · Adjust weights below to re-rank</p>
+  <p class="page-subtitle">{{ vehicles|length }} candidates · <span id="horizon-subtitle">{{ horizon }}-year</span> TCO horizon · Vancouver, BC · Adjust weights below to re-rank</p>
 </div>
 
 <div class="layout">
@@ -28,7 +28,7 @@
             <input id="horizon-input" type="range" name="horizon"
                    min="{{ horizon_min }}" max="{{ horizon_max }}" step="1"
                    value="{{ horizon }}"
-                   oninput="document.getElementById('horizon-val').textContent = this.value + 'yr'">
+                   oninput="updateHorizonLabels(this.value)">
             <span id="horizon-val" class="horizon-val">{{ horizon }}yr</span>
           </div>
           <p class="horizon-hint">Years of ownership. Lower = less fuel/maint, less residual credit, less battery-warranty risk.</p>
@@ -37,7 +37,7 @@
         <div class="weight-group">
           <div class="weight-group-label">💰 Financial</div>
           <div class="weight-row">
-            <label>{{ horizon }}yr Net TCO</label>
+            <label><span id="horizon-tco-label">{{ horizon }}yr</span> Net TCO</label>
             <input type="number" name="w_tco" value="{{ weights.tco }}"
                    min="0" max="5" step="0.1" class="weight-input">
           </div>
@@ -129,6 +129,15 @@
 const TRUE_DEFAULTS = {{ weights_default | tojson }};
 const HORIZON_DEFAULT = {{ horizon_default }};
 
+// Keep every label that echoes the horizon in sync with the slider.
+// Subtitle and sidebar TCO label live outside the htmx swap target so
+// they'd otherwise stay frozen at page-load horizon.
+function updateHorizonLabels(n) {
+  document.getElementById('horizon-val').textContent      = n + 'yr';
+  document.getElementById('horizon-subtitle').textContent = n + '-year';
+  document.getElementById('horizon-tco-label').textContent = n + 'yr';
+}
+
 function resetWeights() {
   for (const [key, val] of Object.entries(TRUE_DEFAULTS)) {
     const input = document.querySelector(`[name="w_${key}"]`);
@@ -137,7 +146,7 @@ function resetWeights() {
   const h = document.getElementById('horizon-input');
   if (h) {
     h.value = HORIZON_DEFAULT;
-    document.getElementById('horizon-val').textContent = HORIZON_DEFAULT + 'yr';
+    updateHorizonLabels(HORIZON_DEFAULT);
   }
   htmx.trigger('#weight-form', 'submit');
 }
