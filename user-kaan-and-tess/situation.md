@@ -76,19 +76,44 @@ warranty left at point of purchase. Seed values:
   Kia Carnival: 2
 - 2023–24 used Honda Pilot: 3
 
+In-warranty years are cheap (mostly scheduled maintenance, broadly
+similar across brands). Out-of-warranty years cost more — and *how
+much* more depends on the brand's repair-tail. So each vehicle also
+carries `maint_oow_multiplier` (ratio of OUT to IN cost per year):
+
+| multiplier | who | why |
+|------------|-----|-----|
+| 2.0 | Toyota (all hybrids) | Best OOW repair tail in the field — parts ubiquity, simplest planetary hybrid drivetrain, lowest major-failure rate in Consumer Reports data |
+| 2.5 | Honda, Mazda CX-90 PHEV | Above-average reliability; deep parts networks |
+| 3.0 | Subaru, Hyundai/Kia ICE | Default (industry average) |
+| 3.5 | Korean BEV/PHEV (EV9, IONIQ 9, Sorento PHEV), Tesla Model Y | 8yr battery bounds the worst tail but post-warranty traction-battery replacement is the cost-tail driver; Tesla service network adds friction |
+| 4.0 | Stellantis Pacifica Hybrid | Documented out-of-warranty electrical / hybrid-software issues; brand-wide complex-system reliability concerns |
+
 Formula at horizon N (preserves stored `maint_10yr` at N=10):
 
-  `in_yrs    = min(N, warranty_years_remaining)`
-  `out_yrs   = max(0, N − warranty_years_remaining)`
-  `now_units  = in_yrs × IN_FACTOR  + out_yrs × OUT_FACTOR`
+  `in_factor  = 0.5`  (fixed)
+  `out_factor = 0.5 × maint_oow_multiplier`
+  `in_yrs     = min(N, warranty_years_remaining)`
+  `out_yrs    = max(0, N − warranty_years_remaining)`
+  `now_units  = in_yrs × in_factor + out_yrs × out_factor`
   `base_units = (same expression evaluated at N=BASE_HORIZON)`
   `maint(N)   = maint_10yr × now_units / base_units`
 
-with `IN_FACTOR = 0.5`, `OUT_FACTOR = 1.5` (1:3 ratio). Effect for a
-used Toyota hybrid with 7yr warranty at $18k maint_10yr: N=7 → $7,875
-(linear would be $12,600); N=10 → $18,000 (preserved); N=12 → $24,750
-(linear would be $21,600). The cliff steepens beyond the warranty
-year, which is the whole point.
+Effect (holding warranty=7 and maint_10yr=$18,000 constant, varying
+only the multiplier):
+- mult=2 (Toyota):   N=7 $9,692 → N=10 $18,000 → N=15 $31,846
+- mult=3 (default):  N=7 $7,875 → N=10 $18,000 → N=15 $34,875
+- mult=4 (Pacifica): N=7 $6,632 → N=10 $18,000 → N=15 $36,947
+
+All three anchor exactly at N=10 (multiplier is calibrated out via
+`base_units`), but the long-horizon spread is $5k+ — enough to shift
+rankings at the 12–15yr edge of the slider. Counter-intuitively the
+*pre-cliff* years also shift: a vehicle with cheap OOW years (Toyota,
+mult=2) has fewer "expensive" denominator units, so the per-unit cost
+is higher, so pre-cliff years cost MORE in absolute dollars than they
+would under a higher multiplier. Toyota's repair-tail advantage is
+real but it shows up as a flatter cost curve overall — not lower
+pre-cliff costs in isolation.
 
 ## Scoring criteria & default weights
 
@@ -114,17 +139,56 @@ via `?w_<key>=<val>` so a shared link captures your reranked view.
 ## Vehicle shortlist
 
 The 18 candidates and their per-criterion scores live in `vehicles.json`
-(this directory). Selection was based on:
-- ≥7 seats or genuine 3-row capability (Tesla Model Y is the
-  intentional exception — included for BEV benchmarking even though
-  it's 5-seat-only in Canada from 2023+)
-- AWD or 4WD available in Canada in the target years (the three
-  minivans Pacifica Hybrid, Odyssey, Carnival are FWD-only, included
-  for the structural minivan advantages: sliding doors, flat floor,
-  adult-friendly 3rd row)
-- Available used in BC at sensible price or new from a Lower Mainland dealer
-- Span of powertrains (ICE, hybrid, PHEV, BEV) so the cost/utility
-  trade-offs are visible across the matrix
+(this directory).
+
+### Selection principle
+
+The cohort is the set of vehicles that are *structurally feasible* for
+this family — anything beyond that is captured by the scored criteria,
+not pre-filtered. Re-stating that principle plainly:
+
+> A trait is a HARD filter only if it would make the vehicle structurally
+> infeasible (the family does not fit in it at all). A trait that varies
+> by degree is a SCORED criterion (it shapes the ranking) — never both,
+> never one masquerading as the other.
+
+We learned this the hard way: an earlier draft used "AWD or 4WD
+available" as a hard filter, which silently excluded every minivan
+format (Pacifica, Odyssey, Carnival are FWD only — only Sienna offers
+AWD) and biased the cohort toward SUVs. But the framework already has
+`winter` (Coquihalla / snow-tires) and `fsr` (light off-pavement) as
+scored 1–5 criteria — adding AWD as a hard filter on top double-counts
+drivetrain and arbitrarily kills valid candidates. Same shape of error
+nearly excluded the Tesla Model Y (5-seat from 2023+) under a 7-seat
+hard filter, even though a family of five *does* fit (with zero
+overflow).
+
+### Hard filters (this household)
+
+- **Seats ≥ household size.** Five people in this family → vehicle must
+  seat ≥5. Extra seats are scored via `car_seat_fit` (room for the
+  three car seats across one row) and `third_row` (whether the bench
+  is adult-friendly, kid-only, or absent). A 5-seater is structurally
+  feasible but penalised on `car_seat_fit` and `third_row`.
+- **In-market.** Available used in BC at a sensible price, OR new from
+  a Lower Mainland dealer in the target year. Vehicles that can't
+  actually be bought here within the planning window are excluded.
+
+### Cohort-shape goals (not per-vehicle filters)
+
+- **Span of powertrains.** ICE, hybrid, PHEV, and BEV should all be
+  represented so cost/utility/risk trade-offs are legible across the
+  matrix. This drives candidate selection but isn't a per-vehicle
+  test.
+- **Body-style diversity.** SUVs, minivans, and at least one efficient
+  outlier (Tesla Model Y) so format-vs-format choices surface honestly.
+
+### Scored, not filtered
+
+Drivetrain (AWD/FWD), ground clearance, hitch availability, factory
+warranty length — all of these are real trade-offs but they're handled
+by the 1–5 scoring criteria (`winter`, `fsr`, `hitch`, `reliability`)
+and the warranty-cliff TCO model. They don't pre-exclude candidates.
 
 ## TCO methodology
 

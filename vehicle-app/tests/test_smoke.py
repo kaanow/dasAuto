@@ -229,6 +229,42 @@ class SmokeTests(unittest.TestCase):
         self.assertGreater(m12, linear_12,
             f"maint(12)={m12} should be > linear {linear_12:.0f} post-cliff")
 
+    def test_per_vehicle_oow_multiplier(self):
+        """Per-vehicle `maint_oow_multiplier` shifts post-cliff
+        maintenance: a low-multiplier vehicle (Toyota=2.0) costs less
+        out-of-warranty than a high-multiplier vehicle (Stellantis=4.0)
+        with the same warranty and same maint_10yr — but both still
+        return their stored maint_10yr exactly at N=10."""
+        import tco
+        # Synthesise two near-identical vehicles that differ only in OOW
+        # multiplier. Both have warranty=7yr and maint_10yr=$18,000.
+        common = dict(powertrain_type="hybrid", on_road=50000, pretax=46000,
+                      fuel_10yr=10000, maint_10yr=18000, ins_10yr=16000,
+                      resid_10yr=10000, warranty_years_remaining=7)
+        cheap_oow  = dict(common, id="cheap",  maint_oow_multiplier=2.0)
+        pricey_oow = dict(common, id="pricey", maint_oow_multiplier=4.0)
+
+        # At the anchor (N=10) both return the stored maint_10yr.
+        self.assertEqual(
+            tco.recompute_tco(cheap_oow, 10)["maint"], 18000)
+        self.assertEqual(
+            tco.recompute_tco(pricey_oow, 10)["maint"], 18000)
+
+        # At N=12 (post-cliff for both), pricey_oow costs MORE.
+        m_cheap_12  = tco.recompute_tco(cheap_oow, 12)["maint"]
+        m_pricey_12 = tco.recompute_tco(pricey_oow, 12)["maint"]
+        self.assertGreater(m_pricey_12, m_cheap_12,
+            f"pricey OOW (mult=4) should cost more than cheap OOW "
+            f"(mult=2) at N=12; got {m_pricey_12} vs {m_cheap_12}")
+
+        # Missing field falls back to the global default (3.0) — should
+        # land between the two extremes.
+        default_v = {k: v for k, v in common.items()}
+        default_v["id"] = "default"
+        m_default_12 = tco.recompute_tco(default_v, 12)["maint"]
+        self.assertGreater(m_default_12, m_cheap_12)
+        self.assertLess(m_default_12, m_pricey_12)
+
     def test_image_serves(self):
         # Pick any vehicle that has at least one image on disk
         vehicles = self.app_module.load_vehicles()

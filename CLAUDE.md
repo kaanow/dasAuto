@@ -37,7 +37,7 @@ vehicle-app/
 ├── templates/, static/
 ├── briefs/            # research-brief templates (image, TCO)
 ├── docs/HANDOFF.md    # original build session notes
-├── tests/test_smoke.py # 16 route + behaviour tests
+├── tests/test_smoke.py # 17 route + behaviour tests
 ├── requirements.txt
 └── run.sh, "Launch Vehicle Browser.bat"
 ```
@@ -83,18 +83,41 @@ absent. Everything else must be present for the app to start.
     using the powertrain's dominant fuel rate (gas for ICE/hybrid, a
     50/50 mix for PHEV, an 85/15 mix for BEV). Captures the
     NPV-weighted time tilt rather than just N/10.
-  - **Maintenance:** two-rate warranty-cliff model. Each vehicle has
-    `warranty_years_remaining` (cost-dominant powertrain warranty
-    left at point of purchase). In-warranty years cost
-    `MAINT_IN_WARRANTY_FACTOR` (0.5) units; out-of-warranty years
-    cost `MAINT_OUT_OF_WARRANTY_FACTOR` (1.5) units. `maint(N) =
-    maint_10yr × now_units / base_units` where `base_units` is the
-    same expression at N=10 → the stored `maint_10yr` is preserved
-    exactly at N=10 regardless of warranty value. Vehicles without
-    the field default to warranty=10 (no cliff up to N=10, gentle
-    cliff beyond). Concrete: a 7-yr-warranty hybrid at $18k
-    maint_10yr → N=7 maint $7,875 (linear was $12,600); N=12 maint
-    $24,750 (linear was $21,600).
+  - **Maintenance:** two-rate warranty-cliff model with per-vehicle
+    OOW multiplier. Each vehicle carries two fields:
+    - `warranty_years_remaining` — years of the cost-dominant
+      powertrain warranty left at point of purchase (battery for
+      hybrid/PHEV/BEV; powertrain for ICE).
+    - `maint_oow_multiplier` — the ratio of OUT-of-warranty year
+      cost to IN-warranty year cost (default `MAINT_OOW_MULTIPLIER_DEFAULT`
+      = 3.0; typical values: Toyota 2.0, Honda/Mazda 2.5, generic
+      ICE 3.0, Tesla / Korean BEV 3.5, Stellantis Pacifica 4.0).
+
+    Formula at horizon N:
+      `in_factor  = 0.5`  (fixed across all vehicles — scheduled
+                          maintenance is broadly similar)
+      `out_factor = 0.5 × maint_oow_multiplier`
+      `in_yrs     = min(N, warranty_years_remaining)`
+      `out_yrs    = max(0, N − warranty_years_remaining)`
+      `now_units  = in_yrs × in_factor + out_yrs × out_factor`
+      `base_units = (same expression at N=BASE_HORIZON)`
+      `maint(N)   = maint_10yr × now_units / base_units`
+
+    The denominator preserves the stored `maint_10yr` exactly at
+    N=10 regardless of warranty value or multiplier; only the
+    intra-horizon distribution shifts. Concrete (warranty=7,
+    maint_10yr=$18,000):
+      mult=2 (Toyota):   N=7 $9,692  → N=10 $18,000 → N=15 $31,846
+      mult=3 (default):  N=7 $7,875  → N=10 $18,000 → N=15 $34,875
+      mult=4 (Pacifica): N=7 $6,632  → N=10 $18,000 → N=15 $36,947
+    All three anchor at N=10. The N=15 spread is $5k+ across the
+    multiplier range — material at long horizons but invisible at
+    the planning baseline. (Note that pre-cliff dollars *rise* with
+    a lower multiplier: a cheap-OOW vehicle's denominator has fewer
+    "expensive" units, so each unit of in-warranty cost weighs more.
+    The total at N=10 is the same; the curve is flatter.) Vehicles
+    missing either field fall back to warranty=BASE_HORIZON /
+    multiplier=DEFAULT.
   - **Insurance:** linearly `× N / 10` (flat-rate methodology — no
     escalation/discount in the original totals).
   - **Residual:** exponential decay between `pretax` (t=0) and
@@ -121,6 +144,53 @@ absent. Everything else must be present for the app to start.
   `at_url_override` field; `autotrader_url()` regex-rewrites the
   `prov`/`prv` fields to keep scope in sync.
 
+## Selection-filter principle (skill-level invariant)
+
+When defining the candidate cohort for a new family, a trait is a HARD
+filter only if it would make the vehicle **structurally infeasible**
+(the family does not fit in it at all). A trait that varies by degree
+must be a **scored criterion** — never both. We learned this in
+session 5: an earlier "AWD/4WD available" hard filter pre-excluded
+every minivan format despite the framework already having `winter`
+and `fsr` as scored criteria. The minivan exclusion looked deliberate
+but was an unrecognised modelling bug. The same shape of error nearly
+excluded the Tesla Model Y under a 7-seat hard filter when a family
+of five literally fits in a 5-seater.
+
+A new user-data directory's `situation.md` should distinguish:
+1. Hard filters — structural infeasibility (seats < household size,
+   not in-market in the user's region).
+2. Cohort-shape goals — diversity targets (span of powertrains, body
+   styles); drive selection but aren't per-vehicle tests.
+3. Scored, not filtered — drivetrain, ground clearance, hitch,
+   warranty, etc. captured by the 1–5 criteria and TCO model.
+
+## Known model simplifications
+
+These are deliberate caricatures; document but don't pre-fix.
+- **Single cost-dominant warranty boundary per vehicle.** The model
+  collapses bumper-to-bumper (3yr typical), powertrain (5yr), and
+  battery (8-10yr) into one `warranty_years_remaining` — the
+  cost-dominant one. A multi-tier model (list of `(year, factor)`
+  tuples) would capture the gentle ramps at 3yr/5yr that precede the
+  big cliff at 10yr. Worth it only if a future user's situation is
+  driven by mid-tier failures, not the battery tail.
+- **Cliff is a hard step, not a ramp.** Real maintenance cost ramps
+  up gradually as a vehicle ages. The 0.5/1.5 step is a useful
+  caricature because the warranty boundary is the user's actual
+  decision-relevant signal — but in-warranty year 1 is much cheaper
+  than year 7, which the flat 0.5 factor doesn't capture.
+- **Residual doesn't model the warranty cliff.** Out-of-warranty
+  cars depreciate faster than in-warranty ones, but `residual_at`
+  decays smoothly between `pretax` and `resid_10yr`. The CBB
+  projections already bake in typical 10yr-old post-warranty
+  discount, so the bias only shows up at short horizons (N=5–8 where
+  the car is in-warranty and the smooth decay undervalues it).
+- **Time anchoring.** `warranty_years_remaining` figures assume a
+  purchase date matching the planning baseline (May 2026 for this
+  household). If the actual purchase slides 6 months, every figure
+  should shrink by 0.5. Not yet parameterised.
+
 ## Known issues / watch list
 
 - AutoTrader.ca uses Incapsula bot detection. Sandbox IPs get rate-
@@ -140,7 +210,14 @@ May 2026 — session 5: shipped warranty-cliff maintenance + weight-input
 precision (both spec'd in session 4). Expanded cohort from 12 → 18:
 added Sienna Hybrid new, Pacifica Hybrid (PHEV, used), Odyssey (used),
 Carnival (used), and Tesla Model Y both new and used. Recomputed
-tco_score across the new 18-vehicle cohort (Pacifica Hybrid is the new
-TCO leader at $73.6k 10yr net, displacing Sorento PHEV). Added two new
-unittest cases (16 total, all passing). All 6 new vehicles have
-6-image Wikimedia galleries.
+tco_score across the new 18-vehicle cohort. Identified and fixed a
+selection-filter modelling bug: AWD was both a hard filter and a
+scored criterion, silently excluding every minivan format. Rewrote
+the selection principle in situation.md as a skill-level invariant
+(hard filter only for structural infeasibility). Added per-vehicle
+`maint_oow_multiplier` (Toyota 2.0 → Stellantis 4.0) so post-cliff
+maintenance reflects each brand's actual repair-tail; default 3.0
+preserves back-compat for vehicles without the field. Documented
+known model simplifications (multi-tier warranty, gradual ramp,
+residual cliff, time anchoring) in CLAUDE.md as deliberate
+caricatures. Tests: 17 passing.

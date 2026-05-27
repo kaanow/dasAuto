@@ -75,16 +75,39 @@ def adjust_fuel_10yr(old_total, powertrain_type, old_mults, new_mults):
 BASE_HORIZON   = 10           # the horizon at which fuel_10yr etc. are stored
 DISCOUNT       = 0.055        # nominal annual
 
-# Maintenance two-rate factors. The 1:3 ratio reflects the rough
-# observation that out-of-warranty repair years cost ~3× in-warranty
-# years (no covered failures, plus the failures cluster in the post-
-# warranty tail). The absolute values are arbitrary — only the ratio
-# matters because the stored `maint_10yr` is preserved at N=10 via the
-# `now_units / base_units` rescaling in `recompute_tco`. Tightening or
-# widening the cliff is a matter of tuning the ratio, not these
-# constants.
-MAINT_IN_WARRANTY_FACTOR  = 0.5
-MAINT_OUT_OF_WARRANTY_FACTOR = 1.5
+# Maintenance two-rate factors. IN-warranty years are cheap (mostly
+# scheduled maintenance — oil, filters, brake pads — broadly similar
+# across brands). OUT-of-warranty years cost more because the owner
+# absorbs failure risk on top of scheduled work; how MUCH more depends
+# on the brand's repair-tail (parts availability, drivetrain
+# complexity, service-network depth, known failure modes).
+#
+# The default 1:3 ratio is a defensible industry-average baseline. The
+# absolute values are arbitrary — only the OUT/IN ratio matters because
+# the stored `maint_10yr` is preserved at N=10 via the `now_units /
+# base_units` rescaling. Per-vehicle nuance enters via the optional
+# `maint_oow_multiplier` field on each vehicle in vehicles.json:
+#
+#   multiplier = 2.0  → out-of-warranty year costs 2× an in-warranty
+#                       year (Toyota: best repair tail, parts ubiquity)
+#   multiplier = 2.5  → Honda, Mazda (above-average reliability)
+#   multiplier = 3.0  → default (Hyundai/Kia ICE, Subaru, general)
+#   multiplier = 3.5  → Tesla, Korean BEV/PHEV (battery-tail tail risk
+#                       + service-network constraints)
+#   multiplier = 4.0  → Stellantis Pacifica (well-documented hybrid /
+#                       electrical / electronics issues out of warranty)
+#
+# Vehicles without the field fall back to MAINT_OOW_MULTIPLIER_DEFAULT.
+MAINT_IN_WARRANTY_FACTOR     = 0.5
+MAINT_OOW_MULTIPLIER_DEFAULT = 3.0
+
+
+def _maint_factors(vehicle):
+    """Return (in_factor, out_factor) for one vehicle. IN is a fixed
+    constant; OUT scales with the per-vehicle `maint_oow_multiplier`
+    (or the global default if absent)."""
+    multiplier = vehicle.get("maint_oow_multiplier", MAINT_OOW_MULTIPLIER_DEFAULT)
+    return MAINT_IN_WARRANTY_FACTOR, MAINT_IN_WARRANTY_FACTOR * multiplier
 
 _FUEL_RATES = {
     "gas":   FuelRate(base=1.79,   escalation=0.035, name="gas"),
@@ -124,13 +147,13 @@ def residual_at(pretax, resid_at_base, years, base_horizon=BASE_HORIZON):
     return pretax * (resid_at_base / pretax) ** (years / base_horizon)
 
 
-def _maint_units(warranty_years_remaining, years):
-    """Two-rate maintenance unit count: in-warranty years × IN_FACTOR +
-    out-of-warranty years × OUT_FACTOR. The cliff falls at
+def _maint_units(warranty_years_remaining, years, in_factor, out_factor):
+    """Two-rate maintenance unit count: in-warranty years × in_factor +
+    out-of-warranty years × out_factor. The cliff falls at
     `warranty_years_remaining` years from purchase."""
     in_yrs  = min(years, warranty_years_remaining)
     out_yrs = max(0, years - warranty_years_remaining)
-    return in_yrs * MAINT_IN_WARRANTY_FACTOR + out_yrs * MAINT_OUT_OF_WARRANTY_FACTOR
+    return in_yrs * in_factor + out_yrs * out_factor
 
 
 def recompute_tco(vehicle, horizon):
@@ -140,13 +163,15 @@ def recompute_tco(vehicle, horizon):
     n = int(horizon)
     scale = _powertrain_npv_scale(vehicle["powertrain_type"], n)
     fuel  = vehicle["fuel_10yr"] * scale
-    # Maintenance: two-rate model. The stored `maint_10yr` is preserved
-    # when N == BASE_HORIZON because we rescale by (now_units / base_units),
-    # not by a hard-coded constant. Vehicles missing the warranty field
-    # default to BASE_HORIZON warranty remaining → no cliff (back-compat).
+    # Maintenance: two-rate model with per-vehicle OOW multiplier. The
+    # stored `maint_10yr` is preserved when N == BASE_HORIZON because we
+    # rescale by (now_units / base_units), and both numerator and
+    # denominator use the same factors. Vehicles missing the warranty
+    # field default to BASE_HORIZON → no cliff up to N=10 (back-compat).
     warranty = vehicle.get("warranty_years_remaining", BASE_HORIZON)
-    now_units  = _maint_units(warranty, n)
-    base_units = _maint_units(warranty, BASE_HORIZON)
+    in_factor, out_factor = _maint_factors(vehicle)
+    now_units  = _maint_units(warranty, n,            in_factor, out_factor)
+    base_units = _maint_units(warranty, BASE_HORIZON, in_factor, out_factor)
     maint = vehicle["maint_10yr"] * (now_units / base_units) if base_units > 0 else 0.0
     # Insurance: flat-rate, scale linearly.
     ins   = vehicle["ins_10yr"]   * n / BASE_HORIZON

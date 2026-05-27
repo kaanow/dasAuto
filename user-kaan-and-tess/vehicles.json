@@ -48,7 +48,8 @@
     "at_status": "",
     "cr_url": "https://www.craigslist.org/search/cta?query=toyota+grand+highlander+hybrid",
     "at_url_override": "https://www.autotrader.ca/cars/toyota/bc/?rcp=15&rcs=0&srt=35&prx=-2&prv=British+Columbia&loc=BC&hprc=True&wcp=True&mdl=Grand+Highlander&yRng=2025,2026",
-    "warranty_years_remaining": 10
+    "warranty_years_remaining": 10,
+    "maint_oow_multiplier": 2.0
   },
   {
     "id": "sienna-new",
@@ -98,7 +99,8 @@
     "warranty_years_remaining": 10,
     "tco_value": 83850,
     "weighted_score": 52.9,
-    "tco_score": 3.5
+    "tco_score": 3.5,
+    "maint_oow_multiplier": 2.0
   },
   {
     "id": "grand-highlander-used",
@@ -149,7 +151,8 @@
     "at_status": "",
     "cr_url": "https://vancouver.craigslist.org/search/cta?query=toyota+grand+highlander",
     "at_url_override": "https://www.autotrader.ca/cars/toyota/bc/?rcp=15&rcs=0&srt=35&prx=-2&prv=British+Columbia&loc=BC&hprc=True&wcp=True&mdl=Grand+Highlander&yRng=2023,2024",
-    "warranty_years_remaining": 7
+    "warranty_years_remaining": 7,
+    "maint_oow_multiplier": 2.0
   },
   {
     "id": "pacifica-hybrid-used",
@@ -199,7 +202,8 @@
     "warranty_years_remaining": 7,
     "tco_value": 73600,
     "weighted_score": 49.9,
-    "tco_score": 5.0
+    "tco_score": 5.0,
+    "maint_oow_multiplier": 4.0
   },
   {
     "id": "sienna-used",
@@ -249,7 +253,8 @@
     "at_years": "2022,2023",
     "at_status": "",
     "cr_url": "https://vancouver.craigslist.org/search/cta?query=toyota+sienna+hybrid+awd",
-    "warranty_years_remaining": 7
+    "warranty_years_remaining": 7,
+    "maint_oow_multiplier": 2.0
   },
   {
     "id": "odyssey-used",
@@ -299,7 +304,8 @@
     "warranty_years_remaining": 2,
     "tco_value": 85500,
     "weighted_score": 48.68,
-    "tco_score": 3.26
+    "tco_score": 3.26,
+    "maint_oow_multiplier": 2.5
   },
   {
     "id": "ascent-used",
@@ -349,7 +355,8 @@
     "at_years": "2022,2023",
     "at_status": "",
     "cr_url": "https://vancouver.craigslist.org/search/cta?query=subaru+ascent+touring",
-    "warranty_years_remaining": 2
+    "warranty_years_remaining": 2,
+    "maint_oow_multiplier": 3.0
   },
   {
     "id": "carnival-used",
@@ -399,7 +406,8 @@
     "warranty_years_remaining": 2,
     "tco_value": 83000,
     "weighted_score": 47.76,
-    "tco_score": 3.62
+    "tco_score": 3.62,
+    "maint_oow_multiplier": 3.0
   },
   {
     "id": "highlander-hybrid-used",
@@ -449,7 +457,8 @@
     "at_years": "2022,2023",
     "at_status": "",
     "cr_url": "https://vancouver.craigslist.org/search/cta?query=toyota+highlander+hybrid+xle",
-    "warranty_years_remaining": 7
+    "warranty_years_remaining": 7,
+    "maint_oow_multiplier": 2.0
   },
   {
     "id": "palisade-used",
@@ -499,7 +508,8 @@
     "at_years": "2022,2023",
     "at_status": "",
     "cr_url": "https://vancouver.craigslist.org/search/cta?query=hyundai+palisade+awd",
-    "warranty_years_remaining": 2
+    "warranty_years_remaining": 2,
+    "maint_oow_multiplier": 3.0
   },
   {
     "id": "telluride-used",
@@ -549,7 +559,8 @@
     "at_years": "2022,2023",
     "at_status": "",
     "cr_url": "https://vancouver.craigslist.org/search/cta?query=kia+telluride+awd",
-    "warranty_years_remaining": 2
+    "warranty_years_remaining": 2,
+    "maint_oow_multiplier": 3.0
   },
   {
     "id": "model-y-used",
@@ -599,7 +610,8 @@
     "warranty_years_remaining": 6,
     "tco_value": 76000,
     "weighted_score": 43.65,
-    "tco_score": 4.65
+    "tco_score": 4.65,
+    "maint_oow_multiplier": 3.5
   },
   {
     "id": "pilot-used",
@@ -649,7 +661,8 @@
     "at_years": "2023,2024",
     "at_status": "",
     "cr_url": "https://vancouver.craigslist.org/search/cta?query=honda+pilot+2023+awd",
-    "warranty_years_remaining": 3
+    "warranty_years_remaining": 3,
+    "maint_oow_multiplier": 2.5
   },
   {
     "id": "sorento-phev-used",
@@ -699,7 +712,8 @@
     "at_years": "2022,2023",
     "at_status": "",
     "cr_url": "https://vancouver.craigslist.org/search/cta?query=kia+sorento+phev+plug-in",
-    "warranty_years_remaining": 5
+    "warranty_years_remaining": 5,
+    "maint_oow_multiplier": 3.5
   },
   {
     "id": "cx90-phev-used",
@@ -749,7 +763,8 @@
     "at_years": "2024,2024",
     "at_status": "",
     "cr_url": "https://vancouver.craigslist.org/search/cta?query=mazda+cx-90+phev",
-    "warranty_years_remaining": 6
+    "warranty_years_remaining": 6,
+    "maint_oow_multiplier": 2.5
   },
   {
     "id": "ev9-used",
@@ -799,7 +814,8 @@
     "at_years": "2024,2024",
     "at_status": "",
     "cr_url": "https://vancouver.craigslist.org/search/cta?query=kia+ev9+electric",
-    "warranty_years_remaining": 6
+    "warranty_years_remaining": 6,
+    "maint_oow_multiplier": 3.5
   },
   {
     "id": "model-y-new",
@@ -849,7 +865,8 @@
     "warranty_years_remaining": 8,
     "tco_value": 88500,
     "weighted_score": 38.16,
-    "tco_score": 2.82
+    "tco_score": 2.82,
+    "maint_oow_multiplier": 3.5
   },
   {
     "id": "ioniq9-new",
@@ -899,6 +916,7 @@
     "at_years": "2026,2026",
     "at_status": "",
     "cr_url": "https://vancouver.craigslist.org/search/cta?query=hyundai+ioniq+9",
-    "warranty_years_remaining": 8
+    "warranty_years_remaining": 8,
+    "maint_oow_multiplier": 3.5
   }
 ]
