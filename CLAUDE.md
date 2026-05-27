@@ -71,11 +71,12 @@ absent. Everything else must be present for the app to start.
   `rank` field in vehicles.json.
 - **TCO methodology (`tco.py`):** present-value with annual
   escalation. `npv_per_unit(FuelRate, discount)` computes a per-unit
-  price multiplier; `adjust_fuel_10yr` re-scales an existing bucket
-  total when rates change. Per-powertrain consumption mixes (ICE/Hybrid:
-  100% gas, PHEV: 50/50 gas/home, BEV: 85/15 home/DCFC) are preserved
-  so a rate change doesn't re-assert consumption assumptions. Family-
-  specific base rates and escalation curves live in `tco_research.md`.
+  price multiplier; `_powertrain_npv_scale(N)` produces the ratio
+  used to re-derive horizon-N fuel from the base-horizon bucket.
+  Per-powertrain consumption mixes (ICE/Hybrid: 100% gas, PHEV: 50/50
+  gas/home, BEV: 85/15 home/DCFC) are preserved so a horizon change
+  doesn't re-assert consumption assumptions. Family-specific base
+  rates and escalation curves live in `tco_research.md`.
 - **Variable TCO horizon:** all routes accept `?horizon=N` (4 ≤ N ≤ 15;
   default 10). On the fly, each vehicle's components are re-derived
   from the stored 10yr totals:
@@ -206,6 +207,37 @@ These are deliberate caricatures; document but don't pre-fix.
   not exhaustively reviewed.
 
 ## Last updated
+
+May 2026 — session 6 (cont): added Toyota bZ4X (used 2023–24 AWD) +
+2026 Toyota bZ XLE AWD (new) to expand the cohort to 20. Both 5-seat
+compact BEVs. The used bZ4X comes in as the new lowest-TCO vehicle in
+the cohort ($64,315 at N=10) — heavy used-market depreciation (Toyota
+brand discount ≈ $20k off MSRP), low BEV running costs, and Toyota
+brand OOW repair-tail advantage. With default weights it lands at #13
+because the 5-seat / weak-corridor / 1500-lb-hitch qualitative scores
+drag it down — surfacing the same trade-off pattern as Tesla Model Y.
+Recomputed `tco_value` + `tco_score` across all 20 vehicles via the
+runtime `reframe_for_horizon` (lo=$64,315 used bZ4X, hi=$98,596
+Telluride). Note: Toyota's BEV battery warranty is 8yr/160k km — the
+BEV industry baseline, NOT the 10yr/240k hybrid moat — and the entries
+flag that explicitly to keep the "Toyota brand warranty" mental model
+from over-anchoring. Images: 6 photos for used (2023 AWD Limited /
+FWD Heavy Metal / interior dashes), 5 for new (re-using 2024 body
+shots since Wikimedia has nothing for the 2026 refresh yet). Tests:
+17 passing.
+
+May 2026 — session 6: cleanup of horizon-vs-anchor naming. The display
+fields `fuel_10yr`/`ins_10yr`/`resid_10yr` on the cohort produced by
+`reframe_for_horizon` were a tell — they stored horizon-N values under
+a 10yr-suffixed key, contradicting the variable-horizon refactor.
+Renamed them to `fuel`/`ins`/`resid` (matching `maint`); templates
+updated accordingly. Input fields on vehicles.json keep the `_10yr`
+suffix because those ARE base-horizon anchor values. Fixed the
+"10yr Net TCO" criterion label in scoring.py (now "Net TCO" —
+horizon-agnostic). Removed dead `adjust_fuel_10yr` migration helper.
+Wired JS `TRUE_DEFAULTS`/`HORIZON_DEFAULT` from server context so the
+Reset button can't drift from weights.json defaults. Tests: 17
+passing.
 
 May 2026 — session 5: shipped warranty-cliff maintenance + weight-input
 precision (both spec'd in session 4). Expanded cohort from 12 → 18:

@@ -2,15 +2,14 @@
 NPV-based TCO computation.
 
 Given base energy prices, annual escalation rates, and a discount rate,
-returns the present-value cost of consuming 1 unit/yr over the horizon.
-Used to translate a flat-rate per-vehicle `fuel_10yr` figure into the
-NPV-equivalent under a new rate model, preserving the per-vehicle
-consumption mix that the analyst originally assumed.
+returns the present-value cost of consuming 1 unit/yr over a chosen
+horizon. The base-horizon fuel/insurance/residual figures stored on each
+vehicle are anchored at BASE_HORIZON years; `recompute_tco` rescales them
+to any horizon in [HORIZON_MIN, HORIZON_MAX].
 
 This module is rates-agnostic — the actual gas/hydro/DCFC numbers live
-in the per-family data directory (e.g. `user-<family>/tco_research.md`
-and any `tco_inputs.json` derived from it). This file just does the
-arithmetic.
+in the per-family data directory (e.g. `user-<family>/tco_research.md`).
+This file just does the arithmetic.
 """
 
 from dataclasses import dataclass
@@ -33,9 +32,10 @@ def npv_per_unit(rate: FuelRate, discount: float, years: int = 10) -> float:
     return rate.base * (1 - r**years) / (1 - r)
 
 
-# Per-powertrain consumption mix assumed by the original analyst when
-# producing each vehicle's `fuel_10yr` bucket. We keep those mixes so a
-# rate change adjusts dollar amounts without re-asserting consumption.
+# Per-powertrain consumption mix assumed when producing each vehicle's
+# base-horizon fuel bucket. Held constant when the user shifts horizons
+# so a horizon change adjusts NPV-weighted dollars without re-asserting
+# consumption.
 POWERTRAIN_MIXES = {
     "ice":    {"gas": 1.00},
     "hybrid": {"gas": 1.00},
@@ -44,35 +44,20 @@ POWERTRAIN_MIXES = {
 }
 
 
-def adjust_fuel_10yr(old_total, powertrain_type, old_mults, new_mults):
-    """Re-scale an existing `fuel_10yr` total from one set of per-unit
-    multipliers to another, holding the powertrain's consumption mix
-    constant.
-
-    `old_mults` / `new_mults` are dicts of {fuel: CAD per unit-year-of-flow}
-    (the output of `npv_per_unit` for each fuel under the respective
-    rate model). Returns the new dollar total, unrounded."""
-    mix = POWERTRAIN_MIXES.get(powertrain_type, {"gas": 1.00})
-    new_total = 0.0
-    for fuel, share in mix.items():
-        quantity = (old_total * share) / old_mults[fuel]
-        new_total += quantity * new_mults[fuel]
-    return new_total
-
-
 # ---------------------------------------------------------------------------
 # Variable-horizon recomputation
 # ---------------------------------------------------------------------------
 #
-# Per-family rates that back the existing 10-year totals in vehicles.json.
-# When the user shifts the horizon, we re-derive fuel/maint/ins/residual at
-# the new N using these rates. The numbers here mirror what's documented in
-# user-kaan-and-tess/tco_research.md and were applied when vehicles.json was
-# rebuilt under the NPV methodology. If you fork for a new family with
-# different rates, update tco_research.md and refresh these constants in
-# parallel — they should not drift apart.
+# Per-family rates that back the base-horizon totals stored in vehicles.json
+# (the `fuel_10yr` / `ins_10yr` / `resid_10yr` fields — named for the
+# anchor year, not the user's chosen horizon). When the user shifts the
+# horizon, we re-derive fuel/maint/ins/residual at the new N using these
+# rates. The numbers here mirror user-<family>/tco_research.md and were
+# applied when vehicles.json was rebuilt under the NPV methodology. If
+# you fork for a new family with different rates, update tco_research.md
+# and refresh these constants in parallel — they should not drift apart.
 
-BASE_HORIZON   = 10           # the horizon at which fuel_10yr etc. are stored
+BASE_HORIZON   = 10           # the anchor year of the stored base totals
 DISCOUNT       = 0.055        # nominal annual
 
 # Maintenance per-year rates. Each vehicle carries two per-year cost
@@ -104,13 +89,13 @@ _FUEL_RATES = {
 
 def _powertrain_npv_scale(powertrain_type, years):
     """Mix-weighted ratio of NPV-per-CAD-of-fuel-spend at `years` vs at
-    BASE_HORIZON. Multiplying fuel_10yr by this gives the NPV-adjusted
-    fuel cost at the new horizon, holding the analyst's per-vehicle
-    consumption mix constant.
+    BASE_HORIZON. Multiplying the base-horizon fuel total by this gives
+    the NPV-adjusted fuel cost at the new horizon, holding the analyst's
+    per-vehicle consumption mix constant.
 
     Concretely: each fuel's NPV factor (`$1 base × sum (1+e)^t / (1+d)^t`)
-    grows with N; the *ratio* of factors at N vs 10 tells us how to
-    rescale a 10-year bucket."""
+    grows with N; the *ratio* of factors at N vs BASE_HORIZON tells us
+    how to rescale the stored bucket."""
     mix = POWERTRAIN_MIXES.get(powertrain_type, {"gas": 1.00})
     new_weighted = 0.0
     base_weighted = 0.0

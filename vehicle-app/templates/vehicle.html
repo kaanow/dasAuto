@@ -138,7 +138,7 @@
         </div>
         <div class="tco-row">
           <span class="tco-item-label">{{ horizon }}yr Fuel / Energy</span>
-          <span class="tco-item-val">+ ${{ "{:,}".format(v.fuel_10yr) }}</span>
+          <span class="tco-item-val">+ ${{ "{:,}".format(v.fuel) }}</span>
         </div>
         <div class="tco-row">
           <span class="tco-item-label">
@@ -155,11 +155,11 @@
         </div>
         <div class="tco-row">
           <span class="tco-item-label">{{ horizon }}yr Insurance (est.)</span>
-          <span class="tco-item-val">+ ${{ "{:,}".format(v.ins_10yr) }}</span>
+          <span class="tco-item-val">+ ${{ "{:,}".format(v.ins) }}</span>
         </div>
         <div class="tco-row tco-credit">
           <span class="tco-item-label">{{ horizon }}yr Residual value (credit)</span>
-          <span class="tco-item-val">− ${{ "{:,}".format(v.resid_10yr) }}</span>
+          <span class="tco-item-val">− ${{ "{:,}".format(v.resid) }}</span>
         </div>
         <div class="tco-row tco-total">
           <span class="tco-item-label">Net {{ horizon }}-year TCO</span>

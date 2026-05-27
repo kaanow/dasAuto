@@ -210,5 +210,28 @@
       {"url": "https://upload.wikimedia.org/wikipedia/commons/5/55/2024_Tesla_Model_Y_Long_Range_FWD_in_Pearl_White%2C_front_right.jpg", "type": "exterior", "caption": "2024 Model Y Long Range — Pearl White"}
     ],
     "notes": "Pre-Juniper exteriors only — Wikimedia Commons has no clear pre-refresh Model Y interior shot in the Tesla automobile dashboards category."
+  },
+  {
+    "id": "bz4x-used",
+    "images": [
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/d/df/2023_Toyota_bZ4X_AWD_Limited%2C_front_3.28.23.jpg", "type": "exterior", "caption": "2023 Toyota bZ4X AWD Limited — front"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/c/c4/2023_Toyota_bZ4X_AWD_Limited%2C_rear_3.28.23.jpg", "type": "exterior", "caption": "2023 Toyota bZ4X AWD Limited — rear"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/3/3a/2023_Toyota_BZ4X_Limited_AWD_front.jpg", "type": "exterior", "caption": "2023 Toyota bZ4X Limited AWD — front 3/4"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/f/f8/2023_Toyota_BZ4X_Limited_AWD_rear.jpg", "type": "exterior", "caption": "2023 Toyota bZ4X Limited AWD — rear 3/4"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/d/d6/2023_Toyota_bZ4X_interior.jpg", "type": "interior", "caption": "2023 Toyota bZ4X — dashboard and front cabin"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/e/eb/2023_Toyota_bZ4X_FWD_in_Heavy_Metal%2C_front_right.jpg", "type": "exterior", "caption": "2023 Toyota bZ4X in Heavy Metal — front right"}
+    ],
+    "notes": "Pre-refresh 2023 AWD Limited and one FWD trim. Two confirmed interior dashboard shots."
+  },
+  {
+    "id": "bz-new",
+    "images": [
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/1/1c/2024_Toyota_bZ4X_-_white.jpg", "type": "exterior", "caption": "2024 Toyota bZ4X — white (body unchanged for 2026 refresh)"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/3/3d/2024_Toyota_bZ4X_interior.jpg", "type": "interior", "caption": "Toyota bZ4X — dashboard"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/a/a5/2024_Toyota_bZ4X_interior_%282%29.jpg", "type": "interior", "caption": "Toyota bZ4X — cabin detail"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/3/3a/2023_Toyota_BZ4X_Limited_AWD_front.jpg", "type": "exterior", "caption": "bZ4X Limited AWD — front (pre-refresh body, representative of 2026 styling)"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/f/f8/2023_Toyota_BZ4X_Limited_AWD_rear.jpg", "type": "exterior", "caption": "bZ4X Limited AWD — rear (pre-refresh body, representative)"}
+    ],
+    "notes": "Wikimedia coverage of the 2026 \"bZ\" refresh is essentially nil. Using 2024 bZ4X photos — the 2026 refresh changes battery/charging hardware but body and cabin layout are essentially the same."
   }
 ]

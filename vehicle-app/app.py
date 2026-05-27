@@ -227,6 +227,8 @@ def index():
         weights=weights,
         horizon=horizon,
         horizon_min=HORIZON_MIN, horizon_max=HORIZON_MAX,
+        horizon_default=HORIZON_DEFAULT,
+        weights_default=default_weights(),
         state_qs=url_state_qs(weights, horizon),
         criteria_labels=CRITERIA_LABELS,
         scopes=SCOPES,

@@ -12,7 +12,7 @@ are read directly from each vehicle's `scores` block.
 """
 
 CRITERIA_LABELS = {
-    "tco":          "10yr Net TCO",
+    "tco":          "Net TCO",
     "car_seat_fit": "Car Seat Fit",
     "cargo":        "Cargo Utility",
     "third_row":    "3rd Row Comfort",
@@ -73,16 +73,10 @@ def reframe_for_horizon(vehicles, horizon):
         new["scores"] = dict(v["scores"])
         comp = recompute_tco(v, horizon)
         new["tco_value"] = comp["tco_value"]
-        # Display fields — these are the components AT THE CHOSEN
-        # HORIZON, not 10-year aggregates. The `_10yr` suffix on fuel /
-        # ins / resid is legacy but harmless (those buckets are still
-        # 10-year-tied: fuel is NPV-scaled from a 10yr base; resid is a
-        # year-10 future value). Maintenance lives in its own per-year
-        # rate schema now, so we write the horizon-N result as `maint`.
-        new["fuel_10yr"]  = comp["fuel"]
-        new["maint"]      = comp["maint"]
-        new["ins_10yr"]   = comp["ins"]
-        new["resid_10yr"] = comp["resid"]
+        new["fuel"]  = comp["fuel"]
+        new["maint"] = comp["maint"]
+        new["ins"]   = comp["ins"]
+        new["resid"] = comp["resid"]
         refreshed.append(new)
     tcos = [v["tco_value"] for v in refreshed]
     lo, hi = min(tcos), max(tcos)
