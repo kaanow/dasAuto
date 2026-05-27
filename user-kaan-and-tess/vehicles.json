@@ -16,7 +16,6 @@
     "on_road": 62700,
     "pretax": 56000,
     "fuel_10yr": 16850,
-    "maint_10yr": 16000,
     "ins_10yr": 20000,
     "resid_10yr": 27000,
     "scores": {
@@ -49,7 +48,8 @@
     "cr_url": "https://www.craigslist.org/search/cta?query=toyota+grand+highlander+hybrid",
     "at_url_override": "https://www.autotrader.ca/cars/toyota/bc/?rcp=15&rcs=0&srt=35&prx=-2&prv=British+Columbia&loc=BC&hprc=True&wcp=True&mdl=Grand+Highlander&yRng=2025,2026",
     "warranty_years_remaining": 10,
-    "maint_oow_multiplier": 2.0
+    "maint_in_per_year": 1600,
+    "maint_oow_per_year": 3200
   },
   {
     "id": "sienna-new",
@@ -65,7 +65,6 @@
     "on_road": 57500,
     "pretax": 51500,
     "fuel_10yr": 16850,
-    "maint_10yr": 15500,
     "ins_10yr": 17000,
     "resid_10yr": 23000,
     "scores": {
@@ -100,7 +99,8 @@
     "tco_value": 83850,
     "weighted_score": 52.9,
     "tco_score": 3.5,
-    "maint_oow_multiplier": 2.0
+    "maint_in_per_year": 1550,
+    "maint_oow_per_year": 3100
   },
   {
     "id": "grand-highlander-used",
@@ -119,7 +119,6 @@
     "on_road": 52400,
     "pretax": 49000,
     "fuel_10yr": 16850,
-    "maint_10yr": 18000,
     "ins_10yr": 18000,
     "resid_10yr": 13000,
     "scores": {
@@ -152,7 +151,8 @@
     "cr_url": "https://vancouver.craigslist.org/search/cta?query=toyota+grand+highlander",
     "at_url_override": "https://www.autotrader.ca/cars/toyota/bc/?rcp=15&rcs=0&srt=35&prx=-2&prv=British+Columbia&loc=BC&hprc=True&wcp=True&mdl=Grand+Highlander&yRng=2023,2024",
     "warranty_years_remaining": 7,
-    "maint_oow_multiplier": 2.0
+    "maint_in_per_year": 1385,
+    "maint_oow_per_year": 2769
   },
   {
     "id": "pacifica-hybrid-used",
@@ -168,7 +168,6 @@
     "on_road": 39000,
     "pretax": 36500,
     "fuel_10yr": 7100,
-    "maint_10yr": 17500,
     "ins_10yr": 16500,
     "resid_10yr": 6500,
     "scores": {
@@ -203,7 +202,8 @@
     "tco_value": 73600,
     "weighted_score": 49.9,
     "tco_score": 5.0,
-    "maint_oow_multiplier": 4.0
+    "maint_in_per_year": 921,
+    "maint_oow_per_year": 3684
   },
   {
     "id": "sienna-used",
@@ -222,7 +222,6 @@
     "on_road": 50300,
     "pretax": 47000,
     "fuel_10yr": 16850,
-    "maint_10yr": 17500,
     "ins_10yr": 16000,
     "resid_10yr": 11000,
     "scores": {
@@ -254,7 +253,8 @@
     "at_status": "",
     "cr_url": "https://vancouver.craigslist.org/search/cta?query=toyota+sienna+hybrid+awd",
     "warranty_years_remaining": 7,
-    "maint_oow_multiplier": 2.0
+    "maint_in_per_year": 1346,
+    "maint_oow_per_year": 2692
   },
   {
     "id": "odyssey-used",
@@ -270,7 +270,6 @@
     "on_road": 41000,
     "pretax": 38500,
     "fuel_10yr": 21500,
-    "maint_10yr": 17500,
     "ins_10yr": 16500,
     "resid_10yr": 11000,
     "scores": {
@@ -305,7 +304,8 @@
     "tco_value": 85500,
     "weighted_score": 48.68,
     "tco_score": 3.26,
-    "maint_oow_multiplier": 2.5
+    "maint_in_per_year": 795,
+    "maint_oow_per_year": 1989
   },
   {
     "id": "ascent-used",
@@ -324,7 +324,6 @@
     "on_road": 38500,
     "pretax": 36000,
     "fuel_10yr": 22950,
-    "maint_10yr": 19500,
     "ins_10yr": 16000,
     "resid_10yr": 7000,
     "scores": {
@@ -356,7 +355,8 @@
     "at_status": "",
     "cr_url": "https://vancouver.craigslist.org/search/cta?query=subaru+ascent+touring",
     "warranty_years_remaining": 2,
-    "maint_oow_multiplier": 3.0
+    "maint_in_per_year": 750,
+    "maint_oow_per_year": 2250
   },
   {
     "id": "carnival-used",
@@ -372,7 +372,6 @@
     "on_road": 36500,
     "pretax": 34000,
     "fuel_10yr": 21500,
-    "maint_10yr": 18000,
     "ins_10yr": 15500,
     "resid_10yr": 8500,
     "scores": {
@@ -407,7 +406,8 @@
     "tco_value": 83000,
     "weighted_score": 47.76,
     "tco_score": 3.62,
-    "maint_oow_multiplier": 3.0
+    "maint_in_per_year": 692,
+    "maint_oow_per_year": 2077
   },
   {
     "id": "highlander-hybrid-used",
@@ -426,7 +426,6 @@
     "on_road": 47100,
     "pretax": 44000,
     "fuel_10yr": 16850,
-    "maint_10yr": 18000,
     "ins_10yr": 16500,
     "resid_10yr": 11000,
     "scores": {
@@ -458,7 +457,8 @@
     "at_status": "",
     "cr_url": "https://vancouver.craigslist.org/search/cta?query=toyota+highlander+hybrid+xle",
     "warranty_years_remaining": 7,
-    "maint_oow_multiplier": 2.0
+    "maint_in_per_year": 1385,
+    "maint_oow_per_year": 2769
   },
   {
     "id": "palisade-used",
@@ -477,7 +477,6 @@
     "on_road": 40700,
     "pretax": 38000,
     "fuel_10yr": 23900,
-    "maint_10yr": 18000,
     "ins_10yr": 15000,
     "resid_10yr": 10000,
     "scores": {
@@ -509,7 +508,8 @@
     "at_status": "",
     "cr_url": "https://vancouver.craigslist.org/search/cta?query=hyundai+palisade+awd",
     "warranty_years_remaining": 2,
-    "maint_oow_multiplier": 3.0
+    "maint_in_per_year": 692,
+    "maint_oow_per_year": 2077
   },
   {
     "id": "telluride-used",
@@ -528,7 +528,6 @@
     "on_road": 49200,
     "pretax": 46000,
     "fuel_10yr": 23900,
-    "maint_10yr": 20500,
     "ins_10yr": 18000,
     "resid_10yr": 13000,
     "scores": {
@@ -560,7 +559,8 @@
     "at_status": "",
     "cr_url": "https://vancouver.craigslist.org/search/cta?query=kia+telluride+awd",
     "warranty_years_remaining": 2,
-    "maint_oow_multiplier": 3.0
+    "maint_in_per_year": 788,
+    "maint_oow_per_year": 2365
   },
   {
     "id": "model-y-used",
@@ -576,7 +576,6 @@
     "on_road": 50500,
     "pretax": 47500,
     "fuel_10yr": 4500,
-    "maint_10yr": 10500,
     "ins_10yr": 20000,
     "resid_10yr": 9500,
     "scores": {
@@ -611,7 +610,8 @@
     "tco_value": 76000,
     "weighted_score": 43.65,
     "tco_score": 4.65,
-    "maint_oow_multiplier": 3.5
+    "maint_in_per_year": 525,
+    "maint_oow_per_year": 1838
   },
   {
     "id": "pilot-used",
@@ -630,7 +630,6 @@
     "on_road": 46000,
     "pretax": 43000,
     "fuel_10yr": 21950,
-    "maint_10yr": 17500,
     "ins_10yr": 16500,
     "resid_10yr": 11000,
     "scores": {
@@ -662,7 +661,8 @@
     "at_status": "",
     "cr_url": "https://vancouver.craigslist.org/search/cta?query=honda+pilot+2023+awd",
     "warranty_years_remaining": 3,
-    "maint_oow_multiplier": 2.5
+    "maint_in_per_year": 854,
+    "maint_oow_per_year": 2134
   },
   {
     "id": "sorento-phev-used",
@@ -681,7 +681,6 @@
     "on_road": 44900,
     "pretax": 42000,
     "fuel_10yr": 7400,
-    "maint_10yr": 16000,
     "ins_10yr": 16000,
     "resid_10yr": 9000,
     "scores": {
@@ -713,7 +712,8 @@
     "at_status": "",
     "cr_url": "https://vancouver.craigslist.org/search/cta?query=kia+sorento+phev+plug-in",
     "warranty_years_remaining": 5,
-    "maint_oow_multiplier": 3.5
+    "maint_in_per_year": 711,
+    "maint_oow_per_year": 2489
   },
   {
     "id": "cx90-phev-used",
@@ -732,7 +732,6 @@
     "on_road": 51400,
     "pretax": 48000,
     "fuel_10yr": 7400,
-    "maint_10yr": 16000,
     "ins_10yr": 17500,
     "resid_10yr": 10000,
     "scores": {
@@ -764,7 +763,8 @@
     "at_status": "",
     "cr_url": "https://vancouver.craigslist.org/search/cta?query=mazda+cx-90+phev",
     "warranty_years_remaining": 6,
-    "maint_oow_multiplier": 2.5
+    "maint_in_per_year": 1000,
+    "maint_oow_per_year": 2500
   },
   {
     "id": "ev9-used",
@@ -783,7 +783,6 @@
     "on_road": 62100,
     "pretax": 58000,
     "fuel_10yr": 4900,
-    "maint_10yr": 12500,
     "ins_10yr": 21000,
     "resid_10yr": 13000,
     "scores": {
@@ -815,7 +814,8 @@
     "at_status": "",
     "cr_url": "https://vancouver.craigslist.org/search/cta?query=kia+ev9+electric",
     "warranty_years_remaining": 6,
-    "maint_oow_multiplier": 3.5
+    "maint_in_per_year": 625,
+    "maint_oow_per_year": 2188
   },
   {
     "id": "model-y-new",
@@ -831,7 +831,6 @@
     "on_road": 73000,
     "pretax": 65000,
     "fuel_10yr": 4500,
-    "maint_10yr": 9500,
     "ins_10yr": 21500,
     "resid_10yr": 20000,
     "scores": {
@@ -866,7 +865,8 @@
     "tco_value": 88500,
     "weighted_score": 38.16,
     "tco_score": 2.82,
-    "maint_oow_multiplier": 3.5
+    "maint_in_per_year": 633,
+    "maint_oow_per_year": 2217
   },
   {
     "id": "ioniq9-new",
@@ -885,7 +885,6 @@
     "on_road": 75100,
     "pretax": 67050,
     "fuel_10yr": 4900,
-    "maint_10yr": 11000,
     "ins_10yr": 22000,
     "resid_10yr": 18000,
     "scores": {
@@ -917,6 +916,7 @@
     "at_status": "",
     "cr_url": "https://vancouver.craigslist.org/search/cta?query=hyundai+ioniq+9",
     "warranty_years_remaining": 8,
-    "maint_oow_multiplier": 3.5
+    "maint_in_per_year": 733,
+    "maint_oow_per_year": 2567
   }
 ]

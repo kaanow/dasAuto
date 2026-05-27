@@ -123,7 +123,7 @@
         <table class="cmp-table">
           <tr><td class="cmp-td-label">Purchase</td><td class="cmp-td-val">${{ "{:,}".format(v.on_road) }}</td></tr>
           <tr><td class="cmp-td-label">+ Fuel / Energy</td><td class="cmp-td-val">${{ "{:,}".format(v.fuel_10yr) }}</td></tr>
-          <tr><td class="cmp-td-label">+ Maintenance</td><td class="cmp-td-val">${{ "{:,}".format(v.maint_10yr) }}</td></tr>
+          <tr><td class="cmp-td-label">+ Maintenance</td><td class="cmp-td-val">${{ "{:,}".format(v.maint) }}</td></tr>
           <tr><td class="cmp-td-label">+ Insurance</td><td class="cmp-td-val">${{ "{:,}".format(v.ins_10yr) }}</td></tr>
           <tr><td class="cmp-td-label">− Residual</td><td class="cmp-td-val credit">−${{ "{:,}".format(v.resid_10yr) }}</td></tr>
           <tr class="cmp-total-row"><td class="cmp-td-label">Net TCO</td><td class="cmp-td-val"><strong>${{ "{:,}".format(v.tco_value) }}</strong></td></tr>

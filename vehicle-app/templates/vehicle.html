@@ -141,8 +141,17 @@
           <span class="tco-item-val">+ ${{ "{:,}".format(v.fuel_10yr) }}</span>
         </div>
         <div class="tco-row">
-          <span class="tco-item-label">{{ horizon }}yr Maintenance</span>
-          <span class="tco-item-val">+ ${{ "{:,}".format(v.maint_10yr) }}</span>
+          <span class="tco-item-label">
+            {{ horizon }}yr Maintenance
+            {% if v.maint_in_per_year and v.maint_oow_per_year and v.warranty_years_remaining is defined %}
+            <span class="tco-item-hint">
+              ${{ "{:,}".format(v.maint_in_per_year) }}/yr covered ·
+              ${{ "{:,}".format(v.maint_oow_per_year) }}/yr after ·
+              {{ v.warranty_years_remaining }}yr warranty left
+            </span>
+            {% endif %}
+          </span>
+          <span class="tco-item-val">+ ${{ "{:,}".format(v.maint) }}</span>
         </div>
         <div class="tco-row">
           <span class="tco-item-label">{{ horizon }}yr Insurance (est.)</span>

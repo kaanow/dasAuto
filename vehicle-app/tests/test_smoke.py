@@ -203,67 +203,61 @@ class SmokeTests(unittest.TestCase):
         self.assertEqual(parsed2["tco"], 3.0)
 
     def test_warranty_cliff_in_maintenance(self):
-        """Build B: maintenance follows a two-rate model that preserves
-        the stored maint_10yr at N=10, undershoots linear pre-cliff, and
-        overshoots linear post-cliff."""
+        """Per-year maintenance schema: in-warranty years use
+        maint_in_per_year, out-of-warranty years use maint_oow_per_year.
+        N=7 (all in-warranty for this vehicle) should be 7 × in-rate."""
         import tco
         v = next(x for x in self.app_module.load_vehicles()
                  if x["id"] == "grand-highlander-used")
         self.assertEqual(v["warranty_years_remaining"], 7)
-        maint_10yr = v["maint_10yr"]
+        p_in  = v["maint_in_per_year"]
+        p_oow = v["maint_oow_per_year"]
 
         m7  = tco.recompute_tco(v, 7)["maint"]
         m10 = tco.recompute_tco(v, 10)["maint"]
         m12 = tco.recompute_tco(v, 12)["maint"]
 
-        # 1. N=10 returns the stored value within $5 rounding tolerance.
-        self.assertLessEqual(abs(m10 - maint_10yr), 5,
-            f"maint(10)={m10} should equal stored {maint_10yr}")
-        # 2. N=7 (pure in-warranty for this vehicle) costs LESS than
-        #    the linear model would predict.
-        linear_7 = maint_10yr * 7 / 10
-        self.assertLess(m7, linear_7,
-            f"maint(7)={m7} should be < linear {linear_7:.0f} pre-cliff")
-        # 3. N=12 (out-of-warranty multiplier compounds) costs MORE.
-        linear_12 = maint_10yr * 12 / 10
-        self.assertGreater(m12, linear_12,
-            f"maint(12)={m12} should be > linear {linear_12:.0f} post-cliff")
+        # 1. N=7 (pure in-warranty) is exactly 7 × in-rate.
+        self.assertEqual(m7, round(7 * p_in),
+            f"maint(7)={m7} should equal 7×{p_in}={7*p_in}")
+        # 2. N=10 is 7 × in-rate + 3 × oow-rate.
+        self.assertEqual(m10, round(7 * p_in + 3 * p_oow))
+        # 3. N=12 is 7 × in-rate + 5 × oow-rate.
+        self.assertEqual(m12, round(7 * p_in + 5 * p_oow))
+        # 4. The cliff is real: per-year cost out of warranty exceeds
+        #    per-year cost in warranty.
+        self.assertGreater(p_oow, p_in)
 
-    def test_per_vehicle_oow_multiplier(self):
-        """Per-vehicle `maint_oow_multiplier` shifts post-cliff
-        maintenance: a low-multiplier vehicle (Toyota=2.0) costs less
-        out-of-warranty than a high-multiplier vehicle (Stellantis=4.0)
-        with the same warranty and same maint_10yr — but both still
-        return their stored maint_10yr exactly at N=10."""
+    def test_per_year_maint_rates(self):
+        """Per-year maintenance rates are vehicle-intrinsic. A vehicle
+        with cheap OOW years (Toyota-like) should cost less past the
+        warranty cliff than a vehicle with pricey OOW years (Pacifica-
+        like), holding warranty and in-warranty rate constant."""
         import tco
-        # Synthesise two near-identical vehicles that differ only in OOW
-        # multiplier. Both have warranty=7yr and maint_10yr=$18,000.
         common = dict(powertrain_type="hybrid", on_road=50000, pretax=46000,
-                      fuel_10yr=10000, maint_10yr=18000, ins_10yr=16000,
-                      resid_10yr=10000, warranty_years_remaining=7)
-        cheap_oow  = dict(common, id="cheap",  maint_oow_multiplier=2.0)
-        pricey_oow = dict(common, id="pricey", maint_oow_multiplier=4.0)
+                      fuel_10yr=10000, ins_10yr=16000, resid_10yr=10000,
+                      warranty_years_remaining=7,
+                      maint_in_per_year=1400)
+        cheap_oow  = dict(common, id="cheap",  maint_oow_per_year=2800)  # 2× ratio
+        pricey_oow = dict(common, id="pricey", maint_oow_per_year=5600)  # 4× ratio
 
-        # At the anchor (N=10) both return the stored maint_10yr.
-        self.assertEqual(
-            tco.recompute_tco(cheap_oow, 10)["maint"], 18000)
-        self.assertEqual(
-            tco.recompute_tco(pricey_oow, 10)["maint"], 18000)
+        # At N=7 (all in-warranty), both return 7 × in-rate.
+        self.assertEqual(tco.recompute_tco(cheap_oow,  7)["maint"], 7 * 1400)
+        self.assertEqual(tco.recompute_tco(pricey_oow, 7)["maint"], 7 * 1400)
 
-        # At N=12 (post-cliff for both), pricey_oow costs MORE.
-        m_cheap_12  = tco.recompute_tco(cheap_oow, 12)["maint"]
-        m_pricey_12 = tco.recompute_tco(pricey_oow, 12)["maint"]
-        self.assertGreater(m_pricey_12, m_cheap_12,
-            f"pricey OOW (mult=4) should cost more than cheap OOW "
-            f"(mult=2) at N=12; got {m_pricey_12} vs {m_cheap_12}")
+        # At N=12 (5 years post-cliff), pricey costs more.
+        m_cheap  = tco.recompute_tco(cheap_oow,  12)["maint"]
+        m_pricey = tco.recompute_tco(pricey_oow, 12)["maint"]
+        self.assertEqual(m_cheap,  7 * 1400 + 5 * 2800)   # 23,800
+        self.assertEqual(m_pricey, 7 * 1400 + 5 * 5600)   # 37,800
+        self.assertGreater(m_pricey, m_cheap)
 
-        # Missing field falls back to the global default (3.0) — should
-        # land between the two extremes.
-        default_v = {k: v for k, v in common.items()}
-        default_v["id"] = "default"
-        m_default_12 = tco.recompute_tco(default_v, 12)["maint"]
-        self.assertGreater(m_default_12, m_cheap_12)
-        self.assertLess(m_default_12, m_pricey_12)
+        # Vehicles missing per-year fields fall back to module defaults.
+        bare = dict(powertrain_type="ice", on_road=40000, pretax=37000,
+                    fuel_10yr=20000, ins_10yr=15000, resid_10yr=8000)
+        m_bare = tco.recompute_tco(bare, 10)["maint"]
+        expected = 10 * tco.MAINT_IN_PER_YEAR_DEFAULT  # full warranty default
+        self.assertEqual(m_bare, expected)
 
     def test_image_serves(self):
         # Pick any vehicle that has at least one image on disk

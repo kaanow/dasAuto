@@ -72,9 +72,15 @@ def reframe_for_horizon(vehicles, horizon):
         new = dict(v)
         new["scores"] = dict(v["scores"])
         comp = recompute_tco(v, horizon)
-        new["tco_value"]  = comp["tco_value"]
-        new["fuel_10yr"]  = comp["fuel"]    # display field; named for legacy
-        new["maint_10yr"] = comp["maint"]
+        new["tco_value"] = comp["tco_value"]
+        # Display fields — these are the components AT THE CHOSEN
+        # HORIZON, not 10-year aggregates. The `_10yr` suffix on fuel /
+        # ins / resid is legacy but harmless (those buckets are still
+        # 10-year-tied: fuel is NPV-scaled from a 10yr base; resid is a
+        # year-10 future value). Maintenance lives in its own per-year
+        # rate schema now, so we write the horizon-N result as `maint`.
+        new["fuel_10yr"]  = comp["fuel"]
+        new["maint"]      = comp["maint"]
         new["ins_10yr"]   = comp["ins"]
         new["resid_10yr"] = comp["resid"]
         refreshed.append(new)

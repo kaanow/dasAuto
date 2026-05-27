@@ -76,44 +76,38 @@ warranty left at point of purchase. Seed values:
   Kia Carnival: 2
 - 2023–24 used Honda Pilot: 3
 
-In-warranty years are cheap (mostly scheduled maintenance, broadly
-similar across brands). Out-of-warranty years cost more — and *how
-much* more depends on the brand's repair-tail. So each vehicle also
-carries `maint_oow_multiplier` (ratio of OUT to IN cost per year):
+Each vehicle carries two per-year maintenance rate inputs:
+- `maint_in_per_year` — CAD/yr while covered. Mostly scheduled work
+  (oil/filters/brakes for ICE; minimal items for BEV).
+- `maint_oow_per_year` — CAD/yr once the cost-dominant warranty has
+  expired. Scheduled work + expected value of out-of-warranty
+  repairs. Varies by brand repair-tail.
 
-| multiplier | who | why |
-|------------|-----|-----|
-| 2.0 | Toyota (all hybrids) | Best OOW repair tail in the field — parts ubiquity, simplest planetary hybrid drivetrain, lowest major-failure rate in Consumer Reports data |
-| 2.5 | Honda, Mazda CX-90 PHEV | Above-average reliability; deep parts networks |
-| 3.0 | Subaru, Hyundai/Kia ICE | Default (industry average) |
-| 3.5 | Korean BEV/PHEV (EV9, IONIQ 9, Sorento PHEV), Tesla Model Y | 8yr battery bounds the worst tail but post-warranty traction-battery replacement is the cost-tail driver; Tesla service network adds friction |
-| 4.0 | Stellantis Pacifica Hybrid | Documented out-of-warranty electrical / hybrid-software issues; brand-wide complex-system reliability concerns |
+Typical ratios (oow/in) observed in this cohort:
 
-Formula at horizon N (preserves stored `maint_10yr` at N=10):
+| ratio | who | why |
+|-------|-----|-----|
+| 2.0× | Toyota (all hybrids) | Best OOW repair tail — parts ubiquity, simplest planetary hybrid drivetrain, lowest major-failure rate in Consumer Reports data |
+| 2.5× | Honda, Mazda CX-90 PHEV | Above-average reliability; deep parts networks |
+| 3.0× | Subaru, Hyundai/Kia ICE | Industry baseline |
+| 3.5× | Korean BEV/PHEV (EV9, IONIQ 9, Sorento PHEV), Tesla Model Y | 8yr battery bounds the worst tail but post-warranty traction-battery replacement is the cost-tail driver; Tesla service network adds friction |
+| 4.0× | Stellantis Pacifica Hybrid | Documented out-of-warranty electrical / hybrid-software issues; brand-wide complex-system reliability concerns |
 
-  `in_factor  = 0.5`  (fixed)
-  `out_factor = 0.5 × maint_oow_multiplier`
-  `in_yrs     = min(N, warranty_years_remaining)`
-  `out_yrs    = max(0, N − warranty_years_remaining)`
-  `now_units  = in_yrs × in_factor + out_yrs × out_factor`
-  `base_units = (same expression evaluated at N=BASE_HORIZON)`
-  `maint(N)   = maint_10yr × now_units / base_units`
+Formula at horizon N — direct sum, no anchor, no rescaling:
 
-Effect (holding warranty=7 and maint_10yr=$18,000 constant, varying
-only the multiplier):
-- mult=2 (Toyota):   N=7 $9,692 → N=10 $18,000 → N=15 $31,846
-- mult=3 (default):  N=7 $7,875 → N=10 $18,000 → N=15 $34,875
-- mult=4 (Pacifica): N=7 $6,632 → N=10 $18,000 → N=15 $36,947
+  `in_yrs    = min(N, warranty_years_remaining)`
+  `out_yrs   = max(0, N − warranty_years_remaining)`
+  `maint(N)  = in_yrs × maint_in_per_year + out_yrs × maint_oow_per_year`
 
-All three anchor exactly at N=10 (multiplier is calibrated out via
-`base_units`), but the long-horizon spread is $5k+ — enough to shift
-rankings at the 12–15yr edge of the slider. Counter-intuitively the
-*pre-cliff* years also shift: a vehicle with cheap OOW years (Toyota,
-mult=2) has fewer "expensive" denominator units, so the per-unit cost
-is higher, so pre-cliff years cost MORE in absolute dollars than they
-would under a higher multiplier. Toyota's repair-tail advantage is
-real but it shows up as a flatter cost curve overall — not lower
-pre-cliff costs in isolation.
+Effect (warranty=7yr, in=$1,400/yr, varying only the OOW rate):
+- oow=$2,800 (Toyota):    N=7 $9,800 → N=10 $18,200 → N=15 $32,200
+- oow=$4,200 (default):   N=7 $9,800 → N=10 $22,400 → N=15 $40,400
+- oow=$5,600 (Pacifica):  N=7 $9,800 → N=10 $26,600 → N=15 $48,800
+
+Pre-cliff years are identical across these (same in-rate). Post-
+cliff years diverge linearly with the OOW rate. The brand repair-
+tail advantage shows up exactly when the warranty expires — which
+is the whole point.
 
 ## Scoring criteria & default weights
 

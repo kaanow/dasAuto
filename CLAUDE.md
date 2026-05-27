@@ -83,41 +83,42 @@ absent. Everything else must be present for the app to start.
     using the powertrain's dominant fuel rate (gas for ICE/hybrid, a
     50/50 mix for PHEV, an 85/15 mix for BEV). Captures the
     NPV-weighted time tilt rather than just N/10.
-  - **Maintenance:** two-rate warranty-cliff model with per-vehicle
-    OOW multiplier. Each vehicle carries two fields:
+  - **Maintenance:** per-year rate model. Each vehicle carries three
+    horizon-independent inputs:
     - `warranty_years_remaining` — years of the cost-dominant
       powertrain warranty left at point of purchase (battery for
       hybrid/PHEV/BEV; powertrain for ICE).
-    - `maint_oow_multiplier` — the ratio of OUT-of-warranty year
-      cost to IN-warranty year cost (default `MAINT_OOW_MULTIPLIER_DEFAULT`
-      = 3.0; typical values: Toyota 2.0, Honda/Mazda 2.5, generic
-      ICE 3.0, Tesla / Korean BEV 3.5, Stellantis Pacifica 4.0).
+    - `maint_in_per_year` — CAD/yr while covered (scheduled
+      maintenance: oil/filters/brakes for ICE; minimal items for
+      BEV; small for Toyota hybrid).
+    - `maint_oow_per_year` — CAD/yr once the cost-dominant warranty
+      has expired (scheduled work + expected value of out-of-
+      warranty repairs; varies by brand repair-tail).
 
-    Formula at horizon N:
-      `in_factor  = 0.5`  (fixed across all vehicles — scheduled
-                          maintenance is broadly similar)
-      `out_factor = 0.5 × maint_oow_multiplier`
-      `in_yrs     = min(N, warranty_years_remaining)`
-      `out_yrs    = max(0, N − warranty_years_remaining)`
-      `now_units  = in_yrs × in_factor + out_yrs × out_factor`
-      `base_units = (same expression at N=BASE_HORIZON)`
-      `maint(N)   = maint_10yr × now_units / base_units`
+    Formula at horizon N is a direct sum, no anchor or rescaling:
+      `in_yrs   = min(N, warranty_years_remaining)`
+      `out_yrs  = max(0, N − warranty_years_remaining)`
+      `maint(N) = in_yrs × maint_in_per_year + out_yrs × maint_oow_per_year`
 
-    The denominator preserves the stored `maint_10yr` exactly at
-    N=10 regardless of warranty value or multiplier; only the
-    intra-horizon distribution shifts. Concrete (warranty=7,
-    maint_10yr=$18,000):
-      mult=2 (Toyota):   N=7 $9,692  → N=10 $18,000 → N=15 $31,846
-      mult=3 (default):  N=7 $7,875  → N=10 $18,000 → N=15 $34,875
-      mult=4 (Pacifica): N=7 $6,632  → N=10 $18,000 → N=15 $36,947
-    All three anchor at N=10. The N=15 spread is $5k+ across the
-    multiplier range — material at long horizons but invisible at
-    the planning baseline. (Note that pre-cliff dollars *rise* with
-    a lower multiplier: a cheap-OOW vehicle's denominator has fewer
-    "expensive" units, so each unit of in-warranty cost weighs more.
-    The total at N=10 is the same; the curve is flatter.) Vehicles
-    missing either field fall back to warranty=BASE_HORIZON /
-    multiplier=DEFAULT.
+    Concrete (warranty=7, in=$1,400/yr, oow varies):
+      Toyota (oow=$2,800):    N=7 $9,800  → N=10 $18,200 → N=15 $32,200
+      Default (oow=$4,200):   N=7 $9,800  → N=10 $22,400 → N=15 $40,400
+      Pacifica (oow=$5,600):  N=7 $9,800  → N=10 $26,600 → N=15 $48,800
+    Pre-cliff years are identical across vehicles with the same in-
+    rate; post-cliff years diverge linearly with the oow-rate.
+
+    Vehicles missing per-year fields fall back to module defaults
+    (`MAINT_IN_PER_YEAR_DEFAULT` = $1,500, `MAINT_OOW_PER_YEAR_DEFAULT`
+    = $4,500, 1:3 ratio). The detail page exposes both rates and the
+    warranty boundary so the user can see why each vehicle's curve
+    looks the way it does.
+
+    History: this replaces an earlier `maint_10yr` + `maint_oow_multiplier`
+    schema (a 10-year aggregate input that was back-solved into per-
+    year rates via denominator gymnastics). The per-year schema is
+    mathematically equivalent at N=10 but the inputs are vehicle-
+    intrinsic rather than horizon-locked, easier to source and
+    validate, and more legible in the UI.
   - **Insurance:** linearly `× N / 10` (flat-rate methodology — no
     escalation/discount in the original totals).
   - **Residual:** exponential decay between `pretax` (t=0) and
@@ -217,7 +218,13 @@ the selection principle in situation.md as a skill-level invariant
 (hard filter only for structural infeasibility). Added per-vehicle
 `maint_oow_multiplier` (Toyota 2.0 → Stellantis 4.0) so post-cliff
 maintenance reflects each brand's actual repair-tail; default 3.0
-preserves back-compat for vehicles without the field. Documented
-known model simplifications (multi-tier warranty, gradual ramp,
-residual cliff, time anchoring) in CLAUDE.md as deliberate
-caricatures. Tests: 17 passing.
+preserves back-compat for vehicles without the field. Then refactored
+the maintenance schema from `maint_10yr + maint_oow_multiplier` (a
+10-year aggregate back-solved into per-year rates) to direct
+`maint_in_per_year + maint_oow_per_year` inputs: vehicle-intrinsic,
+horizon-independent, easier to source, easier to extend to multi-
+tier warranties later. Per-year rates are now surfaced on the
+vehicle detail page ("$1,385/yr covered · $2,769/yr after · 7yr
+warranty left"). Documented known model simplifications (multi-tier
+warranty, gradual ramp, residual cliff, time anchoring) in CLAUDE.md
+as deliberate caricatures. Tests: 17 passing.

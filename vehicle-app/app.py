@@ -151,11 +151,13 @@ def vehicle_by_id(vid):
 
 def ranked_vehicles(weights, horizon=HORIZON_DEFAULT):
     """Vehicles re-derived at the given horizon (TCO components + tco_score
-    refreshed across the cohort), then weighted-sum ranked."""
-    cohort = reframe_for_horizon(load_vehicles(), horizon) if horizon != HORIZON_DEFAULT \
-             else [dict(v) for v in load_vehicles()]
-    # Even at the default horizon, the stored tco_score already reflects
-    # the cohort normalisation, so we can skip the reframe round-trip.
+    refreshed across the cohort), then weighted-sum ranked.
+
+    Reframe is now called for every horizon, including the default. At
+    N=10 it reproduces the stored values within rounding (the migration
+    to per-year maintenance rates was anchored at N=10), and it writes
+    horizon-N display fields like `maint` that the templates expect."""
+    cohort = reframe_for_horizon(load_vehicles(), horizon)
     return rank_vehicles(cohort, weights)
 
 def get_vehicle_images(vehicle_id):

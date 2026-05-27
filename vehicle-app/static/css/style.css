@@ -288,6 +288,8 @@ input, select, textarea { font-family: inherit; }
 .tco-row { display: flex; justify-content: space-between; padding: .4rem 0;
   border-bottom: 1px solid #f0f4f8; font-size: .88rem; }
 .tco-item-label { color: var(--muted); }
+.tco-item-hint  { display: block; color: var(--muted); font-size: .72rem;
+                  font-weight: 400; margin-top: .15rem; opacity: .85; }
 .tco-item-val   { font-weight: 600; color: var(--navy); }
 .tco-credit .tco-item-val { color: var(--green); }
 .tco-total { border-top: 2px solid var(--navy); border-bottom: none !important;
