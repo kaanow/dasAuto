@@ -233,5 +233,97 @@
       {"url": "https://upload.wikimedia.org/wikipedia/commons/f/f8/2023_Toyota_BZ4X_Limited_AWD_rear.jpg", "type": "exterior", "caption": "bZ4X Limited AWD — rear (pre-refresh body, representative)"}
     ],
     "notes": "Wikimedia coverage of the 2026 \"bZ\" refresh is essentially nil. Using 2024 bZ4X photos — the 2026 refresh changes battery/charging hardware but body and cabin layout are essentially the same."
+  },
+  {
+    "id": "pilot-2016",
+    "images": [
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/b/b7/2017_Honda_Pilot_3.5_EX-L_AWD_V6_%281%29.jpg", "type": "exterior", "caption": "Honda Pilot 3.5 EX-L AWD V6 (3rd gen) — front"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/b/b0/2017_Honda_Pilot_3.5_EX-L_AWD_V6_%282%29.jpg", "type": "exterior", "caption": "Honda Pilot 3.5 EX-L AWD V6 — rear"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/1/10/2016_Honda_Pilot_LX%2C_front_12.10.24.jpg", "type": "exterior", "caption": "2016 Honda Pilot — front"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/8/87/2016_Honda_Pilot_LX%2C_rear_12.10.24.jpg", "type": "exterior", "caption": "2016 Honda Pilot — rear"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/c/c5/2016_Honda_Pilot.jpg", "type": "exterior", "caption": "2016 Honda Pilot"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/3/39/2017_Honda_Pilot_AWD_front_6.15.18.jpg", "type": "exterior", "caption": "Honda Pilot AWD — front 3/4"}
+    ],
+    "notes": "3rd-gen Pilot. The two EX-L AWD V6 shots match the exact trim; 2016/2017 are visually identical pre-facelift."
+  },
+  {
+    "id": "sienna-2011",
+    "images": [
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/b/b3/2011_Toyota_Sienna_LE_--_04-20-2010.jpg", "type": "exterior", "caption": "2011 Toyota Sienna LE — front 3/4"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/8/8b/2011_Toyota_Sienna_front.jpg", "type": "exterior", "caption": "2011 Toyota Sienna — front"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/7/7e/2011_Toyota_Sienna_back.jpg", "type": "exterior", "caption": "2011 Toyota Sienna — rear"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/a/af/2011_Toyota_Sienna_XLE_--_05-18-2011.jpg", "type": "exterior", "caption": "2011 Toyota Sienna XLE"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/9/99/2011-2012_Toyota_Sienna_LE_--_12-21-2011.jpg", "type": "exterior", "caption": "2011–12 Toyota Sienna LE"}
+    ],
+    "notes": "XL30 3rd-gen, LE/XLE trims. AWD is visually identical to FWD except wheels/badging."
+  },
+  {
+    "id": "atlas-2021",
+    "images": [
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/7/74/2021_Volkswagen_Atlas_SE%2C_front_3.24.23.jpg", "type": "exterior", "caption": "2021 Volkswagen Atlas — front"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/8/8d/2021_Volkswagen_Atlas_rear.jpg", "type": "exterior", "caption": "2021 Volkswagen Atlas — rear"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/8/8f/2021_Volkswagen_Atlas_1X7A0389.jpg", "type": "exterior", "caption": "2021 Volkswagen Atlas — 3/4"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/3/34/2021_Volkswagen_Atlas_SEL_V6_R-Line_DSC_8219.jpg", "type": "exterior", "caption": "2021 VW Atlas SEL V6 R-Line"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/8/86/21_Volkswagen_Atlas_V6_SEL.jpg", "type": "exterior", "caption": "2021 VW Atlas V6 SEL"}
+    ],
+    "notes": "First-gen Atlas (facelift). SE/SEL trims; Highline 4MOTION is visually equivalent."
+  },
+  {
+    "id": "sequoia-2006",
+    "images": [
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/d/df/Sequoia-SR5.jpg", "type": "exterior", "caption": "Toyota Sequoia SR5 (1st gen)"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/7/76/Toyota_Sequoia_SR5_%2850965601268%29.jpg", "type": "exterior", "caption": "Toyota Sequoia SR5"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/9/90/2006_Toyota_Sequoia_Limited_4x4%2C_front_right%2C_08-07-2022.jpg", "type": "exterior", "caption": "2006 Toyota Sequoia 4x4 — front right"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/6/62/2006_Toyota_Sequoia_Limited_4x4%2C_rear_right%2C_08-07-2022.jpg", "type": "exterior", "caption": "2006 Toyota Sequoia 4x4 — rear right"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/1/18/04-06_Toyota_Sequoia.jpg", "type": "exterior", "caption": "2004–06 Toyota Sequoia"}
+    ],
+    "notes": "1st-gen Sequoia. SR5 shots plus 2006 Limited 4x4 (same body); Limited differs from SR5 only in trim."
+  },
+  {
+    "id": "idbuzz-new",
+    "images": [
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/7/79/2025_Volkswagen_ID._Buzz_au_salon_auto_Lanaudi%C3%A8re_2025.jpg", "type": "exterior", "caption": "2025 VW ID. Buzz (Canadian auto show)"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/f/fe/2024_Volkswagen_iD.Buzz_Life.jpg", "type": "exterior", "caption": "VW ID. Buzz Life"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/2/21/2024_Volkswagen_iD.Buzz_Style.jpg", "type": "exterior", "caption": "VW ID. Buzz Style"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/f/f9/2022_Volkswagen_ID._Buzz_front_view.jpg", "type": "exterior", "caption": "VW ID. Buzz — front"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/3/3e/2022_Volkswagen_ID._Buzz_rear_view.jpg", "type": "exterior", "caption": "VW ID. Buzz — rear"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/5/57/2022_Volkswagen_ID._Buzz_interior.jpg", "type": "interior", "caption": "VW ID. Buzz — interior"}
+    ],
+    "notes": "Mix of 2024/2025 NA-spec LWB and 2022 EU SWB shots (body styling shared). One interior."
+  },
+  {
+    "id": "idbuzz-used",
+    "images": [
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/7/79/2025_Volkswagen_ID._Buzz_au_salon_auto_Lanaudi%C3%A8re_2025.jpg", "type": "exterior", "caption": "2025 VW ID. Buzz (Canadian auto show)"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/2/21/2024_Volkswagen_iD.Buzz_Style.jpg", "type": "exterior", "caption": "VW ID. Buzz Style"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/f/f9/2022_Volkswagen_ID._Buzz_front_view.jpg", "type": "exterior", "caption": "VW ID. Buzz — front"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/3/3e/2022_Volkswagen_ID._Buzz_rear_view.jpg", "type": "exterior", "caption": "VW ID. Buzz — rear"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/5/57/2022_Volkswagen_ID._Buzz_interior.jpg", "type": "interior", "caption": "VW ID. Buzz — interior"}
+    ],
+    "notes": "Same 2025 vehicle as the new entry; shares the ID. Buzz image pool."
+  },
+  {
+    "id": "crv-2007",
+    "images": [
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/a/ad/A_2007_Honda_CR-V_EX_4WD_photographed_in_Madison%2C_New_Jersey%2C_USA.jpg", "type": "exterior", "caption": "2007 Honda CR-V EX 4WD — front"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/0/01/The_2007_Honda_CR-V_EX_4WD_photographed_in_Madison%2C_New_Jersey%2C_USA.jpg", "type": "exterior", "caption": "2007 Honda CR-V EX 4WD — rear 3/4"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/d/d4/2007_Honda_CR-V_EX%2C_Rear_Left%2C_04-10-2021.jpg", "type": "exterior", "caption": "2007 Honda CR-V EX — rear left"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/7/7e/2007_Honda_CR-V_LX.jpg", "type": "exterior", "caption": "2007 Honda CR-V"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/4/44/2007-2008_Honda_CR-V_%28RE_MY2007%29_wagon_01.jpg", "type": "exterior", "caption": "2007 Honda CR-V (RE) — front 3/4"}
+    ],
+    "notes": "3rd-gen (RE) EX 4WD — the common BC config. The household's current car."
+  },
+  {
+    "id": "palisade-new",
+    "images": [
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/c/c7/2025_Hyundai_Palisade_Calligraphy_Hybrid_Front.jpg", "type": "exterior", "caption": "2026 Palisade Calligraphy Hybrid — front"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/d/df/2025_Hyundai_Palisade_Calligraphy_Hybrid_Rear.jpg", "type": "exterior", "caption": "2026 Palisade Calligraphy Hybrid — rear"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/f/fe/26_Hyundai_Palisade_Hybrid_Calligraphy.jpg", "type": "exterior", "caption": "2026 Palisade Hybrid Calligraphy"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/c/c8/26_Hyundai_Palisade_Hybrid_Limited.jpg", "type": "exterior", "caption": "2026 Palisade Hybrid Limited"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/f/f0/2026_Hyundai_Palisade%2C_front_NYIAS_2025.jpg", "type": "exterior", "caption": "2026 Palisade — NYIAS 2025"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/8/80/2026_Hyundai_Palisade_XRT.jpg", "type": "exterior", "caption": "2026 Palisade XRT"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/e/ea/Hyundai_Palisade_LX3_2.5T_Calligraphy_Hybrid_Robust_Emerald_Green.jpg", "type": "exterior", "caption": "Palisade 2.5T Calligraphy Hybrid (LX3) — Robust Emerald Green"}
+    ],
+    "notes": "All-new 4th-gen Palisade (LX3 platform). Hybrid Calligraphy + Limited shots; Luxury trim shares the body."
   }
 ]

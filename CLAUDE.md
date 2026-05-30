@@ -208,6 +208,49 @@ These are deliberate caricatures; document but don't pre-fix.
 
 ## Last updated
 
+May 2026 — session 7: cohort expanded 20 → 28 to explore older vintages
++ VW + the household's current car + the 2026 Palisade Hybrid redesign.
+
+Vintage exploration: added one top-survivor-of-its-vintage with a real
+third row (per user requirement — must "for sure" fit 5 car seats):
+2016 Honda Pilot EX-L AWD (10yr), 2011 Toyota Sienna LE AWD (15yr,
+the only AWD minivan), 2006 Toyota Sequoia SR5 V8 4WD (20yr,
+8-seat BOF, maxes winter + FSR). Initial draft included 2021 RAV4
+Hybrid and 2006 4Runner SR5 but both were dropped — 5-seat doesn't
+satisfy the 5-car-seat requirement. The 5yr 3-row slot went to the
+2021 VW Atlas (best-in-class 3rd-row legroom for car seats; also
+sets up the VW comparison).
+
+VW additions: 2025 VW ID. Buzz 1st Edition 4MOTION new + used —
+the only adult-friendly electric 3rd row in the field, but lands
+dead last (#28) and #27 on default weights due to 373 km range
+(corridor 2), first-year MEB reliability (2), and the highest
+on-road price + TCO ($116,200) in the cohort.
+
+Baseline: 2007 Honda CR-V EX AWD — the household's CURRENT car, in
+as the "keep what we have" reference. on_road=$6,000 (current resale
+value, treated as opportunity cost). 5-seat, but exempt from the
+3-row filter because it's the status quo being measured against.
+Forward-only TCO ~$73,500 — almost entirely fuel + age-related
+maintenance with near-zero residual — makes explicit the premium
+any upgrade has to justify.
+
+2026 Palisade Hybrid: full redesign with Hyundai's new 2.5T parallel
+hybrid (329 hp, 8.1 L/100km NRCan, 8yr/160k battery warranty).
+Ranks #19 — penalised by $74,500 on-road (premium vs Grand Highlander
+Hybrid's $62,700), ~17% thirstier than Toyota's hybrid, first-year-
+redesign reliability question. Existing palisade-used (2022–23 V6)
+ranks #11. The 2023 ICE V6 and 2026 hybrid sit on opposite sides of
+the value/refinement trade-off.
+
+Key model finding: a bulletproof 20-yr Toyota Sequoia (#12) ranks
+8 spots ABOVE a 5-yr VW Atlas (#20). Reliability + capability beats
+age on these weights — the Atlas's $48k of projected OOW maintenance
+gives it the second-highest TCO in the field ($111k).
+
+Cohort TCO range now $64,315 (bZ4X used) … $116,200 (ID. Buzz new).
+Tests: 17 passing.
+
 May 2026 — session 6 (cont): added Toyota bZ4X (used 2023–24 AWD) +
 2026 Toyota bZ XLE AWD (new) to expand the cohort to 20. Both 5-seat
 compact BEVs. The used bZ4X comes in as the new lowest-TCO vehicle in

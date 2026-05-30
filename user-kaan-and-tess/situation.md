@@ -111,7 +111,7 @@ is the whole point.
 
 ## Scoring criteria & default weights
 
-Nine criteria. TCO is continuous (1–5, derived from the 12-vehicle
+Nine criteria. TCO is continuous (1–5, derived from the cohort's
 TCO range). The other eight are 1–5 qualitative scores.
 
 | key            | label                | default weight | rationale for weight                                            |
@@ -132,7 +132,7 @@ via `?w_<key>=<val>` so a shared link captures your reranked view.
 
 ## Vehicle shortlist
 
-The 18 candidates and their per-criterion scores live in `vehicles.json`
+The 28 candidates and their per-criterion scores live in `vehicles.json`
 (this directory).
 
 ### Selection principle
