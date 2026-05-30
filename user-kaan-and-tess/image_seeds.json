@@ -325,5 +325,17 @@
       {"url": "https://upload.wikimedia.org/wikipedia/commons/e/ea/Hyundai_Palisade_LX3_2.5T_Calligraphy_Hybrid_Robust_Emerald_Green.jpg", "type": "exterior", "caption": "Palisade 2.5T Calligraphy Hybrid (LX3) — Robust Emerald Green"}
     ],
     "notes": "All-new 4th-gen Palisade (LX3 platform). Hybrid Calligraphy + Limited shots; Luxury trim shares the body."
+  },
+  {
+    "id": "atlas-new",
+    "images": [
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/a/ae/2024_Volkswagen_Atlas_4Motion_SEL_Premium_R-Line_in_Opal_White.jpg", "type": "exterior", "caption": "VW Atlas 4MOTION SEL Premium R-Line — Opal White"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/b/be/2024_Volkswagen_Atlas_Execline_in_Oryx_White_Pearl%2C_Front_Right%2C_10-01-2023.jpg", "type": "exterior", "caption": "VW Atlas Execline — front right"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/3/39/2024_Volkswagen_Atlas_Execline_in_Oryx_White_Pearl%2C_Rear_Left%2C_10-01-2023.jpg", "type": "exterior", "caption": "VW Atlas Execline — rear left"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/d/d1/2024_Volkswagen_Atlas_Peak_Edition_SE_2.0T%2C_front_12.17.23.jpg", "type": "exterior", "caption": "VW Atlas Peak Edition SE 2.0T — front"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/c/cb/24_Volkswagen_Atlas_Peak_Edition_SE_4Motion.jpg", "type": "exterior", "caption": "VW Atlas Peak Edition SE 4MOTION"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/4/4c/2024_Volkswagen_Atlas_au_SIAM_2024.jpg", "type": "exterior", "caption": "VW Atlas at SIAM 2024"}
+    ],
+    "notes": "Post-2024-refresh body (new grille/headlights/dash). 2026 styling is essentially unchanged from 2024."
   }
 ]

@@ -11,7 +11,7 @@
     "new_used": "New",
     "years": "2026",
     "weighted_score": 53.13,
-    "tco_score": 3.13,
+    "tco_score": 3.32,
     "tco_value": 88550,
     "on_road": 62700,
     "pretax": 56000,
@@ -19,7 +19,7 @@
     "ins_10yr": 20000,
     "resid_10yr": 27000,
     "scores": {
-      "tco": 3.13,
+      "tco": 3.32,
       "car_seat_fit": 5,
       "cargo": 3,
       "third_row": 5,
@@ -68,7 +68,7 @@
     "ins_10yr": 17000,
     "resid_10yr": 23000,
     "scores": {
-      "tco": 3.49,
+      "tco": 3.64,
       "car_seat_fit": 5,
       "cargo": 5,
       "third_row": 3,
@@ -98,7 +98,7 @@
     "warranty_years_remaining": 10,
     "tco_value": 83850,
     "weighted_score": 52.9,
-    "tco_score": 3.49,
+    "tco_score": 3.64,
     "maint_in_per_year": 1550,
     "maint_oow_per_year": 3100
   },
@@ -114,7 +114,7 @@
     "new_used": "Used",
     "years": "2023–24",
     "weighted_score": 50.43,
-    "tco_score": 2.85,
+    "tco_score": 3.06,
     "tco_value": 92252,
     "on_road": 52400,
     "pretax": 49000,
@@ -122,7 +122,7 @@
     "ins_10yr": 18000,
     "resid_10yr": 13000,
     "scores": {
-      "tco": 2.85,
+      "tco": 3.06,
       "car_seat_fit": 5,
       "cargo": 3,
       "third_row": 5,
@@ -171,7 +171,7 @@
     "ins_10yr": 16500,
     "resid_10yr": 6500,
     "scores": {
-      "tco": 4.28,
+      "tco": 4.36,
       "car_seat_fit": 5,
       "cargo": 5,
       "third_row": 4,
@@ -201,7 +201,7 @@
     "warranty_years_remaining": 7,
     "tco_value": 73599,
     "weighted_score": 49.9,
-    "tco_score": 4.28,
+    "tco_score": 4.36,
     "maint_in_per_year": 921,
     "maint_oow_per_year": 3684
   },
@@ -217,7 +217,7 @@
     "new_used": "Used",
     "years": "2022–23",
     "weighted_score": 49.33,
-    "tco_score": 3.05,
+    "tco_score": 3.24,
     "tco_value": 89648,
     "on_road": 50300,
     "pretax": 47000,
@@ -225,7 +225,7 @@
     "ins_10yr": 16000,
     "resid_10yr": 11000,
     "scores": {
-      "tco": 3.05,
+      "tco": 3.24,
       "car_seat_fit": 5,
       "cargo": 5,
       "third_row": 3,
@@ -273,7 +273,7 @@
     "ins_10yr": 16500,
     "resid_10yr": 11000,
     "scores": {
-      "tco": 3.37,
+      "tco": 3.53,
       "car_seat_fit": 5,
       "cargo": 5,
       "third_row": 4,
@@ -303,7 +303,7 @@
     "warranty_years_remaining": 2,
     "tco_value": 85502,
     "weighted_score": 48.68,
-    "tco_score": 3.37,
+    "tco_score": 3.53,
     "maint_in_per_year": 795,
     "maint_oow_per_year": 1989
   },
@@ -319,7 +319,7 @@
     "new_used": "Used",
     "years": "2022–23",
     "weighted_score": 48.02,
-    "tco_score": 3.02,
+    "tco_score": 3.22,
     "tco_value": 89950,
     "on_road": 38500,
     "pretax": 36000,
@@ -327,7 +327,7 @@
     "ins_10yr": 16000,
     "resid_10yr": 7000,
     "scores": {
-      "tco": 3.02,
+      "tco": 3.22,
       "car_seat_fit": 4,
       "cargo": 2,
       "third_row": 2,
@@ -375,7 +375,7 @@
     "ins_10yr": 15500,
     "resid_10yr": 8500,
     "scores": {
-      "tco": 3.56,
+      "tco": 3.7,
       "car_seat_fit": 5,
       "cargo": 5,
       "third_row": 4,
@@ -405,7 +405,7 @@
     "warranty_years_remaining": 2,
     "tco_value": 83000,
     "weighted_score": 47.76,
-    "tco_score": 3.56,
+    "tco_score": 3.7,
     "maint_in_per_year": 692,
     "maint_oow_per_year": 2077
   },
@@ -421,7 +421,7 @@
     "new_used": "Used",
     "years": "2022–23",
     "weighted_score": 47.15,
-    "tco_score": 3.22,
+    "tco_score": 3.39,
     "tco_value": 87452,
     "on_road": 47100,
     "pretax": 44000,
@@ -429,7 +429,7 @@
     "ins_10yr": 16500,
     "resid_10yr": 11000,
     "scores": {
-      "tco": 3.22,
+      "tco": 3.39,
       "car_seat_fit": 4,
       "cargo": 3,
       "third_row": 2,
@@ -472,7 +472,7 @@
     "new_used": "Used",
     "years": "2022–23",
     "weighted_score": 45.24,
-    "tco_score": 3.2,
+    "tco_score": 3.38,
     "tco_value": 87600,
     "on_road": 40700,
     "pretax": 38000,
@@ -480,7 +480,7 @@
     "ins_10yr": 15000,
     "resid_10yr": 10000,
     "scores": {
-      "tco": 3.2,
+      "tco": 3.38,
       "car_seat_fit": 4,
       "cargo": 3,
       "third_row": 4,
@@ -523,7 +523,7 @@
     "new_used": "Used",
     "years": "2022–23",
     "weighted_score": 44.7,
-    "tco_score": 2.36,
+    "tco_score": 2.62,
     "tco_value": 98596,
     "on_road": 49200,
     "pretax": 46000,
@@ -531,7 +531,7 @@
     "ins_10yr": 18000,
     "resid_10yr": 13000,
     "scores": {
-      "tco": 2.36,
+      "tco": 2.62,
       "car_seat_fit": 5,
       "cargo": 3,
       "third_row": 4,
@@ -579,7 +579,7 @@
     "ins_10yr": 20000,
     "resid_10yr": 9500,
     "scores": {
-      "tco": 4.1,
+      "tco": 4.19,
       "car_seat_fit": 2,
       "cargo": 3,
       "third_row": 1,
@@ -609,7 +609,7 @@
     "warranty_years_remaining": 6,
     "tco_value": 76002,
     "weighted_score": 43.65,
-    "tco_score": 4.1,
+    "tco_score": 4.19,
     "maint_in_per_year": 525,
     "maint_oow_per_year": 1838
   },
@@ -625,7 +625,7 @@
     "new_used": "Used",
     "years": "2023–24",
     "weighted_score": 43.62,
-    "tco_score": 2.95,
+    "tco_score": 3.15,
     "tco_value": 90950,
     "on_road": 46000,
     "pretax": 43000,
@@ -633,7 +633,7 @@
     "ins_10yr": 16500,
     "resid_10yr": 11000,
     "scores": {
-      "tco": 2.95,
+      "tco": 3.15,
       "car_seat_fit": 4,
       "cargo": 3,
       "third_row": 2,
@@ -676,7 +676,7 @@
     "new_used": "Used",
     "years": "2022–23",
     "weighted_score": 41.72,
-    "tco_score": 4.15,
+    "tco_score": 4.24,
     "tco_value": 75300,
     "on_road": 44900,
     "pretax": 42000,
@@ -684,7 +684,7 @@
     "ins_10yr": 16000,
     "resid_10yr": 9000,
     "scores": {
-      "tco": 4.15,
+      "tco": 4.24,
       "car_seat_fit": 3,
       "cargo": 1,
       "third_row": 1,
@@ -727,7 +727,7 @@
     "new_used": "Used",
     "years": "2024",
     "weighted_score": 40.34,
-    "tco_score": 3.61,
+    "tco_score": 3.75,
     "tco_value": 82300,
     "on_road": 51400,
     "pretax": 48000,
@@ -735,7 +735,7 @@
     "ins_10yr": 17500,
     "resid_10yr": 10000,
     "scores": {
-      "tco": 3.61,
+      "tco": 3.75,
       "car_seat_fit": 4,
       "cargo": 2,
       "third_row": 2,
@@ -778,7 +778,7 @@
     "new_used": "Used",
     "years": "2024",
     "weighted_score": 39.85,
-    "tco_score": 3.21,
+    "tco_score": 3.39,
     "tco_value": 87502,
     "on_road": 62100,
     "pretax": 58000,
@@ -786,7 +786,7 @@
     "ins_10yr": 21000,
     "resid_10yr": 13000,
     "scores": {
-      "tco": 3.21,
+      "tco": 3.39,
       "car_seat_fit": 3,
       "cargo": 3,
       "third_row": 2,
@@ -834,7 +834,7 @@
     "ins_10yr": 21500,
     "resid_10yr": 20000,
     "scores": {
-      "tco": 3.14,
+      "tco": 3.32,
       "car_seat_fit": 2,
       "cargo": 3,
       "third_row": 1,
@@ -864,7 +864,7 @@
     "warranty_years_remaining": 8,
     "tco_value": 88498,
     "weighted_score": 38.16,
-    "tco_score": 3.14,
+    "tco_score": 3.32,
     "maint_in_per_year": 633,
     "maint_oow_per_year": 2217
   },
@@ -880,7 +880,7 @@
     "new_used": "New",
     "years": "2026",
     "weighted_score": 37.51,
-    "tco_score": 2.63,
+    "tco_score": 2.87,
     "tco_value": 94998,
     "on_road": 75100,
     "pretax": 67050,
@@ -888,7 +888,7 @@
     "ins_10yr": 22000,
     "resid_10yr": 18000,
     "scores": {
-      "tco": 2.63,
+      "tco": 2.87,
       "car_seat_fit": 4,
       "cargo": 4,
       "third_row": 4,
@@ -987,7 +987,7 @@
     "ins_10yr": 20500,
     "resid_10yr": 13500,
     "scores": {
-      "tco": 3.66,
+      "tco": 3.79,
       "car_seat_fit": 3,
       "cargo": 3,
       "third_row": 1,
@@ -1017,7 +1017,7 @@
     "warranty_years_remaining": 8,
     "tco_value": 81726,
     "weighted_score": 0.0,
-    "tco_score": 3.66,
+    "tco_score": 3.79,
     "maint_in_per_year": 575,
     "maint_oow_per_year": 1438
   },
@@ -1038,7 +1038,7 @@
     "ins_10yr": 16000,
     "resid_10yr": 4500,
     "scores": {
-      "tco": 3.17,
+      "tco": 3.35,
       "car_seat_fit": 4,
       "cargo": 3,
       "third_row": 2,
@@ -1069,7 +1069,7 @@
     "maint_in_per_year": 1360,
     "maint_oow_per_year": 3400,
     "tco_value": 88000,
-    "tco_score": 3.17
+    "tco_score": 3.35
   },
   {
     "id": "sienna-2011",
@@ -1088,7 +1088,7 @@
     "ins_10yr": 15500,
     "resid_10yr": 2500,
     "scores": {
-      "tco": 2.79,
+      "tco": 3.01,
       "car_seat_fit": 4,
       "cargo": 4,
       "third_row": 3,
@@ -1119,7 +1119,7 @@
     "maint_in_per_year": 1500,
     "maint_oow_per_year": 4000,
     "tco_value": 93000,
-    "tco_score": 2.79
+    "tco_score": 3.01
   },
   {
     "id": "atlas-2021",
@@ -1138,7 +1138,7 @@
     "ins_10yr": 16000,
     "resid_10yr": 9000,
     "scores": {
-      "tco": 1.4,
+      "tco": 1.76,
       "car_seat_fit": 5,
       "cargo": 4,
       "third_row": 4,
@@ -1169,7 +1169,7 @@
     "maint_in_per_year": 1600,
     "maint_oow_per_year": 4800,
     "tco_value": 111000,
-    "tco_score": 1.4
+    "tco_score": 1.76
   },
   {
     "id": "sequoia-2006",
@@ -1188,7 +1188,7 @@
     "ins_10yr": 15000,
     "resid_10yr": 4500,
     "scores": {
-      "tco": 2.44,
+      "tco": 2.69,
       "car_seat_fit": 4,
       "cargo": 4,
       "third_row": 3,
@@ -1219,7 +1219,7 @@
     "maint_in_per_year": 1500,
     "maint_oow_per_year": 4000,
     "tco_value": 97500,
-    "tco_score": 2.44
+    "tco_score": 2.69
   },
   {
     "id": "idbuzz-new",
@@ -1238,7 +1238,7 @@
     "ins_10yr": 21000,
     "resid_10yr": 15000,
     "scores": {
-      "tco": 1.0,
+      "tco": 1.4,
       "car_seat_fit": 4,
       "cargo": 3,
       "third_row": 4,
@@ -1269,7 +1269,7 @@
     "maint_in_per_year": 650,
     "maint_oow_per_year": 2600,
     "tco_value": 116200,
-    "tco_score": 1.0
+    "tco_score": 1.4
   },
   {
     "id": "idbuzz-used",
@@ -1288,7 +1288,7 @@
     "ins_10yr": 20000,
     "resid_10yr": 11000,
     "scores": {
-      "tco": 2.31,
+      "tco": 2.58,
       "car_seat_fit": 4,
       "cargo": 3,
       "third_row": 4,
@@ -1319,7 +1319,7 @@
     "maint_in_per_year": 650,
     "maint_oow_per_year": 2600,
     "tco_value": 99150,
-    "tco_score": 2.31
+    "tco_score": 2.58
   },
   {
     "id": "crv-2007",
@@ -1338,7 +1338,7 @@
     "ins_10yr": 13000,
     "resid_10yr": 1000,
     "scores": {
-      "tco": 4.29,
+      "tco": 4.36,
       "car_seat_fit": 3,
       "cargo": 3,
       "third_row": 1,
@@ -1369,7 +1369,7 @@
     "maint_in_per_year": 1200,
     "maint_oow_per_year": 3600,
     "tco_value": 73500,
-    "tco_score": 4.29
+    "tco_score": 4.36
   },
   {
     "id": "palisade-new",
@@ -1388,7 +1388,7 @@
     "ins_10yr": 19500,
     "resid_10yr": 24000,
     "scores": {
-      "tco": 1.42,
+      "tco": 1.77,
       "car_seat_fit": 4,
       "cargo": 4,
       "third_row": 3,
@@ -1419,6 +1419,56 @@
     "maint_in_per_year": 1500,
     "maint_oow_per_year": 4500,
     "tco_value": 110800,
-    "tco_score": 1.42
+    "tco_score": 1.77
+  },
+  {
+    "id": "atlas-new",
+    "rank": 29,
+    "name": "Volkswagen Atlas SEL Premium R-Line 4MOTION",
+    "short_name": "VW Atlas (new)",
+    "make": "Volkswagen",
+    "model": "Atlas",
+    "powertrain": "ICE — 2.0T I4, 8-spd, 4MOTION AWD",
+    "powertrain_type": "ice",
+    "new_used": "New",
+    "years": "2026",
+    "on_road": 66200,
+    "pretax": 59100,
+    "fuel_10yr": 23000,
+    "ins_10yr": 17500,
+    "resid_10yr": 20000,
+    "scores": {
+      "tco": 1.0,
+      "car_seat_fit": 5,
+      "cargo": 4,
+      "third_row": 4,
+      "corridor": 4,
+      "hitch": 4,
+      "reliability": 2,
+      "winter": 4,
+      "fsr": 3
+    },
+    "specs": {
+      "fuel_economy": "~11 L/100km",
+      "range_km": "~620 km tank",
+      "clearance_mm": 203,
+      "towing_lbs": 5000,
+      "cargo_l": 583,
+      "seats": 7,
+      "third_row_legroom": "Adult-friendly 3rd row — among the roomiest in class"
+    },
+    "why": "The refreshed (2024-on) 4-cylinder Atlas at top-trim SEL Premium R-Line 4MOTION: one of the roomiest 3rd rows in the class, three-across 2nd-row bench for car seats (scores 5 on car-seat fit), 5,000-lb towing, and 4MOTION AWD standard at this trim. VW's 4yr/80,000km comprehensive warranty is the longest bumper-to-bumper coverage among the new ICE 3-rows here. The non-Toyota, non-Hyundai, non-Kia new 3-row option — useful as a brand baseline against the Korean and Japanese hybrid contenders.",
+    "tradeoffs": "VW reliability is the headline risk: brand reliability scores below-average industry-wide (matrix score 2), and although the 2.0T + 8-speed swap to a single drivetrain simplifies the lineup, the broader VW repair tail still dominates the model's OOW cost projection. At ~$66,200 on-road plus ~11 L/100km fuel (~$23k over the planning horizon) and steep VW depreciation, the 10-year net TCO is the highest in the entire field — ahead of even the ID. Buzz new. The 269 hp 2.0T is adequate but a step down from the discontinued VR6.",
+    "caution": "VW reliability/electronics are the structural risk. The 4yr/80k comprehensive warranty is the longest among new ICE 3-rows but expires before the cliff years; consider VW's extended-warranty options at purchase.",
+    "at_make": "volkswagen",
+    "at_model": "atlas",
+    "at_years": "2026,2026",
+    "at_status": "",
+    "cr_url": "https://vancouver.craigslist.org/search/cta?query=volkswagen+atlas+2026",
+    "warranty_years_remaining": 4,
+    "maint_in_per_year": 1600,
+    "maint_oow_per_year": 4800,
+    "tco_value": 121900,
+    "tco_score": 1.0
   }
 ]
