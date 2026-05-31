@@ -141,13 +141,25 @@ def toggle_favourite(vehicle_id):
 
 
 # ── Vehicle data ─────────────────────────────────────────────────────────────
+# Entries can be soft-deactivated via `"active": false` in vehicles.json.
+# Inactive entries are excluded from list views (index/compare/api) and from
+# TCO normalization, but remain accessible via direct /vehicle/<id> URLs so
+# bookmarks and prior decisions don't break.
 @lru_cache(maxsize=1)
-def load_vehicles():
+def load_vehicles_all():
+    """Every entry in vehicles.json — including inactive ones. Use this only
+    for direct-by-id lookups (vehicle_by_id) and for tests."""
     with open(VEHICLES_FILE) as f:
         return json.load(f)
 
+def load_vehicles():
+    """Active vehicles only — the working cohort for list views and TCO
+    normalization. An entry is active if its `active` field is true or
+    absent (so untagged legacy entries continue to show)."""
+    return [v for v in load_vehicles_all() if v.get("active", True)]
+
 def vehicle_by_id(vid):
-    return next((v for v in load_vehicles() if v["id"] == vid), None)
+    return next((v for v in load_vehicles_all() if v["id"] == vid), None)
 
 def ranked_vehicles(weights, horizon=HORIZON_DEFAULT):
     """Vehicles re-derived at the given horizon (TCO components + tco_score

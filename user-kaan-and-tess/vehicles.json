@@ -11,7 +11,7 @@
     "new_used": "New",
     "years": "2026",
     "weighted_score": 53.13,
-    "tco_score": 3.32,
+    "tco_score": 3.69,
     "tco_value": 88550,
     "on_road": 62700,
     "pretax": 56000,
@@ -19,7 +19,7 @@
     "ins_10yr": 20000,
     "resid_10yr": 27000,
     "scores": {
-      "tco": 3.32,
+      "tco": 3.69,
       "car_seat_fit": 5,
       "cargo": 3,
       "third_row": 5,
@@ -49,7 +49,8 @@
     "at_url_override": "https://www.autotrader.ca/cars/toyota/bc/?rcp=15&rcs=0&srt=35&prx=-2&prv=British+Columbia&loc=BC&hprc=True&wcp=True&mdl=Grand+Highlander&yRng=2025,2026",
     "warranty_years_remaining": 10,
     "maint_in_per_year": 1600,
-    "maint_oow_per_year": 3200
+    "maint_oow_per_year": 3200,
+    "active": false
   },
   {
     "id": "sienna-new",
@@ -68,7 +69,7 @@
     "ins_10yr": 17000,
     "resid_10yr": 23000,
     "scores": {
-      "tco": 3.64,
+      "tco": 4.1,
       "car_seat_fit": 5,
       "cargo": 5,
       "third_row": 3,
@@ -98,9 +99,10 @@
     "warranty_years_remaining": 10,
     "tco_value": 83850,
     "weighted_score": 52.9,
-    "tco_score": 3.64,
+    "tco_score": 4.1,
     "maint_in_per_year": 1550,
-    "maint_oow_per_year": 3100
+    "maint_oow_per_year": 3100,
+    "active": true
   },
   {
     "id": "grand-highlander-used",
@@ -114,7 +116,7 @@
     "new_used": "Used",
     "years": "2023–24",
     "weighted_score": 50.43,
-    "tco_score": 3.06,
+    "tco_score": 3.36,
     "tco_value": 92252,
     "on_road": 52400,
     "pretax": 49000,
@@ -122,7 +124,7 @@
     "ins_10yr": 18000,
     "resid_10yr": 13000,
     "scores": {
-      "tco": 3.06,
+      "tco": 3.36,
       "car_seat_fit": 5,
       "cargo": 3,
       "third_row": 5,
@@ -152,7 +154,8 @@
     "at_url_override": "https://www.autotrader.ca/cars/toyota/bc/?rcp=15&rcs=0&srt=35&prx=-2&prv=British+Columbia&loc=BC&hprc=True&wcp=True&mdl=Grand+Highlander&yRng=2023,2024",
     "warranty_years_remaining": 7,
     "maint_in_per_year": 1385,
-    "maint_oow_per_year": 2769
+    "maint_oow_per_year": 2769,
+    "active": false
   },
   {
     "id": "pacifica-hybrid-used",
@@ -171,7 +174,7 @@
     "ins_10yr": 16500,
     "resid_10yr": 6500,
     "scores": {
-      "tco": 4.36,
+      "tco": 5.0,
       "car_seat_fit": 5,
       "cargo": 5,
       "third_row": 4,
@@ -201,9 +204,10 @@
     "warranty_years_remaining": 7,
     "tco_value": 73599,
     "weighted_score": 49.9,
-    "tco_score": 4.36,
+    "tco_score": 5.0,
     "maint_in_per_year": 921,
-    "maint_oow_per_year": 3684
+    "maint_oow_per_year": 3684,
+    "active": true
   },
   {
     "id": "sienna-used",
@@ -217,7 +221,7 @@
     "new_used": "Used",
     "years": "2022–23",
     "weighted_score": 49.33,
-    "tco_score": 3.24,
+    "tco_score": 3.59,
     "tco_value": 89648,
     "on_road": 50300,
     "pretax": 47000,
@@ -225,7 +229,7 @@
     "ins_10yr": 16000,
     "resid_10yr": 11000,
     "scores": {
-      "tco": 3.24,
+      "tco": 3.59,
       "car_seat_fit": 5,
       "cargo": 5,
       "third_row": 3,
@@ -254,7 +258,8 @@
     "cr_url": "https://vancouver.craigslist.org/search/cta?query=toyota+sienna+hybrid+awd",
     "warranty_years_remaining": 7,
     "maint_in_per_year": 1346,
-    "maint_oow_per_year": 2692
+    "maint_oow_per_year": 2692,
+    "active": true
   },
   {
     "id": "odyssey-used",
@@ -273,7 +278,7 @@
     "ins_10yr": 16500,
     "resid_10yr": 11000,
     "scores": {
-      "tco": 3.53,
+      "tco": 3.96,
       "car_seat_fit": 5,
       "cargo": 5,
       "third_row": 4,
@@ -303,9 +308,10 @@
     "warranty_years_remaining": 2,
     "tco_value": 85502,
     "weighted_score": 48.68,
-    "tco_score": 3.53,
+    "tco_score": 3.96,
     "maint_in_per_year": 795,
-    "maint_oow_per_year": 1989
+    "maint_oow_per_year": 1989,
+    "active": true
   },
   {
     "id": "ascent-used",
@@ -319,7 +325,7 @@
     "new_used": "Used",
     "years": "2022–23",
     "weighted_score": 48.02,
-    "tco_score": 3.22,
+    "tco_score": 3.57,
     "tco_value": 89950,
     "on_road": 38500,
     "pretax": 36000,
@@ -327,7 +333,7 @@
     "ins_10yr": 16000,
     "resid_10yr": 7000,
     "scores": {
-      "tco": 3.22,
+      "tco": 3.57,
       "car_seat_fit": 4,
       "cargo": 2,
       "third_row": 2,
@@ -356,7 +362,8 @@
     "cr_url": "https://vancouver.craigslist.org/search/cta?query=subaru+ascent+touring",
     "warranty_years_remaining": 2,
     "maint_in_per_year": 750,
-    "maint_oow_per_year": 2250
+    "maint_oow_per_year": 2250,
+    "active": false
   },
   {
     "id": "carnival-used",
@@ -375,7 +382,7 @@
     "ins_10yr": 15500,
     "resid_10yr": 8500,
     "scores": {
-      "tco": 3.7,
+      "tco": 4.18,
       "car_seat_fit": 5,
       "cargo": 5,
       "third_row": 4,
@@ -405,9 +412,10 @@
     "warranty_years_remaining": 2,
     "tco_value": 83000,
     "weighted_score": 47.76,
-    "tco_score": 3.7,
+    "tco_score": 4.18,
     "maint_in_per_year": 692,
-    "maint_oow_per_year": 2077
+    "maint_oow_per_year": 2077,
+    "active": true
   },
   {
     "id": "highlander-hybrid-used",
@@ -421,7 +429,7 @@
     "new_used": "Used",
     "years": "2022–23",
     "weighted_score": 47.15,
-    "tco_score": 3.39,
+    "tco_score": 3.79,
     "tco_value": 87452,
     "on_road": 47100,
     "pretax": 44000,
@@ -429,7 +437,7 @@
     "ins_10yr": 16500,
     "resid_10yr": 11000,
     "scores": {
-      "tco": 3.39,
+      "tco": 3.79,
       "car_seat_fit": 4,
       "cargo": 3,
       "third_row": 2,
@@ -458,7 +466,8 @@
     "cr_url": "https://vancouver.craigslist.org/search/cta?query=toyota+highlander+hybrid+xle",
     "warranty_years_remaining": 7,
     "maint_in_per_year": 1385,
-    "maint_oow_per_year": 2769
+    "maint_oow_per_year": 2769,
+    "active": false
   },
   {
     "id": "palisade-used",
@@ -472,7 +481,7 @@
     "new_used": "Used",
     "years": "2022–23",
     "weighted_score": 45.24,
-    "tco_score": 3.38,
+    "tco_score": 3.77,
     "tco_value": 87600,
     "on_road": 40700,
     "pretax": 38000,
@@ -480,7 +489,7 @@
     "ins_10yr": 15000,
     "resid_10yr": 10000,
     "scores": {
-      "tco": 3.38,
+      "tco": 3.77,
       "car_seat_fit": 4,
       "cargo": 3,
       "third_row": 4,
@@ -509,7 +518,8 @@
     "cr_url": "https://vancouver.craigslist.org/search/cta?query=hyundai+palisade+awd",
     "warranty_years_remaining": 2,
     "maint_in_per_year": 692,
-    "maint_oow_per_year": 2077
+    "maint_oow_per_year": 2077,
+    "active": false
   },
   {
     "id": "telluride-used",
@@ -523,7 +533,7 @@
     "new_used": "Used",
     "years": "2022–23",
     "weighted_score": 44.7,
-    "tco_score": 2.62,
+    "tco_score": 2.81,
     "tco_value": 98596,
     "on_road": 49200,
     "pretax": 46000,
@@ -531,7 +541,7 @@
     "ins_10yr": 18000,
     "resid_10yr": 13000,
     "scores": {
-      "tco": 2.62,
+      "tco": 2.81,
       "car_seat_fit": 5,
       "cargo": 3,
       "third_row": 4,
@@ -560,7 +570,8 @@
     "cr_url": "https://vancouver.craigslist.org/search/cta?query=kia+telluride+awd",
     "warranty_years_remaining": 2,
     "maint_in_per_year": 788,
-    "maint_oow_per_year": 2365
+    "maint_oow_per_year": 2365,
+    "active": false
   },
   {
     "id": "model-y-used",
@@ -579,7 +590,7 @@
     "ins_10yr": 20000,
     "resid_10yr": 9500,
     "scores": {
-      "tco": 4.19,
+      "tco": 4.79,
       "car_seat_fit": 2,
       "cargo": 3,
       "third_row": 1,
@@ -609,9 +620,10 @@
     "warranty_years_remaining": 6,
     "tco_value": 76002,
     "weighted_score": 43.65,
-    "tco_score": 4.19,
+    "tco_score": 4.79,
     "maint_in_per_year": 525,
-    "maint_oow_per_year": 1838
+    "maint_oow_per_year": 1838,
+    "active": false
   },
   {
     "id": "pilot-used",
@@ -625,7 +637,7 @@
     "new_used": "Used",
     "years": "2023–24",
     "weighted_score": 43.62,
-    "tco_score": 3.15,
+    "tco_score": 3.48,
     "tco_value": 90950,
     "on_road": 46000,
     "pretax": 43000,
@@ -633,7 +645,7 @@
     "ins_10yr": 16500,
     "resid_10yr": 11000,
     "scores": {
-      "tco": 3.15,
+      "tco": 3.48,
       "car_seat_fit": 4,
       "cargo": 3,
       "third_row": 2,
@@ -662,7 +674,8 @@
     "cr_url": "https://vancouver.craigslist.org/search/cta?query=honda+pilot+2023+awd",
     "warranty_years_remaining": 3,
     "maint_in_per_year": 854,
-    "maint_oow_per_year": 2134
+    "maint_oow_per_year": 2134,
+    "active": false
   },
   {
     "id": "sorento-phev-used",
@@ -676,7 +689,7 @@
     "new_used": "Used",
     "years": "2022–23",
     "weighted_score": 41.72,
-    "tco_score": 4.24,
+    "tco_score": 4.85,
     "tco_value": 75300,
     "on_road": 44900,
     "pretax": 42000,
@@ -684,7 +697,7 @@
     "ins_10yr": 16000,
     "resid_10yr": 9000,
     "scores": {
-      "tco": 4.24,
+      "tco": 4.85,
       "car_seat_fit": 3,
       "cargo": 1,
       "third_row": 1,
@@ -713,7 +726,8 @@
     "cr_url": "https://vancouver.craigslist.org/search/cta?query=kia+sorento+phev+plug-in",
     "warranty_years_remaining": 5,
     "maint_in_per_year": 711,
-    "maint_oow_per_year": 2489
+    "maint_oow_per_year": 2489,
+    "active": false
   },
   {
     "id": "cx90-phev-used",
@@ -727,7 +741,7 @@
     "new_used": "Used",
     "years": "2024",
     "weighted_score": 40.34,
-    "tco_score": 3.75,
+    "tco_score": 4.24,
     "tco_value": 82300,
     "on_road": 51400,
     "pretax": 48000,
@@ -735,7 +749,7 @@
     "ins_10yr": 17500,
     "resid_10yr": 10000,
     "scores": {
-      "tco": 3.75,
+      "tco": 4.24,
       "car_seat_fit": 4,
       "cargo": 2,
       "third_row": 2,
@@ -764,7 +778,8 @@
     "cr_url": "https://vancouver.craigslist.org/search/cta?query=mazda+cx-90+phev",
     "warranty_years_remaining": 6,
     "maint_in_per_year": 1000,
-    "maint_oow_per_year": 2500
+    "maint_oow_per_year": 2500,
+    "active": false
   },
   {
     "id": "ev9-used",
@@ -778,7 +793,7 @@
     "new_used": "Used",
     "years": "2024",
     "weighted_score": 39.85,
-    "tco_score": 3.39,
+    "tco_score": 3.78,
     "tco_value": 87502,
     "on_road": 62100,
     "pretax": 58000,
@@ -786,7 +801,7 @@
     "ins_10yr": 21000,
     "resid_10yr": 13000,
     "scores": {
-      "tco": 3.39,
+      "tco": 3.78,
       "car_seat_fit": 3,
       "cargo": 3,
       "third_row": 2,
@@ -815,7 +830,8 @@
     "cr_url": "https://vancouver.craigslist.org/search/cta?query=kia+ev9+electric",
     "warranty_years_remaining": 6,
     "maint_in_per_year": 625,
-    "maint_oow_per_year": 2188
+    "maint_oow_per_year": 2188,
+    "active": false
   },
   {
     "id": "model-y-new",
@@ -834,7 +850,7 @@
     "ins_10yr": 21500,
     "resid_10yr": 20000,
     "scores": {
-      "tco": 3.32,
+      "tco": 3.69,
       "car_seat_fit": 2,
       "cargo": 3,
       "third_row": 1,
@@ -864,9 +880,10 @@
     "warranty_years_remaining": 8,
     "tco_value": 88498,
     "weighted_score": 38.16,
-    "tco_score": 3.32,
+    "tco_score": 3.69,
     "maint_in_per_year": 633,
-    "maint_oow_per_year": 2217
+    "maint_oow_per_year": 2217,
+    "active": false
   },
   {
     "id": "ioniq9-new",
@@ -880,7 +897,7 @@
     "new_used": "New",
     "years": "2026",
     "weighted_score": 37.51,
-    "tco_score": 2.87,
+    "tco_score": 3.12,
     "tco_value": 94998,
     "on_road": 75100,
     "pretax": 67050,
@@ -888,7 +905,7 @@
     "ins_10yr": 22000,
     "resid_10yr": 18000,
     "scores": {
-      "tco": 2.87,
+      "tco": 3.12,
       "car_seat_fit": 4,
       "cargo": 4,
       "third_row": 4,
@@ -917,7 +934,8 @@
     "cr_url": "https://vancouver.craigslist.org/search/cta?query=hyundai+ioniq+9",
     "warranty_years_remaining": 8,
     "maint_in_per_year": 733,
-    "maint_oow_per_year": 2567
+    "maint_oow_per_year": 2567,
+    "active": false
   },
   {
     "id": "bz4x-used",
@@ -936,7 +954,7 @@
     "ins_10yr": 19500,
     "resid_10yr": 6500,
     "scores": {
-      "tco": 5.0,
+      "tco": 5.81,
       "car_seat_fit": 3,
       "cargo": 3,
       "third_row": 1,
@@ -966,9 +984,10 @@
     "warranty_years_remaining": 5,
     "tco_value": 64315,
     "weighted_score": 0.0,
-    "tco_score": 5.0,
+    "tco_score": 5.81,
     "maint_in_per_year": 575,
-    "maint_oow_per_year": 1438
+    "maint_oow_per_year": 1438,
+    "active": false
   },
   {
     "id": "bz-new",
@@ -987,7 +1006,7 @@
     "ins_10yr": 20500,
     "resid_10yr": 13500,
     "scores": {
-      "tco": 3.79,
+      "tco": 4.29,
       "car_seat_fit": 3,
       "cargo": 3,
       "third_row": 1,
@@ -1017,9 +1036,10 @@
     "warranty_years_remaining": 8,
     "tco_value": 81726,
     "weighted_score": 0.0,
-    "tco_score": 3.79,
+    "tco_score": 4.29,
     "maint_in_per_year": 575,
-    "maint_oow_per_year": 1438
+    "maint_oow_per_year": 1438,
+    "active": false
   },
   {
     "id": "pilot-2016",
@@ -1038,7 +1058,7 @@
     "ins_10yr": 16000,
     "resid_10yr": 4500,
     "scores": {
-      "tco": 3.35,
+      "tco": 3.74,
       "car_seat_fit": 4,
       "cargo": 3,
       "third_row": 2,
@@ -1069,7 +1089,8 @@
     "maint_in_per_year": 1360,
     "maint_oow_per_year": 3400,
     "tco_value": 88000,
-    "tco_score": 3.35
+    "tco_score": 3.74,
+    "active": false
   },
   {
     "id": "sienna-2011",
@@ -1088,7 +1109,7 @@
     "ins_10yr": 15500,
     "resid_10yr": 2500,
     "scores": {
-      "tco": 3.01,
+      "tco": 3.3,
       "car_seat_fit": 4,
       "cargo": 4,
       "third_row": 3,
@@ -1119,7 +1140,8 @@
     "maint_in_per_year": 1500,
     "maint_oow_per_year": 4000,
     "tco_value": 93000,
-    "tco_score": 3.01
+    "tco_score": 3.3,
+    "active": true
   },
   {
     "id": "atlas-2021",
@@ -1138,7 +1160,7 @@
     "ins_10yr": 16000,
     "resid_10yr": 9000,
     "scores": {
-      "tco": 1.76,
+      "tco": 1.72,
       "car_seat_fit": 5,
       "cargo": 4,
       "third_row": 4,
@@ -1169,7 +1191,8 @@
     "maint_in_per_year": 1600,
     "maint_oow_per_year": 4800,
     "tco_value": 111000,
-    "tco_score": 1.76
+    "tco_score": 1.72,
+    "active": false
   },
   {
     "id": "sequoia-2006",
@@ -1188,7 +1211,7 @@
     "ins_10yr": 15000,
     "resid_10yr": 4500,
     "scores": {
-      "tco": 2.69,
+      "tco": 2.9,
       "car_seat_fit": 4,
       "cargo": 4,
       "third_row": 3,
@@ -1219,7 +1242,8 @@
     "maint_in_per_year": 1500,
     "maint_oow_per_year": 4000,
     "tco_value": 97500,
-    "tco_score": 2.69
+    "tco_score": 2.9,
+    "active": false
   },
   {
     "id": "idbuzz-new",
@@ -1238,7 +1262,7 @@
     "ins_10yr": 21000,
     "resid_10yr": 15000,
     "scores": {
-      "tco": 1.4,
+      "tco": 1.27,
       "car_seat_fit": 4,
       "cargo": 3,
       "third_row": 4,
@@ -1269,7 +1293,8 @@
     "maint_in_per_year": 650,
     "maint_oow_per_year": 2600,
     "tco_value": 116200,
-    "tco_score": 1.4
+    "tco_score": 1.27,
+    "active": true
   },
   {
     "id": "idbuzz-used",
@@ -1288,7 +1313,7 @@
     "ins_10yr": 20000,
     "resid_10yr": 11000,
     "scores": {
-      "tco": 2.58,
+      "tco": 2.76,
       "car_seat_fit": 4,
       "cargo": 3,
       "third_row": 4,
@@ -1319,7 +1344,8 @@
     "maint_in_per_year": 650,
     "maint_oow_per_year": 2600,
     "tco_value": 99150,
-    "tco_score": 2.58
+    "tco_score": 2.76,
+    "active": true
   },
   {
     "id": "crv-2007",
@@ -1338,7 +1364,7 @@
     "ins_10yr": 13000,
     "resid_10yr": 1000,
     "scores": {
-      "tco": 4.36,
+      "tco": 5.01,
       "car_seat_fit": 3,
       "cargo": 3,
       "third_row": 1,
@@ -1369,7 +1395,8 @@
     "maint_in_per_year": 1200,
     "maint_oow_per_year": 3600,
     "tco_value": 73500,
-    "tco_score": 4.36
+    "tco_score": 5.01,
+    "active": false
   },
   {
     "id": "palisade-new",
@@ -1388,7 +1415,7 @@
     "ins_10yr": 19500,
     "resid_10yr": 24000,
     "scores": {
-      "tco": 1.77,
+      "tco": 1.74,
       "car_seat_fit": 4,
       "cargo": 4,
       "third_row": 3,
@@ -1419,7 +1446,8 @@
     "maint_in_per_year": 1500,
     "maint_oow_per_year": 4500,
     "tco_value": 110800,
-    "tco_score": 1.77
+    "tco_score": 1.74,
+    "active": false
   },
   {
     "id": "atlas-new",
@@ -1438,7 +1466,7 @@
     "ins_10yr": 17500,
     "resid_10yr": 20000,
     "scores": {
-      "tco": 1.0,
+      "tco": 0.77,
       "car_seat_fit": 5,
       "cargo": 4,
       "third_row": 4,
@@ -1469,7 +1497,8 @@
     "maint_in_per_year": 1600,
     "maint_oow_per_year": 4800,
     "tco_value": 121900,
-    "tco_score": 1.0
+    "tco_score": 0.77,
+    "active": false
   },
   {
     "id": "pacifica-phev-new",
@@ -1488,7 +1517,7 @@
     "ins_10yr": 18000,
     "resid_10yr": 18000,
     "scores": {
-      "tco": 3.14,
+      "tco": 3.47,
       "car_seat_fit": 5,
       "cargo": 5,
       "third_row": 4,
@@ -1519,7 +1548,8 @@
     "maint_in_per_year": 1400,
     "maint_oow_per_year": 5600,
     "tco_value": 91100,
-    "tco_score": 3.14
+    "tco_score": 3.47,
+    "active": true
   },
   {
     "id": "pacifica-gas-new",
@@ -1538,7 +1568,7 @@
     "ins_10yr": 17500,
     "resid_10yr": 16000,
     "scores": {
-      "tco": 1.19,
+      "tco": 1.0,
       "car_seat_fit": 5,
       "cargo": 5,
       "third_row": 4,
@@ -1569,6 +1599,160 @@
     "maint_in_per_year": 1400,
     "maint_oow_per_year": 4200,
     "tco_value": 119225,
-    "tco_score": 1.19
+    "tco_score": 1.0,
+    "active": true
+  },
+  {
+    "id": "carnival-hybrid-new",
+    "rank": 32,
+    "name": "Kia Carnival Hybrid SX+ FWD",
+    "short_name": "Carnival Hybrid (new)",
+    "make": "Kia",
+    "model": "Carnival Hybrid",
+    "powertrain": "Hybrid — 1.6T + e-motor, 6-spd, FWD",
+    "powertrain_type": "hybrid",
+    "new_used": "New",
+    "years": "2026",
+    "on_road": 62000,
+    "pretax": 55500,
+    "fuel_10yr": 17500,
+    "ins_10yr": 18500,
+    "resid_10yr": 19000,
+    "scores": {
+      "tco": 2.81,
+      "car_seat_fit": 5,
+      "cargo": 5,
+      "third_row": 4,
+      "corridor": 4,
+      "hitch": 3,
+      "reliability": 3,
+      "winter": 3,
+      "fsr": 2
+    },
+    "specs": {
+      "fuel_economy": "~7.1 L/100km (real-world to ~5.9)",
+      "range_km": "~990 km tank",
+      "clearance_mm": 173,
+      "towing_lbs": 3500,
+      "cargo_l": 1139,
+      "seats": 8,
+      "third_row_legroom": "Adult-friendly minivan 3rd row"
+    },
+    "why": "The hybrid minivan I missed in the original cohort — launched for 2025 model year, Kia's answer to the Sienna Hybrid. 242 hp combined from 1.6T + electric motor, NRCan-rated ~7.1 L/100km, no plug. FWD-only (no AWD on the hybrid). 8-seat configuration with Kia's full-length VIP-style 2nd row in top trims. The third Korean/Japanese hybrid minivan option alongside Sienna Hybrid and Pacifica Hybrid PHEV.",
+    "tradeoffs": "FWD-only — winter score 3 (vs Sienna Hybrid AWD's 3 too, so not actually worse on BC roads, but no all-weather edge over the new gas Pacifica AWD). 1.6T-based hybrid system is newer/less proven than Toyota's planetary hybrid — reliability scored 3 (Kia brand-average, first-gen Carnival hybrid). 8yr/160k Kia hybrid-battery warranty is shorter than Toyota's 10yr/240k.",
+    "caution": "First-gen hybrid powertrain for the Carnival — verify 8yr/160k Kia hybrid-battery warranty terms at purchase. No AWD option on the hybrid.",
+    "at_make": "kia",
+    "at_model": "carnival+hybrid",
+    "at_years": "2026,2026",
+    "at_status": "",
+    "cr_url": "https://vancouver.craigslist.org/search/cta?query=kia+carnival+hybrid",
+    "warranty_years_remaining": 8,
+    "maint_in_per_year": 1400,
+    "maint_oow_per_year": 4200,
+    "active": true,
+    "tco_value": 98600,
+    "tco_score": 2.81
+  },
+  {
+    "id": "odyssey-new",
+    "rank": 33,
+    "name": "Honda Odyssey Touring",
+    "short_name": "Honda Odyssey (new)",
+    "make": "Honda",
+    "model": "Odyssey",
+    "powertrain": "ICE — 3.5L NA V6, 10-spd, FWD",
+    "powertrain_type": "ice",
+    "new_used": "New",
+    "years": "2026",
+    "on_road": 62000,
+    "pretax": 55500,
+    "fuel_10yr": 23000,
+    "ins_10yr": 17000,
+    "resid_10yr": 17000,
+    "scores": {
+      "tco": 1.85,
+      "car_seat_fit": 5,
+      "cargo": 5,
+      "third_row": 4,
+      "corridor": 4,
+      "hitch": 3,
+      "reliability": 4,
+      "winter": 3,
+      "fsr": 2
+    },
+    "specs": {
+      "fuel_economy": "10.6 L/100km",
+      "range_km": "~720 km tank",
+      "clearance_mm": 115,
+      "towing_lbs": 3500,
+      "cargo_l": 929,
+      "seats": 8,
+      "third_row_legroom": "Adult-friendly minivan 3rd row"
+    },
+    "why": "The new (2026) gas-only counterpart to the existing used Odyssey, included for new-vs-used comparison within the same nameplate. 280 hp 3.5L V6 + 10-speed auto, FWD-only (Honda has never offered AWD on the Odyssey). Honda reliability (score 4) is the highest among non-Toyota new minivans here. Magic Slide 2nd-row seat lets you reconfigure for daily car-seat access without removing seats.",
+    "tradeoffs": "FWD-only and 115 mm of ground clearance — the lowest in the active cohort — limit winter and FSR utility (scores 3 and 2). 10.6 L/100km combined gives it ~$23k of fuel over the planning horizon, 3× the Pacifica Hybrid PHEV's $7k. Honda's 5yr/100k powertrain warranty leaves 5 years of cliff-side OOW maintenance — though Honda's repair tail is genuinely cheaper than Stellantis or VW (2.5× ratio applied here).",
+    "caution": "FWD-only minivan — confirm winter-tire setup is enough for Coquihalla use. Verify Magic Slide seat functionality with your car-seat configuration in-person.",
+    "at_make": "honda",
+    "at_model": "odyssey",
+    "at_years": "2026,2026",
+    "at_status": "",
+    "cr_url": "https://vancouver.craigslist.org/search/cta?query=honda+odyssey+2026",
+    "warranty_years_remaining": 5,
+    "maint_in_per_year": 1400,
+    "maint_oow_per_year": 3500,
+    "active": true,
+    "tco_value": 109500,
+    "tco_score": 1.85
+  },
+  {
+    "id": "carnival-gas-new",
+    "rank": 34,
+    "name": "Kia Carnival SX FWD",
+    "short_name": "Carnival Gas (new)",
+    "make": "Kia",
+    "model": "Carnival",
+    "powertrain": "ICE — 3.5L NA V6, 8-spd, FWD",
+    "powertrain_type": "ice",
+    "new_used": "New",
+    "years": "2026",
+    "on_road": 55000,
+    "pretax": 49000,
+    "fuel_10yr": 24000,
+    "ins_10yr": 16500,
+    "resid_10yr": 14000,
+    "scores": {
+      "tco": 1.85,
+      "car_seat_fit": 5,
+      "cargo": 5,
+      "third_row": 4,
+      "corridor": 4,
+      "hitch": 3,
+      "reliability": 3,
+      "winter": 3,
+      "fsr": 2
+    },
+    "specs": {
+      "fuel_economy": "~11 L/100km",
+      "range_km": "~660 km tank",
+      "clearance_mm": 173,
+      "towing_lbs": 3500,
+      "cargo_l": 1139,
+      "seats": 8,
+      "third_row_legroom": "Adult-friendly minivan 3rd row"
+    },
+    "why": "The gas-only Carnival — cheapest new minivan on the board at ~$55k on-road. Same body as the Carnival Hybrid (1,139 L cargo behind row 3, 8-seat with available 7-seat captains, the largest minivan cargo here). 290 hp 3.5L V6, 8-speed, FWD. The cross-shop for the gas Pacifica AWD if AWD isn't a hard requirement.",
+    "tradeoffs": "FWD-only and 173 mm clearance leave winter at 3 / FSR at 2 — the gas Pacifica AWD beats it on all-weather. ~11 L/100km gives it ~$24k of fuel, dwarfing both hybrid alternatives. 5yr/100k powertrain warranty leaves 5 years of cliff-side maintenance. Kia depreciation has been steeper than Toyota's, so the residual gives back less of the cheap entry price.",
+    "caution": "Verify the 5yr/100k Kia powertrain warranty and any open recalls; the 2022+ Carnival has had a couple of minor recalls.",
+    "at_make": "kia",
+    "at_model": "carnival",
+    "at_years": "2026,2026",
+    "at_status": "",
+    "cr_url": "https://vancouver.craigslist.org/search/cta?query=kia+carnival+2026",
+    "warranty_years_remaining": 5,
+    "maint_in_per_year": 1400,
+    "maint_oow_per_year": 4200,
+    "active": true,
+    "tco_value": 109500,
+    "tco_score": 1.85
   }
 ]

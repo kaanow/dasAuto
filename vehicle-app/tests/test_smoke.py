@@ -99,7 +99,7 @@ class SmokeTests(unittest.TestCase):
             r.data.decode().count('class="vehicle-card'), len(vehicles))
 
     def test_compare_route(self):
-        r = self.client.get("/compare?ids=sienna-used&ids=palisade-used")
+        r = self.client.get("/compare?ids=sienna-used&ids=odyssey-used")
         self.assertEqual(r.status_code, 200)
         self.assertEqual(r.data.decode().count('class="compare-col"'), 2)
 
@@ -207,9 +207,12 @@ class SmokeTests(unittest.TestCase):
         maint_in_per_year, out-of-warranty years use maint_oow_per_year.
         N=7 (all in-warranty for this vehicle) should be 7 × in-rate."""
         import tco
-        v = next(x for x in self.app_module.load_vehicles()
-                 if x["id"] == "grand-highlander-used")
-        self.assertEqual(v["warranty_years_remaining"], 7)
+        # Use load_vehicles_all so the test doesn't break when a specific
+        # vehicle gets soft-deactivated. Pick any entry with warranty=7.
+        v = next(x for x in self.app_module.load_vehicles_all()
+                 if x.get("warranty_years_remaining") == 7
+                 and x.get("maint_in_per_year")
+                 and x.get("maint_oow_per_year"))
         p_in  = v["maint_in_per_year"]
         p_oow = v["maint_oow_per_year"]
 

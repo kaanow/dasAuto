@@ -337,5 +337,38 @@
       {"url": "https://upload.wikimedia.org/wikipedia/commons/4/4c/2024_Volkswagen_Atlas_au_SIAM_2024.jpg", "type": "exterior", "caption": "VW Atlas at SIAM 2024"}
     ],
     "notes": "Post-2024-refresh body (new grille/headlights/dash). 2026 styling is essentially unchanged from 2024."
+  },
+  {
+    "id": "carnival-hybrid-new",
+    "images": [
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/d/dd/Kia_Carnival_KA4_PE_1.6T_SX%2B_HEV_Ivory_Silver.jpg", "type": "exterior", "caption": "Kia Carnival 1.6T SX+ HEV — Ivory Silver"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/9/93/2026_Kia_Carnival_au_salon_auto_Lanaudi%C3%A8re_2025.jpg", "type": "exterior", "caption": "2026 Kia Carnival (Canadian auto show)"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/8/86/2025_Kia_Carnival_GT-Line_2.2_front.jpg", "type": "exterior", "caption": "2025 Kia Carnival GT-Line — front"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/9/98/2025_Kia_Carnival_GT-Line_2.2_rear.jpg", "type": "exterior", "caption": "2025 Kia Carnival GT-Line — rear"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/a/ae/Kia_Carnival_%28KA4%29_IMG_6145.jpg", "type": "exterior", "caption": "Kia Carnival (KA4)"}
+    ],
+    "notes": "Post-PE facelift body (same as 2026 MY). HEV badge on the lead shot is the hybrid match."
+  },
+  {
+    "id": "odyssey-new",
+    "images": [
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/8/82/Honda_Odyssey_RL5_FL_Modern_Steel_Metallic_%281%29.jpg", "type": "exterior", "caption": "Honda Odyssey RL5 (facelift) — Modern Steel Metallic"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/d/da/Honda_Odyssey_RL5_FL_Modern_Steel_Metallic_%282%29.jpg", "type": "exterior", "caption": "Honda Odyssey RL5 — rear"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Honda_Odyssey_RL5_FL_Dark_Cherry_Pearl_II_%281%29.jpg", "type": "exterior", "caption": "Honda Odyssey RL5 — Dark Cherry Pearl II"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/c/cd/Honda_Odyssey_RL5_FL_Dark_Cherry_Pearl_II_%284%29.jpg", "type": "exterior", "caption": "Honda Odyssey RL5 — Dark Cherry side"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/4/4e/Honda_Odyssey_RL5_3.5_EX-L_Alabaster_Silver_Metallic_diplomatic_-_front.jpg", "type": "exterior", "caption": "Honda Odyssey RL5 EX-L — Alabaster Silver front"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/0/06/Honda_Odyssey_RL5_3.5_EX-L_Alabaster_Silver_Metallic_diplomatic_-_rear.jpg", "type": "exterior", "caption": "Honda Odyssey RL5 EX-L — Alabaster Silver rear"}
+    ],
+    "notes": "5th-gen RL5 facelift — current styling shipped on 2026 MY."
+  },
+  {
+    "id": "carnival-gas-new",
+    "images": [
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/9/93/2026_Kia_Carnival_au_salon_auto_Lanaudi%C3%A8re_2025.jpg", "type": "exterior", "caption": "2026 Kia Carnival (Canadian auto show)"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/8/86/2025_Kia_Carnival_GT-Line_2.2_front.jpg", "type": "exterior", "caption": "2025 Kia Carnival GT-Line — front"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/9/98/2025_Kia_Carnival_GT-Line_2.2_rear.jpg", "type": "exterior", "caption": "2025 Kia Carnival GT-Line — rear"},
+      {"url": "https://upload.wikimedia.org/wikipedia/commons/a/ae/Kia_Carnival_%28KA4%29_IMG_6145.jpg", "type": "exterior", "caption": "Kia Carnival (KA4)"}
+    ],
+    "notes": "Same KA4-PE body as the Hybrid sibling; GT-Line shots are gas-trim representative."
   }
 ]
