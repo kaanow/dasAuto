@@ -46,6 +46,7 @@ DATA_DIR    = _resolve_data_dir()
 VEHICLES_FILE = DATA_DIR / "vehicles.json"
 WEIGHTS_FILE  = DATA_DIR / "weights.json"
 IMAGES_DIR    = DATA_DIR / "images"
+MANUAL_LISTINGS_FILE = DATA_DIR / "manual_listings.json"
 
 # DB lives next to the family data by default. In production (Railway)
 # the data dir ships in the immutable git checkout, but cache.db needs
@@ -110,6 +111,25 @@ def get_cached_listings(vehicle_id, scope, max_age_hours=12):
     if datetime.now() - fetched_at > timedelta(hours=max_age_hours):
         return None
     return json.loads(row[0])
+
+@lru_cache(maxsize=1)
+def load_manual_listings():
+    """Hand-curated listings keyed by vehicle_id. Used as a fallback when the
+    live cache is empty for a (vehicle_id, scope), so a fresh container or
+    a vehicle that's hard to scrape (Incapsula on AT) still has results."""
+    if not MANUAL_LISTINGS_FILE.exists():
+        return {}
+    with open(MANUAL_LISTINGS_FILE) as f:
+        return json.load(f)
+
+def get_manual_listings(vehicle_id, scope):
+    """Return the curated payload for (vehicle_id, scope), or None."""
+    entry = load_manual_listings().get(vehicle_id)
+    if not entry:
+        return None
+    if entry.get("scope") and entry["scope"] != scope:
+        return None
+    return entry
 
 def save_cached_listings(vehicle_id, scope, data):
     con = sqlite3.connect(DB_FILE)
@@ -347,8 +367,11 @@ def vehicle_detail(vehicle_id):
     # the current horizon (TCO breakdown, fuel/maint/ins/resid, on-road).
     v = v_ranked
 
-    cached = get_cached_listings(vehicle_id, scope)
-    listings_data = cached
+    # Live cache wins; otherwise fall back to the manually-curated
+    # listings so the panel populates on first visit instead of showing
+    # a "Fetch Listings" prompt.
+    listings_data = get_cached_listings(vehicle_id, scope) \
+                    or get_manual_listings(vehicle_id, scope)
 
     favs = get_favourites()
     note = get_note(vehicle_id)
@@ -404,6 +427,13 @@ def get_listings(vehicle_id):
         if cached:
             return render_template("partials/listings.html",
                 listings_data=cached, **ctx)
+        # No live cache yet — fall back to the curated manual listings if
+        # one exists. Skipped on ?force=1 so the Refresh button always
+        # hits the live scrape.
+        manual = get_manual_listings(vehicle_id, scope)
+        if manual:
+            return render_template("partials/listings.html",
+                listings_data=manual, **ctx)
 
     data = fetch_listings(v, scope)
     save_cached_listings(vehicle_id, scope, data)
