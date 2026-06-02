@@ -98,6 +98,39 @@ def init_db():
 # init_db() call below becomes redundant but harmless.
 init_db()
 
+
+def merge_listings(live, manual):
+    """Combine live-scrape and manually-curated listing payloads. Curated
+    listings show first (they're hand-vetted); live listings follow, with
+    duplicates dropped on URL or (year, price, title-prefix) hash. Source
+    counts in the rendered footer sum both sources so the user sees the
+    real total."""
+    if not manual:
+        return live
+    if not live:
+        # Render the manual payload directly but mark its provenance so the
+        # footer counts make sense.
+        out = dict(manual)
+        out.setdefault("count_at", sum(1 for l in manual["listings"] if l.get("source") == "AutoTrader"))
+        out.setdefault("count_cl", sum(1 for l in manual["listings"] if l.get("source") in ("Craigslist", "Kijiji")))
+        return out
+    manual_urls   = {l.get("url") for l in manual["listings"] if l.get("url")}
+    manual_hashes = {f"{l.get('year','')}|{l.get('price','')}|{l.get('title','')[:30]}" for l in manual["listings"]}
+    extra = []
+    for l in live["listings"]:
+        u = l.get("url", "")
+        h = f"{l.get('year','')}|{l.get('price','')}|{l.get('title','')[:30]}"
+        if u and u in manual_urls: continue
+        if not u and h in manual_hashes: continue
+        extra.append(l)
+    merged = list(manual["listings"]) + extra
+    out = dict(live)
+    out["listings"] = merged
+    out["count_at"] = live.get("count_at", 0) + sum(1 for l in manual["listings"] if l.get("source") == "AutoTrader")
+    out["count_cl"] = live.get("count_cl", 0) + sum(1 for l in manual["listings"] if l.get("source") in ("Craigslist", "Kijiji"))
+    out["blocked_warning"] = False
+    return out
+
 def get_cached_listings(vehicle_id, scope, max_age_hours=12):
     con = sqlite3.connect(DB_FILE)
     row = con.execute(
@@ -367,11 +400,13 @@ def vehicle_detail(vehicle_id):
     # the current horizon (TCO breakdown, fuel/maint/ins/resid, on-road).
     v = v_ranked
 
-    # Live cache wins; otherwise fall back to the manually-curated
-    # listings so the panel populates on first visit instead of showing
-    # a "Fetch Listings" prompt.
-    listings_data = get_cached_listings(vehicle_id, scope) \
-                    or get_manual_listings(vehicle_id, scope)
+    # Always show curated listings; merge with the live cache if one
+    # exists so refreshing genuinely adds entries rather than replacing
+    # the curated set.
+    listings_data = merge_listings(
+        get_cached_listings(vehicle_id, scope),
+        get_manual_listings(vehicle_id, scope),
+    )
 
     favs = get_favourites()
     note = get_note(vehicle_id)
@@ -422,21 +457,18 @@ def get_listings(vehicle_id):
     ctx    = dict(v=v, scope=scope, scopes=SCOPES,
                   at_url=at_url, cl_url=cl_url, deep_links_default=dl)
 
+    manual = get_manual_listings(vehicle_id, scope)
     if not force:
         cached = get_cached_listings(vehicle_id, scope)
-        if cached:
+        if cached or manual:
             return render_template("partials/listings.html",
-                listings_data=cached, **ctx)
-        # No live cache yet — fall back to the curated manual listings if
-        # one exists. Skipped on ?force=1 so the Refresh button always
-        # hits the live scrape.
-        manual = get_manual_listings(vehicle_id, scope)
-        if manual:
-            return render_template("partials/listings.html",
-                listings_data=manual, **ctx)
+                listings_data=merge_listings(cached, manual), **ctx)
 
+    # Force refresh: scrape live, cache it, then merge with curated so the
+    # hand-curated entries never get hidden by a successful scrape.
     data = fetch_listings(v, scope)
     save_cached_listings(vehicle_id, scope, data)
+    data = merge_listings(data, manual)
     return render_template("partials/listings.html",
         listings_data=data, **ctx)
 
