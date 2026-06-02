@@ -3,8 +3,21 @@
 
 {% block content %}
 <div class="page-header">
-  <h1>Family Vehicle Comparison</h1>
-  <p class="page-subtitle">{{ vehicles|length }} candidates · <span id="horizon-subtitle">{{ horizon }}-year</span> TCO horizon · Vancouver, BC · Adjust weights below to re-rank</p>
+  <h1>Family Vehicle Comparison{% if showing_archived %} — Archived{% endif %}</h1>
+  <p class="page-subtitle">
+    {{ vehicles|length }} {% if showing_archived %}archived{% else %}candidates{% endif %}
+    · <span id="horizon-subtitle">{{ horizon }}-year</span> TCO horizon
+    · Vancouver, BC · Adjust weights below to re-rank
+  </p>
+  <p class="page-subtitle archive-toggle">
+    {% if showing_archived %}
+      Showing the archive — click <span class="icon-key">↻</span> on any card to restore it.
+      <a href="/{% if state_qs %}?{{ state_qs }}{% endif %}">← Back to active ({{ active_count }})</a>
+    {% elif archived_count > 0 %}
+      Click <span class="icon-key">🗄</span> on any card to archive it.
+      <a href="/?show=archived{% if state_qs %}&{{ state_qs }}{% endif %}">View {{ archived_count }} archived →</a>
+    {% endif %}
+  </p>
 </div>
 
 <div class="layout">
@@ -128,6 +141,17 @@
 // whatever weights.json / app.py declare. Never mutates with user edits.
 const TRUE_DEFAULTS = {{ weights_default | tojson }};
 const HORIZON_DEFAULT = {{ horizon_default }};
+const STATE_KEY = 'dasAuto.state.v1';
+
+// On a bare visit (no URL params), restore the user's last weights+horizon
+// from localStorage by rewriting the URL — triggers a clean server-side
+// render with the right ranking, no flash of defaults.
+(function restoreFromLocalStorage() {
+  if (window.location.search) return;          // explicit URL wins
+  const stored = localStorage.getItem(STATE_KEY);
+  if (!stored) return;
+  window.location.search = stored;             // reloads
+})();
 
 // Keep every label that echoes the horizon in sync with the slider.
 // Subtitle and sidebar TCO label live outside the htmx swap target so
@@ -148,8 +172,23 @@ function resetWeights() {
     h.value = HORIZON_DEFAULT;
     updateHorizonLabels(HORIZON_DEFAULT);
   }
+  localStorage.removeItem(STATE_KEY);
   htmx.trigger('#weight-form', 'submit');
 }
+
+// Persist current sidebar state. Stored bare ("w_tco=4&horizon=8"), no
+// leading "?". An empty string means "everything at defaults" so we
+// clear the key instead of storing it.
+function persistState() {
+  const qs = currentStateQS().replace(/^\?/, '');
+  if (qs) localStorage.setItem(STATE_KEY, qs);
+  else    localStorage.removeItem(STATE_KEY);
+}
+// Save on every successful htmx submit (covers the slider, Apply, and
+// any future input that triggers the form).
+document.body.addEventListener('htmx:afterRequest', e => {
+  if (e.detail?.elt?.id === 'weight-form') persistState();
+});
 
 // Build a clean query string from current sidebar state. Omit any key
 // that's at its default so unshared URLs stay short.

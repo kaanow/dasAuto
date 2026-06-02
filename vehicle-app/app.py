@@ -84,6 +84,11 @@ def init_db():
         )""")
     con.execute("CREATE TABLE IF NOT EXISTS notes (vehicle_id TEXT PRIMARY KEY, note TEXT, updated_at TEXT)")
     con.execute("CREATE TABLE IF NOT EXISTS favourites (vehicle_id TEXT PRIMARY KEY, added_at TEXT)")
+    # Per-vehicle active overrides: lets the user archive/restore from the
+    # web without editing vehicles.json. Lives on the Railway volume so
+    # the overrides survive deploys; vehicles.json's `active` field is
+    # the fallback when no override exists.
+    con.execute("CREATE TABLE IF NOT EXISTS active_overrides (vehicle_id TEXT PRIMARY KEY, active INTEGER NOT NULL, updated_at TEXT NOT NULL)")
     con.commit()
     con.close()
 
@@ -149,38 +154,67 @@ def toggle_favourite(vehicle_id):
     con.close()
     return is_fav
 
+def get_active_overrides():
+    """Return {vehicle_id: bool} for every vehicle the user has flipped
+    from the web. Missing keys mean "no override — use vehicles.json"."""
+    con = sqlite3.connect(DB_FILE)
+    rows = con.execute("SELECT vehicle_id, active FROM active_overrides").fetchall()
+    con.close()
+    return {vid: bool(a) for vid, a in rows}
+
+def set_active_override(vehicle_id, active):
+    con = sqlite3.connect(DB_FILE)
+    con.execute(
+        "INSERT OR REPLACE INTO active_overrides VALUES (?,?,?)",
+        (vehicle_id, 1 if active else 0, datetime.now().isoformat())
+    )
+    con.commit()
+    con.close()
+
 
 # ── Vehicle data ─────────────────────────────────────────────────────────────
-# Entries can be soft-deactivated via `"active": false` in vehicles.json.
-# Inactive entries are excluded from list views (index/compare/api) and from
-# TCO normalization, but remain accessible via direct /vehicle/<id> URLs so
-# bookmarks and prior decisions don't break.
+# Active state is two-layer: vehicles.json carries an `active` flag (git-
+# controlled default), and the SQLite `active_overrides` table on the
+# Railway volume holds per-vehicle web-side overrides. Override wins
+# when present. Inactive entries are excluded from list views and TCO
+# normalization but remain accessible via direct /vehicle/<id> URLs.
 @lru_cache(maxsize=1)
-def load_vehicles_all():
-    """Every entry in vehicles.json — including inactive ones. Use this only
-    for direct-by-id lookups (vehicle_by_id) and for tests."""
+def _load_vehicles_raw():
+    """Raw JSON entries, no override merge. Cached because the file is
+    read-only at runtime."""
     with open(VEHICLES_FILE) as f:
         return json.load(f)
 
+def load_vehicles_all():
+    """Every entry, with `active` reflecting the SQLite override (if any)
+    merged in. Use this for direct-by-id lookups and for the "archived"
+    view that needs to surface inactive entries."""
+    overrides = get_active_overrides()
+    return [
+        {**v, "active": overrides.get(v["id"], v.get("active", True))}
+        for v in _load_vehicles_raw()
+    ]
+
 def load_vehicles():
     """Active vehicles only — the working cohort for list views and TCO
-    normalization. An entry is active if its `active` field is true or
-    absent (so untagged legacy entries continue to show)."""
-    return [v for v in load_vehicles_all() if v.get("active", True)]
+    normalization."""
+    return [v for v in load_vehicles_all() if v["active"]]
+
+def archived_vehicles():
+    """Inactive vehicles — for the show-archived view."""
+    return [v for v in load_vehicles_all() if not v["active"]]
 
 def vehicle_by_id(vid):
     return next((v for v in load_vehicles_all() if v["id"] == vid), None)
 
-def ranked_vehicles(weights, horizon=HORIZON_DEFAULT):
+def ranked_vehicles(weights, horizon=HORIZON_DEFAULT, cohort=None):
     """Vehicles re-derived at the given horizon (TCO components + tco_score
-    refreshed across the cohort), then weighted-sum ranked.
-
-    Reframe is now called for every horizon, including the default. At
-    N=10 it reproduces the stored values within rounding (the migration
-    to per-year maintenance rates was anchored at N=10), and it writes
-    horizon-N display fields like `maint` that the templates expect."""
-    cohort = reframe_for_horizon(load_vehicles(), horizon)
-    return rank_vehicles(cohort, weights)
+    refreshed across the cohort), then weighted-sum ranked. `cohort` lets
+    callers score against a specific subset (the archived view does this).
+    Default cohort is all active vehicles."""
+    base = cohort if cohort is not None else load_vehicles()
+    framed = reframe_for_horizon(base, horizon)
+    return rank_vehicles(framed, weights)
 
 def get_vehicle_images(vehicle_id):
     vdir = IMAGES_DIR / vehicle_id
@@ -238,8 +272,15 @@ def url_state_qs(weights, horizon):
 def index():
     weights = parse_weights(request.args)
     horizon = parse_horizon(request.args)
+    showing_archived = request.args.get("show") == "archived"
     favs = get_favourites()
-    vehicles = ranked_vehicles(weights, horizon)
+    # `?show=archived` switches the grid to the inactive cohort so the
+    # user can restore individual entries. Ranking only the active set
+    # would leave archived entries unscored — rank them too.
+    if showing_archived:
+        vehicles = ranked_vehicles(weights, horizon, cohort=archived_vehicles())
+    else:
+        vehicles = ranked_vehicles(weights, horizon)
     for v in vehicles:
         v["is_favourite"] = v["id"] in favs
         v["images"] = get_vehicle_images(v["id"])
@@ -254,6 +295,9 @@ def index():
         state_qs=url_state_qs(weights, horizon),
         criteria_labels=CRITERIA_LABELS,
         scopes=SCOPES,
+        showing_archived=showing_archived,
+        archived_count=len(archived_vehicles()),
+        active_count=len(load_vehicles()),
     )
 
 
@@ -329,6 +373,7 @@ def vehicle_detail(vehicle_id):
         scope=scope,
         scopes=SCOPES,
         is_favourite=vehicle_id in favs,
+        is_active=v["active"],
         note=note,
         badge_label=badge_label,
         badge_color=badge_color,
@@ -399,6 +444,20 @@ def compare():
 @app.route("/favourite/<vehicle_id>", methods=["POST"])
 def favourite(vehicle_id):
     return jsonify({"is_favourite": toggle_favourite(vehicle_id)})
+
+
+@app.route("/active/<vehicle_id>", methods=["POST"])
+def toggle_active(vehicle_id):
+    """Flip a vehicle's active state. Writes to the overrides table so
+    the change survives deploys and doesn't conflict with vehicles.json
+    edits from git."""
+    v = vehicle_by_id(vehicle_id)
+    if not v:
+        return jsonify({"error": "not found"}), 404
+    new_active = not v["active"]
+    set_active_override(vehicle_id, new_active)
+    return jsonify({"active": new_active, "archived_count": len(archived_vehicles()),
+                    "active_count": len(load_vehicles())})
 
 
 @app.route("/note/<vehicle_id>", methods=["POST"])

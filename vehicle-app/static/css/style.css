@@ -149,6 +149,18 @@ input, select, textarea { font-family: inherit; }
   padding: 0 .2rem; line-height: 1; transition: color .15s; }
 .fav-btn:hover, .fav-btn.fav-active { color: #f5c842; }
 
+.archive-btn { background: none; border: none; font-size: 1.1rem; color: #ccc;
+  padding: 0 .2rem; line-height: 1; cursor: pointer; transition: color .15s, opacity .15s;
+  opacity: .55; }
+.archive-btn:hover { color: var(--blue); opacity: 1; }
+
+.archive-toggle { font-size: .85rem; margin-top: .35rem; opacity: .85; }
+.archive-toggle a { color: var(--blue); text-decoration: none; margin-left: .5rem; font-weight: 500; }
+.archive-toggle a:hover { text-decoration: underline; }
+.icon-key { display: inline-block; padding: 0 .15rem; }
+
+.btn-ghost-sm.archive-restore { background: #fff3cd; border-color: #f5c842; color: #856404; }
+
 .card-image-wrap { position: relative; height: 165px; overflow: hidden; background: #14181e; }
 .card-image { width: 100%; height: 100%; object-fit: contain; }
 .card-image-placeholder { height: 100%; display: flex; flex-direction: column;

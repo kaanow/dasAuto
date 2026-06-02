@@ -30,6 +30,12 @@
                 onclick="toggleFav('{{ v.id }}')">
           {% if is_favourite %}★ Favourited{% else %}☆ Favourite{% endif %}
         </button>
+        <button id="active-btn"
+                class="btn-ghost-sm {% if not is_active %}archive-restore{% endif %}"
+                onclick="toggleActive('{{ v.id }}')"
+                title="Active vehicles appear on the main list. Archived ones are hidden but the page stays bookmarkable.">
+          {% if is_active %}🗄 Archive{% else %}↻ Restore to active{% endif %}
+        </button>
         <a href="/compare?ids={{ v.id }}{% if state_qs %}&{{ state_qs }}{% endif %}" class="btn-ghost-sm">Compare →</a>
         <a href="/{% if state_qs %}?{{ state_qs }}{% endif %}" class="btn-ghost-sm">← All vehicles</a>
       </div>
@@ -270,6 +276,16 @@ function toggleFav(id) {
       const btn = document.getElementById('fav-btn');
       btn.classList.toggle('fav-active', d.is_favourite);
       btn.textContent = d.is_favourite ? '★ Favourited' : '☆ Favourite';
+    });
+}
+
+function toggleActive(id) {
+  fetch(`/active/${id}`, {method:'POST'})
+    .then(r => r.json())
+    .then(d => {
+      // Active state changes affect ranking + TCO normalization, so just
+      // reload the page to pick up the new computed_rank / tco_score.
+      window.location.reload();
     });
 }
 
