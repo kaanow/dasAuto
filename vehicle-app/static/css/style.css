@@ -481,3 +481,40 @@ input, select, textarea { font-family: inherit; }
 }
 .copy-link-btn:hover { border-color: var(--blue); color: var(--blue); }
 .copy-link-btn.copied { color: var(--green); border-color: var(--green); }
+
+/* ── Mobile (≤ 900px) ─────────────────────────────────────────────────────── */
+/* iOS Safari has long-standing rendering glitches with position:sticky inside
+ * column-direction grids — the sticky element pins over content scrolling
+ * past, which visually looks like vehicle cards bleeding into the sidebar.
+ * On mobile we drop sticky entirely and let everything scroll naturally. */
+@media (max-width: 900px) {
+  .sidebar { position: static; top: auto; }
+  .detail-sidebar { position: static; top: auto; }
+
+  /* Tighter density so the long single-column page doesn't waste screen real
+   * estate on a phone. */
+  .main { padding: .9rem .8rem; }
+  .page-header h1 { font-size: 1.35rem; }
+  .page-subtitle { font-size: .82rem; }
+  .sidebar-card { padding: .9rem; margin-bottom: .8rem; }
+
+  /* Detail page: stack the header actions horizontally on narrow screens so
+   * they don't waste a full row each. */
+  .detail-header { flex-direction: column; }
+  .detail-header-actions { flex-direction: row; flex-wrap: wrap; align-items: stretch; }
+
+  /* The score-row's 5-column grid (label/bar/score/weight/result) is too dense
+   * for narrow screens — drop the weight column visually (still in DOM for
+   * accessibility tooltips) and let the rest expand. */
+  .score-row { grid-template-columns: 70px 1fr 30px 38px; }
+  .score-row .sr-weight { display: none; }
+}
+
+@media (max-width: 480px) {
+  /* Extra-narrow phones: the index card grid is already auto-fill 1-up here,
+   * but the cards themselves can tighten their internal padding. */
+  .card-top-row { padding: .45rem .6rem .3rem; }
+  .card-body { padding: .6rem .7rem .75rem; }
+  .card-image-wrap { height: 145px; }
+}
+
