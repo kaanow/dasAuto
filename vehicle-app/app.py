@@ -46,7 +46,12 @@ DATA_DIR    = _resolve_data_dir()
 VEHICLES_FILE = DATA_DIR / "vehicles.json"
 WEIGHTS_FILE  = DATA_DIR / "weights.json"
 IMAGES_DIR    = DATA_DIR / "images"
-DB_FILE       = DATA_DIR / "cache.db"
+
+# DB lives next to the family data by default. In production (Railway)
+# the data dir ships in the immutable git checkout, but cache.db needs
+# a persistent volume so favourites/notes survive deploys — set
+# VEHICLE_DB_PATH (e.g. /data/cache.db) to point at the volume mount.
+DB_FILE = Path(os.environ.get("VEHICLE_DB_PATH") or (DATA_DIR / "cache.db")).resolve()
 
 app = Flask(__name__)
 app.config["SEND_FILE_MAX_AGE_DEFAULT"] = 0
@@ -81,6 +86,11 @@ def init_db():
     con.execute("CREATE TABLE IF NOT EXISTS favourites (vehicle_id TEXT PRIMARY KEY, added_at TEXT)")
     con.commit()
     con.close()
+
+# Ensure DB schema exists at import time so gunicorn workers don't race the
+# first request. Local dev (python app.py) also benefits since the __main__
+# init_db() call below becomes redundant but harmless.
+init_db()
 
 def get_cached_listings(vehicle_id, scope, max_age_hours=12):
     con = sqlite3.connect(DB_FILE)
@@ -277,7 +287,16 @@ def vehicle_detail(vehicle_id):
     horizon = parse_horizon(request.args)
 
     all_ranked = ranked_vehicles(weights, horizon)
-    v_ranked = next(x for x in all_ranked if x["id"] == vehicle_id)
+    v_ranked = next((x for x in all_ranked if x["id"] == vehicle_id), None)
+    # Inactive vehicle: still show its profile so bookmarks resolve.
+    # Reframe it alongside the active cohort so its TCO components and
+    # tco_score normalize against the visible peer group.
+    if v_ranked is None:
+        from scoring import reframe_for_horizon
+        synthetic = reframe_for_horizon(load_vehicles() + [v], horizon)
+        v_ranked = next(x for x in synthetic if x["id"] == vehicle_id)
+        v_ranked["computed_score"] = compute_score(v_ranked, weights)
+        v_ranked["computed_rank"] = None  # not in the active ranking
     score = v_ranked["computed_score"]
     rank = v_ranked["computed_rank"]
     # Use the horizon-adjusted copy of v so detail-page tables/specs reflect

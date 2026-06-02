@@ -21,6 +21,13 @@ Thumbs.db
 
 # App runtime state (created on first run; not source)
 vehicle-app/.venv/
-# Per-family runtime: caches + downloaded images
+
+# Per-family runtime cache (SQLite — favourites/notes/listing-cache).
+# In production this lives on a Railway Volume mount (VEHICLE_DB_PATH),
+# so the local file stays purely a dev artifact and is never committed.
 user-*/cache.db
-user-*/images/
+
+# Images USED to be gitignored when they were fetched on-demand at dev
+# time, but they ship with the deploy now so Railway containers don't
+# depend on Wikimedia being up at boot. ~20MB total — committed.
+# (To re-fetch: python vehicle-app/scrapers/fetch_images.py)

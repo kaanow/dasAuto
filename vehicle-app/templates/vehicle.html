@@ -9,8 +9,8 @@
 
     <!-- Header -->
     <div class="detail-header">
-      <div class="detail-rank-badge rank-{{ rank }}">
-        #{{ rank }}
+      <div class="detail-rank-badge rank-{{ rank or 'archived' }}">
+        {% if rank %}#{{ rank }}{% else %}—{% endif %}
       </div>
       <div class="detail-title-block">
         <div class="detail-badges">
@@ -183,7 +183,9 @@
         <span class="score-card-label">Weighted Score</span>
         <span class="score-card-val">{{ "%.2f"|format(score) }}</span>
       </div>
-      <div class="score-card-rank">Ranked #{{ rank }} of {{ all_vehicles|length }}</div>
+      <div class="score-card-rank">
+        {% if rank %}Ranked #{{ rank }} of {{ all_vehicles|length }}{% else %}Archived — not in active cohort{% endif %}
+      </div>
 
       <!-- Radar-style score breakdown -->
       <div class="score-breakdown">
