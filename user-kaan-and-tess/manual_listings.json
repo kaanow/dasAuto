@@ -1,14 +1,40 @@
 {
-  "_doc": "Manually curated listings — used as the fallback when the live cache (cache.db) is empty for a (vehicle_id, scope). Keyed by vehicle_id. Each entry has the same shape as the live scrape output (listings, scope, scope_label, count_at, count_cl, fetched_at). The /listings route falls back to this file on a cache miss; user-triggered Refresh runs the live scrape and overwrites the 12-hour cache. After the cache expires, the manual list comes back.",
+  "_doc": "Manually curated listings — used as the baseline when the live cache (cache.db) is empty for a (vehicle_id, scope). Keyed by vehicle_id. Each entry has the same shape as the live scrape output. The /listings route MERGES manual + live so a successful live scrape adds to the curated set rather than replacing it.",
   "sienna-used": {
     "scope": "bc",
     "scope_label": "All of BC",
-    "fetched_at": "2026-06-01T20:30:00",
-    "count_at": 9,
+    "fetched_at": "2026-06-02T09:00:00",
+    "count_at": 10,
     "count_cl": 1,
     "blocked_warning": false,
-    "curated_note": "AWD Hybrid only, any vintage (4th-gen Sienna 2021+ — pre-2021 Siennas were never offered as AWD Hybrid). Researched from AutoTrader.ca + Kijiji on 2026-06-01.",
+    "curated_note": "AWD Hybrid only, any vintage (4th-gen Sienna 2021+ — AWD never offered on pre-2021 hybrid). Researched 2026-06-02 from AutoTrader.ca (BC + national for reference) and Kijiji.",
     "listings": [
+      {
+        "source": "AutoTrader",
+        "source_icon": "🚗",
+        "title": "2022 Toyota Sienna XSE AWD 7-pass — clean title, one owner",
+        "year": 2022,
+        "price": "$52,499",
+        "km": "42,124 km",
+        "location": "Richmond",
+        "seller": "OpenRoad Toyota Richmond",
+        "url": "https://www.autotrader.ca/offers/toyota-sienna-sienna-xse-awd-7-pass-clean-title-one-owner-gas-electric-hybrid-white-cat_ma70gr201468tr15479-0d449dd6-90d9-40dd-b53c-9be7308b1ed2",
+        "thumb": "",
+        "fetched_at": "2026-06-02T09:00:00"
+      },
+      {
+        "source": "AutoTrader",
+        "source_icon": "🚗",
+        "title": "2022 Toyota Sienna Limited AWD — local, no accidents, one owner",
+        "year": 2022,
+        "price": "$54,498",
+        "km": "98,541 km",
+        "location": "Burnaby",
+        "seller": "Destination Toyota",
+        "url": "https://www.autotrader.ca/offers/toyota-sienna-limited-awd-local-no-accidents-one-owner-gas-electric-hybrid-blue-cat_ma70gr201468tr15474-ffe9d4fe-8214-4b0f-8246-34d73c88c061",
+        "thumb": "",
+        "fetched_at": "2026-06-02T09:00:00"
+      },
       {
         "source": "AutoTrader",
         "source_icon": "🚗",
@@ -20,51 +46,12 @@
         "seller": "OpenRoad Toyota Richmond",
         "url": "https://www.autotrader.ca/offers/toyota-sienna-sienna-le-awd-8-pass-one-owner-no-accidents-gas-electric-hybrid-white-cat_ma70gr201468tr11730-01922d56-e30a-4bf8-b65b-e2231aa39748",
         "thumb": "",
-        "fetched_at": "2026-06-01T20:30:00"
-      },
-      {
-        "source": "AutoTrader",
-        "source_icon": "🚗",
-        "title": "2025 Toyota Sienna LE AWD 8-pass — one owner",
-        "year": 2025,
-        "price": "$55,999",
-        "km": "11,092 km",
-        "location": "Richmond",
-        "seller": "OpenRoad Toyota Richmond",
-        "url": "https://www.autotrader.ca/offers/toyota-sienna-sienna-le-awd-8-pass-one-owner-no-accidents-gas-electric-hybrid-silver-cat_ma70gr201468tr11730-7c95317a-23dc-47d1-9434-cb8bc886c2c0",
-        "thumb": "",
-        "fetched_at": "2026-06-01T20:30:00"
-      },
-      {
-        "source": "AutoTrader",
-        "source_icon": "🚗",
-        "title": "2022 Toyota Sienna XSE AWD Tech Pkg — clean title, BC local",
-        "year": 2022,
-        "price": "$48,995",
-        "km": "93,459 km",
-        "location": "Richmond",
-        "seller": "UC Auto",
-        "url": "https://www.autotrader.ca/offers/toyota-sienna-xse-awd-tech-pkg-clean-title-bc-local-gas-electric-hybrid-white-cat_ma70gr201468tr15479-aa0ee381-e9d8-4f01-930d-4e5fd0faf36a",
-        "thumb": "",
-        "fetched_at": "2026-06-01T20:30:00"
+        "fetched_at": "2026-06-02T09:00:00"
       },
       {
         "source": "AutoTrader",
         "source_icon": "🚗",
         "title": "2021 Toyota Sienna Limited Hybrid — Black",
-        "year": 2021,
-        "price": "$52,997",
-        "km": "69,788 km",
-        "location": "Richmond",
-        "seller": "Audi Richmond",
-        "url": "https://www.autotrader.ca/offers/toyota-sienna-limited-gas-electric-hybrid-white-cat_ma70gr201468tr15474-c298f267-9d7f-463f-a3df-728cff17a03c",
-        "thumb": "",
-        "fetched_at": "2026-06-01T20:30:00"
-      },
-      {
-        "source": "AutoTrader",
-        "source_icon": "🚗",
-        "title": "2021 Toyota Sienna Limited Hybrid — Black Cat",
         "year": 2021,
         "price": "$54,995",
         "km": "54,057 km",
@@ -72,7 +59,7 @@
         "seller": "West Coast Toyota",
         "url": "https://www.autotrader.ca/offers/toyota-sienna-limited-gas-electric-hybrid-black-cat_ma70gr201468tr15474-b7f2330a-5484-4447-8ad5-e4839c652c3d",
         "thumb": "",
-        "fetched_at": "2026-06-01T20:30:00"
+        "fetched_at": "2026-06-02T09:00:00"
       },
       {
         "source": "AutoTrader",
@@ -85,7 +72,7 @@
         "seller": "Drive Motorsports",
         "url": "https://www.autotrader.ca/offers/toyota-sienna-limited-awd-hybrid-no-accident-gas-electric-hybrid-grey-cat_ma70gr201468tr15474-8ba04c56-d446-4c85-81ba-a295fe419987",
         "thumb": "",
-        "fetched_at": "2026-06-01T20:30:00"
+        "fetched_at": "2026-06-02T09:00:00"
       },
       {
         "source": "AutoTrader",
@@ -98,7 +85,7 @@
         "seller": "OpenRoad Toyota Richmond",
         "url": "https://www.autotrader.ca/offers/toyota-sienna-sienna-xse-awd-7-pass-one-owner-no-accidents-gas-electric-hybrid-black-cat_ma70gr201468tr15479-55b66593-7dfe-4d05-8ab8-d3a05750bae8",
         "thumb": "",
-        "fetched_at": "2026-06-01T20:30:00"
+        "fetched_at": "2026-06-02T09:00:00"
       },
       {
         "source": "AutoTrader",
@@ -111,7 +98,7 @@
         "seller": "OpenRoad Lexus Richmond",
         "url": "https://www.autotrader.ca/offers/toyota-sienna-limited-awd-7-pass-no-accidents-gas-electric-hybrid-white-cat_ma70gr201468tr15474-176b65b8-7688-4c03-b13a-c1eb6e70cfa7",
         "thumb": "",
-        "fetched_at": "2026-06-01T20:30:00"
+        "fetched_at": "2026-06-02T09:00:00"
       },
       {
         "source": "AutoTrader",
@@ -124,7 +111,33 @@
         "seller": "Destination Toyota",
         "url": "https://www.autotrader.ca/offers/toyota-sienna-xse-technology-awd-rare-one-owner-no-accidents-gas-electric-hybrid-white-cat_ma70gr201468tr15479-50017998-c943-4951-91c9-f3c3d3780200",
         "thumb": "",
-        "fetched_at": "2026-06-01T20:30:00"
+        "fetched_at": "2026-06-02T09:00:00"
+      },
+      {
+        "source": "AutoTrader",
+        "source_icon": "🚗",
+        "title": "2025 Toyota Sienna Limited 7-Passenger AWD",
+        "year": 2025,
+        "price": "$67,995",
+        "km": "18,032 km",
+        "location": "Richmond",
+        "seller": "Boulevard Cars",
+        "url": "https://www.autotrader.ca/offers/toyota-sienna-limited-7-passenger-awd-gas-electric-hybrid-grey-cat_ma70gr201468tr15474-a4da2175-2045-ef-b807-41906c23f85b",
+        "thumb": "",
+        "fetched_at": "2026-06-02T09:00:00"
+      },
+      {
+        "source": "AutoTrader",
+        "source_icon": "🚗",
+        "title": "2024 Toyota Sienna Limited AWD 7-pass — Markham, ON (reference price)",
+        "year": 2024,
+        "price": "$56,888",
+        "km": "69,351 km",
+        "location": "Markham, ON",
+        "seller": "Don Valley North Toyota (out-of-province)",
+        "url": "https://www.autotrader.ca/offers/toyota-sienna-limited-7-passenger-awd-7-passenger-hybrid-d-gas-electric-hybrid-white-cat_ma70gr201468tr15474-11083fca-c11c-4f81-9267-9f4613d58829",
+        "thumb": "",
+        "fetched_at": "2026-06-02T09:00:00"
       },
       {
         "source": "Kijiji",
@@ -137,7 +150,7 @@
         "seller": "Private",
         "url": "https://www.kijiji.ca/v-cars-trucks/burnaby-new-westminster/2021-toyota-sienna-xse-awd-sunroof-power-heat-seat-power-lif/1735679738",
         "thumb": "",
-        "fetched_at": "2026-06-01T20:30:00"
+        "fetched_at": "2026-06-02T09:00:00"
       }
     ]
   }
