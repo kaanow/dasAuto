@@ -2,101 +2,237 @@
 {% block title %}Sienna AWD Hybrid — All Options Cross-Shop{% endblock %}
 
 {% block content %}
-<div class="page-header">
-  <h1>Sienna AWD Hybrid — All Options</h1>
-  <p class="page-subtitle">
-    {{ options | length }} candidates · the active 2026 dealer quote + every dealer/private listing we've found
-    · All-in includes 5% GST + BC PST tier + ~$50 license
-    · Net 5/10yr = all-in + projected fuel + insurance + maintenance − estimated residual at hold-end
-  </p>
+<div class="sx-header">
+  <div class="sx-header-title">
+    <h1>Sienna AWD Hybrid · Cross-Shop</h1>
+    <p class="sx-subtitle">
+      {{ total_count }} candidates · all dealer + private listings + the active 2026 dealer quote ·
+      ranked by total 10-year cost of ownership including BC tax, projected fuel, insurance, and
+      maintenance net of resale.
+    </p>
+  </div>
 </div>
 
-<table class="siennas-table">
-  <thead>
-    <tr>
-      <th><a href="?sort=year">Year/Trim</a></th>
-      <th>Source</th>
-      <th><a href="?sort=km">Km</a></th>
-      <th><a href="?sort=advertised">Advertised</a></th>
-      <th>+ Fees</th>
-      <th>Sale</th>
-      <th>PST tier</th>
-      <th><a href="?sort=all_in">All-in</a></th>
-      <th><a href="?sort=net_5yr">Net 5yr</a></th>
-      <th class="sort-active-col"><a href="?sort=net_10yr">Net 10yr ▼</a></th>
-      <th>Location / Seller</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for o in options %}
-    <tr class="{% if o.is_quote %}row-quote{% endif %} {% if loop.index <= 3 %}row-top{% endif %}">
-      <td class="cell-vehicle">
-        <strong>#{{ loop.index }} · {{ o.year }} {{ o.trim }}</strong>
-        {% if o.color %}<div class="cell-sub">{{ o.color }}</div>{% endif %}
-      </td>
-      <td class="cell-source">
-        <span class="src-{{ o.source|lower|replace(' ','-') }}">{{ o.source_icon }} {{ o.source }}</span>
-      </td>
-      <td class="cell-num">{% if o.km %}{{ "{:,}".format(o.km) }}{% else %}new{% endif %}</td>
-      <td class="cell-num">${{ "{:,.0f}".format(o.advertised) }}</td>
-      <td class="cell-num cell-fee">
-        {% if o.mandatory_fee %}+${{ "{:,.0f}".format(o.mandatory_fee) }}{% else %}—{% endif %}
-      </td>
-      <td class="cell-num">${{ "{:,.0f}".format(o.sale) }}</td>
-      <td class="cell-num">{{ (o.pst_rate * 100) | round | int }}%</td>
-      <td class="cell-num cell-allin">${{ "{:,.0f}".format(o.all_in) }}</td>
-      <td class="cell-num">${{ "{:,.0f}".format(o.net_5yr) }}</td>
-      <td class="cell-num cell-net">${{ "{:,.0f}".format(o.net_10yr) }}</td>
-      <td class="cell-sub">
-        <div>{{ o.location }}</div>
-        <div class="seller">{{ o.seller }}</div>
-        {% if o.url %}<a class="cell-link" href="{{ o.url }}" target="_blank" rel="noopener">view →</a>{% endif %}
-        {% if o.note %}<div class="cell-note">{{ o.note }}</div>{% endif %}
-      </td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
-
-<div class="siennas-legend">
-  <p><strong>How to read this</strong>: <em>Net 10yr</em> is the total dollars out of pocket if you keep the vehicle for 10 years (purchase + fuel + insurance + projected maintenance, minus what you can resell it for at year 10). Sorted by Net 10yr ascending — top 3 highlighted in green. The dealer quote on the new 2026 LE is highlighted in blue and treats the Pro Pack + Dash Cam as mandatory per the dealer.</p>
-  <p>Assumptions: 15,000 km/yr driving (project default — confirm against your real km), Toyota in-warranty maint ~$1,000/yr, out-of-warranty ~$2,500–3,000/yr (higher past 200k km), residual = trim-adjusted retail less mileage penalty (10¢/km over 75k). Fuel and insurance ~$1,700/yr each. These are reasonable point estimates; relative ranking is much more stable than absolute numbers.</p>
+<!-- ─── Top picks summary ──────────────────────────────────────────── -->
+<div class="sx-picks">
+  {% for pick in top_picks %}
+  {% set v = pick.vehicle %}
+  <div class="sx-pick sx-pick-{{ pick.slug }}">
+    <div class="sx-pick-title">{{ pick.title }}</div>
+    {% if v %}
+    <div class="sx-pick-year-trim">{{ v.year }} {{ v.trim }}</div>
+    <div class="sx-pick-detail">
+      {% if v.km %}{{ "{:,}".format(v.km) }} km · {% endif %}{{ v.location }}
+    </div>
+    <div class="sx-pick-numbers">
+      <div>
+        <span class="sx-pick-num">${{ "{:,.0f}".format(v.all_in) }}</span>
+        <span class="sx-pick-num-label">all-in</span>
+      </div>
+      <div>
+        <span class="sx-pick-num">${{ "{:,.0f}".format(v.net_10yr) }}</span>
+        <span class="sx-pick-num-label">10-yr cost</span>
+      </div>
+    </div>
+    {% if v.url %}<a class="sx-pick-link" href="{{ v.url }}" target="_blank" rel="noopener">View listing →</a>{% endif %}
+    {% endif %}
+  </div>
+  {% endfor %}
 </div>
+
+<!-- ─── Full ranked table ──────────────────────────────────────────── -->
+<div class="sx-table-wrap">
+  <div class="sx-table-bar">
+    <span class="sx-table-title">All {{ total_count }} options</span>
+    <span class="sx-table-sort">
+      Sort by:
+      <a href="?sort=net_10yr" class="{% if sort_by == 'net_10yr' %}sx-sort-active{% endif %}">10-yr cost</a>
+      <a href="?sort=net_5yr"  class="{% if sort_by == 'net_5yr'  %}sx-sort-active{% endif %}">5-yr cost</a>
+      <a href="?sort=all_in"   class="{% if sort_by == 'all_in'   %}sx-sort-active{% endif %}">All-in price</a>
+      <a href="?sort=km"       class="{% if sort_by == 'km'       %}sx-sort-active{% endif %}">Mileage</a>
+      <a href="?sort=year"     class="{% if sort_by == 'year'     %}sx-sort-active{% endif %}">Year (newest)</a>
+    </span>
+  </div>
+
+  <table class="sx-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Vehicle</th>
+        <th>Km</th>
+        <th>Source / Seller</th>
+        <th class="sx-num">Sale</th>
+        <th class="sx-num">All-in</th>
+        <th class="sx-num">Net 5yr</th>
+        <th class="sx-num sx-net10-col">Net 10yr</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for o in options %}
+      <tr class="sx-row {% if o.is_quote %}sx-row-quote{% endif %} {% if o.badges %}sx-row-has-badge{% endif %}">
+        <td class="sx-rank">{{ loop.index }}</td>
+        <td class="sx-vehicle">
+          <div class="sx-vehicle-name">
+            {{ o.year }} {{ o.trim }}
+            {% if o.color %}<span class="sx-color">· {{ o.color }}</span>{% endif %}
+          </div>
+          {% if o.badges %}
+          <div class="sx-badges">
+            {% for label, slug in o.badges %}
+            <span class="sx-badge sx-badge-{{ slug }}">{{ label }}</span>
+            {% endfor %}
+          </div>
+          {% endif %}
+          {% if o.note %}<div class="sx-note">{{ o.note }}</div>{% endif %}
+        </td>
+        <td class="sx-num">{% if o.km %}{{ "{:,}".format(o.km) }}{% else %}<span class="sx-zero-km">new</span>{% endif %}</td>
+        <td class="sx-source">
+          <div class="sx-source-line">{{ o.source_icon }} <strong>{{ o.source }}</strong></div>
+          <div class="sx-source-detail">{{ o.location }}</div>
+          <div class="sx-source-seller">{{ o.seller }}</div>
+          {% if o.url %}<a class="sx-source-link" href="{{ o.url }}" target="_blank" rel="noopener">view →</a>{% endif %}
+        </td>
+        <td class="sx-num">
+          <div>${{ "{:,.0f}".format(o.sale) }}</div>
+          <div class="sx-sub">
+            ${{ "{:,.0f}".format(o.advertised) }} + ${{ "{:,.0f}".format(o.mandatory_fee) }} fees
+          </div>
+        </td>
+        <td class="sx-num">
+          <div class="sx-allin">${{ "{:,.0f}".format(o.all_in) }}</div>
+          <div class="sx-sub">{{ (o.pst_rate * 100) | round | int }}% PST</div>
+        </td>
+        <td class="sx-num">${{ "{:,.0f}".format(o.net_5yr) }}</td>
+        <td class="sx-num sx-net10">${{ "{:,.0f}".format(o.net_10yr) }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<!-- ─── Methodology ──────────────────────────────────────────────── -->
+<details class="sx-method">
+  <summary>How these numbers are computed</summary>
+  <div class="sx-method-body">
+    <p><strong>All-in price</strong> = advertised + mandatory dealer fees (doc, prep, BC Weather Pack on the 2026 quote, etc.) + 5% GST + BC PST (7% under $55k, 8% $55–56k, 9% $56–57k, 10% $57k–125k) + $50 licensing.</p>
+    <p><strong>Net 5-yr / 10-yr cost</strong> = all-in + projected fuel ($1,700/yr) + projected insurance ($1,700/yr) + projected maintenance &minus; estimated retail residual at hold-end.</p>
+    <p><strong>Maintenance model</strong> is sensitive to which Toyota warranty tier (basic 3yr/60k, hybrid system 8yr/160k, traction battery 10yr/240k) is active each year. ~$1,000/yr in-warranty era, ~$2,200/yr when only battery covers, ~$2,700+/yr fully out-of-warranty, +$500 past 200k km, +$300 past age 10.</p>
+    <p><strong>Residual model</strong>: trim-adjusted retail (Limited 1.15×, XSE Tech 1.10×, XSE 1.05×, XLE 1.00×, LE 0.85×) less mileage penalty (10¢ per km over 75k), floor at $5,000.</p>
+    <p>Assumes <strong>15,000 km/yr</strong> driving — anchor for the whole project. If your real number is meaningfully different, fuel and maintenance scale with it. Relative ranking is much more stable than absolute numbers.</p>
+  </div>
+</details>
 
 <style>
-.siennas-table { width: 100%; border-collapse: collapse; background: white;
-  border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,.08);
-  font-size: .85rem; margin-bottom: 1.5rem; }
-.siennas-table th { background: var(--navy); color: white; padding: .6rem .5rem;
-  text-align: left; font-weight: 600; font-size: .8rem; white-space: nowrap; }
-.siennas-table th a { color: white; text-decoration: none; }
-.siennas-table th a:hover { text-decoration: underline; }
-.sort-active-col { background: #2E75B6; }
-.siennas-table td { padding: .55rem .5rem; border-top: 1px solid #f0f4f8;
-  vertical-align: top; }
-.cell-num { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
-.cell-fee { color: #856404; }
-.cell-allin { font-weight: 700; color: var(--navy); }
-.cell-net { font-weight: 700; color: var(--navy); background: #f5f8fb; }
-.cell-vehicle { min-width: 130px; }
-.cell-sub { font-size: .75rem; color: var(--muted); margin-top: .15rem; }
-.cell-note { font-size: .72rem; color: #856404; margin-top: .25rem;
-  background: #fff8e1; padding: .25rem .4rem; border-radius: 4px; }
-.cell-link { color: var(--blue); font-size: .78rem; font-weight: 600; }
-.seller { font-style: italic; }
-.row-top { background: #f0f9f0; }
-.row-top .cell-net { background: #d8eecc; color: #1a7c4f; }
-.row-quote { background: #e6f0fa; }
-.row-quote .cell-net { background: #c8defd; }
-.row-quote .cell-vehicle strong:after { content: " ← dealer quote"; color: var(--blue); }
-.siennas-legend { background: var(--white); border-radius: 8px;
-  padding: 1rem 1.2rem; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
-.siennas-legend p { font-size: .82rem; margin: 0 0 .5rem 0; line-height: 1.5; color: var(--text); }
-.siennas-legend strong { color: var(--navy); }
+/* ── Cross-shop layout ─────────────────────────────────────── */
+.sx-header { margin-bottom: 1.2rem; }
+.sx-header-title h1 { margin: 0 0 .3rem; }
+.sx-subtitle { color: var(--muted); font-size: .88rem; line-height: 1.5; margin: 0; }
 
+/* ── Top picks ────────────────────────────────────────────── */
+.sx-picks {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: .8rem; margin-bottom: 1.5rem;
+}
+.sx-pick {
+  background: white; border-radius: 10px; padding: .9rem 1rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,.07); border-top: 4px solid var(--border);
+  display: flex; flex-direction: column; gap: .25rem;
+}
+.sx-pick-best-10yr      { border-top-color: #1a7c4f; }
+.sx-pick-fresh-warranty { border-top-color: #2E75B6; }
+.sx-pick-lowest-km      { border-top-color: #f5c842; }
+.sx-pick-cheapest       { border-top-color: #856404; }
+
+.sx-pick-title { font-size: .78rem; color: var(--muted); font-weight: 700;
+  letter-spacing: .03em; text-transform: uppercase; }
+.sx-pick-year-trim { font-size: 1rem; font-weight: 700; color: var(--navy); margin-top: .1rem; }
+.sx-pick-detail { font-size: .78rem; color: var(--muted); }
+.sx-pick-numbers { display: flex; gap: 1.2rem; margin-top: .3rem; }
+.sx-pick-num { font-size: 1.1rem; font-weight: 700; color: var(--navy); display: block;
+  font-variant-numeric: tabular-nums; }
+.sx-pick-num-label { font-size: .7rem; color: var(--muted); text-transform: uppercase;
+  letter-spacing: .05em; }
+.sx-pick-link { margin-top: .4rem; font-size: .78rem; font-weight: 600;
+  color: var(--blue); text-decoration: none; }
+.sx-pick-link:hover { text-decoration: underline; }
+
+/* ── Table ────────────────────────────────────────────────── */
+.sx-table-wrap { background: white; border-radius: 10px; overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,.07); margin-bottom: 1rem; }
+
+.sx-table-bar { display: flex; justify-content: space-between; align-items: center;
+  padding: .7rem 1rem; background: #f5f8fb; border-bottom: 1px solid #e7edf3; }
+.sx-table-title { font-weight: 700; color: var(--navy); font-size: .9rem; }
+.sx-table-sort { font-size: .8rem; color: var(--muted); }
+.sx-table-sort a { color: var(--blue); text-decoration: none; margin-left: .55rem;
+  padding: .15rem .5rem; border-radius: 4px; }
+.sx-table-sort a:hover { background: var(--lt-blue); }
+.sx-sort-active { background: var(--blue) !important; color: white !important; }
+
+.sx-table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+.sx-table th { text-align: left; padding: .55rem .7rem; font-size: .75rem;
+  text-transform: uppercase; letter-spacing: .03em; color: var(--muted);
+  border-bottom: 2px solid #e7edf3; background: #fafcfe; font-weight: 700; }
+.sx-num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+.sx-row td { padding: .65rem .7rem; border-bottom: 1px solid #f0f4f8; vertical-align: top; }
+.sx-row:last-child td { border-bottom: none; }
+.sx-row:hover { background: #f5f8fb; }
+.sx-row-quote { background: #e6f0fa; }
+.sx-row-quote:hover { background: #d8e6f5; }
+
+.sx-rank { font-size: 1rem; font-weight: 800; color: var(--navy);
+  text-align: center; width: 32px; padding-top: .85rem !important; }
+
+.sx-vehicle { min-width: 220px; }
+.sx-vehicle-name { font-weight: 700; color: var(--navy); font-size: .92rem; }
+.sx-color { font-weight: 400; color: var(--muted); font-size: .8rem; }
+
+.sx-badges { margin-top: .3rem; display: flex; flex-wrap: wrap; gap: .25rem; }
+.sx-badge { display: inline-block; padding: .12rem .5rem; border-radius: 10px;
+  font-size: .7rem; font-weight: 600; color: white; }
+.sx-badge-best-10yr      { background: #1a7c4f; }
+.sx-badge-best-5yr       { background: #2d9e5f; }
+.sx-badge-cheapest       { background: #856404; }
+.sx-badge-lowest-km      { background: #d4a300; color: #4a3a00; }
+.sx-badge-fresh-warranty { background: #2E75B6; }
+
+.sx-note { font-size: .72rem; color: #856404; margin-top: .35rem;
+  background: #fff8e1; padding: .3rem .5rem; border-radius: 4px; line-height: 1.4; }
+
+.sx-source { font-size: .8rem; min-width: 180px; }
+.sx-source-line strong { color: var(--navy); font-weight: 600; }
+.sx-source-detail { color: var(--muted); }
+.sx-source-seller { color: var(--muted); font-size: .75rem; font-style: italic; line-height: 1.3; }
+.sx-source-link { color: var(--blue); font-size: .76rem; font-weight: 600; text-decoration: none; }
+
+.sx-allin { font-weight: 700; color: var(--navy); }
+.sx-sub { font-size: .72rem; color: var(--muted); }
+.sx-net10-col { background: #eaf3ec; }
+.sx-net10 { font-weight: 700; color: #1a7c4f; background: #eaf3ec; }
+
+.sx-zero-km { color: var(--blue); font-weight: 700; }
+
+/* ── Methodology ─────────────────────────────────────────── */
+.sx-method { background: white; border-radius: 10px; padding: 0;
+  box-shadow: 0 1px 4px rgba(0,0,0,.07); }
+.sx-method summary { padding: .8rem 1rem; cursor: pointer; font-weight: 600;
+  color: var(--navy); list-style: none; }
+.sx-method summary::-webkit-details-marker { display: none; }
+.sx-method summary::before { content: "▸ "; color: var(--blue); }
+.sx-method[open] summary::before { content: "▾ "; }
+.sx-method-body { padding: 0 1rem 1rem; font-size: .82rem; color: var(--text);
+  line-height: 1.55; }
+.sx-method-body p { margin: 0 0 .6rem; }
+.sx-method-body strong { color: var(--navy); }
+
+/* ── Mobile ──────────────────────────────────────────────── */
 @media (max-width: 900px) {
-  .siennas-table { font-size: .75rem; display: block; overflow-x: auto; }
-  .siennas-table th, .siennas-table td { padding: .4rem .35rem; }
+  .sx-table-wrap { overflow-x: auto; }
+  .sx-table { font-size: .78rem; min-width: 720px; }
+  .sx-table th, .sx-row td { padding: .45rem .5rem; }
+  .sx-table-bar { flex-direction: column; align-items: flex-start; gap: .4rem; }
+  .sx-table-sort a { margin-left: 0; margin-right: .5rem; }
 }
 </style>
 {% endblock %}

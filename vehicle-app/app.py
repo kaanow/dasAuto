@@ -717,6 +717,38 @@ def siennas():
             "dealer_extras": q["dealer_extras"],
         }))
 
+    # Compute "top picks" — the row each decision criterion points to. These
+    # also drive per-row badges so the same vehicle picks up multiple
+    # highlights if it wins more than one.
+    badges_by_id = {}
+    def _badge(opt, label, slug):
+        if not opt:
+            return
+        badges_by_id.setdefault(opt["id"], []).append((label, slug))
+
+    used_only = [o for o in options if not o["is_quote"]]
+    quote_opt = next((o for o in options if o["is_quote"]), None)
+    best_10yr = min(options, key=lambda o: o["net_10yr"]) if options else None
+    best_5yr  = min(options, key=lambda o: o["net_5yr"])  if options else None
+    cheapest  = min(options, key=lambda o: o["all_in"])   if options else None
+    lowest_km = min((o for o in used_only if o["km"] > 0), key=lambda o: o["km"], default=None)
+    _badge(best_10yr,  "Best 10-yr value",     "best-10yr")
+    _badge(best_5yr,   "Best 5-yr value",      "best-5yr")
+    _badge(cheapest,   "Lowest capital",       "cheapest")
+    _badge(lowest_km,  "Lowest km used",       "lowest-km")
+    _badge(quote_opt,  "Fresh warranty (new)", "fresh-warranty")
+
+    top_picks = [
+        {"slug": "best-10yr",       "title": "💰 Best 10-yr value",      "vehicle": best_10yr},
+        {"slug": "fresh-warranty",  "title": "🛡 Fresh-warranty (new)",  "vehicle": quote_opt},
+        {"slug": "lowest-km",       "title": "🚙 Lowest-km used",        "vehicle": lowest_km},
+        {"slug": "cheapest",        "title": "💵 Lowest cash out the door","vehicle": cheapest},
+    ]
+
+    # Attach badges to each option for the table rows
+    for o in options:
+        o["badges"] = badges_by_id.get(o["id"], [])
+
     # Default sort: 10-yr net cost ascending
     sort_by = request.args.get("sort", "net_10yr")
     valid = {"net_5yr", "net_10yr", "all_in", "km", "year", "advertised"}
@@ -724,7 +756,8 @@ def siennas():
     reverse = sort_by == "year"  # newest first for year sort
     options.sort(key=lambda o: o.get(sort_by, 0), reverse=reverse)
 
-    return render_template("siennas.html", options=options, sort_by=sort_by)
+    return render_template("siennas.html", options=options, sort_by=sort_by,
+                           top_picks=top_picks, total_count=len(options))
 
 
 @app.route("/api/vehicles")
