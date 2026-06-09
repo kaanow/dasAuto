@@ -672,7 +672,7 @@ def siennas():
                 "year": year,
                 "trim": trim,
                 "km": km,
-                "color": "",
+                "color": l.get("color", ""),
                 "location": l["location"],
                 "seller": l["seller"],
                 "url": l["url"],

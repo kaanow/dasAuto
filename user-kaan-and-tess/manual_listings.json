@@ -21,7 +21,8 @@
         "url": "https://www.facebook.com/marketplace/item/?dealer=7826",
         "thumb": "",
         "fetched_at": "2026-06-08T18:00:00",
-        "_note": "Mandatory $1,298 dealership fee on top of advertised; 90-day powertrain warranty + 1yr tire&wheel included. One disclosed claim ($2,800)."
+        "_note": "Mandatory $1,298 dealership fee on top of advertised; 90-day powertrain warranty + 1yr tire&wheel included. One disclosed claim ($2,800).",
+        "color": "Red"
       },
       {
         "source": "Facebook",
@@ -35,7 +36,8 @@
         "url": "https://www.facebook.com/marketplace/item/?dealer=01078",
         "thumb": "",
         "fetched_at": "2026-06-08T18:00:00",
-        "_note": "Mandatory $595 doc fee on top of advertised; clean title, 65 Marketplace rating, dealer joined FB 2023. Notably cheaper than the OpenRoad 2025 LE comparable."
+        "_note": "Mandatory $595 doc fee on top of advertised; clean title, 65 Marketplace rating, dealer joined FB 2023. Notably cheaper than the OpenRoad 2025 LE comparable.",
+        "color": "Silver"
       },
       {
         "source": "Facebook",
@@ -49,7 +51,8 @@
         "url": "https://www.facebook.com/marketplace/item/?dealer=openroad-lexus-richmond",
         "thumb": "",
         "fetched_at": "2026-06-08T19:00:00",
-        "_note": "Standard OpenRoad doc fee $895 assumed. Only 6,352 km — essentially delivery mileage. No accidents, local BC. At $58,883 sale → falls into 10% PST tier (over $57,000) → ~$67,765 all-in, essentially tied with the new 2026 dealer quote."
+        "_note": "Standard OpenRoad doc fee $895 assumed. Only 6,352 km — essentially delivery mileage. No accidents, local BC. At $58,883 sale → falls into 10% PST tier (over $57,000) → ~$67,765 all-in, essentially tied with the new 2026 dealer quote.",
+        "color": "White"
       },
       {
         "source": "Facebook",
@@ -63,7 +66,8 @@
         "url": "https://www.facebook.com/marketplace/item/?dealer=kalani-stock-C060619",
         "thumb": "",
         "fetched_at": "2026-06-08T19:00:00",
-        "_note": "Doc fee unspecified ($895 assumed). Limited trim, beige leather, 360 camera, ventilated front seats — fully loaded. ~$1,198 cheaper advertised than Destination Toyota's 2022 Limited at $53,998 (Burnaby, 98k km). Need to verify dealer # — described as 'Highly rated' but doesn't list dealer registration."
+        "_note": "Doc fee unspecified ($895 assumed). Limited trim, beige leather, 360 camera, ventilated front seats — fully loaded. ~$1,198 cheaper advertised than Destination Toyota's 2022 Limited at $53,998 (Burnaby, 98k km). Need to verify dealer # — described as 'Highly rated' but doesn't list dealer registration.",
+        "color": "White"
       },
       {
         "source": "Facebook",
@@ -77,7 +81,8 @@
         "url": "https://www.facebook.com/marketplace/item/?dealer=UC-stock-UC1-8156B",
         "thumb": "",
         "fetched_at": "2026-06-08T20:00:00",
-        "_note": "Mandatory fees: $495 doc + $395 prep = $890 (despite the 'TRUE PRICE, NO HIDDEN FEE' headline). Same dealer (DL#40299) as the existing AT listing for the 2022 XSE Tech at $47,995/93k km. Limited trim, fully loaded, but 130k km is the highest of any Limited-trim option. Sale $45,885 stays in 7% PST tier."
+        "_note": "Mandatory fees: $495 doc + $395 prep = $890 (despite the 'TRUE PRICE, NO HIDDEN FEE' headline). Same dealer (DL#40299) as the existing AT listing for the 2022 XSE Tech at $47,995/93k km. Limited trim, fully loaded, but 130k km is the highest of any Limited-trim option. Sale $45,885 stays in 7% PST tier.",
+        "color": "White"
       },
       {
         "source": "Facebook",
@@ -91,7 +96,8 @@
         "url": "https://www.facebook.com/marketplace/item/?dealer=7826-stock-2UTNA58243",
         "thumb": "",
         "fetched_at": "2026-06-08T19:00:00",
-        "_note": "ALMOST CERTAINLY THE SAME VEHICLE as Jacky Chuen's $50,499 listing (FB #1). Same dealer #7826, same year/color/km (within 24 km), $2 advertised difference. Berk's listing omits the 'Technology' package mention — could be intentional (it IS base XSE, not XSE Tech, and Jacky's listing inflated) OR sloppy copy on one rep's part. Berk's $1,298 dealer fee not stated; assumed same as Jacky's. Don't count this as a separate option in your shortlist."
+        "_note": "ALMOST CERTAINLY THE SAME VEHICLE as Jacky Chuen's $50,499 listing (FB #1). Same dealer #7826, same year/color/km (within 24 km), $2 advertised difference. Berk's listing omits the 'Technology' package mention — could be intentional (it IS base XSE, not XSE Tech, and Jacky's listing inflated) OR sloppy copy on one rep's part. Berk's $1,298 dealer fee not stated; assumed same as Jacky's. Don't count this as a separate option in your shortlist.",
+        "color": "Red"
       },
       {
         "source": "AutoTrader",
@@ -104,7 +110,8 @@
         "seller": "Jim Pattison Toyota Northshore",
         "url": "https://www.autotrader.ca/offers/toyota-sienna-le-8-passenger-awd-gas-electric-hybrid-white-cat_ma70gr201468tr11730-a329272d-1273-420e-b15b-05e1dd287822",
         "thumb": "",
-        "fetched_at": "2026-06-08T08:00:00"
+        "fetched_at": "2026-06-08T08:00:00",
+        "color": "White"
       },
       {
         "source": "AutoTrader",
@@ -117,7 +124,8 @@
         "seller": "UC Auto LTD",
         "url": "https://www.autotrader.ca/offers/toyota-sienna-xse-awd-tech-pkg-clean-title-bc-local-gas-electric-hybrid-white-cat_ma70gr201468tr15479-aa0ee381-e9d8-4f01-930d-4e5fd0faf36a",
         "thumb": "",
-        "fetched_at": "2026-06-08T08:00:00"
+        "fetched_at": "2026-06-08T08:00:00",
+        "color": "White"
       },
       {
         "source": "AutoTrader",
@@ -130,7 +138,8 @@
         "seller": "Jim Pattison Toyota Northshore",
         "url": "https://www.autotrader.ca/offers/toyota-sienna-limited-awd-gas-electric-hybrid-silver-cat_ma70gr201468-e2d156c7-08f0-4eb0-9ff5-29a0f1c346f2",
         "thumb": "",
-        "fetched_at": "2026-06-08T08:00:00"
+        "fetched_at": "2026-06-08T08:00:00",
+        "color": "Silver"
       },
       {
         "source": "AutoTrader",
@@ -143,7 +152,8 @@
         "seller": "Audi Richmond",
         "url": "https://www.autotrader.ca/offers/toyota-sienna-limited-gas-electric-hybrid-white-cat_ma70gr201468tr15474-c298f267-9d7f-463f-a3df-728cff17a03c",
         "thumb": "",
-        "fetched_at": "2026-06-08T08:00:00"
+        "fetched_at": "2026-06-08T08:00:00",
+        "color": "White"
       },
       {
         "source": "AutoTrader",
@@ -156,7 +166,8 @@
         "seller": "Destination Toyota",
         "url": "https://www.autotrader.ca/offers/toyota-sienna-limited-awd-local-no-accidents-one-owner-gas-electric-hybrid-blue-cat_ma70gr201468tr15474-ffe9d4fe-8214-4b0f-8246-34d73c88c061",
         "thumb": "",
-        "fetched_at": "2026-06-08T08:00:00"
+        "fetched_at": "2026-06-08T08:00:00",
+        "color": "Blue"
       },
       {
         "source": "AutoTrader",
@@ -169,7 +180,8 @@
         "seller": "Langley Toyota",
         "url": "https://www.autotrader.ca/offers/toyota-sienna-hybrid-xse-awd-leather-sunroof-nav-heated-seat-gasoline-grey-cat_ma70gr201468tr15479-aa4b364d-5a4f-4172-91b1-26d2dc3894b6",
         "thumb": "",
-        "fetched_at": "2026-06-08T08:00:00"
+        "fetched_at": "2026-06-08T08:00:00",
+        "color": "Grey"
       },
       {
         "source": "AutoTrader",
@@ -182,7 +194,8 @@
         "seller": "Destination Toyota",
         "url": "https://www.autotrader.ca/offers/toyota-sienna-xse-technology-awd-rare-one-owner-no-accidents-gas-electric-hybrid-white-cat_ma70gr201468tr15479-50017998-c943-4951-91c9-f3c3d3780200",
         "thumb": "",
-        "fetched_at": "2026-06-08T08:00:00"
+        "fetched_at": "2026-06-08T08:00:00",
+        "color": "White"
       },
       {
         "source": "AutoTrader",
@@ -195,7 +208,8 @@
         "seller": "Destination Toyota",
         "url": "https://www.autotrader.ca/offers/toyota-sienna-xse-technology-local-one-owner-no-accidents-gas-electric-hybrid-white-cat_ma70gr201468tr15479-be6d4cbf-895c-4834-86aa-db6a2513bd5d",
         "thumb": "",
-        "fetched_at": "2026-06-08T08:00:00"
+        "fetched_at": "2026-06-08T08:00:00",
+        "color": "White"
       },
       {
         "source": "AutoTrader",
@@ -208,7 +222,8 @@
         "seller": "Mainland Ford",
         "url": "https://www.autotrader.ca/offers/toyota-sienna-the-family-hauler-that-barely-visits-the-pumps-u-gas-electric-hybrid-white-cat_ma70gr201468tr15479-5a35682c-56c7-48f8-8c72-bfe3c9f69995",
         "thumb": "",
-        "fetched_at": "2026-06-08T08:00:00"
+        "fetched_at": "2026-06-08T08:00:00",
+        "color": "White"
       },
       {
         "source": "AutoTrader",
@@ -221,7 +236,8 @@
         "seller": "Cardinal Kia (out-of-province)",
         "url": "https://www.autotrader.ca/offers/toyota-sienna-le-awd-8-passenger-family-van-gas-electric-hybrid-white-cat_ma70gr201468tr11730-28eac413-de77-4450-acb2-c6a488a21b97",
         "thumb": "",
-        "fetched_at": "2026-06-08T08:00:00"
+        "fetched_at": "2026-06-08T08:00:00",
+        "color": "White"
       },
       {
         "source": "AutoTrader",
@@ -234,7 +250,8 @@
         "seller": "Kentville Toyota (out-of-province)",
         "url": "https://www.autotrader.ca/offers/toyota-sienna-xse-7-passenger-awd-gas-electric-hybrid-red-cat_ma70gr201468tr15479-dbb40f81-366f-40af-af0c-9581d9400319",
         "thumb": "",
-        "fetched_at": "2026-06-08T08:00:00"
+        "fetched_at": "2026-06-08T08:00:00",
+        "color": "Red"
       },
       {
         "source": "AutoTrader",
@@ -247,7 +264,8 @@
         "seller": "Sherwood Park Toyota (out-of-province)",
         "url": "https://www.autotrader.ca/offers/toyota-sienna-xse-awd-heated-seats-power-sunroof-gas-electric-hybrid-white-cat_ma70gr201468tr15479-78f0d833-626e-43b2-9d86-922f921278b7",
         "thumb": "",
-        "fetched_at": "2026-06-08T08:00:00"
+        "fetched_at": "2026-06-08T08:00:00",
+        "color": "White"
       }
     ]
   }

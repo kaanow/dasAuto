@@ -59,6 +59,7 @@
       <tr>
         <th>#</th>
         <th>Vehicle</th>
+        <th>Colour</th>
         <th>Km</th>
         <th>Source / Seller</th>
         <th class="sx-num">Sale</th>
@@ -72,10 +73,7 @@
       <tr class="sx-row {% if o.is_quote %}sx-row-quote{% endif %} {% if o.badges %}sx-row-has-badge{% endif %}">
         <td class="sx-rank">{{ loop.index }}</td>
         <td class="sx-vehicle">
-          <div class="sx-vehicle-name">
-            {{ o.year }} {{ o.trim }}
-            {% if o.color %}<span class="sx-color">· {{ o.color }}</span>{% endif %}
-          </div>
+          <div class="sx-vehicle-name">{{ o.year }} {{ o.trim }}</div>
           {% if o.badges %}
           <div class="sx-badges">
             {% for label, slug in o.badges %}
@@ -84,6 +82,14 @@
           </div>
           {% endif %}
           {% if o.note %}<div class="sx-note">{{ o.note }}</div>{% endif %}
+        </td>
+        <td class="sx-colour-cell">
+          {% if o.color %}
+          <span class="sx-swatch sx-swatch-{{ o.color | lower }}" title="{{ o.color }}"></span>
+          <span class="sx-color-label">{{ o.color }}</span>
+          {% else %}
+          <span class="sx-color-empty">—</span>
+          {% endif %}
         </td>
         <td class="sx-num">{% if o.km %}{{ "{:,}".format(o.km) }}{% else %}<span class="sx-zero-km">new</span>{% endif %}</td>
         <td class="sx-source">
@@ -186,7 +192,22 @@
 
 .sx-vehicle { min-width: 220px; }
 .sx-vehicle-name { font-weight: 700; color: var(--navy); font-size: .92rem; }
-.sx-color { font-weight: 400; color: var(--muted); font-size: .8rem; }
+
+.sx-colour-cell { white-space: nowrap; font-size: .82rem; }
+.sx-swatch { display: inline-block; width: 16px; height: 16px; border-radius: 50%;
+  vertical-align: middle; margin-right: .35rem; border: 1px solid rgba(0,0,0,.15);
+  box-shadow: inset 0 -1px 2px rgba(0,0,0,.1); }
+.sx-swatch-white  { background: #ffffff; }
+.sx-swatch-silver { background: linear-gradient(145deg, #d8d8d8, #b8b8b8); }
+.sx-swatch-grey   { background: #6c6f72; }
+.sx-swatch-gray   { background: #6c6f72; }
+.sx-swatch-black  { background: #1a1a1c; }
+.sx-swatch-red    { background: #c8202c; }
+.sx-swatch-blue   { background: #2b4f8a; }
+.sx-swatch-green  { background: #2d7d4e; }
+.sx-swatch-beige  { background: #d2bd92; }
+.sx-color-label   { color: var(--text); vertical-align: middle; }
+.sx-color-empty   { color: var(--muted); }
 
 .sx-badges { margin-top: .3rem; display: flex; flex-wrap: wrap; gap: .25rem; }
 .sx-badge { display: inline-block; padding: .12rem .5rem; border-radius: 10px;
