@@ -12,13 +12,21 @@ This file is the seed for everything else in this directory.
 
 ## Driving profile
 
-- Mostly Metro Vancouver day-to-day; regular Vancouver↔Interior corridor
-  trips (so range / refuel cadence and highway comfort matter).
+- **~15,300 km/year** (per original project brief, April 2026 — see
+  `PROJECT_BRIEF.md`). The cohort's TCO model is anchored at 15,000 km/yr,
+  essentially identical to the real number, so no scaling needed.
+- ~12 trips/year of 400–500 km on the Vancouver↔Kamloops↔100 Mile House
+  corridor — so range / refuel cadence and highway comfort matter.
+- Mostly Metro Vancouver day-to-day between those corridor runs.
 - Garage with home charging access (Tier 1 BC Hydro residential).
-- Occasional Forest Service Road (FSR) use — not hardcore overlanding,
-  but enough that ground clearance / AWD capability scores.
+- Occasional Forest Service Road (FSR) use — well-maintained roads only,
+  not hardcore overlanding. Ground clearance / AWD scores accordingly,
+  but per the brief FSR is *occasional summer only* so it carries a low
+  weight in the criteria table below.
 - Winter capability matters (Coquihalla, snow tires assumed).
 - Hitch + bike-rack compatibility is a nice-to-have, not a deal-breaker.
+- ICBC reference for the current 2007 CR-V baseline: basic + $2M 3PL =
+  **$1,017/year**. Project assumes ~$1,700/yr for a newer family vehicle.
 
 ## Budget & financial framing
 
