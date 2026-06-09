@@ -1,0 +1,28 @@
+{
+  "_doc": "The active dealer quote on a new 2026 Toyota Sienna LE AWD 8-Pass, captured live. Used by the /siennas comparison page. The 'A' line (the $783 sub-trim code) is per Toyota's order codes per the dealer — legit, not a markup. Weather Pro Pack + Dash Cam are per the dealer 'not negotiable' so they're included in the sale price for cross-shop purposes. Doc fee is at $990 (we'd push that down in real negotiation but show as-quoted here for honest cross-shop).",
+  "id": "sienna-new-le-quote",
+  "year": 2026,
+  "trim": "LE AWD 8-Pass",
+  "color": "Grey (Premium Paint)",
+  "dealer": "Local Toyota (active quote)",
+  "arrival_eta": "Late June – mid July 2026 (3–5 weeks from quote)",
+  "msrp_breakdown": {
+    "Sienna LE AWD 8-Pass (JRKE1C)": 51477.00,
+    "Sienna LE AWD 8-Pass option code A": 783.00,
+    "Premium Paint": 350.00,
+    "_total_msrp": 52610.00
+  },
+  "dealer_extras": {
+    "BC Weather Package — Pro Pack": 1988.00,
+    "BC Weather Package — Dash Camera": 600.00,
+    "Documentation Fee": 990.00,
+    "Air Conditioning Tax Recovery": 100.00,
+    "Advance Disposal Fee": 32.50,
+    "Toyota Canada Delivery (Truck/SUV)": 1930.00,
+    "All Weather Mats (free)": 0.00,
+    "Clean for Delivery (free)": 0.00,
+    "Warranty 12mo (free)": 0.00,
+    "_total_extras": 5640.50
+  },
+  "sale_price_before_tax": 58250.50
+}

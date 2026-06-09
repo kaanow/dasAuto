@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% block title %}Sienna AWD Hybrid — All Options Cross-Shop{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>Sienna AWD Hybrid — All Options</h1>
+  <p class="page-subtitle">
+    {{ options | length }} candidates · the active 2026 dealer quote + every dealer/private listing we've found
+    · All-in includes 5% GST + BC PST tier + ~$50 license
+    · Net 5/10yr = all-in + projected fuel + insurance + maintenance − estimated residual at hold-end
+  </p>
+</div>
+
+<table class="siennas-table">
+  <thead>
+    <tr>
+      <th><a href="?sort=year">Year/Trim</a></th>
+      <th>Source</th>
+      <th><a href="?sort=km">Km</a></th>
+      <th><a href="?sort=advertised">Advertised</a></th>
+      <th>+ Fees</th>
+      <th>Sale</th>
+      <th>PST tier</th>
+      <th><a href="?sort=all_in">All-in</a></th>
+      <th><a href="?sort=net_5yr">Net 5yr</a></th>
+      <th class="sort-active-col"><a href="?sort=net_10yr">Net 10yr ▼</a></th>
+      <th>Location / Seller</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for o in options %}
+    <tr class="{% if o.is_quote %}row-quote{% endif %} {% if loop.index <= 3 %}row-top{% endif %}">
+      <td class="cell-vehicle">
+        <strong>#{{ loop.index }} · {{ o.year }} {{ o.trim }}</strong>
+        {% if o.color %}<div class="cell-sub">{{ o.color }}</div>{% endif %}
+      </td>
+      <td class="cell-source">
+        <span class="src-{{ o.source|lower|replace(' ','-') }}">{{ o.source_icon }} {{ o.source }}</span>
+      </td>
+      <td class="cell-num">{% if o.km %}{{ "{:,}".format(o.km) }}{% else %}new{% endif %}</td>
+      <td class="cell-num">${{ "{:,.0f}".format(o.advertised) }}</td>
+      <td class="cell-num cell-fee">
+        {% if o.mandatory_fee %}+${{ "{:,.0f}".format(o.mandatory_fee) }}{% else %}—{% endif %}
+      </td>
+      <td class="cell-num">${{ "{:,.0f}".format(o.sale) }}</td>
+      <td class="cell-num">{{ (o.pst_rate * 100) | round | int }}%</td>
+      <td class="cell-num cell-allin">${{ "{:,.0f}".format(o.all_in) }}</td>
+      <td class="cell-num">${{ "{:,.0f}".format(o.net_5yr) }}</td>
+      <td class="cell-num cell-net">${{ "{:,.0f}".format(o.net_10yr) }}</td>
+      <td class="cell-sub">
+        <div>{{ o.location }}</div>
+        <div class="seller">{{ o.seller }}</div>
+        {% if o.url %}<a class="cell-link" href="{{ o.url }}" target="_blank" rel="noopener">view →</a>{% endif %}
+        {% if o.note %}<div class="cell-note">{{ o.note }}</div>{% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<div class="siennas-legend">
+  <p><strong>How to read this</strong>: <em>Net 10yr</em> is the total dollars out of pocket if you keep the vehicle for 10 years (purchase + fuel + insurance + projected maintenance, minus what you can resell it for at year 10). Sorted by Net 10yr ascending — top 3 highlighted in green. The dealer quote on the new 2026 LE is highlighted in blue and treats the Pro Pack + Dash Cam as mandatory per the dealer.</p>
+  <p>Assumptions: 15,000 km/yr driving (project default — confirm against your real km), Toyota in-warranty maint ~$1,000/yr, out-of-warranty ~$2,500–3,000/yr (higher past 200k km), residual = trim-adjusted retail less mileage penalty (10¢/km over 75k). Fuel and insurance ~$1,700/yr each. These are reasonable point estimates; relative ranking is much more stable than absolute numbers.</p>
+</div>
+
+<style>
+.siennas-table { width: 100%; border-collapse: collapse; background: white;
+  border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,.08);
+  font-size: .85rem; margin-bottom: 1.5rem; }
+.siennas-table th { background: var(--navy); color: white; padding: .6rem .5rem;
+  text-align: left; font-weight: 600; font-size: .8rem; white-space: nowrap; }
+.siennas-table th a { color: white; text-decoration: none; }
+.siennas-table th a:hover { text-decoration: underline; }
+.sort-active-col { background: #2E75B6; }
+.siennas-table td { padding: .55rem .5rem; border-top: 1px solid #f0f4f8;
+  vertical-align: top; }
+.cell-num { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.cell-fee { color: #856404; }
+.cell-allin { font-weight: 700; color: var(--navy); }
+.cell-net { font-weight: 700; color: var(--navy); background: #f5f8fb; }
+.cell-vehicle { min-width: 130px; }
+.cell-sub { font-size: .75rem; color: var(--muted); margin-top: .15rem; }
+.cell-note { font-size: .72rem; color: #856404; margin-top: .25rem;
+  background: #fff8e1; padding: .25rem .4rem; border-radius: 4px; }
+.cell-link { color: var(--blue); font-size: .78rem; font-weight: 600; }
+.seller { font-style: italic; }
+.row-top { background: #f0f9f0; }
+.row-top .cell-net { background: #d8eecc; color: #1a7c4f; }
+.row-quote { background: #e6f0fa; }
+.row-quote .cell-net { background: #c8defd; }
+.row-quote .cell-vehicle strong:after { content: " ← dealer quote"; color: var(--blue); }
+.siennas-legend { background: var(--white); border-radius: 8px;
+  padding: 1rem 1.2rem; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+.siennas-legend p { font-size: .82rem; margin: 0 0 .5rem 0; line-height: 1.5; color: var(--text); }
+.siennas-legend strong { color: var(--navy); }
+
+@media (max-width: 900px) {
+  .siennas-table { font-size: .75rem; display: block; overflow-x: auto; }
+  .siennas-table th, .siennas-table td { padding: .4rem .35rem; }
+}
+</style>
+{% endblock %}

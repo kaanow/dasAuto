@@ -533,6 +533,200 @@ def serve_image(vehicle_id, filename):
     return send_from_directory(IMAGES_DIR / vehicle_id, filename)
 
 
+# ── Sienna cross-shop view ─────────────────────────────────────────────────
+# Single-page comparison of every Sienna option (cohort entries omitted —
+# they're hypothetical; the listings + the active dealer quote are real).
+# Math runs in the route (not in the cohort engine) so each candidate's
+# warranty/km timeline is honestly modeled per-vehicle.
+
+def _bc_pst_rate(sale_price):
+    """BC luxury PST is a FLAT rate at price thresholds, applied to the
+    whole purchase price. Returns the rate as a decimal."""
+    if sale_price < 55000:       return 0.07
+    elif sale_price < 56000:     return 0.08
+    elif sale_price < 57000:     return 0.09
+    elif sale_price < 125000:    return 0.10
+    elif sale_price < 150000:    return 0.15
+    else:                        return 0.20
+
+def _bc_all_in(sale_price, license_fee=50):
+    pst_rate = _bc_pst_rate(sale_price)
+    gst = sale_price * 0.05
+    pst = sale_price * pst_rate
+    return {
+        "sale": sale_price,
+        "gst": gst,
+        "pst": pst,
+        "pst_rate": pst_rate,
+        "license": license_fee,
+        "all_in": sale_price + gst + pst + license_fee,
+    }
+
+def _sienna_residual(year_built, current_km, hold_years, trim):
+    """Estimate retail residual for a Sienna AWD Hybrid at hold-end. Trims
+    multiplier reflects typical resale ladder. Floor at $5,000."""
+    annual_km = 15000
+    end_km = current_km + hold_years * annual_km
+    end_age = (2026 - year_built) + hold_years
+    trim_mult = {"LE": 0.85, "XLE": 1.00, "XSE": 1.05,
+                 "XSE Technology": 1.10, "Limited": 1.15, "Platinum": 1.25}.get(trim, 1.00)
+    # Baseline XLE retail vs age (rough $ floor-curve)
+    base = max(5000, 55000 * (0.90 ** min(end_age, 3)) * (0.95 ** max(0, end_age - 3)))
+    # Mileage penalty: $0.10/km over 75k
+    km_penalty = max(0, (end_km - 75000) * 0.10)
+    return max(5000, base * trim_mult - km_penalty)
+
+def _sienna_maint(year_built, current_km, hold_years):
+    """Year-by-year maintenance, sensitive to which of the three warranty
+    tiers (basic / system / battery) is active. Toyota ratios: ~$1,000 in,
+    ~$2,500 OOW, +$500 high-km premium past 200k."""
+    annual_km = 15000
+    age_at_buy = 2026 - year_built
+    total = 0
+    for n in range(hold_years):
+        age = age_at_buy + n
+        km = current_km + (n + 1) * annual_km
+        battery_active = (age < 10) and (km < 240000)
+        system_active  = (age < 8)  and (km < 160000)
+        if system_active:
+            total += 1000   # in-warranty era
+        elif battery_active:
+            total += 2200   # past system warranty but battery still covers worst case
+        else:
+            total += 2700   # fully OOW
+            if km > 200000: total += 500
+            if age > 10:    total += 300
+    return total
+
+def _sienna_5_10(option):
+    """Compute net 5-yr and 10-yr cost for a Sienna option dict."""
+    annual_fuel = 1700
+    annual_ins  = 1700
+    out = dict(option)
+    for hold in (5, 10):
+        residual = _sienna_residual(option["year"], option["km"], hold, option["trim"])
+        maint    = _sienna_maint(option["year"], option["km"], hold)
+        fuel = hold * annual_fuel
+        ins  = hold * annual_ins
+        net  = option["all_in"] + fuel + ins + maint - residual
+        out[f"residual_{hold}yr"] = residual
+        out[f"maint_{hold}yr"]    = maint
+        out[f"fuel_{hold}yr"]     = fuel
+        out[f"ins_{hold}yr"]      = ins
+        out[f"net_{hold}yr"]      = net
+    return out
+
+@app.route("/siennas")
+def siennas():
+    """Cross-shop table for every Sienna AWD Hybrid option — real listings
+    plus the active dealer quote on the new 2026 LE. No hypothetical cohort
+    entries."""
+    options = []
+
+    # 1) Listings from manual_listings.json (sienna-used, bc scope)
+    bundle = get_manual_listings("sienna-used", "bc")
+    if bundle:
+        for l in bundle["listings"]:
+            # Parse the visual strings back into structured fields
+            try:
+                year = int(l["year"])
+                km = int(l["km"].replace("km", "").replace(",", "").strip())
+                sale_str = l["price"].replace("$", "").replace(",", "").strip()
+                if not sale_str.replace(".", "").isdigit():
+                    continue  # "Please Contact" etc.
+                sale_advertised = float(sale_str)
+            except Exception:
+                continue
+
+            # Mandatory fees that get added to the sale price before tax.
+            # Pulled from the per-listing _note where we captured them.
+            mandatory_fee = 0
+            note = (l.get("_note") or "").lower()
+            if "1,298" in note or "1298" in note: mandatory_fee = 1298
+            elif "595 doc" in note: mandatory_fee = 595
+            else:
+                # AT listings: assume dealer doc fee ~$895 unless flagged
+                # (this matches Metro Van Toyota-dealer norm; Audi $895,
+                # Destination $895, OpenRoad $895, Jim Pattison $895)
+                if l["source"] == "AutoTrader" and "ON" not in l["location"] \
+                   and "NS" not in l["location"] and "AB" not in l["location"]:
+                    mandatory_fee = 895
+                else:
+                    mandatory_fee = 0  # out-of-province, treat as as-listed
+
+            # Derive trim from title
+            title_lower = l["title"].lower()
+            if "limited" in title_lower:           trim = "Limited"
+            elif "xse technology" in title_lower or "xse tech" in title_lower: trim = "XSE Technology"
+            elif "xse" in title_lower:             trim = "XSE"
+            elif "xle" in title_lower:             trim = "XLE"
+            elif "le " in title_lower or title_lower.endswith("le"): trim = "LE"
+            else:                                  trim = "XLE"
+
+            sale = sale_advertised + mandatory_fee
+            pricing = _bc_all_in(sale)
+            options.append(_sienna_5_10({
+                "id": f"listing-{l['url'][-20:]}",
+                "source": l["source"],
+                "source_icon": l["source_icon"],
+                "year": year,
+                "trim": trim,
+                "km": km,
+                "color": "",
+                "location": l["location"],
+                "seller": l["seller"],
+                "url": l["url"],
+                "advertised": sale_advertised,
+                "mandatory_fee": mandatory_fee,
+                "sale": sale,
+                "gst": pricing["gst"],
+                "pst": pricing["pst"],
+                "pst_rate": pricing["pst_rate"],
+                "all_in": pricing["all_in"],
+                "note": l.get("_note", ""),
+                "is_quote": False,
+            }))
+
+    # 2) The active 2026 dealer quote
+    quote_path = DATA_DIR / "sienna_quote_2026.json"
+    if quote_path.exists():
+        with open(quote_path) as f:
+            q = json.load(f)
+        pricing = _bc_all_in(q["sale_price_before_tax"])
+        options.append(_sienna_5_10({
+            "id": q["id"],
+            "source": "Dealer Quote",
+            "source_icon": "📝",
+            "year": q["year"],
+            "trim": q["trim"].split()[0],   # "LE" from "LE AWD 8-Pass"
+            "km": 0,
+            "color": q.get("color", ""),
+            "location": "BC (active quote)",
+            "seller": q["dealer"] + " — incl. mandatory Pro Pack + Dash Cam per dealer",
+            "url": "",
+            "advertised": q["msrp_breakdown"]["_total_msrp"],
+            "mandatory_fee": q["dealer_extras"]["_total_extras"],
+            "sale": q["sale_price_before_tax"],
+            "gst": pricing["gst"],
+            "pst": pricing["pst"],
+            "pst_rate": pricing["pst_rate"],
+            "all_in": pricing["all_in"],
+            "note": f"Arrival ETA: {q['arrival_eta']}",
+            "is_quote": True,
+            "msrp_breakdown": q["msrp_breakdown"],
+            "dealer_extras": q["dealer_extras"],
+        }))
+
+    # Default sort: 10-yr net cost ascending
+    sort_by = request.args.get("sort", "net_10yr")
+    valid = {"net_5yr", "net_10yr", "all_in", "km", "year", "advertised"}
+    if sort_by not in valid: sort_by = "net_10yr"
+    reverse = sort_by == "year"  # newest first for year sort
+    options.sort(key=lambda o: o.get(sort_by, 0), reverse=reverse)
+
+    return render_template("siennas.html", options=options, sort_by=sort_by)
+
+
 @app.route("/api/vehicles")
 def api_vehicles():
     weights = parse_weights(request.args)

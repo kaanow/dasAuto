@@ -3,12 +3,40 @@
   "sienna-used": {
     "scope": "bc",
     "scope_label": "All of BC",
-    "fetched_at": "2026-06-08T08:00:00",
+    "fetched_at": "2026-06-08T18:00:00",
     "count_at": 12,
-    "count_cl": 0,
+    "count_cl": 2,
     "blocked_warning": false,
-    "curated_note": "AWD Hybrid only, any vintage (4th-gen Sienna 2021+ — AWD never offered on pre-2021 hybrid). Researched 2026-06-08 from AutoTrader.ca (BC + national for 2023s). The wildcard this week: 2024 Limited AWD at $48,995 / 43k km — Jim Pattison Northshore. Cross-shop against the dealer quote on the new 2026 LE.",
+    "curated_note": "AWD Hybrid only, any vintage (4th-gen Sienna 2021+ — AWD never offered on pre-2021 hybrid). Researched 2026-06-08 from AutoTrader.ca (BC + national for 2023s) + 2 Facebook Marketplace dealer listings (Jacky Chuen dealer #7826 + Juju Junior Kong dealer #01078) that don't cross-post to AT.",
     "listings": [
+      {
+        "source": "Facebook",
+        "source_icon": "📘",
+        "title": "2022 Toyota Sienna XSE Technology AWD — Red, 1 owner, 1 minor claim",
+        "year": 2022,
+        "price": "$50,499",
+        "km": "64,400 km",
+        "location": "Burnaby",
+        "seller": "Jacky Chuen (dealer #7826) — Facebook Marketplace",
+        "url": "https://www.facebook.com/marketplace/item/?dealer=7826",
+        "thumb": "",
+        "fetched_at": "2026-06-08T18:00:00",
+        "_note": "Mandatory $1,298 dealership fee on top of advertised; 90-day powertrain warranty + 1yr tire&wheel included. One disclosed claim ($2,800)."
+      },
+      {
+        "source": "Facebook",
+        "source_icon": "📘",
+        "title": "2025 Toyota Sienna LE AWD 8-Pass — Silver, clean title",
+        "year": 2025,
+        "price": "$53,499",
+        "km": "34,918 km",
+        "location": "Richmond",
+        "seller": "Juju Junior Kong (dealer #01078) — Facebook Marketplace",
+        "url": "https://www.facebook.com/marketplace/item/?dealer=01078",
+        "thumb": "",
+        "fetched_at": "2026-06-08T18:00:00",
+        "_note": "Mandatory $595 doc fee on top of advertised; clean title, 65 Marketplace rating, dealer joined FB 2023. Notably cheaper than the OpenRoad 2025 LE comparable."
+      },
       {
         "source": "AutoTrader",
         "source_icon": "🚗",
