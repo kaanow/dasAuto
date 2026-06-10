@@ -61,3 +61,23 @@ upgrades justify their premium.
   volume) + CNAME `brudersauto.alti2.de`. Dashboard action for the user.
 - **Cross-shop** — deferred until Theo converges on a nameplate (per
   `docs/multi_family_todo.md`).
+
+## 2026-06-10 — Real-pricing audit, Tesla trim, EV-rebate research
+
+After scraping real BC market prices + new-car MSRP for the whole cohort:
+
+- **Price audit.** Corrected 10 base prices to the real market/MSRP: Model Y
+  new $62k→$64,990 (Tesla Premium AWD), Model 3 new $54k→$49,990 (Shanghai
+  price cut), Ioniq 5 $57k→$59,800, Ioniq 6 $53k→$54k, Bolt used $29k→$27,500,
+  RAV4 Hybrid $46k→$47k, Prius Prime $44k→$40k, Niro used $34k→$30k, CR-V
+  Hybrid $48k→$50k, Corolla Hybrid $32k→$33k. Ranking shifted accordingly —
+  Prius Prime up to ~#3, Niro PHEV into the top 10.
+- **Tesla trim.** New Model Y / Model 3 pages now show a single AWD trim
+  (Premium AWD) matching the cohort entry, not the full RWD/Performance range.
+- **EV rebates.** Researched and documented in `tco_research.md`. Net impact
+  on this cohort ≈ **$0**: BC's CleanBC rebate ended Nov 2025; the federal
+  EVAP (Feb 2026, $5k BEV / $2.5k PHEV) is new-only, capped at $50k, FTA-built,
+  and a curated list that excludes Tesla. Every cohort entry is excluded
+  (used, conventional-hybrid, over-cap, or China-built). Prius Prime is the
+  lone on-paper fit ($2,500) but Toyota's EVAP-list status is unconfirmed, so
+  it is **not** baked into TCO — flagged to confirm at purchase.

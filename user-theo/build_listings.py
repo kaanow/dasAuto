@@ -18,26 +18,22 @@ ENTRIES = {
   # ── Tesla: sold direct — show current Tesla Canada MSRP by trim ──────────
   "tesla-model-y-new": {"search": "https://www.tesla.com/en_ca/modely",
     "source": "Tesla.com", "icon": "⚡", "direct": True,
-    "note": "Tesla sells new direct — current Tesla Canada MSRP by trim (Tesla.com, "
-            "June 2026), before tax/fees. New Model Ys aren't listed on AutoTrader; "
-            "see the used Model Y entry for the resale market.",
+    "note": "Tesla sells new direct — current Tesla Canada MSRP (Tesla.com, June 2026), "
+            "before tax/fees. Matched to the AWD trim that fits the brief; new Teslas "
+            "aren't on AutoTrader. See the used Model Y entry for the resale market.",
     "rows": [
-      (2026, "Model Y Standard RWD", 49990, 0, "Tesla.com — direct order", "Tesla Canada"),
-      (2026, "Model Y Premium AWD (Long Range) — 542 km", 64990, 0, "Tesla.com — direct order", "Tesla Canada"),
-      (2026, "Model Y Performance AWD — 494 km", 74990, 0, "Tesla.com — direct order", "Tesla Canada")]},
+      (2026, "Model Y Premium AWD (Long Range) — 542 km", 64990, 0, "Tesla.com — direct order", "Tesla Canada")]},
   "tesla-model-y-used": {"search": used_url("tesla","Model+Y"), "note": None, "rows": [
       (2024, "Model Y Long Range Dual Motor", 43997, 47425, "Surrey", "Go North Surrey GM"),
       (2022, "Model Y Performance AWD", 42995, 74383, "New Westminster", "Key West Ford"),
       (2021, "Model Y Long Range AWD", 38798, 51954, "Vancouver", "Go Downtown Kia")]},
   "tesla-model-3-new": {"search": "https://www.tesla.com/en_ca/model3",
     "source": "Tesla.com", "icon": "⚡", "direct": True,
-    "note": "Tesla sells new direct — current Tesla Canada MSRP by trim (Tesla.com, "
-            "June 2026), before tax/fees. The RWD is Shanghai-built and does not qualify "
-            "for the federal iZEV rebate. See the used Model 3 entry for the resale market.",
+    "note": "Tesla sells new direct — current Tesla Canada MSRP (Tesla.com, June 2026), "
+            "before tax/fees. Matched to the AWD trim that fits the brief. Tesla is not on "
+            "the federal EVAP rebate list. See the used Model 3 entry for the resale market.",
     "rows": [
-      (2026, "Model 3 Premium RWD — 463 km", 39490, 0, "Tesla.com — direct order", "Tesla Canada"),
-      (2026, "Model 3 Premium AWD (Long Range) — 572 km", 49990, 0, "Tesla.com — direct order", "Tesla Canada"),
-      (2026, "Model 3 Performance — 478 km", 74990, 0, "Tesla.com — direct order", "Tesla Canada")]},
+      (2026, "Model 3 Premium AWD (Long Range) — 572 km", 49990, 0, "Tesla.com — direct order", "Tesla Canada")]},
   "tesla-model-3-used": {"search": used_url("tesla","Model+3"), "note": None, "rows": [
       (2024, "Model 3 Premium RWD", 41998, 37623, "Burnaby", "Destination Toyota"),
       (2023, "Model 3 RWD (local 1-owner)", 32995, 51130, "Richmond", "Volvo Cars Richmond"),

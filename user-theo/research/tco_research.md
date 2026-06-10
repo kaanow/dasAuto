@@ -91,3 +91,43 @@ cliff). New BEV/PHEV traction battery = 8 yr; Toyota/Lexus hybrid battery =
 ~$700–900; ICE/PHEV ~$900–1,400). `maint_oow_per_year` left to the
 brand×powertrain ratio map (`vehicle-app/repair_ratios.json`) unless a
 specific car warrants an explicit age/km premium.
+
+## EV / PHEV purchase rebates (researched 2026-06-10)
+
+**Net effect on this cohort: ~$0.** Both programs that could apply exclude
+essentially every entry. Captured here so it isn't re-litigated.
+
+### BC provincial — CleanBC Go Electric
+
+**Ended November 2025.** No provincial purchase rebate is available to BC
+buyers in 2026. (Was up to $4,000 BEV / $2,000 lower-range PHEV, income-tested.)
+
+### Federal — Electric Vehicle Affordability Program (EVAP)
+
+Launched 2026-02-16; runs to 2031 or until funds run out (first-come basis).
+- **Amounts (2026):** $5,000 BEV/FCEV · **$2,500 PHEV** (both decline yearly).
+- **New only** — used purchases do not qualify.
+- **Final-transaction-value cap $50,000** (base + options + fees, excl. tax/
+  incentives). Canadian-built vehicles are exempt from the cap.
+- **Country of manufacture:** must be built in Canada or an FTA partner. China
+  is not an FTA partner, so Chinese-built EVs are excluded.
+- **Curated list** (Transport Canada EVAP vehicle list) — a model qualifies
+  only if explicitly listed. **Tesla is not on the list at all.**
+
+### Applying the rules to Theo's cohort
+
+| Reason excluded | Vehicles |
+|---|---|
+| Used (EVAP is new-only) | Model Y used, Model 3 used, EV6, Bolt EUV, ID.4, Niro PHEV, Tucson PHEV |
+| Not a BEV/PHEV (conventional hybrid/ICE) | RAV4 Hybrid, CR-V Hybrid, Corolla Hybrid, Prius, CX-5 |
+| New BEV over the $50k cap | Model Y AWD ($65k), Ioniq 5 AWD ($60k), Ioniq 6 ($54k), RAV4 Prime ($58k) |
+| Tesla not on the EVAP list / China-built | Model 3 new |
+
+**The one to watch: Prius Prime (new).** It's the only cohort entry that fits
+the rules on paper — new PHEV, Japan-built (CPTPP FTA), trims ($34k–47k) under
+the $50k cap → would be worth **$2,500**. But Toyota's presence on the EVAP
+list is unconfirmed, so the rebate is **not** baked into its TCO. If a buyer
+confirms the Prius Prime (or a new sub-$50k Niro PHEV) is EVAP-listed at
+purchase, subtract $2,500 from its net cost. The only cohort *nameplate* on
+the current list is the new 2027 Chevrolet Bolt ($5,000 BEV) — but Theo's Bolt
+is used, so it doesn't apply.
