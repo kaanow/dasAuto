@@ -1,8 +1,8 @@
 {
-  "site_name": "Bruder's Auto",
-  "short_name": "Bruder's Auto",
-  "region_label": "BC",
+  "site_name": "Theo finds a different car",
+  "short_name": "Different car",
+  "region_label": "Kamloops, BC",
   "region_code": "BC",
-  "insurance_ref": "",
+  "insurance_ref": "ICBC Territory L, class 003, CDF 0.686",
   "data_sources": "AutoTrader.ca, CarGurus.ca"
 }
