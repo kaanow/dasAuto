@@ -466,13 +466,16 @@ def vehicle_detail(vehicle_id):
     # the current horizon (TCO breakdown, fuel/maint/ins/resid, on-road).
     v = v_ranked
 
-    # Always show curated listings; merge with the live cache if one
-    # exists so refreshing genuinely adds entries rather than replacing
-    # the curated set.
-    listings_data = merge_listings(
-        get_cached_listings(vehicle_id, scope),
-        get_manual_listings(vehicle_id, scope),
-    )
+    # Always show curated listings. For USED vehicles, merge with the live
+    # cache if one exists so refreshing genuinely adds entries. For NEW
+    # vehicles, show ONLY the curated (new dealer inventory) — the live
+    # AutoTrader scrape is condition-agnostic and returns used cars, which
+    # would pollute a new-vehicle page.
+    manual = get_manual_listings(vehicle_id, scope)
+    if v.get("new_used") == "New":
+        listings_data = manual
+    else:
+        listings_data = merge_listings(get_cached_listings(vehicle_id, scope), manual)
 
     favs = get_favourites()
     note = get_note(vehicle_id)
@@ -524,6 +527,11 @@ def get_listings(vehicle_id):
                   at_url=at_url, cl_url=cl_url, deep_links_default=dl)
 
     manual = get_manual_listings(vehicle_id, scope)
+    # New vehicles: show curated new dealer inventory only. The live scrape is
+    # condition-agnostic (returns used), so never merge/refresh it onto a new
+    # vehicle — even on an explicit refresh.
+    if v.get("new_used") == "New":
+        return render_template("partials/listings.html", listings_data=manual, **ctx)
     if not force:
         cached = get_cached_listings(vehicle_id, scope)
         if cached or manual:
