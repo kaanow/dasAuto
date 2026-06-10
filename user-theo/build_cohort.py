@@ -45,6 +45,18 @@ def on_road(pretax, fees=700):
 def resid_10yr(pretax, factor):
     return int(round(pretax * factor, -2))
 
+# DC fast-charge per BEV: (minutes to add 200 km, peak DC rate kW) at the
+# optimal BC fast charger. "Optimal" = a Tesla Supercharger for Teslas, or a
+# 350 kW Electrify Canada / BC Hydro unit for the rest — the car draws up to
+# its own peak. The 800V Hyundai/Kia (235 kW) and Teslas (250 kW) are quickest;
+# the Bolt (55 kW) is the cohort's slow outlier; the ID.4 sits in between.
+CHARGE_200KM = {
+    "tesla-model-y-new":  (12, 250), "tesla-model-y-used": (13, 250),
+    "tesla-model-3-new":  (12, 250), "tesla-model-3-used": (13, 250),
+    "ioniq5-new": (11, 235), "ev6-used": (11, 235), "ioniq6-new": (10, 235),
+    "bolt-euv-used": (38, 55), "id4-used": (25, 135),
+}
+
 # Per-vehicle research table. cons units per fuel_10yr(). scores: 8 qualitative
 # (tco is computed at runtime). resid = 10-yr residual as fraction of pretax.
 COHORT = [
@@ -246,6 +258,8 @@ def build():
         }
         if "oow" in v:
             entry["maint_oow_per_year"] = v["oow"]
+        if v["id"] in CHARGE_200KM:
+            entry["charge_200km_min"], entry["charge_kw"] = CHARGE_200KM[v["id"]]
         # baseline keep-car: on_road IS the resale (opportunity cost), no tax
         if v["id"] == "corolla-2018-current":
             entry["on_road"] = 17000

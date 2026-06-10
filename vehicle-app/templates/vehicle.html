@@ -91,6 +91,13 @@
         <span class="spec-label">Range</span>
         <span class="spec-val">{{ v.specs.range_km }}</span>
       </div>
+      {% if v.charge_200km_min %}
+      <div class="spec-item">
+        <span class="spec-label">Fast charge ⚡</span>
+        <span class="spec-val">+200 km in {{ v.charge_200km_min }} min
+          <span class="spec-sub">@ ~{{ v.charge_kw }} kW DC (BC's fastest)</span></span>
+      </div>
+      {% endif %}
       <div class="spec-item">
         <span class="spec-label">Clearance</span>
         <span class="spec-val">{{ v.specs.clearance_mm }} mm</span>

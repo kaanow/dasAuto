@@ -80,6 +80,9 @@
       <span class="spec-pill">{{ v.specs.fuel_economy }}</span>
       <span class="spec-pill">{{ v.specs.clearance_mm }} mm</span>
       <span class="spec-pill">{{ v.specs.seats }} seats</span>
+      {% if v.charge_200km_min %}
+      <span class="spec-pill charge-pill" title="Minutes to add 200 km at BC's fastest fast charger (~{{ v.charge_kw }} kW DC)">⚡ +200 km · {{ v.charge_200km_min }} min</span>
+      {% endif %}
       {% if v.caution %}
       <span class="spec-pill caution-pill">⚠ Note</span>
       {% endif %}

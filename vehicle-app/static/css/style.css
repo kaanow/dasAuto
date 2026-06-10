@@ -216,6 +216,8 @@ input, select, textarea { font-family: inherit; }
 .spec-pill  { font-size: .7rem; padding: 2px 8px; background: var(--lt-blue);
   color: var(--navy); border-radius: 12px; font-weight: 500; }
 .caution-pill { background: #fff3cd; color: #856404; }
+.charge-pill { background: #103a2e; color: #6ee7a8; font-weight: 700; }
+.spec-sub { display: block; font-size: .72rem; font-weight: 400; color: var(--muted); }
 
 /* ── Detail page ──────────────────────────────────────────────────────────── */
 .detail-layout { display: grid; grid-template-columns: 1fr 360px; gap: 1.5rem;

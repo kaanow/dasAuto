@@ -48,7 +48,9 @@
     "cr_url": "https://www.craigslist.org/search/cta?query=tesla+model+y",
     "warranty_years_remaining": 8,
     "maint_in_per_year": 550,
-    "active": true
+    "active": true,
+    "charge_200km_min": 12,
+    "charge_kw": 250
   },
   {
     "id": "tesla-model-y-used",
@@ -99,7 +101,9 @@
     "cr_url": "https://www.craigslist.org/search/cta?query=tesla+model+y",
     "warranty_years_remaining": 6,
     "maint_in_per_year": 600,
-    "active": true
+    "active": true,
+    "charge_200km_min": 13,
+    "charge_kw": 250
   },
   {
     "id": "tesla-model-3-used",
@@ -150,7 +154,9 @@
     "cr_url": "https://www.craigslist.org/search/cta?query=tesla+model+3",
     "warranty_years_remaining": 6,
     "maint_in_per_year": 550,
-    "active": true
+    "active": true,
+    "charge_200km_min": 13,
+    "charge_kw": 250
   },
   {
     "id": "tesla-model-3-new",
@@ -201,7 +207,9 @@
     "cr_url": "https://www.craigslist.org/search/cta?query=tesla+model+3",
     "warranty_years_remaining": 8,
     "maint_in_per_year": 550,
-    "active": true
+    "active": true,
+    "charge_200km_min": 12,
+    "charge_kw": 250
   },
   {
     "id": "ioniq5-new",
@@ -252,7 +260,9 @@
     "cr_url": "https://www.craigslist.org/search/cta?query=hyundai+ioniq+5",
     "warranty_years_remaining": 8,
     "maint_in_per_year": 550,
-    "active": true
+    "active": true,
+    "charge_200km_min": 11,
+    "charge_kw": 235
   },
   {
     "id": "ev6-used",
@@ -303,7 +313,9 @@
     "cr_url": "https://www.craigslist.org/search/cta?query=kia+ev6",
     "warranty_years_remaining": 6,
     "maint_in_per_year": 550,
-    "active": true
+    "active": true,
+    "charge_200km_min": 11,
+    "charge_kw": 235
   },
   {
     "id": "ioniq6-new",
@@ -354,7 +366,9 @@
     "cr_url": "https://www.craigslist.org/search/cta?query=hyundai+ioniq+6",
     "warranty_years_remaining": 8,
     "maint_in_per_year": 520,
-    "active": true
+    "active": true,
+    "charge_200km_min": 10,
+    "charge_kw": 235
   },
   {
     "id": "bolt-euv-used",
@@ -405,7 +419,9 @@
     "cr_url": "https://www.craigslist.org/search/cta?query=chevrolet+bolt+euv",
     "warranty_years_remaining": 6,
     "maint_in_per_year": 500,
-    "active": true
+    "active": true,
+    "charge_200km_min": 38,
+    "charge_kw": 55
   },
   {
     "id": "id4-used",
@@ -456,7 +472,9 @@
     "cr_url": "https://www.craigslist.org/search/cta?query=volkswagen+id.4",
     "warranty_years_remaining": 6,
     "maint_in_per_year": 650,
-    "active": true
+    "active": true,
+    "charge_200km_min": 25,
+    "charge_kw": 135
   },
   {
     "id": "rav4-prime-new",
