@@ -153,8 +153,59 @@
     "active": true
   },
   {
-    "id": "ioniq5-new",
+    "id": "tesla-model-3-new",
     "rank": 4,
+    "name": "Tesla Model 3 Long Range AWD",
+    "short_name": "Model 3 LR (new)",
+    "make": "Tesla",
+    "model": "Model 3",
+    "powertrain": "BEV (dual-motor AWD)",
+    "powertrain_type": "bev",
+    "new_used": "New",
+    "years": "2026",
+    "weighted_score": 0.0,
+    "tco_score": 3.0,
+    "tco_value": 0,
+    "on_road": 61180,
+    "pretax": 54000,
+    "fuel_10yr": 2900.0,
+    "ins_10yr": 25300.0,
+    "resid_10yr": 18400,
+    "scores": {
+      "tco": 3.0,
+      "car_seat_fit": 4,
+      "cargo": 3,
+      "third_row": 1,
+      "corridor": 4,
+      "hitch": 1,
+      "reliability": 4,
+      "winter": 4,
+      "fsr": 1
+    },
+    "specs": {
+      "fuel_economy": "14.7 kWh/100km",
+      "range_km": "~520 km",
+      "clearance_mm": 138,
+      "towing_lbs": 0,
+      "cargo_l": 594,
+      "seats": 5,
+      "third_row_legroom": "none"
+    },
+    "why": "The efficiency benchmark, brought new: the updated 'Highland' Model 3 is the lowest-consumption car in the cohort, so the cheapest to run on home charging, with a frunk, a deep trunk, dual-motor AWD for winter and Supercharger access. The most efficient way into a brand-new EV.",
+    "tradeoffs": "Sedan cargo and low clearance work against the cargo priority and rough-road use. No CarPlay/Android Auto. The 800 km trip needs one fast-charge stop. Costs more than the very-similar used Model 3.",
+    "caution": null,
+    "at_make": "tesla",
+    "at_model": "model+3",
+    "at_years": "2024,2026",
+    "at_status": "",
+    "cr_url": "https://www.craigslist.org/search/cta?query=tesla+model+3",
+    "warranty_years_remaining": 8,
+    "maint_in_per_year": 550,
+    "active": true
+  },
+  {
+    "id": "ioniq5-new",
+    "rank": 5,
     "name": "Hyundai Ioniq 5 AWD",
     "short_name": "Ioniq 5 (new)",
     "make": "Hyundai",
@@ -205,7 +256,7 @@
   },
   {
     "id": "ev6-used",
-    "rank": 5,
+    "rank": 6,
     "name": "Kia EV6 AWD (2022-23)",
     "short_name": "EV6 (used)",
     "make": "Kia",
@@ -256,7 +307,7 @@
   },
   {
     "id": "ioniq6-new",
-    "rank": 6,
+    "rank": 7,
     "name": "Hyundai Ioniq 6 Long Range RWD",
     "short_name": "Ioniq 6 (new)",
     "make": "Hyundai",
@@ -307,7 +358,7 @@
   },
   {
     "id": "bolt-euv-used",
-    "rank": 7,
+    "rank": 8,
     "name": "Chevrolet Bolt EUV (2022-23)",
     "short_name": "Bolt EUV (used)",
     "make": "Chevrolet",
@@ -358,7 +409,7 @@
   },
   {
     "id": "id4-used",
-    "rank": 8,
+    "rank": 9,
     "name": "Volkswagen ID.4 AWD (2022-23)",
     "short_name": "ID.4 (used)",
     "make": "Volkswagen",
@@ -409,7 +460,7 @@
   },
   {
     "id": "rav4-prime-new",
-    "rank": 9,
+    "rank": 10,
     "name": "Toyota RAV4 Plug-in Hybrid AWD",
     "short_name": "RAV4 Prime (new)",
     "make": "Toyota",
@@ -460,7 +511,7 @@
   },
   {
     "id": "prius-prime-new",
-    "rank": 10,
+    "rank": 11,
     "name": "Toyota Prius Prime",
     "short_name": "Prius Prime (new)",
     "make": "Toyota",
@@ -511,7 +562,7 @@
   },
   {
     "id": "niro-phev-used",
-    "rank": 11,
+    "rank": 12,
     "name": "Kia Niro PHEV (2022-23)",
     "short_name": "Niro PHEV (used)",
     "make": "Kia",
@@ -562,7 +613,7 @@
   },
   {
     "id": "tucson-phev-used",
-    "rank": 12,
+    "rank": 13,
     "name": "Hyundai Tucson PHEV AWD (2022-23)",
     "short_name": "Tucson PHEV (used)",
     "make": "Hyundai",
@@ -613,7 +664,7 @@
   },
   {
     "id": "rav4-hybrid-new",
-    "rank": 13,
+    "rank": 14,
     "name": "Toyota RAV4 Hybrid AWD",
     "short_name": "RAV4 Hybrid (new)",
     "make": "Toyota",
@@ -664,7 +715,7 @@
   },
   {
     "id": "crv-hybrid-new",
-    "rank": 14,
+    "rank": 15,
     "name": "Honda CR-V Hybrid AWD",
     "short_name": "CR-V Hybrid (new)",
     "make": "Honda",
@@ -715,7 +766,7 @@
   },
   {
     "id": "corolla-hybrid-new",
-    "rank": 15,
+    "rank": 16,
     "name": "Toyota Corolla Hybrid AWD",
     "short_name": "Corolla Hybrid (new)",
     "make": "Toyota",
@@ -766,7 +817,7 @@
   },
   {
     "id": "prius-new",
-    "rank": 16,
+    "rank": 17,
     "name": "Toyota Prius AWD-e",
     "short_name": "Prius (new)",
     "make": "Toyota",
@@ -817,7 +868,7 @@
   },
   {
     "id": "mazda-cx5-new",
-    "rank": 17,
+    "rank": 18,
     "name": "Mazda CX-5 GS-L AWD",
     "short_name": "CX-5 (new)",
     "make": "Mazda",
@@ -868,7 +919,7 @@
   },
   {
     "id": "outback-used",
-    "rank": 18,
+    "rank": 19,
     "name": "Subaru Outback AWD (2022-23)",
     "short_name": "Outback (used)",
     "make": "Subaru",
@@ -919,7 +970,7 @@
   },
   {
     "id": "corolla-2018-current",
-    "rank": 19,
+    "rank": 20,
     "name": "2018 Toyota Corolla LE (current car)",
     "short_name": "2018 Corolla (current)",
     "make": "Toyota",
