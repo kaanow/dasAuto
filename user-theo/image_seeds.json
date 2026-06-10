@@ -44,37 +44,42 @@
     "id": "tesla-model-y-used",
     "images": [
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/8/86/BMW_i3_%26_Tesla_Model_Y_CRI_12_2021_2351.jpg",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Tesla_Model_Y_L_002.jpg",
         "type": "exterior",
-        "caption": "BMW i3 & Tesla Model Y CRI 12 2021 2351"
+        "caption": "Tesla Model Y L 002"
       },
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/6/68/Tesla_Model_S._cool_paint_job%21_IMG_1506.jpg",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/6/63/Tesla_Model_Y_L_003.jpg",
         "type": "exterior",
-        "caption": "Tesla Model S. cool paint job! IMG 1506"
+        "caption": "Tesla Model Y L 003"
       },
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/8/81/Tesla_roadshow_during_The_Great_Bay_Fiesta.jpg",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/b/bb/Tesla_Model_Y_facelift_002.jpg",
         "type": "exterior",
-        "caption": "Tesla roadshow during The Great Bay Fiesta"
+        "caption": "Tesla Model Y facelift 002"
       },
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/8/86/2022_01_03_9477-07_electric_car_towing_a_trailer.jpg",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Tesla_Model_Y_facelift_003.jpg",
         "type": "exterior",
-        "caption": "2022 01 03 9477-07 electric car towing a trailer"
+        "caption": "Tesla Model Y facelift 003"
       },
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/2/26/%27Tesla%27_Obere_Tagfahrleuchte_f%C3%BCr_Kraftfahrzeuge_Nr._21_2021_000_172_Vadim_Chuprina.jpg",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/2/20/Tesla_Model_Y_facelift_001.jpg",
         "type": "exterior",
-        "caption": "'Tesla' Obere Tagfahrleuchte f\u00fcr Kraftfahrzeuge Nr. 21 2021 000 172 Vadim Chuprina"
+        "caption": "Tesla Model Y facelift 001"
       },
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/c/c4/Lades%C3%A4ule_f%C3%BCr_Elektroautos_20221009_HOF05495_RAW-Export_20221010005374cens.png",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Tesla_Model_Y_L_004.jpg",
         "type": "exterior",
-        "caption": "Lades\u00e4ule f\u00fcr Elektroautos 20221009 HOF05495 RAW-Export 20221010005374cens"
+        "caption": "Tesla Model Y L 004"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/6/68/Tesla_Model_Y_CRI_12_2021_2487.jpg",
+        "type": "exterior",
+        "caption": "Tesla Model Y CRI 12 2021 2487"
       }
     ],
-    "notes": "Auto-resolved from Wikimedia Commons search 'Tesla Model Y 2022'. 6 candidates; representative of the model/generation."
+    "notes": "Re-resolved (audit) from Commons 'Tesla Model Y' with strict junk filter. 7 candidates."
   },
   {
     "id": "tesla-model-3-used",
@@ -121,42 +126,27 @@
     "id": "ioniq5-new",
     "images": [
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/3/3a/Hyundai_IONIQ_5_N_eN1_Cup_Car_%285%29.jpg",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/1/10/Hyundai_Ioniq_5_N_Auto_Zuerich_2023_1X7A0965.jpg",
         "type": "exterior",
-        "caption": "Hyundai IONIQ 5 N eN1 Cup Car (5)"
+        "caption": "Hyundai Ioniq 5 N Auto Zuerich 2023 1X7A0965"
       },
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/f/ff/Hyundai_IONIQ_5_N_eN1_Cup_Car_%284%29.jpg",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/1/1e/Hyundai_Ioniq_5_N_Auto_Zuerich_2023_1X7A0964.jpg",
         "type": "exterior",
-        "caption": "Hyundai IONIQ 5 N eN1 Cup Car (4)"
+        "caption": "Hyundai Ioniq 5 N Auto Zuerich 2023 1X7A0964"
       },
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/f/f0/Hyundai_IONIQ_5_N_eN1_Cup_Car_%283%29.jpg",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/1/1f/DSC08545_%2852804909294%29.jpg",
         "type": "exterior",
-        "caption": "Hyundai IONIQ 5 N eN1 Cup Car (3)"
+        "caption": "DSC08545 (52804909294)"
       },
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/5/56/Hyundai_IONIQ_5_N_eN1_Cup_Car_%286%29.jpg",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/7/74/DSC08264_%2852802548122%29.jpg",
         "type": "exterior",
-        "caption": "Hyundai IONIQ 5 N eN1 Cup Car (6)"
-      },
-      {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/f/f0/Hyundai_IONIQ_5_N_eN1_Cup_Car_%281%29.jpg",
-        "type": "exterior",
-        "caption": "Hyundai IONIQ 5 N eN1 Cup Car (1)"
-      },
-      {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/1/14/Hyundai_IONIQ_5_N_eN1_Cup_Car_%282%29.jpg",
-        "type": "exterior",
-        "caption": "Hyundai IONIQ 5 N eN1 Cup Car (2)"
-      },
-      {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/a/ae/Hyundai_IONIQ_5_NE_PE_Heartsping_%282%29.jpg",
-        "type": "exterior",
-        "caption": "Hyundai IONIQ 5 NE PE Heartsping (2)"
+        "caption": "DSC08264 (52802548122)"
       }
     ],
-    "notes": "Auto-resolved from Wikimedia Commons search 'Hyundai Ioniq 5'. 7 candidates; representative of the model/generation."
+    "notes": "Re-resolved (audit) from Commons 'Hyundai Ioniq 5 2023' with strict junk filter. 4 candidates."
   },
   {
     "id": "ev6-used",
@@ -326,42 +316,27 @@
     "id": "rav4-prime-new",
     "images": [
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/3/33/Suzuki_Across_%28XA50%29_1X7A6320.jpg",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/b/b0/IAA_Summit_2023%2C_Munich_%28P1110707%29.jpg",
         "type": "exterior",
-        "caption": "Suzuki Across (XA50) 1X7A6320"
+        "caption": "IAA Summit 2023, Munich (P1110707)"
       },
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/6/6c/Suzuki_Across_%28XA50%29_1X7A0314.jpg",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/e/ee/Chery_Exeed_TX_rear.jpg",
         "type": "exterior",
-        "caption": "Suzuki Across (XA50) 1X7A0314"
+        "caption": "Chery Exeed TX rear"
       },
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/8/89/Suzuki_Across_%28XA50%29_Auto_Zuerich_2021_IMG_0436.jpg",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/85/Chery_Exeed_TX_%2837248965986%29.jpg",
         "type": "exterior",
-        "caption": "Suzuki Across (XA50) Auto Zuerich 2021 IMG 0436"
+        "caption": "Chery Exeed TX (37248965986)"
       },
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/3/39/2020_Suzuki_Across_E-Four_2.5.jpg",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/c/cd/Chery_Exeed_TX_front.jpg",
         "type": "exterior",
-        "caption": "2020 Suzuki Across E-Four 2.5"
-      },
-      {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/5/58/23_Toyota_RAV4_Prime_XSE.jpg",
-        "type": "exterior",
-        "caption": "23 Toyota RAV4 Prime XSE"
-      },
-      {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/c/c7/21_Toyota_RAV4_Prime_SE.jpg",
-        "type": "exterior",
-        "caption": "21 Toyota RAV4 Prime SE"
-      },
-      {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Suzuki_Across_IMG_3749.jpg",
-        "type": "exterior",
-        "caption": "Suzuki Across IMG 3749"
+        "caption": "Chery Exeed TX front"
       }
     ],
-    "notes": "Auto-resolved from Wikimedia Commons search 'Toyota RAV4 Prime plug-in hybrid'. 7 candidates; representative of the model/generation."
+    "notes": "Re-resolved (audit) from Commons 'Toyota RAV4 plug-in hybrid' with strict junk filter. 4 candidates."
   },
   {
     "id": "prius-prime-new",
@@ -567,42 +542,37 @@
     "id": "corolla-hybrid-new",
     "images": [
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/1/10/Toyota_Corolla_Cross_GR_Sport_002.jpg",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/f/f9/2019_Toyota_Corolla_Altis_%28front%29.jpg",
         "type": "exterior",
-        "caption": "Toyota Corolla Cross GR Sport 002"
+        "caption": "2019 Toyota Corolla Altis (front)"
       },
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/c/c9/Toyota_Corolla_Cross_GR_Sport_001.jpg",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/a/aa/2019_Toyota_Corolla_Altis_%28rear%29.jpg",
         "type": "exterior",
-        "caption": "Toyota Corolla Cross GR Sport 001"
+        "caption": "2019 Toyota Corolla Altis (rear)"
       },
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/3/31/2019_Toyota_Corolla_Touring_Sport_Icon_Tech_VVTi_Hybrid_Estate_1.8.jpg",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/9/91/2019_Toyota_Corolla_Altis_1.6_G_%28Rear%29.jpg",
         "type": "exterior",
-        "caption": "2019 Toyota Corolla Touring Sport Icon Tech VVTi Hybrid Estate 1.8"
+        "caption": "2019 Toyota Corolla Altis 1.6 G (Rear)"
       },
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/1/12/Toyota_Corolla_Cross_GR_Sport_%28front%29.jpg",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/3/35/2019_Toyota_Corolla_Altis_1.6_G.jpg",
         "type": "exterior",
-        "caption": "Toyota Corolla Cross GR Sport (front)"
+        "caption": "2019 Toyota Corolla Altis 1.6 G"
       },
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/6/66/Toyota_Corolla_Cross_GR_Sport_%28rear%29.jpg",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/2/2d/2019_Toyota_Corolla_Altis_1.8_G_ZRE211R_%2820220516%29.jpg",
         "type": "exterior",
-        "caption": "Toyota Corolla Cross GR Sport (rear)"
+        "caption": "2019 Toyota Corolla Altis 1.8 G ZRE211R (20220516)"
       },
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/9/90/Autofreier_Tag%2C_BKK_Toyota_Corolla_Hybrid%2C_F%C5%91v%C3%A1mplatz%2C_2023_Belv%C3%A1ros-Lip%C3%B3tv%C3%A1ros.jpg",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/c/c3/2019_Toyota_Corolla_Altis_1.8_V_%28front%29%2C_West_Surabaya.jpg",
         "type": "exterior",
-        "caption": "Autofreier Tag, BKK Toyota Corolla Hybrid, F\u0151v\u00e1mplatz, 2023 Belv\u00e1ros-Lip\u00f3tv\u00e1ros"
-      },
-      {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/5/58/Autofreier_Tag%2C_BKK_Toyota_Corolla_Hybrid%2C_R%C3%BCckseite%2C_F%C5%91v%C3%A1mplatz%2C_2023_Belv%C3%A1ros-Lip%C3%B3tv%C3%A1ros.jpg",
-        "type": "exterior",
-        "caption": "Autofreier Tag, BKK Toyota Corolla Hybrid, R\u00fcckseite, F\u0151v\u00e1mplatz, 2023 Belv\u00e1ros-Lip\u00f3tv\u00e1ros"
+        "caption": "2019 Toyota Corolla Altis 1.8 V (front), West Surabaya"
       }
     ],
-    "notes": "Auto-resolved from Wikimedia Commons search 'Toyota Corolla Hybrid'. 7 candidates; representative of the model/generation."
+    "notes": "From Commons Category:Toyota Corolla Altis (E210) (curated category)."
   },
   {
     "id": "prius-new",
@@ -690,19 +660,34 @@
     "id": "outback-used",
     "images": [
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/0/01/2021_Tokyo_Marathon_Leading_car_Subaru_Outback.jpg",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/0/0c/Subaru_Outback_%28BT%29_Auto_Zuerich_2023_1X7A1418.jpg",
         "type": "exterior",
-        "caption": "2021 Tokyo Marathon Leading car Subaru Outback"
+        "caption": "Subaru Outback (BT) Auto Zuerich 2023 1X7A1418"
       },
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/2/22/Subaru_LEGACY_OUTBACK_X-BREAK_EX_%284BA-BT5%29_used_as_a_SUPER_GT_FIRST_RESCUE_OPERATION_and_Nissan_PATROL_NISMO_%28Y62%29_used_as_a_SUPER_GT_FIRST_RESCUE_OPERATION.jpg",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/9/9f/Fourth-generation_Subaru_Outback_in_Indonesia.jpg",
         "type": "exterior",
-        "caption": "Subaru LEGACY OUTBACK X-BREAK EX (4BA-BT5) used as a SUPER GT FIRST RESCUE OPERATION and Nissan PATROL NISMO (Y62) used as a SUPER GT FIRST RESCUE OPERATION"
+        "caption": "Fourth-generation Subaru Outback in Indonesia"
       },
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/9/94/%27Subaru%27_Obere_Tagfahrleuchte_f%C3%BCr_Kraftfahrzeuge_Nr._21_2021_000_172_Vadim_Chuprina.jpg",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/6/68/2003%E2%80%932005_Subaru_Impreza_Outback_Sport_01_Front.jpg",
         "type": "exterior",
-        "caption": "'Subaru' Obere Tagfahrleuchte f\u00fcr Kraftfahrzeuge Nr. 21 2021 000 172 Vadim Chuprina"
+        "caption": "2003\u20132005 Subaru Impreza Outback Sport 01 Front"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/e/e2/2003%E2%80%932005_Subaru_Impreza_Outback_Sport_02_Rear.jpg",
+        "type": "exterior",
+        "caption": "2003\u20132005 Subaru Impreza Outback Sport 02 Rear"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/1/1a/DSC08284_%2852803106581%29.jpg",
+        "type": "exterior",
+        "caption": "DSC08284 (52803106581)"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/e/e8/DSC08285_%2852803507765%29.jpg",
+        "type": "exterior",
+        "caption": "DSC08285 (52803507765)"
       },
       {
         "url": "https://upload.wikimedia.org/wikipedia/commons/d/dd/Mazda_6_2.2d_GTX_Sports_Wagon_AWD_2019_%2852225678708%29.jpg",
@@ -710,47 +695,42 @@
         "caption": "Mazda 6 2.2d GTX Sports Wagon AWD 2019 (52225678708)"
       }
     ],
-    "notes": "Auto-resolved from Wikimedia Commons search 'Subaru Outback 2022'. 4 candidates; representative of the model/generation."
+    "notes": "Re-resolved (audit) from Commons 'Subaru Outback 2023' with strict junk filter. 7 candidates."
   },
   {
     "id": "corolla-2018-current",
     "images": [
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/1/13/Toyota_Corolla_-_Montagnat%2C_2018.jpg",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/c/c6/2014_Toyota_Corolla_Altis_2.0_G_ZRE173R_%2820160707%29.jpg",
         "type": "exterior",
-        "caption": "Toyota Corolla - Montagnat, 2018"
+        "caption": "2014 Toyota Corolla Altis 2.0 G ZRE173R (20160707)"
       },
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Toyota_Corolla_%2845604387065%29.jpg",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/f/f3/2015_Altis_Grande.jpg",
         "type": "exterior",
-        "caption": "Toyota Corolla (45604387065)"
+        "caption": "2015 Altis Grande"
       },
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/9/9b/Toyota_Corolla_%2844700634930%29.jpg",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/3/36/2015_Toyota_Corolla_Altis_%28ZRE172R%29_1.6_sedan_%282016-01-03%29_01.jpg",
         "type": "exterior",
-        "caption": "Toyota Corolla (44700634930)"
+        "caption": "2015 Toyota Corolla Altis (ZRE172R) 1.6 sedan (2016-01-03) 01"
       },
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/4/47/1976_Toyota_Corolla_%2832600691906%29.jpg",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/b/be/2015_Toyota_Corolla_Altis_%28ZRE172R%29_1.6_sedan_%282016-01-03%29_02.jpg",
         "type": "exterior",
-        "caption": "1976 Toyota Corolla (32600691906)"
+        "caption": "2015 Toyota Corolla Altis (ZRE172R) 1.6 sedan (2016-01-03) 02"
       },
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/7/76/1974_Toyota_Corolla_%2829533249880%29.jpg",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/7/75/2015_Toyota_Corolla_Altis_%28ZRE172R%29_2.0V_sedan_%282015-12-30%29.jpg",
         "type": "exterior",
-        "caption": "1974 Toyota Corolla (29533249880)"
+        "caption": "2015 Toyota Corolla Altis (ZRE172R) 2.0V sedan (2015-12-30)"
       },
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/0/08/1974_Toyota_Corolla_%2829825934615%29.jpg",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/8d/2016_Toyota_Corolla_Altis_%28ZRE172R%29_1.6_sedan_%282017-11-27%29.jpg",
         "type": "exterior",
-        "caption": "1974 Toyota Corolla (29825934615)"
-      },
-      {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/f/fd/1982_Toyota_Corolla_DX_%2829251879895%29.jpg",
-        "type": "exterior",
-        "caption": "1982 Toyota Corolla DX (29251879895)"
+        "caption": "2016 Toyota Corolla Altis (ZRE172R) 1.6 sedan (2017-11-27)"
       }
     ],
-    "notes": "Auto-resolved from Wikimedia Commons search 'Toyota Corolla 2018 sedan'. 7 candidates; representative of the model/generation."
+    "notes": "From Commons Category:Toyota Corolla Altis (E170) (curated category)."
   }
 ]
