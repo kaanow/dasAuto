@@ -1,0 +1,756 @@
+[
+  {
+    "id": "tesla-model-y-new",
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Tesla_Model_Y_L_002.jpg",
+        "type": "exterior",
+        "caption": "Tesla Model Y L 002"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/6/63/Tesla_Model_Y_L_003.jpg",
+        "type": "exterior",
+        "caption": "Tesla Model Y L 003"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/b/bb/Tesla_Model_Y_facelift_002.jpg",
+        "type": "exterior",
+        "caption": "Tesla Model Y facelift 002"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Tesla_Model_Y_facelift_003.jpg",
+        "type": "exterior",
+        "caption": "Tesla Model Y facelift 003"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/2/20/Tesla_Model_Y_facelift_001.jpg",
+        "type": "exterior",
+        "caption": "Tesla Model Y facelift 001"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Tesla_Model_Y_L_004.jpg",
+        "type": "exterior",
+        "caption": "Tesla Model Y L 004"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/6/68/Tesla_Model_Y_CRI_12_2021_2487.jpg",
+        "type": "exterior",
+        "caption": "Tesla Model Y CRI 12 2021 2487"
+      }
+    ],
+    "notes": "Auto-resolved from Wikimedia Commons search 'Tesla Model Y'. 7 candidates; representative of the model/generation."
+  },
+  {
+    "id": "tesla-model-y-used",
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/86/BMW_i3_%26_Tesla_Model_Y_CRI_12_2021_2351.jpg",
+        "type": "exterior",
+        "caption": "BMW i3 & Tesla Model Y CRI 12 2021 2351"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/6/68/Tesla_Model_S._cool_paint_job%21_IMG_1506.jpg",
+        "type": "exterior",
+        "caption": "Tesla Model S. cool paint job! IMG 1506"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/81/Tesla_roadshow_during_The_Great_Bay_Fiesta.jpg",
+        "type": "exterior",
+        "caption": "Tesla roadshow during The Great Bay Fiesta"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/86/2022_01_03_9477-07_electric_car_towing_a_trailer.jpg",
+        "type": "exterior",
+        "caption": "2022 01 03 9477-07 electric car towing a trailer"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/2/26/%27Tesla%27_Obere_Tagfahrleuchte_f%C3%BCr_Kraftfahrzeuge_Nr._21_2021_000_172_Vadim_Chuprina.jpg",
+        "type": "exterior",
+        "caption": "'Tesla' Obere Tagfahrleuchte f\u00fcr Kraftfahrzeuge Nr. 21 2021 000 172 Vadim Chuprina"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/c/c4/Lades%C3%A4ule_f%C3%BCr_Elektroautos_20221009_HOF05495_RAW-Export_20221010005374cens.png",
+        "type": "exterior",
+        "caption": "Lades\u00e4ule f\u00fcr Elektroautos 20221009 HOF05495 RAW-Export 20221010005374cens"
+      }
+    ],
+    "notes": "Auto-resolved from Wikimedia Commons search 'Tesla Model Y 2022'. 6 candidates; representative of the model/generation."
+  },
+  {
+    "id": "tesla-model-3-used",
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/6/6d/Tesla_Model_3_and_NIO_ET5.jpg",
+        "type": "exterior",
+        "caption": "Tesla Model 3 and NIO ET5"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Tesla_Model_3_and_Eden_Tower.jpg",
+        "type": "exterior",
+        "caption": "Tesla Model 3 and Eden Tower"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/a/a8/2022.07.19_Fully_electric_car_Tesla_Model_3_Dual_motor_in_Tomasz%C3%B3w_Mazowiecki%2C_Poland_%281%29.jpg",
+        "type": "exterior",
+        "caption": "2022.07.19 Fully electric car Tesla Model 3 Dual motor in Tomasz\u00f3w Mazowiecki, Poland (1)"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/c/c2/2022.07.19_Fully_electric_car_Tesla_Model_3_Dual_motor_in_Tomasz%C3%B3w_Mazowiecki%2C_Poland.jpg",
+        "type": "exterior",
+        "caption": "2022.07.19 Fully electric car Tesla Model 3 Dual motor in Tomasz\u00f3w Mazowiecki, Poland"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/7/7c/A_picture_of_a_Tesla_car_in_Yildiz_Technical_University.jpg",
+        "type": "exterior",
+        "caption": "A picture of a Tesla car in Yildiz Technical University"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/0/07/%247.5B_in_one_day%21_My_photos_from_the_Tesla_Model_3_Launch_%2826173837515%29.jpg",
+        "type": "exterior",
+        "caption": "$7.5B in one day! My photos from the Tesla Model 3 Launch (26173837515)"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/6/68/Tesla_Model_S._cool_paint_job%21_IMG_1506.jpg",
+        "type": "exterior",
+        "caption": "Tesla Model S. cool paint job! IMG 1506"
+      }
+    ],
+    "notes": "Auto-resolved from Wikimedia Commons search 'Tesla Model 3 2022'. 7 candidates; representative of the model/generation."
+  },
+  {
+    "id": "ioniq5-new",
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/3/3a/Hyundai_IONIQ_5_N_eN1_Cup_Car_%285%29.jpg",
+        "type": "exterior",
+        "caption": "Hyundai IONIQ 5 N eN1 Cup Car (5)"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/f/ff/Hyundai_IONIQ_5_N_eN1_Cup_Car_%284%29.jpg",
+        "type": "exterior",
+        "caption": "Hyundai IONIQ 5 N eN1 Cup Car (4)"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/f/f0/Hyundai_IONIQ_5_N_eN1_Cup_Car_%283%29.jpg",
+        "type": "exterior",
+        "caption": "Hyundai IONIQ 5 N eN1 Cup Car (3)"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/5/56/Hyundai_IONIQ_5_N_eN1_Cup_Car_%286%29.jpg",
+        "type": "exterior",
+        "caption": "Hyundai IONIQ 5 N eN1 Cup Car (6)"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/f/f0/Hyundai_IONIQ_5_N_eN1_Cup_Car_%281%29.jpg",
+        "type": "exterior",
+        "caption": "Hyundai IONIQ 5 N eN1 Cup Car (1)"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/1/14/Hyundai_IONIQ_5_N_eN1_Cup_Car_%282%29.jpg",
+        "type": "exterior",
+        "caption": "Hyundai IONIQ 5 N eN1 Cup Car (2)"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/a/ae/Hyundai_IONIQ_5_NE_PE_Heartsping_%282%29.jpg",
+        "type": "exterior",
+        "caption": "Hyundai IONIQ 5 NE PE Heartsping (2)"
+      }
+    ],
+    "notes": "Auto-resolved from Wikimedia Commons search 'Hyundai Ioniq 5'. 7 candidates; representative of the model/generation."
+  },
+  {
+    "id": "ev6-used",
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/e/ee/Kia_EV6_Auto_Zuerich_2021_IMG_0606.jpg",
+        "type": "exterior",
+        "caption": "Kia EV6 Auto Zuerich 2021 IMG 0606"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/6/67/Kia_EV6_Auto_Zuerich_2021_IMG_0435.jpg",
+        "type": "exterior",
+        "caption": "Kia EV6 Auto Zuerich 2021 IMG 0435"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/87/Kia_EV6_Auto_Zuerich_2021_IMG_0613.jpg",
+        "type": "exterior",
+        "caption": "Kia EV6 Auto Zuerich 2021 IMG 0613"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/f/ff/Kia_EV6_Auto_Zuerich_2021_IMG_0434.jpg",
+        "type": "exterior",
+        "caption": "Kia EV6 Auto Zuerich 2021 IMG 0434"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/a/a0/Korean_car_EVs_Kia_EV6_mini_car_02.jpg",
+        "type": "exterior",
+        "caption": "Korean car EVs Kia EV6 mini car 02"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Korean_car_EVs_Kia_EV6_mini_car_05.jpg",
+        "type": "exterior",
+        "caption": "Korean car EVs Kia EV6 mini car 05"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/a/a4/Korean_car_EVs_Kia_EV6_mini_car_03.jpg",
+        "type": "exterior",
+        "caption": "Korean car EVs Kia EV6 mini car 03"
+      }
+    ],
+    "notes": "Auto-resolved from Wikimedia Commons search 'Kia EV6'. 7 candidates; representative of the model/generation."
+  },
+  {
+    "id": "ioniq6-new",
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/5/5c/Hyundai_Ioniq_6_Auto_Zuerich_2023_1X7A0904.jpg",
+        "type": "exterior",
+        "caption": "Hyundai Ioniq 6 Auto Zuerich 2023 1X7A0904"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/5/56/Hyundai_IONIQ_5_N_eN1_Cup_Car_%286%29.jpg",
+        "type": "exterior",
+        "caption": "Hyundai IONIQ 5 N eN1 Cup Car (6)"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/5/59/Hyundai_IONIQ_6_Test_drive_car_at_an_event_in_Japan_Rear.jpg",
+        "type": "exterior",
+        "caption": "Hyundai IONIQ 6 Test drive car at an event in Japan Rear"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/4/42/Hyundai_IONIQ_6_Test_drive_car_at_an_event_in_Japan_Front.jpg",
+        "type": "exterior",
+        "caption": "Hyundai IONIQ 6 Test drive car at an event in Japan Front"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/b/b5/2023_Hyundai_Ioniq_6_77kWh_First_Edition_AWD_%28Rear%29.jpg",
+        "type": "exterior",
+        "caption": "2023 Hyundai Ioniq 6 77kWh First Edition AWD (Rear)"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/2/26/Hyundai_Ioniq_5_N_Auto_Zuerich_2024_DSC_6165.jpg",
+        "type": "exterior",
+        "caption": "Hyundai Ioniq 5 N Auto Zuerich 2024 DSC 6165"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Hyundai_Ioniq_5_N_Line_Auto_Zuerich_2024_DSC_6752.jpg",
+        "type": "exterior",
+        "caption": "Hyundai Ioniq 5 N Line Auto Zuerich 2024 DSC 6752"
+      }
+    ],
+    "notes": "Auto-resolved from Wikimedia Commons search 'Hyundai Ioniq 6'. 7 candidates; representative of the model/generation."
+  },
+  {
+    "id": "bolt-euv-used",
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/1/1b/Chevrolet_Bolt_EV_Black.jpg",
+        "type": "exterior",
+        "caption": "Chevrolet Bolt EV Black"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/5/5d/Chevrolet_Bolt_EV_SDQ_02_2020_2470.jpg",
+        "type": "exterior",
+        "caption": "Chevrolet Bolt EV SDQ 02 2020 2470"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/f/f5/Chevrolet_Bolt_EV_SDQ_02_2020_2456.jpg",
+        "type": "exterior",
+        "caption": "Chevrolet Bolt EV SDQ 02 2020 2456"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/a/a9/Chevrolet_Bolt_EV_SDQ_02_2020_2467.jpg",
+        "type": "exterior",
+        "caption": "Chevrolet Bolt EV SDQ 02 2020 2467"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/e/e0/Chevrolet_Bolt_EV_SDQ_02_2020_2464.jpg",
+        "type": "exterior",
+        "caption": "Chevrolet Bolt EV SDQ 02 2020 2464"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/9/97/Chevrolet_Bolt_EV_SDQ_02_2020_2471.jpg",
+        "type": "exterior",
+        "caption": "Chevrolet Bolt EV SDQ 02 2020 2471"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/a/ac/Chevrolet_Bolt_EV_SDQ_02_2020_2458.jpg",
+        "type": "exterior",
+        "caption": "Chevrolet Bolt EV SDQ 02 2020 2458"
+      }
+    ],
+    "notes": "Auto-resolved from Wikimedia Commons search 'Chevrolet Bolt'. 7 candidates; representative of the model/generation."
+  },
+  {
+    "id": "id4-used",
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/d/d5/2023_Volkswagen_ID.4_running_wireless_CarPlay.jpg",
+        "type": "exterior",
+        "caption": "2023 Volkswagen ID.4 running wireless CarPlay"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/c/c3/2023_SAIC-Volkswagen_ID.4_X.jpg",
+        "type": "exterior",
+        "caption": "2023 SAIC-Volkswagen ID.4 X"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Volkswagen_ID.4_Crozz_002.jpg",
+        "type": "exterior",
+        "caption": "Volkswagen ID.4 Crozz 002"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/1/18/Volkswagen_ID.4_Crozz_001.jpg",
+        "type": "exterior",
+        "caption": "Volkswagen ID.4 Crozz 001"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/1/12/Volkswagen_ID._Buzz_LWB%2C_Auto_2024%2C_Zurich_%28PANA0875%29.jpg",
+        "type": "exterior",
+        "caption": "Volkswagen ID. Buzz LWB, Auto 2024, Zurich (PANA0875)"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/3/32/Volkswagen_ID.4_Crozz_and_Volkswagen_ID.4_X.jpg",
+        "type": "exterior",
+        "caption": "Volkswagen ID.4 Crozz and Volkswagen ID.4 X"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/0/02/2020_Volkswagen_ID.4_Pro_%28Netherlands%29_front_view.jpg",
+        "type": "exterior",
+        "caption": "2020 Volkswagen ID.4 Pro (Netherlands) front view"
+      }
+    ],
+    "notes": "Auto-resolved from Wikimedia Commons search 'Volkswagen ID.4'. 7 candidates; representative of the model/generation."
+  },
+  {
+    "id": "rav4-prime-new",
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/3/33/Suzuki_Across_%28XA50%29_1X7A6320.jpg",
+        "type": "exterior",
+        "caption": "Suzuki Across (XA50) 1X7A6320"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/6/6c/Suzuki_Across_%28XA50%29_1X7A0314.jpg",
+        "type": "exterior",
+        "caption": "Suzuki Across (XA50) 1X7A0314"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/89/Suzuki_Across_%28XA50%29_Auto_Zuerich_2021_IMG_0436.jpg",
+        "type": "exterior",
+        "caption": "Suzuki Across (XA50) Auto Zuerich 2021 IMG 0436"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/3/39/2020_Suzuki_Across_E-Four_2.5.jpg",
+        "type": "exterior",
+        "caption": "2020 Suzuki Across E-Four 2.5"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/5/58/23_Toyota_RAV4_Prime_XSE.jpg",
+        "type": "exterior",
+        "caption": "23 Toyota RAV4 Prime XSE"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/c/c7/21_Toyota_RAV4_Prime_SE.jpg",
+        "type": "exterior",
+        "caption": "21 Toyota RAV4 Prime SE"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Suzuki_Across_IMG_3749.jpg",
+        "type": "exterior",
+        "caption": "Suzuki Across IMG 3749"
+      }
+    ],
+    "notes": "Auto-resolved from Wikimedia Commons search 'Toyota RAV4 Prime plug-in hybrid'. 7 candidates; representative of the model/generation."
+  },
+  {
+    "id": "prius-prime-new",
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/3/3a/2023_Denver_Auto_Show_Toyota_Prius_wheel.jpg",
+        "type": "exterior",
+        "caption": "2023 Denver Auto Show Toyota Prius wheel"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/c/cd/Toyota_Prius_XW60_Evo.jpg",
+        "type": "exterior",
+        "caption": "Toyota Prius XW60 Evo"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/2/22/Toyota_Prius_%28XW60%29_Plug-in_Hybrid_Auto_Zuerich_2023_1X7A1228.jpg",
+        "type": "exterior",
+        "caption": "Toyota Prius (XW60) Plug-in Hybrid Auto Zuerich 2023 1X7A1228"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/5/5e/Toyota_Prius_%28XW60%29_Plug-in_Hybrid_Auto_Zuerich_2023_1X7A1226.jpg",
+        "type": "exterior",
+        "caption": "Toyota Prius (XW60) Plug-in Hybrid Auto Zuerich 2023 1X7A1226"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/f/f7/Toyota_Prius_%28XW30%29_in_Indonesia.jpg",
+        "type": "exterior",
+        "caption": "Toyota Prius (XW30) in Indonesia"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/3/32/2023_Hakone_Ekiden_Headquarter_car_No1_Prius_XW60.jpg",
+        "type": "exterior",
+        "caption": "2023 Hakone Ekiden Headquarter car No1 Prius XW60"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/84/Toyota_Prius_being_tested_at_Argonne_National_Laboratory.jpg",
+        "type": "exterior",
+        "caption": "Toyota Prius being tested at Argonne National Laboratory"
+      }
+    ],
+    "notes": "Auto-resolved from Wikimedia Commons search 'Toyota Prius 2023'. 7 candidates; representative of the model/generation."
+  },
+  {
+    "id": "niro-phev-used",
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/3/38/2023_Denver_Auto_Show_Kia_Niro_EX_Touring_wheel.jpg",
+        "type": "exterior",
+        "caption": "2023 Denver Auto Show Kia Niro EX Touring wheel"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/0/0b/Kia_e-Niro_%28DE%3B_2018%29_rear.jpg",
+        "type": "exterior",
+        "caption": "Kia e-Niro (DE; 2018) rear"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/4/4a/Kia_e-Niro_%28DE%3B_2018%29.jpg",
+        "type": "exterior",
+        "caption": "Kia e-Niro (DE; 2018)"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/c/c8/Punto_de_recarga_de_veh%C3%ADculo_electrico%2C_Repsol%2C_calle_de_Los_Chulapos.jpg",
+        "type": "exterior",
+        "caption": "Punto de recarga de veh\u00edculo electrico, Repsol, calle de Los Chulapos"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/a/ad/Kia_e-Niro_%28Ladebuchse%29.jpg",
+        "type": "exterior",
+        "caption": "Kia e-Niro (Ladebuchse)"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/8d/2019_Kia_Niro_EV_First_Edition.jpg",
+        "type": "exterior",
+        "caption": "2019 Kia Niro EV First Edition"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/0/07/Kia_e-Niro_%28rear%29.jpg",
+        "type": "exterior",
+        "caption": "Kia e-Niro (rear)"
+      }
+    ],
+    "notes": "Auto-resolved from Wikimedia Commons search 'Kia Niro'. 7 candidates; representative of the model/generation."
+  },
+  {
+    "id": "tucson-phev-used",
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Hyundai_Tucson_Plug-in_N-Line_Auto_Zuerich_2021_IMG_0366.jpg",
+        "type": "exterior",
+        "caption": "Hyundai Tucson Plug-in N-Line Auto Zuerich 2021 IMG 0366"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/3/32/Moscow%2C_Hyundai_Tucson_%28China%2C_NX4%29_Aug_2025_01.jpg",
+        "type": "exterior",
+        "caption": "Moscow, Hyundai Tucson (China, NX4) Aug 2025 01"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/86/Hyundai_Tucson_%28NX4%29_Auto_Zuerich_2021_IMG_0481.jpg",
+        "type": "exterior",
+        "caption": "Hyundai Tucson (NX4) Auto Zuerich 2021 IMG 0481"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/0/09/Moscow%2C_Hyundai_Tucson_%28China%2C_NX4%29_Aug_2025_02.jpg",
+        "type": "exterior",
+        "caption": "Moscow, Hyundai Tucson (China, NX4) Aug 2025 02"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/c/cc/Moscow%2C_Hyundai_Tucson_dark-grey_Sept_2025_01.jpg",
+        "type": "exterior",
+        "caption": "Moscow, Hyundai Tucson dark-grey Sept 2025 01"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/0/00/Tour_of_Britain_Stage_3_2023_Course_Car.jpg",
+        "type": "exterior",
+        "caption": "Tour of Britain Stage 3 2023 Course Car"
+      }
+    ],
+    "notes": "Auto-resolved from Wikimedia Commons search 'Hyundai Tucson NX4'. 6 candidates; representative of the model/generation."
+  },
+  {
+    "id": "rav4-hybrid-new",
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/e/e7/Toyota_RAV4_Plug-in_Hybrid_GR_Sport_IMG_9896.jpg",
+        "type": "exterior",
+        "caption": "Toyota RAV4 Plug-in Hybrid GR Sport IMG 9896"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/9/9f/Toyota_RAV4_Plug-in_Hybrid_GR_Sport_IMG_9891.jpg",
+        "type": "exterior",
+        "caption": "Toyota RAV4 Plug-in Hybrid GR Sport IMG 9891"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/3/33/Suzuki_Across_%28XA50%29_1X7A6320.jpg",
+        "type": "exterior",
+        "caption": "Suzuki Across (XA50) 1X7A6320"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/6/6c/Suzuki_Across_%28XA50%29_1X7A0314.jpg",
+        "type": "exterior",
+        "caption": "Suzuki Across (XA50) 1X7A0314"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/89/Suzuki_Across_%28XA50%29_Auto_Zuerich_2021_IMG_0436.jpg",
+        "type": "exterior",
+        "caption": "Suzuki Across (XA50) Auto Zuerich 2021 IMG 0436"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/5/5b/2021_Toyota_RAV4_PHV.jpg",
+        "type": "exterior",
+        "caption": "2021 Toyota RAV4 PHV"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/3/39/2020_Suzuki_Across_E-Four_2.5.jpg",
+        "type": "exterior",
+        "caption": "2020 Suzuki Across E-Four 2.5"
+      }
+    ],
+    "notes": "Auto-resolved from Wikimedia Commons search 'Toyota RAV4 Hybrid'. 7 candidates; representative of the model/generation."
+  },
+  {
+    "id": "crv-hybrid-new",
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/7/7c/Honda_CR-V_%286th_generation%29_e-PHEV_Auto_Zuerich_2023_1X7A1066.jpg",
+        "type": "exterior",
+        "caption": "Honda CR-V (6th generation) e-PHEV Auto Zuerich 2023 1X7A1066"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Honda_CR-V_%283rd_generation%29_in_Taiwan_2023.png",
+        "type": "exterior",
+        "caption": "Honda CR-V (3rd generation) in Taiwan 2023"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/2/26/A_Honda_CR-V_%283rd_generation%29_in_Taiwan.png",
+        "type": "exterior",
+        "caption": "A Honda CR-V (3rd generation) in Taiwan"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/4/4c/Honda_CR-V_%286th_generation%29_hybrid_Auto_Zuerich_2023_1X7A1214.jpg",
+        "type": "exterior",
+        "caption": "Honda CR-V (6th generation) hybrid Auto Zuerich 2023 1X7A1214"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/9/94/Honda_CR-V_%286th_generation%29_hybrid_Auto_Zuerich_2023_1X7A1215.jpg",
+        "type": "exterior",
+        "caption": "Honda CR-V (6th generation) hybrid Auto Zuerich 2023 1X7A1215"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/4/40/Honda_CR-V_%286th_generation%29_hybrid_Auto_Zuerich_2023_1X7A1213.jpg",
+        "type": "exterior",
+        "caption": "Honda CR-V (6th generation) hybrid Auto Zuerich 2023 1X7A1213"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/1/16/Honda_CR-V_%286th_generation%29_e-PHEV_Auto_Zuerich_2023_1X7A1064.jpg",
+        "type": "exterior",
+        "caption": "Honda CR-V (6th generation) e-PHEV Auto Zuerich 2023 1X7A1064"
+      }
+    ],
+    "notes": "Auto-resolved from Wikimedia Commons search 'Honda CR-V 2023'. 7 candidates; representative of the model/generation."
+  },
+  {
+    "id": "corolla-hybrid-new",
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/1/10/Toyota_Corolla_Cross_GR_Sport_002.jpg",
+        "type": "exterior",
+        "caption": "Toyota Corolla Cross GR Sport 002"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/c/c9/Toyota_Corolla_Cross_GR_Sport_001.jpg",
+        "type": "exterior",
+        "caption": "Toyota Corolla Cross GR Sport 001"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/3/31/2019_Toyota_Corolla_Touring_Sport_Icon_Tech_VVTi_Hybrid_Estate_1.8.jpg",
+        "type": "exterior",
+        "caption": "2019 Toyota Corolla Touring Sport Icon Tech VVTi Hybrid Estate 1.8"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/1/12/Toyota_Corolla_Cross_GR_Sport_%28front%29.jpg",
+        "type": "exterior",
+        "caption": "Toyota Corolla Cross GR Sport (front)"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/6/66/Toyota_Corolla_Cross_GR_Sport_%28rear%29.jpg",
+        "type": "exterior",
+        "caption": "Toyota Corolla Cross GR Sport (rear)"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/9/90/Autofreier_Tag%2C_BKK_Toyota_Corolla_Hybrid%2C_F%C5%91v%C3%A1mplatz%2C_2023_Belv%C3%A1ros-Lip%C3%B3tv%C3%A1ros.jpg",
+        "type": "exterior",
+        "caption": "Autofreier Tag, BKK Toyota Corolla Hybrid, F\u0151v\u00e1mplatz, 2023 Belv\u00e1ros-Lip\u00f3tv\u00e1ros"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/5/58/Autofreier_Tag%2C_BKK_Toyota_Corolla_Hybrid%2C_R%C3%BCckseite%2C_F%C5%91v%C3%A1mplatz%2C_2023_Belv%C3%A1ros-Lip%C3%B3tv%C3%A1ros.jpg",
+        "type": "exterior",
+        "caption": "Autofreier Tag, BKK Toyota Corolla Hybrid, R\u00fcckseite, F\u0151v\u00e1mplatz, 2023 Belv\u00e1ros-Lip\u00f3tv\u00e1ros"
+      }
+    ],
+    "notes": "Auto-resolved from Wikimedia Commons search 'Toyota Corolla Hybrid'. 7 candidates; representative of the model/generation."
+  },
+  {
+    "id": "prius-new",
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/3/3a/2023_Denver_Auto_Show_Toyota_Prius_wheel.jpg",
+        "type": "exterior",
+        "caption": "2023 Denver Auto Show Toyota Prius wheel"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/c/cd/Toyota_Prius_XW60_Evo.jpg",
+        "type": "exterior",
+        "caption": "Toyota Prius XW60 Evo"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/2/22/Toyota_Prius_%28XW60%29_Plug-in_Hybrid_Auto_Zuerich_2023_1X7A1228.jpg",
+        "type": "exterior",
+        "caption": "Toyota Prius (XW60) Plug-in Hybrid Auto Zuerich 2023 1X7A1228"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/5/5e/Toyota_Prius_%28XW60%29_Plug-in_Hybrid_Auto_Zuerich_2023_1X7A1226.jpg",
+        "type": "exterior",
+        "caption": "Toyota Prius (XW60) Plug-in Hybrid Auto Zuerich 2023 1X7A1226"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/f/f7/Toyota_Prius_%28XW30%29_in_Indonesia.jpg",
+        "type": "exterior",
+        "caption": "Toyota Prius (XW30) in Indonesia"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/3/32/2023_Hakone_Ekiden_Headquarter_car_No1_Prius_XW60.jpg",
+        "type": "exterior",
+        "caption": "2023 Hakone Ekiden Headquarter car No1 Prius XW60"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/84/Toyota_Prius_being_tested_at_Argonne_National_Laboratory.jpg",
+        "type": "exterior",
+        "caption": "Toyota Prius being tested at Argonne National Laboratory"
+      }
+    ],
+    "notes": "Auto-resolved from Wikimedia Commons search 'Toyota Prius 2023'. 7 candidates; representative of the model/generation."
+  },
+  {
+    "id": "mazda-cx5-new",
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/87/Mazda_CX-80%2C_Auto_2024%2C_Zurich_%28PANA0092%29.jpg",
+        "type": "exterior",
+        "caption": "Mazda CX-80, Auto 2024, Zurich (PANA0092)"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/4/49/Mazda_Cx_5_%28143349473%29.jpeg",
+        "type": "exterior",
+        "caption": "Mazda Cx 5 (143349473)"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Mazda_Cx_5_%28143349477%29.jpeg",
+        "type": "exterior",
+        "caption": "Mazda Cx 5 (143349477)"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/e/ea/Mazda_CX-5_Facelift.jpg",
+        "type": "exterior",
+        "caption": "Mazda CX-5 Facelift"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/3/39/Mazda_Cx_5_%28143349479%29.jpeg",
+        "type": "exterior",
+        "caption": "Mazda Cx 5 (143349479)"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/d/d7/Mazda_CX-5_%286671541773%29.jpg",
+        "type": "exterior",
+        "caption": "Mazda CX-5 (6671541773)"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/0/0d/Moscow%2C_Mazda_CX-5_black%2C_Sept_2025_04.jpg",
+        "type": "exterior",
+        "caption": "Moscow, Mazda CX-5 black, Sept 2025 04"
+      }
+    ],
+    "notes": "Auto-resolved from Wikimedia Commons search 'Mazda CX-5'. 7 candidates; representative of the model/generation."
+  },
+  {
+    "id": "outback-used",
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/0/01/2021_Tokyo_Marathon_Leading_car_Subaru_Outback.jpg",
+        "type": "exterior",
+        "caption": "2021 Tokyo Marathon Leading car Subaru Outback"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/2/22/Subaru_LEGACY_OUTBACK_X-BREAK_EX_%284BA-BT5%29_used_as_a_SUPER_GT_FIRST_RESCUE_OPERATION_and_Nissan_PATROL_NISMO_%28Y62%29_used_as_a_SUPER_GT_FIRST_RESCUE_OPERATION.jpg",
+        "type": "exterior",
+        "caption": "Subaru LEGACY OUTBACK X-BREAK EX (4BA-BT5) used as a SUPER GT FIRST RESCUE OPERATION and Nissan PATROL NISMO (Y62) used as a SUPER GT FIRST RESCUE OPERATION"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/9/94/%27Subaru%27_Obere_Tagfahrleuchte_f%C3%BCr_Kraftfahrzeuge_Nr._21_2021_000_172_Vadim_Chuprina.jpg",
+        "type": "exterior",
+        "caption": "'Subaru' Obere Tagfahrleuchte f\u00fcr Kraftfahrzeuge Nr. 21 2021 000 172 Vadim Chuprina"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/d/dd/Mazda_6_2.2d_GTX_Sports_Wagon_AWD_2019_%2852225678708%29.jpg",
+        "type": "exterior",
+        "caption": "Mazda 6 2.2d GTX Sports Wagon AWD 2019 (52225678708)"
+      }
+    ],
+    "notes": "Auto-resolved from Wikimedia Commons search 'Subaru Outback 2022'. 4 candidates; representative of the model/generation."
+  },
+  {
+    "id": "corolla-2018-current",
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/1/13/Toyota_Corolla_-_Montagnat%2C_2018.jpg",
+        "type": "exterior",
+        "caption": "Toyota Corolla - Montagnat, 2018"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Toyota_Corolla_%2845604387065%29.jpg",
+        "type": "exterior",
+        "caption": "Toyota Corolla (45604387065)"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/9/9b/Toyota_Corolla_%2844700634930%29.jpg",
+        "type": "exterior",
+        "caption": "Toyota Corolla (44700634930)"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/4/47/1976_Toyota_Corolla_%2832600691906%29.jpg",
+        "type": "exterior",
+        "caption": "1976 Toyota Corolla (32600691906)"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/7/76/1974_Toyota_Corolla_%2829533249880%29.jpg",
+        "type": "exterior",
+        "caption": "1974 Toyota Corolla (29533249880)"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/0/08/1974_Toyota_Corolla_%2829825934615%29.jpg",
+        "type": "exterior",
+        "caption": "1974 Toyota Corolla (29825934615)"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/f/fd/1982_Toyota_Corolla_DX_%2829251879895%29.jpg",
+        "type": "exterior",
+        "caption": "1982 Toyota Corolla DX (29251879895)"
+      }
+    ],
+    "notes": "Auto-resolved from Wikimedia Commons search 'Toyota Corolla 2018 sedan'. 7 candidates; representative of the model/generation."
+  }
+]
