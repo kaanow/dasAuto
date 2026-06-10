@@ -1,8 +1,8 @@
 {
   "tco":          3.0,
-  "car_seat_fit": 0.5,
+  "car_seat_fit": 0.0,
   "cargo":        2.0,
-  "third_row":    0.2,
+  "third_row":    0.0,
   "corridor":     1.5,
   "hitch":        0.3,
   "reliability":  1.5,
