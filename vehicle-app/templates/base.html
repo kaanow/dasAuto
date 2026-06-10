@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% block title %}BC Family Vehicle Browser{% endblock %}</title>
+  <title>{% block title %}{{ site.site_name }}{% endblock %}</title>
   {# Inline SVG favicon: navy rounded-square chip with the same 🚗 from the nav.
      Renders crisp at every resolution and shows the OS-native emoji so the
      tab is unmistakable amongst a row of grey defaults. #}
@@ -16,7 +16,7 @@
 <nav class="nav">
   <div class="nav-inner">
     <a href="/" class="nav-logo">
-      🚗 <span>BC Family Vehicle</span>
+      🚗 <span>{{ site.short_name }}</span>
     </a>
     <div class="nav-links">
       <a href="/" class="nav-link {% if request.path == '/' %}active{% endif %}">All Vehicles</a>
@@ -32,7 +32,7 @@
 
 <footer class="footer">
   <div class="footer-inner">
-    <span>BC Family Vehicle Browser · Data from AutoTrader.ca, CarGurus.ca</span>
+    <span>{{ site.site_name }} · Data from {{ site.data_sources }}</span>
     <span>Scores reflect importance weights — adjust on the main page to re-rank</span>
   </div>
 </footer>

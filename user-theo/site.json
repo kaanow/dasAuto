@@ -1,0 +1,8 @@
+{
+  "site_name": "Bruder's Auto",
+  "short_name": "Bruder's Auto",
+  "region_label": "BC",
+  "region_code": "BC",
+  "insurance_ref": "",
+  "data_sources": "AutoTrader.ca, CarGurus.ca"
+}

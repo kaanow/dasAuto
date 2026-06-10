@@ -1,0 +1,16 @@
+{
+  "_doc": "Out-of-warranty maintenance multiplier (maint_oow_per_year / maint_in_per_year), keyed by make then powertrain_type. Used ONLY as the default when a vehicle omits maint_oow_per_year. An explicit maint_oow_per_year on a vehicle ALWAYS wins — use it for per-vehicle age/km premiums (e.g. an old high-km vehicle in an otherwise-reliable brand). Family-agnostic; mirrors docs/brand_repair_tail.md. BC/Canada market, +/-0.5x uncertainty on absolutes; the relative ordering is the load-bearing part.",
+  "by_make_powertrain": {
+    "Toyota":     {"hybrid": 2.0, "bev": 2.5, "phev": 2.5, "ice": 2.5},
+    "Honda":      {"hybrid": 2.5, "ice": 2.5},
+    "Mazda":      {"phev": 2.5, "hybrid": 2.5, "ice": 2.5},
+    "Subaru":     {"ice": 3.0, "hybrid": 3.0},
+    "Hyundai":    {"ice": 3.0, "hybrid": 3.0, "phev": 3.5, "bev": 3.5},
+    "Kia":        {"ice": 3.0, "hybrid": 3.0, "phev": 3.5, "bev": 3.5},
+    "Tesla":      {"bev": 3.5},
+    "Chrysler":   {"ice": 3.0, "phev": 4.0},
+    "Volkswagen": {"ice": 3.0, "bev": 4.0}
+  },
+  "by_powertrain_default": {"ice": 3.0, "hybrid": 3.0, "phev": 3.5, "bev": 3.5},
+  "fallback": 3.0
+}

@@ -47,6 +47,7 @@ VEHICLES_FILE = DATA_DIR / "vehicles.json"
 WEIGHTS_FILE  = DATA_DIR / "weights.json"
 IMAGES_DIR    = DATA_DIR / "images"
 MANUAL_LISTINGS_FILE = DATA_DIR / "manual_listings.json"
+SITE_FILE     = DATA_DIR / "site.json"
 
 # DB lives next to the family data by default. In production (Railway)
 # the data dir ships in the immutable git checkout, but cache.db needs
@@ -72,6 +73,46 @@ def default_weights():
         with open(WEIGHTS_FILE) as f:
             return json.load(f)
     return dict(FALLBACK_WEIGHTS)
+
+
+# ── Site identity ──────────────────────────────────────────────────────────────
+# Per-family display config (name, region label, insurance reference). Keeps
+# family/region strings out of the templates so one codebase serves any
+# family. BC-centric defaults — the region_code drives the non-BC guard below.
+FALLBACK_SITE = {
+    "site_name":     "Family Vehicle Browser",
+    "short_name":    "Family Vehicle",
+    "region_label":  "BC",
+    "region_code":   "BC",
+    "insurance_ref": "",
+    "data_sources":  "AutoTrader.ca, CarGurus.ca",
+}
+
+@lru_cache(maxsize=1)
+def site_config():
+    """Per-family site identity from site.json, merged over the defaults."""
+    cfg = dict(FALLBACK_SITE)
+    if SITE_FILE.exists():
+        with open(SITE_FILE) as f:
+            cfg.update(json.load(f))
+    return cfg
+
+# Region guard: the tax engine (BC PST tiers), the listing-scope filter, and
+# the insurance reference all assume British Columbia. If a family is set up
+# outside BC, surface it loudly rather than silently mispricing.
+_site = site_config()
+if str(_site.get("region_code", "")).upper() != "BC":
+    sys.stderr.write(
+        f"WARNING: site region_code={_site.get('region_code')!r} is not 'BC'. "
+        "Tax math (BC PST tiers), the AutoTrader scope filter, and insurance "
+        "references are BC-specific and will be WRONG for this family. "
+        "Generalise docs/tax_math_canada.md + the scope filter before trusting "
+        "all-in pricing.\n"
+    )
+
+@app.context_processor
+def inject_site():
+    return {"site": site_config()}
 
 
 # ── Database ─────────────────────────────────────────────────────────────────

@@ -1,0 +1,8 @@
+{
+  "site_name": "BC Family Vehicle Browser",
+  "short_name": "BC Family Vehicle",
+  "region_label": "Vancouver, BC",
+  "region_code": "BC",
+  "insurance_ref": "ICBC Territory D, class 003, CDF 0.528",
+  "data_sources": "AutoTrader.ca, CarGurus.ca"
+}

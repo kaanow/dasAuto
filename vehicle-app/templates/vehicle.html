@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}{{ v.short_name }} — BC Family Vehicle Browser{% endblock %}
+{% block title %}{{ v.short_name }} — {{ site.site_name }}{% endblock %}
 
 {% block content %}
 <div class="detail-layout">
@@ -174,7 +174,7 @@
       </div>
       <p class="tco-note">All values CAD, NPV at 5.5% nominal discount (3.0% real + 2.5% CPI).
       Apr 2026 base rates: gas $1.79/L (+3.5%/yr), home electricity 11.72&nbsp;¢/kWh (+4.5%/yr blended),
-      DCFC $0.40/kWh (+3.5%/yr). Insurance: ICBC Territory D, class 003, CDF 0.528.
+      DCFC $0.40/kWh (+3.5%/yr).{% if site.insurance_ref %} Insurance: {{ site.insurance_ref }}.{% endif %}
       Residual: Canadian Black Book projections.</p>
     </div>
 

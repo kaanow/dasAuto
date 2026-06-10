@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}BC Family Vehicle Browser — Ranked Results{% endblock %}
+{% block title %}{{ site.site_name }} — Ranked Results{% endblock %}
 
 {% block content %}
 <div class="page-header">
@@ -7,7 +7,7 @@
   <p class="page-subtitle">
     {{ vehicles|length }} {% if showing_archived %}archived{% else %}candidates{% endif %}
     · <span id="horizon-subtitle">{{ horizon }}-year</span> TCO horizon
-    · Vancouver, BC · Adjust weights below to re-rank
+    · {{ site.region_label }} · Adjust weights below to re-rank
   </p>
   <p class="page-subtitle archive-toggle">
     {% if showing_archived %}

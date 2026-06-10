@@ -12,7 +12,9 @@ in the per-family data directory (e.g. `user-<family>/tco_research.md`).
 This file just does the arithmetic.
 """
 
+import json
 from dataclasses import dataclass
+from pathlib import Path
 
 
 @dataclass
@@ -80,6 +82,30 @@ DISCOUNT       = 0.055        # nominal annual
 MAINT_IN_PER_YEAR_DEFAULT  = 1500
 MAINT_OOW_PER_YEAR_DEFAULT = 4500   # 3× the in-warranty rate (industry baseline)
 
+# Brand × powertrain repair-tail ratios. Loaded once. Used ONLY to derive
+# maint_oow_per_year when a vehicle omits it — an explicit field always
+# wins (that's where per-vehicle age/km premiums live). See
+# docs/brand_repair_tail.md and repair_ratios.json.
+_RATIOS_PATH = Path(__file__).resolve().parent / "repair_ratios.json"
+try:
+    _REPAIR_RATIOS = json.loads(_RATIOS_PATH.read_text())
+except (OSError, ValueError):
+    _REPAIR_RATIOS = {"by_make_powertrain": {}, "by_powertrain_default": {}, "fallback": 3.0}
+
+
+def repair_ratio(make, powertrain_type):
+    """Default OOW multiplier for a make+powertrain. Falls back to a
+    powertrain-level default, then a flat constant. Only consulted when a
+    vehicle has no explicit maint_oow_per_year."""
+    by_mp = _REPAIR_RATIOS.get("by_make_powertrain", {})
+    make_map = by_mp.get(make, {})
+    if powertrain_type in make_map:
+        return make_map[powertrain_type]
+    pt_default = _REPAIR_RATIOS.get("by_powertrain_default", {})
+    if powertrain_type in pt_default:
+        return pt_default[powertrain_type]
+    return _REPAIR_RATIOS.get("fallback", 3.0)
+
 _FUEL_RATES = {
     "gas":   FuelRate(base=1.79,   escalation=0.035, name="gas"),
     "hydro": FuelRate(base=0.1172, escalation=0.045, name="hydro"),
@@ -131,7 +157,13 @@ def maint_at_horizon(vehicle, years):
     fields fall back to the module defaults."""
     warranty = vehicle.get("warranty_years_remaining", BASE_HORIZON)
     p_in     = vehicle.get("maint_in_per_year",  MAINT_IN_PER_YEAR_DEFAULT)
-    p_oow    = vehicle.get("maint_oow_per_year", MAINT_OOW_PER_YEAR_DEFAULT)
+    # Explicit oow wins (carries per-vehicle age/km premiums). Otherwise
+    # derive from the brand×powertrain repair-tail ratio.
+    if "maint_oow_per_year" in vehicle:
+        p_oow = vehicle["maint_oow_per_year"]
+    else:
+        ratio = repair_ratio(vehicle.get("make"), vehicle.get("powertrain_type"))
+        p_oow = p_in * ratio
     in_yrs   = min(years, warranty)
     out_yrs  = max(0, years - warranty)
     return in_yrs * p_in + out_yrs * p_oow

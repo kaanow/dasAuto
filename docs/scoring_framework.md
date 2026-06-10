@@ -98,3 +98,27 @@ Rendered in the UI rounded to 2 decimal places.
 If a deployment ever needs to add or remove a criterion, that's an
 architectural change (touches `vehicle-app/scoring.py`), not a
 family-specific one. Discuss before doing it.
+
+## The criterion set is a fixed superset (multi-family decision)
+
+The 9 keys (`tco`, `car_seat_fit`, `cargo`, `third_row`, `corridor`,
+`hitch`, `reliability`, `winter`, `fsr`) are a **shared superset across all
+families** — they are NOT re-chosen per family. Some keys are obviously
+kaan-and-tess-flavoured (`corridor` = the Vancouver↔Interior runs; `fsr` =
+forest-service-road use), but a family for whom they're irrelevant simply
+**sets that weight to ~0 in their `weights.json`** rather than removing the
+criterion.
+
+Why a superset instead of per-family criteria:
+
+- The formula, rubric, and `vehicle-app/scoring.py` stay identical for every
+  family — one code path, no per-family branching.
+- A zero weight makes a criterion invisible to the ranking without deleting
+  the data, so it can be re-enabled later by editing one number.
+- Adding a genuinely new dimension (a criterion no existing key approximates)
+  is the only case that touches code — and per the row above, that's an
+  architectural change to be discussed, not a quiet per-family edit.
+
+So for Theo: keep all 9 keys; set `corridor`/`fsr` (and anything else that
+doesn't apply) low or zero in his `weights.json`. Don't fork the criterion
+list.

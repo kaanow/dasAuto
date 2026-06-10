@@ -3,35 +3,50 @@
 A reusable Flask + HTMX app that scores a curated shortlist of family
 vehicles against weighted criteria, with live links to AutoTrader and
 Craigslist listings. Built originally for the kaan-and-tess household
-in Vancouver BC; structured so you can lift it for a different family
-with minimal further input.
+in Vancouver BC; structured to run as one repo serving multiple
+families, each at their own domain (`VEHICLE_DATA_DIR` selects the
+family). Currently assumes every family is in BC — see the note under
+"Use for a different family".
 
 ## Layout
 
 ```
 dasAuto/
+├── CLAUDE.md              # architectural rules (authoritative on structure)
+├── docs/                  # ARCHITECTURAL docs — apply to every family
+│   ├── new_family_playbook.md   # the buildout sequence for a new family
+│   ├── scoring_framework.md     # the 9 criteria + rubric + formula
+│   ├── tco_methodology.md       # NPV, warranty cliff, residual math
+│   ├── brand_repair_tail.md     # OOW maintenance multipliers
+│   ├── tax_math_canada.md       # BC PST tiers, GST, dealer fees
+│   ├── selection_principle.md   # hard-filter vs scored-criterion rule
+│   └── multi_family_todo.md     # generalisation status (done + deferred)
 ├── vehicle-app/           # the SKILL — reusable across families
 │   ├── app.py             # Flask routes; reads $VEHICLE_DATA_DIR
 │   ├── scoring.py         # criteria + weighted-sum framework
 │   ├── tco.py             # NPV-based TCO computation
+│   ├── repair_ratios.json # brand×powertrain OOW-maintenance multipliers
 │   ├── scrapers/          # AutoTrader + Craigslist + image fetcher
-│   ├── templates/, static/
+│   ├── templates/, static/, tests/test_smoke.py
 │   ├── briefs/            # research-brief templates to seed a new family
-│   ├── docs/HANDOFF.md
-│   ├── tests/test_smoke.py
-│   ├── requirements.txt
 │   └── run.sh, "Launch Vehicle Browser.bat"
-└── user-kaan-and-tess/    # this family's SITUATION + WORK PRODUCT
-    ├── situation.md       # who, where, needs, weights rationale
+└── user-<family>/         # one folder per family (e.g. user-kaan-and-tess)
+    ├── family.md          # PURE FAMILY INPUT — the canonical brief
+    ├── site.json          # display identity (name, region, insurance ref)
     ├── weights.json       # default importance weights
-    ├── vehicles.json      # 12 candidates with per-criterion scores
-    ├── image_seeds.json   # curated Wikimedia URLs (input to fetch_images)
-    ├── tco_research.md    # Vancouver BC rate research
-    └── images/            # downloaded galleries (gitignored)
+    ├── vehicles.json      # the cohort, with per-criterion scores
+    ├── image_seeds.json   # curated image URLs (input to fetch_images)
+    ├── manual_listings.json     # AI-curated market listings
+    ├── dealer_quotes/<id>.json  # one JSON per active dealer quote
+    ├── images/            # downloaded galleries
+    └── research/          # AI-generated deliverables
+        ├── tco_research.md, cohort_rationale.md, decisions_log.md
 ```
 
 The skill folder is portable: nothing inside it names a specific family.
-Every per-family input/output lives in `user-kaan-and-tess/`.
+Every per-family input/output lives in `user-<family>/`. The split
+between architectural and family-specific knowledge is enforced — see
+`CLAUDE.md`.
 
 ## Launch
 
@@ -50,25 +65,42 @@ on macOS when AirPlay holds 5000. Pin with `PORT=5500 bash …`.
 
 ## Use for a different family
 
-1. Copy `user-kaan-and-tess/` to `user-<their-label>/`:
-   ```bash
-   cp -r user-kaan-and-tess user-jones-family
-   ```
-2. Edit `user-jones-family/situation.md` to describe who they are and
-   what they want from a vehicle.
-3. Update `weights.json`, `vehicles.json`, `image_seeds.json`, and
-   `tco_research.md` to reflect that family's situation. The briefs in
-   `vehicle-app/briefs/` are the templates a research agent fills in.
+The full sequence (intake → criteria → cohort → TCO → images → deploy)
+is in **`docs/new_family_playbook.md`** — follow it end-to-end. The
+short version:
+
+1. Create `user-<their-label>/`.
+2. Have the family fill in `family.md` from
+   `vehicle-app/briefs/family_brief_template.md`. This is canonical
+   input — don't edit it later; clarifications go to
+   `research/decisions_log.md`.
+3. Add `site.json` (display name, region label, insurance ref) and
+   build out `weights.json`, `vehicles.json`, `image_seeds.json`, and
+   `research/tco_research.md`. A vehicle that omits `maint_oow_per_year`
+   inherits the brand×powertrain default from `repair_ratios.json`; set
+   it explicitly only for a per-vehicle age/km premium.
 4. Run with the new data dir:
    ```bash
-   VEHICLE_DATA_DIR=$(pwd)/user-jones-family bash vehicle-app/run.sh
+   VEHICLE_DATA_DIR=$(pwd)/user-<their-label> bash vehicle-app/run.sh
    ```
+5. To deploy, provision a separate Railway service pointed at the new
+   folder and CNAME a subdomain (see "Deploying to Railway").
+
+**BC-only for now.** The tax engine, listing-scope filter, and
+insurance references assume British Columbia. If `site.json` sets
+`region_code` to anything other than `BC`, the app logs a startup
+warning — that's the signal to generalise the items tracked in
+`docs/multi_family_todo.md` before trusting all-in pricing.
 
 ## Routes
 
 - `/` — ranked card grid; edit weights in the sidebar to re-rank live
 - `/vehicle/<id>` — full profile, gallery, scores, listings
 - `/compare?ids=<a>&ids=<b>...` — side-by-side, up to 4 vehicles
+- `/siennas` — Sienna AWD-Hybrid cross-shop table (kaan-and-tess; will
+  generalise to `/cross-shop/<vehicle-id>` once a second family
+  converges — see `docs/multi_family_todo.md`)
+- `/active/<id>` — archive/restore a vehicle from the web UI
 - `/health` — image count, listing cache, paths
 - `/api/vehicles?w_<key>=<val>...` — ranked JSON list under chosen weights
 
@@ -81,8 +113,10 @@ params, so a rerank on the index persists into detail and compare pages.
 cd vehicle-app && .venv/bin/python -m unittest tests.test_smoke
 ```
 
-11 smoke tests cover every route, weight threading, custom-weight
-rerank behaviour, garbage-input tolerance, and the JSON API.
+17 smoke tests cover every route, weight threading, custom-weight
+rerank behaviour, the variable-horizon TCO model (warranty cliff,
+per-year maintenance, renormalisation), garbage-input tolerance, and
+the JSON API.
 
 ## Refreshing images
 
@@ -117,9 +151,13 @@ moving parts that matter:
      favourites/notes survive every deploy.
    - `PYTHONUNBUFFERED=1` — makes gunicorn access logs flush
      immediately so Railway's log viewer is live.
-   - *(optional)* `VEHICLE_DATA_DIR` — only set if you fork the repo
-     and use a non-default family dir; otherwise the default
-     (`user-kaan-and-tess/`) is correct.
+   - `VEHICLE_DATA_DIR` — the family folder this service serves (e.g.
+     `user-kaan-and-tess` or `user-theo`). Leave unset only for the
+     default kaan-and-tess service. Each family runs as its **own
+     Railway service** off the same repo/branch, differentiated by this
+     var, with its own volume and CNAME'd subdomain
+     (`dasauto.alti2.de` → kaan-and-tess, `brudersauto.alti2.de` →
+     theo).
 5. **Trigger redeploy** (Deployments → Redeploy) so the new env vars
    take effect. Subsequent pushes to `main` auto-deploy.
 

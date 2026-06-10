@@ -33,11 +33,13 @@ dasAuto/
 │   └── tax_math_canada.md           # BC PST tiers, GST, dealer-fee taxonomy
 ├── vehicle-app/                     # SKILL — family-agnostic code
 │   ├── app.py, scoring.py, tco.py
+│   ├── repair_ratios.json           # brand×powertrain OOW-maint multipliers
 │   ├── scrapers/, templates/, static/, tests/
 │   ├── briefs/                      # research-brief templates for new families
 │   └── docs/HANDOFF.md              # internal dev notes (pre-multi-family)
 └── user-<family>/                   # one folder per family
     ├── family.md                    # PURE FAMILY INPUT — the canonical brief
+    ├── site.json                    # display identity (name, region, insurance ref)
     ├── weights.json                 # tunable importance weights
     ├── vehicles.json                # the cohort
     ├── image_seeds.json             # curated image URLs
