@@ -23,7 +23,7 @@ from flask import Flask, render_template, jsonify, request, send_from_directory
 
 sys.path.insert(0, str(Path(__file__).parent))
 from scrapers.listings import fetch_listings, autotrader_url, deep_links, SCOPES
-from scoring import CRITERIA_LABELS, compute_score, rank_vehicles, reframe_for_horizon
+from scoring import CRITERIA_LABELS, CRITERIA_KEYS, compute_score, rank_vehicles, reframe_for_horizon
 
 # Allowed horizon range for the user-facing slider.
 HORIZON_MIN = 4
@@ -364,6 +364,26 @@ def url_state_qs(weights, horizon):
     return "&".join(parts)
 
 
+# ── Card score bars ────────────────────────────────────────────────────────
+# Short labels for the card bars (tco is excluded — it's shown prominently as
+# the TCO figure). The bars adapt per family: they show whichever criteria the
+# weights rank highest, so a family that zeroes a criterion never sees a bar
+# for it.
+CARD_BAR_LABELS = {
+    "car_seat_fit": "Car Seats", "cargo": "Cargo", "third_row": "3rd Row",
+    "corridor": "Corridor", "hitch": "Hitch", "reliability": "Reliability",
+    "winter": "Winter", "fsr": "FSR",
+}
+
+def top_bar_criteria(weights, n=5):
+    """The n highest-weighted qualitative criteria (excluding tco). Ties break
+    by canonical order so the set is stable. Returns [(key, short_label), ...]."""
+    order = {k: i for i, k in enumerate(CRITERIA_KEYS)}
+    keys = [k for k in weights if k != "tco" and k in CARD_BAR_LABELS]
+    keys.sort(key=lambda k: (-weights.get(k, 0), order.get(k, 99)))
+    return [(k, CARD_BAR_LABELS[k]) for k in keys[:n]]
+
+
 # ── Routes ───────────────────────────────────────────────────────────────────
 @app.route("/")
 def index():
@@ -391,6 +411,7 @@ def index():
         weights_default=default_weights(),
         state_qs=url_state_qs(weights, horizon),
         criteria_labels=CRITERIA_LABELS,
+        bar_criteria=top_bar_criteria(weights),
         scopes=SCOPES,
         showing_archived=showing_archived,
         archived_count=len(archived_vehicles()),
@@ -413,6 +434,7 @@ def rerank():
         vehicles=vehicles,
         weights=weights,
         horizon=horizon,
+        bar_criteria=top_bar_criteria(weights),
         state_qs=url_state_qs(weights, horizon),
     )
 

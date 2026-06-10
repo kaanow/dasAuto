@@ -61,15 +61,8 @@
       </div>
     </div>
 
-    <!-- Score bars for qualitative criteria -->
+    <!-- Score bars: the family's top-weighted criteria (excl. TCO) -->
     <div class="score-bars">
-      {% set bar_criteria = [
-        ('car_seat_fit', 'Car Seats'),
-        ('third_row',    '3rd Row'),
-        ('reliability',  'Reliability'),
-        ('winter',       'Winter'),
-        ('corridor',     'Corridor'),
-      ] %}
       {% for key, label in bar_criteria %}
       {% set s = v.scores[key] %}
       <div class="score-bar-row">
