@@ -29,11 +29,14 @@
   </div>
 </div>
 
-<!-- Source breakdown -->
+<!-- Source breakdown (hidden when there are no AutoTrader/Craigslist results,
+     e.g. Tesla pages that show Tesla.com MSRP) -->
+{% if listings_data.count_at or listings_data.count_cl %}
 <div class="source-row">
   <span class="source-count">🚗 AutoTrader: {{ listings_data.count_at }}</span>
   <span class="source-count">📋 Craigslist: {{ listings_data.count_cl }}</span>
 </div>
+{% endif %}
 
 {% if listings_data.curated_note %}
 <div class="listings-note">{{ listings_data.curated_note }}</div>

@@ -15,24 +15,29 @@ def new_url(make, mdl):   return f"{AT}/{make}/bc/?{BC}&mdl={mdl}&yRng=2025%2C20
 # vehicle_id -> {search, note, rows[(year,title,price,km,city,dealer)]}
 # km == 0 -> rendered "New". Empty rows -> note explains why.
 ENTRIES = {
-  # ── Tesla: no third-party NEW stock (direct sales) ───────────────────────
-  "tesla-model-y-new": {"search": new_url("tesla","Model+Y"),
-    "note": "Tesla sells new direct via Tesla.com — no brand-new third-party stock in BC. "
-            "These are the newest low-km 2026 examples on the used market.",
+  # ── Tesla: sold direct — show current Tesla Canada MSRP by trim ──────────
+  "tesla-model-y-new": {"search": "https://www.tesla.com/en_ca/modely",
+    "source": "Tesla.com", "icon": "⚡", "direct": True,
+    "note": "Tesla sells new direct — current Tesla Canada MSRP by trim (Tesla.com, "
+            "June 2026), before tax/fees. New Model Ys aren't listed on AutoTrader; "
+            "see the used Model Y entry for the resale market.",
     "rows": [
-      (2026, "Model Y Premium AWD", 69998, 5087, "Abbotsford", "AutoTrader dealer"),
-      (2026, "Model Y Long Range AWD", 71800, 8572, "Richmond", "AutoTrader dealer"),
-      (2026, "Model Y Long Range AWD", 78800, 10737, "Richmond", "AutoTrader dealer")]},
+      (2026, "Model Y Standard RWD", 49990, 0, "Tesla.com — direct order", "Tesla Canada"),
+      (2026, "Model Y Premium AWD (Long Range) — 542 km", 64990, 0, "Tesla.com — direct order", "Tesla Canada"),
+      (2026, "Model Y Performance AWD — 494 km", 74990, 0, "Tesla.com — direct order", "Tesla Canada")]},
   "tesla-model-y-used": {"search": used_url("tesla","Model+Y"), "note": None, "rows": [
       (2024, "Model Y Long Range Dual Motor", 43997, 47425, "Surrey", "Go North Surrey GM"),
       (2022, "Model Y Performance AWD", 42995, 74383, "New Westminster", "Key West Ford"),
       (2021, "Model Y Long Range AWD", 38798, 51954, "Vancouver", "Go Downtown Kia")]},
-  "tesla-model-3-new": {"search": new_url("tesla","Model+3"),
-    "note": "Tesla sells new direct via Tesla.com — no brand-new third-party stock in BC. "
-            "Newest low-km examples shown; see the used Model 3 entry for the value market.",
+  "tesla-model-3-new": {"search": "https://www.tesla.com/en_ca/model3",
+    "source": "Tesla.com", "icon": "⚡", "direct": True,
+    "note": "Tesla sells new direct — current Tesla Canada MSRP by trim (Tesla.com, "
+            "June 2026), before tax/fees. The RWD is Shanghai-built and does not qualify "
+            "for the federal iZEV rebate. See the used Model 3 entry for the resale market.",
     "rows": [
-      (2025, "Model 3 Premium FSD", 54895, 16500, "Abbotsford", "Fraser Valley Pre-Owned"),
-      (2025, "Model 3 Premium Long Range AWD", 58000, 17500, "North Vancouver", "Private seller")]},
+      (2026, "Model 3 Premium RWD — 463 km", 39490, 0, "Tesla.com — direct order", "Tesla Canada"),
+      (2026, "Model 3 Premium AWD (Long Range) — 572 km", 49990, 0, "Tesla.com — direct order", "Tesla Canada"),
+      (2026, "Model 3 Performance — 478 km", 74990, 0, "Tesla.com — direct order", "Tesla Canada")]},
   "tesla-model-3-used": {"search": used_url("tesla","Model+3"), "note": None, "rows": [
       (2024, "Model 3 Premium RWD", 41998, 37623, "Burnaby", "Destination Toyota"),
       (2023, "Model 3 RWD (local 1-owner)", 32995, 51130, "Richmond", "Volvo Cars Richmond"),
@@ -128,25 +133,29 @@ ENTRIES = {
       (2021, "Outback Premier XT", 32578, 102052, "Quesnel", "Regency Chrysler")]},
 }
 
-def listing(row, url):
+def listing(row, e):
     yr, title, price, km, city, dealer = row
-    return {"source": "AutoTrader", "source_icon": "🚗", "title": f"{yr} {title}",
+    src = e.get("source", "AutoTrader")
+    loc = city if e.get("direct") else f"{city}, BC"
+    return {"source": src, "source_icon": e.get("icon", "🚗"), "title": f"{yr} {title}",
             "year": yr, "price": f"${price:,}", "km": "New" if km == 0 else f"{km:,} km",
-            "location": f"{city}, BC", "seller": dealer, "url": url, "thumb": "",
+            "location": loc, "seller": dealer, "url": e["search"], "thumb": "",
             "fetched_at": FETCHED}
 
 def main():
-    out = {"_doc": "Manually curated listings (live AutoTrader BC scan 2026-06-10), keyed by "
-                   "vehicle_id. NEW entries hold new dealer inventory; USED entries hold the "
-                   "used market. The app MERGES manual + any live scrape. BC, Kamloops-priority."}
+    out = {"_doc": "Manually curated listings (AutoTrader BC scan 2026-06-10; Tesla shows "
+                   "Tesla.com MSRP since it sells direct), keyed by vehicle_id. NEW entries "
+                   "hold new dealer inventory; USED entries hold the used market. The app "
+                   "MERGES manual + any live scrape. BC, Kamloops-priority."}
     for vid, e in ENTRIES.items():
         rows = e.get("rows", [])
-        listings = [listing(r, e["search"]) for r in rows]
+        listings = [listing(r, e) for r in rows]
         note = e.get("note")
         if note is None:
             note = f"BC used market (scan 2026-06-10), Kamloops-priority, {len(listings)} listings."
+        count_at = sum(1 for l in listings if l["source"] == "AutoTrader")
         out[vid] = {"scope": "bc", "scope_label": "BC (Kamloops-priority)", "fetched_at": FETCHED,
-                    "count_at": len(listings), "count_cl": 0, "blocked_warning": False,
+                    "count_at": count_at, "count_cl": 0, "blocked_warning": False,
                     "curated_note": note, "listings": listings}
     p = Path(__file__).parent / "manual_listings.json"
     p.write_text(json.dumps(out, indent=2, ensure_ascii=False))
