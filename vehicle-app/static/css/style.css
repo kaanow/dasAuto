@@ -356,6 +356,9 @@ input, select, textarea { font-family: inherit; }
 
 .source-row { display: flex; gap: 1rem; font-size: .78rem; color: var(--muted);
   margin-bottom: .7rem; }
+.listings-note { font-size: .8rem; line-height: 1.4; color: var(--muted);
+  background: rgba(255,255,255,.04); border-left: 3px solid var(--accent, #6ea8fe);
+  padding: .5rem .7rem; border-radius: 4px; margin-bottom: .8rem; }
 .source-count { font-weight: 600; }
 
 .listing-grid { display: flex; flex-direction: column; gap: .6rem; margin-bottom: 1rem; }

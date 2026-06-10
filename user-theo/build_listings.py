@@ -8,14 +8,25 @@ from pathlib import Path
 
 FETCHED = "2026-06-10T12:00:00"
 AT = "https://www.autotrader.ca/cars"
+BC = "prv=British+Columbia&loc=BC&prx=-2&srt=9"
 SEARCH = {
-    "model-y": f"{AT}/tesla/bc/?mdl=Model+Y&loc=Kamloops%2C+BC&prx=500&srt=9",
-    "model-3": f"{AT}/tesla/bc/?mdl=Model+3&loc=Kamloops%2C+BC&prx=500&srt=9",
-    "ioniq5":  f"{AT}/hyundai/bc/?mdl=IONIQ+5&loc=Kamloops%2C+BC&prx=500&srt=9",
-    "ev6":     f"{AT}/kia/bc/?mdl=EV6&loc=Kamloops%2C+BC&prx=500&srt=9",
-    "ioniq6":  f"{AT}/hyundai/bc/?mdl=IONIQ+6&loc=Kamloops%2C+BC&prx=500&srt=9",
-    "bolt":    f"{AT}/chevrolet/bc/?mdl=Bolt+EUV&loc=Kamloops%2C+BC&prx=500&srt=9",
-    "id4":     f"{AT}/volkswagen/bc/?mdl=ID.4&loc=Kamloops%2C+BC&prx=500&srt=9",
+    "model-y":  f"{AT}/tesla/bc/?mdl=Model+Y&loc=Kamloops%2C+BC&prx=500&srt=9",
+    "model-3":  f"{AT}/tesla/bc/?mdl=Model+3&loc=Kamloops%2C+BC&prx=500&srt=9",
+    "ioniq5":   f"{AT}/hyundai/bc/?mdl=IONIQ+5&loc=Kamloops%2C+BC&prx=500&srt=9",
+    "ev6":      f"{AT}/kia/bc/?mdl=EV6&loc=Kamloops%2C+BC&prx=500&srt=9",
+    "ioniq6":   f"{AT}/hyundai/bc/?mdl=IONIQ+6&loc=Kamloops%2C+BC&prx=500&srt=9",
+    "bolt":     f"{AT}/chevrolet/bc/?mdl=Bolt+EUV&loc=Kamloops%2C+BC&prx=500&srt=9",
+    "id4":      f"{AT}/volkswagen/bc/?mdl=ID.4&loc=Kamloops%2C+BC&prx=500&srt=9",
+    "rav4-h":   f"{AT}/toyota/bc/?{BC}&mdl=RAV4&yRng=2025%2C2026",
+    "rav4-p":   f"{AT}/toyota/bc/?{BC}&mdl=RAV4+Prime",
+    "prius":    f"{AT}/toyota/bc/?{BC}&mdl=Prius&yRng=2025%2C2026",
+    "prius-p":  f"{AT}/toyota/bc/?{BC}&mdl=Prius&yRng=2025%2C2026",
+    "corolla-h":f"{AT}/toyota/bc/?{BC}&mdl=Corolla&yRng=2025%2C2026",
+    "crv-h":    f"{AT}/honda/bc/?{BC}&mdl=CR-V&yRng=2024%2C2026",
+    "cx5":      f"{AT}/mazda/bc/?{BC}&mdl=CX-5&yRng=2025%2C2026",
+    "niro":     f"{AT}/kia/bc/?mdl=Niro&loc=Kamloops%2C+BC&prx=500&srt=9",
+    "tucson":   f"{AT}/hyundai/bc/?mdl=Tucson&loc=Kamloops%2C+BC&prx=500&srt=9",
+    "outback":  f"{AT}/subaru/bc/?mdl=Outback&loc=Kamloops%2C+BC&prx=500&srt=9",
 }
 # model -> [(year, title, price, km, city, dealer), ...]
 DATA = {
@@ -62,23 +73,96 @@ DATA = {
         (2025, "ID.4 Pro S AWD", 52995, 4318, "North Vancouver", "Capilano Volkswagen"),
         (2025, "ID.4 Pro S (low km)", 54115, 8095, "Chilliwack", "Chilliwack Volkswagen"),
     ],
+    # ── New-car dealer inventory (km 0 -> rendered "New") ──────────────────
+    "rav4-h": [
+        (2026, "RAV4 LE Hybrid AWD", 47348, 0, "Maple Ridge", "Maple Ridge Volkswagen"),
+        (2026, "RAV4 XLE Hybrid AWD", 52587, 0, "Maple Ridge", "Maple Ridge Chrysler"),
+        (2026, "RAV4 Woodland Hybrid AWD", 57995, 0, "Burnaby", "Destination Honda Burnaby"),
+        (2026, "RAV4 XSE Technology Hybrid AWD", 61900, 0, "Prince George", "Private seller"),
+    ],
+    "prius": [
+        (2026, "Prius Limited (hybrid)", 46440, 13, "Courtenay", "Comox Valley Toyota"),
+    ],
+    "prius-p": [
+        (2026, "Prius Prime SE", 33860, 0, "Langley", "Langley Toyota"),
+        (2026, "Prius Prime SE", 36686, 0, "Burnaby", "Destination Toyota"),
+        (2026, "Prius Prime SE", 38143, 0, "Pitt Meadows", "West Coast Toyota"),
+        (2026, "Prius Prime XSE", 40368, 0, "Pitt Meadows", "West Coast Toyota"),
+        (2026, "Prius Prime XSE", 41645, 0, "Courtenay", "Comox Valley Toyota"),
+        (2026, "Prius Prime XSE Premium", 46978, 0, "Pitt Meadows", "West Coast Toyota"),
+    ],
+    "corolla-h": [
+        (2025, "Corolla Hybrid LE", 30999, 25389, "Surrey", "Go Langley Mitsubishi"),
+        (2025, "Corolla Hybrid LE CVT AWD", 30999, 29011, "Surrey", "Dams Ford Lincoln"),
+        (2025, "Corolla Hybrid LE (CPO)", 31930, 21500, "Langley", "Langley Toyota"),
+        (2025, "Corolla Hybrid XSE AWD", 35990, 16424, "Abbotsford", "OpenRoad Toyota Abbotsford"),
+        (2025, "Corolla Hybrid SE AWD", 35995, 14264, "Burnaby", "Destination Honda Burnaby"),
+    ],
+    "crv-h": [
+        (2024, "CR-V Hybrid Touring AWD", 36995, 111842, "Vancouver", "Kingsway Honda"),
+        (2024, "CR-V Hybrid EX-L AWD", 41895, 28087, "Vancouver", "Carter Honda"),
+        (2024, "CR-V Hybrid Touring AWD", 42750, 49057, "North Vancouver", "North Shore Honda Acura"),
+        (2025, "CR-V Hybrid EX-L AWD", 43339, 21858, "Prince George", "Northland CJD"),
+        (2025, "CR-V Hybrid EX-L AWD", 43500, 48332, "North Vancouver", "North Shore Honda Acura"),
+        (2026, "CR-V Hybrid Touring AWD", 52695, 270, "Vancouver", "Vancouver Honda"),
+    ],
+    "cx5": [
+        (2025, "CX-5 GS Comfort AWD", 37395, 0, "Campbell River", "Island Owl Mazda"),
+        (2026, "CX-5 GS AWD", 41795, 0, "Pitt Meadows", "West Coast Mazda"),
+        (2026, "CX-5 GT AWD", 46695, 0, "Pitt Meadows", "West Coast Mazda"),
+    ],
+    "niro": [
+        (2022, "Niro Plug-In Hybrid EX (~42 km EV)", 22812, 104971, "North Vancouver", "North Shore Kia"),
+    ],
+    "outback": [
+        (2025, "Outback Limited XT", 47595, 19371, "Kamloops", "Kamloops Honda"),
+        (2024, "Outback Onyx", 36166, 40203, "Surrey", "Go Langley Subaru"),
+        (2024, "Outback Wilderness", 40998, 53290, "Burnaby", "Destination Toyota"),
+        (2023, "Outback Touring", 35990, 55505, "Duncan", "Galaxy Motors Duncan"),
+        (2023, "Outback Premier XT", 39995, 47914, "Burnaby", "Destination Honda Burnaby"),
+        (2023, "Outback Convenience", 28995, 94486, "Vancouver", "Docksteader Subaru"),
+        (2022, "Outback Touring", 30994, 59985, "North Vancouver", "Carter GM North Shore"),
+        (2021, "Outback Premier XT", 32578, 102052, "Quesnel", "Regency Chrysler"),
+    ],
+    # Genuinely dry markets at scan (kept as explicit empty-with-note):
+    "rav4-p": [],
+    "tucson": [],
 }
 # model -> vehicle id(s). New + used of the same model share the market.
 MAP = {
-    "model-y": ["tesla-model-y-used", "tesla-model-y-new"],
-    "model-3": ["tesla-model-3-used", "tesla-model-3-new"],
-    "ioniq5":  ["ioniq5-new"],
-    "ev6":     ["ev6-used"],
-    "ioniq6":  ["ioniq6-new"],
-    "bolt":    ["bolt-euv-used"],
-    "id4":     ["id4-used"],
+    "model-y":  ["tesla-model-y-used", "tesla-model-y-new"],
+    "model-3":  ["tesla-model-3-used", "tesla-model-3-new"],
+    "ioniq5":   ["ioniq5-new"],
+    "ev6":      ["ev6-used"],
+    "ioniq6":   ["ioniq6-new"],
+    "bolt":     ["bolt-euv-used"],
+    "id4":      ["id4-used"],
+    "rav4-h":   ["rav4-hybrid-new"],
+    "rav4-p":   ["rav4-prime-new"],
+    "prius":    ["prius-new"],
+    "prius-p":  ["prius-prime-new"],
+    "corolla-h":["corolla-hybrid-new"],
+    "crv-h":    ["crv-hybrid-new"],
+    "cx5":      ["mazda-cx5-new"],
+    "niro":     ["niro-phev-used"],
+    "tucson":   ["tucson-phev-used"],
+    "outback":  ["outback-used"],
+}
+# Explanatory notes for genuinely empty markets at scan.
+EMPTY_NOTES = {
+    "rav4-prime-new": "No Toyota RAV4 Prime (plug-in) in BC at scan 2026-06-10 — "
+                      "AutoTrader returned 0 BC results; supply is very tight. "
+                      "New RAV4 Hybrids are widely available as the closest in-market option.",
+    "tucson-phev-used": "No Hyundai Tucson Plug-in Hybrid in the BC used market at scan "
+                        "2026-06-10 — only gas and regular-hybrid Tucsons were listed.",
 }
 
 def listing(row, url):
     yr, title, price, km, city, dealer = row
+    km_str = "New" if km == 0 else f"{km:,} km"
     return {"source": "AutoTrader", "source_icon": "🚗",
             "title": f"{yr} {title}", "year": yr, "price": f"${price:,}",
-            "km": f"{km:,} km", "location": f"{city}, BC", "seller": dealer,
+            "km": km_str, "location": f"{city}, BC", "seller": dealer,
             "url": url, "thumb": "", "fetched_at": FETCHED}
 
 def main():
@@ -89,11 +173,17 @@ def main():
         rows = DATA[model]; url = SEARCH[model]
         listings = [listing(r, url) for r in rows]
         for vid in ids:
-            new = vid.endswith("-new")
-            note = (f"Live AutoTrader BC scan 2026-06-10 for this model ({len(listings)} BC "
-                    "listings, Kamloops-priority). " +
-                    ("Shown as the used-market value reference vs buying new." if new
-                     else "BC used market."))
+            if not listings:
+                note = EMPTY_NOTES.get(vid, "No BC listings at scan 2026-06-10.")
+            elif any(l["km"] == "New" for l in listings):
+                note = (f"New-car dealer inventory in BC (AutoTrader scan 2026-06-10), "
+                        f"{len(listings)} listings.")
+            elif vid.endswith("-new"):
+                note = (f"BC used market for this model (scan 2026-06-10), {len(listings)} "
+                        "listings — the value reference vs buying new.")
+            else:
+                note = (f"BC used market (scan 2026-06-10), Kamloops-priority, "
+                        f"{len(listings)} listings.")
             out[vid] = {"scope": "bc", "scope_label": "BC (Kamloops-priority)",
                         "fetched_at": FETCHED, "count_at": len(listings), "count_cl": 0,
                         "blocked_warning": False, "curated_note": note, "listings": listings}

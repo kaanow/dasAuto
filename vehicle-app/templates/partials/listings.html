@@ -35,6 +35,10 @@
   <span class="source-count">📋 Craigslist: {{ listings_data.count_cl }}</span>
 </div>
 
+{% if listings_data.curated_note %}
+<div class="listings-note">{{ listings_data.curated_note }}</div>
+{% endif %}
+
 <!-- Listing cards -->
 {% if listings_data.listings %}
 <div class="listing-grid">

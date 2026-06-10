@@ -7,7 +7,7 @@
     "count_at": 3,
     "count_cl": 0,
     "blocked_warning": false,
-    "curated_note": "Live AutoTrader BC scan 2026-06-10 for this model (3 BC listings, Kamloops-priority). BC used market.",
+    "curated_note": "BC used market (scan 2026-06-10), Kamloops-priority, 3 listings.",
     "listings": [
       {
         "source": "AutoTrader",
@@ -57,7 +57,7 @@
     "count_at": 3,
     "count_cl": 0,
     "blocked_warning": false,
-    "curated_note": "Live AutoTrader BC scan 2026-06-10 for this model (3 BC listings, Kamloops-priority). Shown as the used-market value reference vs buying new.",
+    "curated_note": "BC used market for this model (scan 2026-06-10), 3 listings — the value reference vs buying new.",
     "listings": [
       {
         "source": "AutoTrader",
@@ -107,7 +107,7 @@
     "count_at": 5,
     "count_cl": 0,
     "blocked_warning": false,
-    "curated_note": "Live AutoTrader BC scan 2026-06-10 for this model (5 BC listings, Kamloops-priority). BC used market.",
+    "curated_note": "BC used market (scan 2026-06-10), Kamloops-priority, 5 listings.",
     "listings": [
       {
         "source": "AutoTrader",
@@ -183,7 +183,7 @@
     "count_at": 5,
     "count_cl": 0,
     "blocked_warning": false,
-    "curated_note": "Live AutoTrader BC scan 2026-06-10 for this model (5 BC listings, Kamloops-priority). Shown as the used-market value reference vs buying new.",
+    "curated_note": "BC used market for this model (scan 2026-06-10), 5 listings — the value reference vs buying new.",
     "listings": [
       {
         "source": "AutoTrader",
@@ -259,7 +259,7 @@
     "count_at": 1,
     "count_cl": 0,
     "blocked_warning": false,
-    "curated_note": "Live AutoTrader BC scan 2026-06-10 for this model (1 BC listings, Kamloops-priority). Shown as the used-market value reference vs buying new.",
+    "curated_note": "BC used market for this model (scan 2026-06-10), 1 listings — the value reference vs buying new.",
     "listings": [
       {
         "source": "AutoTrader",
@@ -283,7 +283,7 @@
     "count_at": 3,
     "count_cl": 0,
     "blocked_warning": false,
-    "curated_note": "Live AutoTrader BC scan 2026-06-10 for this model (3 BC listings, Kamloops-priority). BC used market.",
+    "curated_note": "BC used market (scan 2026-06-10), Kamloops-priority, 3 listings.",
     "listings": [
       {
         "source": "AutoTrader",
@@ -333,7 +333,7 @@
     "count_at": 4,
     "count_cl": 0,
     "blocked_warning": false,
-    "curated_note": "Live AutoTrader BC scan 2026-06-10 for this model (4 BC listings, Kamloops-priority). Shown as the used-market value reference vs buying new.",
+    "curated_note": "BC used market for this model (scan 2026-06-10), 4 listings — the value reference vs buying new.",
     "listings": [
       {
         "source": "AutoTrader",
@@ -396,7 +396,7 @@
     "count_at": 8,
     "count_cl": 0,
     "blocked_warning": false,
-    "curated_note": "Live AutoTrader BC scan 2026-06-10 for this model (8 BC listings, Kamloops-priority). BC used market.",
+    "curated_note": "BC used market (scan 2026-06-10), Kamloops-priority, 8 listings.",
     "listings": [
       {
         "source": "AutoTrader",
@@ -511,7 +511,7 @@
     "count_at": 5,
     "count_cl": 0,
     "blocked_warning": false,
-    "curated_note": "Live AutoTrader BC scan 2026-06-10 for this model (5 BC listings, Kamloops-priority). BC used market.",
+    "curated_note": "BC used market (scan 2026-06-10), Kamloops-priority, 5 listings.",
     "listings": [
       {
         "source": "AutoTrader",
@@ -575,6 +575,556 @@
         "location": "Chilliwack, BC",
         "seller": "Chilliwack Volkswagen",
         "url": "https://www.autotrader.ca/cars/volkswagen/bc/?mdl=ID.4&loc=Kamloops%2C+BC&prx=500&srt=9",
+        "thumb": "",
+        "fetched_at": "2026-06-10T12:00:00"
+      }
+    ]
+  },
+  "rav4-hybrid-new": {
+    "scope": "bc",
+    "scope_label": "BC (Kamloops-priority)",
+    "fetched_at": "2026-06-10T12:00:00",
+    "count_at": 4,
+    "count_cl": 0,
+    "blocked_warning": false,
+    "curated_note": "New-car dealer inventory in BC (AutoTrader scan 2026-06-10), 4 listings.",
+    "listings": [
+      {
+        "source": "AutoTrader",
+        "source_icon": "🚗",
+        "title": "2026 RAV4 LE Hybrid AWD",
+        "year": 2026,
+        "price": "$47,348",
+        "km": "New",
+        "location": "Maple Ridge, BC",
+        "seller": "Maple Ridge Volkswagen",
+        "url": "https://www.autotrader.ca/cars/toyota/bc/?prv=British+Columbia&loc=BC&prx=-2&srt=9&mdl=RAV4&yRng=2025%2C2026",
+        "thumb": "",
+        "fetched_at": "2026-06-10T12:00:00"
+      },
+      {
+        "source": "AutoTrader",
+        "source_icon": "🚗",
+        "title": "2026 RAV4 XLE Hybrid AWD",
+        "year": 2026,
+        "price": "$52,587",
+        "km": "New",
+        "location": "Maple Ridge, BC",
+        "seller": "Maple Ridge Chrysler",
+        "url": "https://www.autotrader.ca/cars/toyota/bc/?prv=British+Columbia&loc=BC&prx=-2&srt=9&mdl=RAV4&yRng=2025%2C2026",
+        "thumb": "",
+        "fetched_at": "2026-06-10T12:00:00"
+      },
+      {
+        "source": "AutoTrader",
+        "source_icon": "🚗",
+        "title": "2026 RAV4 Woodland Hybrid AWD",
+        "year": 2026,
+        "price": "$57,995",
+        "km": "New",
+        "location": "Burnaby, BC",
+        "seller": "Destination Honda Burnaby",
+        "url": "https://www.autotrader.ca/cars/toyota/bc/?prv=British+Columbia&loc=BC&prx=-2&srt=9&mdl=RAV4&yRng=2025%2C2026",
+        "thumb": "",
+        "fetched_at": "2026-06-10T12:00:00"
+      },
+      {
+        "source": "AutoTrader",
+        "source_icon": "🚗",
+        "title": "2026 RAV4 XSE Technology Hybrid AWD",
+        "year": 2026,
+        "price": "$61,900",
+        "km": "New",
+        "location": "Prince George, BC",
+        "seller": "Private seller",
+        "url": "https://www.autotrader.ca/cars/toyota/bc/?prv=British+Columbia&loc=BC&prx=-2&srt=9&mdl=RAV4&yRng=2025%2C2026",
+        "thumb": "",
+        "fetched_at": "2026-06-10T12:00:00"
+      }
+    ]
+  },
+  "rav4-prime-new": {
+    "scope": "bc",
+    "scope_label": "BC (Kamloops-priority)",
+    "fetched_at": "2026-06-10T12:00:00",
+    "count_at": 0,
+    "count_cl": 0,
+    "blocked_warning": false,
+    "curated_note": "No Toyota RAV4 Prime (plug-in) in BC at scan 2026-06-10 — AutoTrader returned 0 BC results; supply is very tight. New RAV4 Hybrids are widely available as the closest in-market option.",
+    "listings": []
+  },
+  "prius-new": {
+    "scope": "bc",
+    "scope_label": "BC (Kamloops-priority)",
+    "fetched_at": "2026-06-10T12:00:00",
+    "count_at": 1,
+    "count_cl": 0,
+    "blocked_warning": false,
+    "curated_note": "BC used market for this model (scan 2026-06-10), 1 listings — the value reference vs buying new.",
+    "listings": [
+      {
+        "source": "AutoTrader",
+        "source_icon": "🚗",
+        "title": "2026 Prius Limited (hybrid)",
+        "year": 2026,
+        "price": "$46,440",
+        "km": "13 km",
+        "location": "Courtenay, BC",
+        "seller": "Comox Valley Toyota",
+        "url": "https://www.autotrader.ca/cars/toyota/bc/?prv=British+Columbia&loc=BC&prx=-2&srt=9&mdl=Prius&yRng=2025%2C2026",
+        "thumb": "",
+        "fetched_at": "2026-06-10T12:00:00"
+      }
+    ]
+  },
+  "prius-prime-new": {
+    "scope": "bc",
+    "scope_label": "BC (Kamloops-priority)",
+    "fetched_at": "2026-06-10T12:00:00",
+    "count_at": 6,
+    "count_cl": 0,
+    "blocked_warning": false,
+    "curated_note": "New-car dealer inventory in BC (AutoTrader scan 2026-06-10), 6 listings.",
+    "listings": [
+      {
+        "source": "AutoTrader",
+        "source_icon": "🚗",
+        "title": "2026 Prius Prime SE",
+        "year": 2026,
+        "price": "$33,860",
+        "km": "New",
+        "location": "Langley, BC",
+        "seller": "Langley Toyota",
+        "url": "https://www.autotrader.ca/cars/toyota/bc/?prv=British+Columbia&loc=BC&prx=-2&srt=9&mdl=Prius&yRng=2025%2C2026",
+        "thumb": "",
+        "fetched_at": "2026-06-10T12:00:00"
+      },
+      {
+        "source": "AutoTrader",
+        "source_icon": "🚗",
+        "title": "2026 Prius Prime SE",
+        "year": 2026,
+        "price": "$36,686",
+        "km": "New",
+        "location": "Burnaby, BC",
+        "seller": "Destination Toyota",
+        "url": "https://www.autotrader.ca/cars/toyota/bc/?prv=British+Columbia&loc=BC&prx=-2&srt=9&mdl=Prius&yRng=2025%2C2026",
+        "thumb": "",
+        "fetched_at": "2026-06-10T12:00:00"
+      },
+      {
+        "source": "AutoTrader",
+        "source_icon": "🚗",
+        "title": "2026 Prius Prime SE",
+        "year": 2026,
+        "price": "$38,143",
+        "km": "New",
+        "location": "Pitt Meadows, BC",
+        "seller": "West Coast Toyota",
+        "url": "https://www.autotrader.ca/cars/toyota/bc/?prv=British+Columbia&loc=BC&prx=-2&srt=9&mdl=Prius&yRng=2025%2C2026",
+        "thumb": "",
+        "fetched_at": "2026-06-10T12:00:00"
+      },
+      {
+        "source": "AutoTrader",
+        "source_icon": "🚗",
+        "title": "2026 Prius Prime XSE",
+        "year": 2026,
+        "price": "$40,368",
+        "km": "New",
+        "location": "Pitt Meadows, BC",
+        "seller": "West Coast Toyota",
+        "url": "https://www.autotrader.ca/cars/toyota/bc/?prv=British+Columbia&loc=BC&prx=-2&srt=9&mdl=Prius&yRng=2025%2C2026",
+        "thumb": "",
+        "fetched_at": "2026-06-10T12:00:00"
+      },
+      {
+        "source": "AutoTrader",
+        "source_icon": "🚗",
+        "title": "2026 Prius Prime XSE",
+        "year": 2026,
+        "price": "$41,645",
+        "km": "New",
+        "location": "Courtenay, BC",
+        "seller": "Comox Valley Toyota",
+        "url": "https://www.autotrader.ca/cars/toyota/bc/?prv=British+Columbia&loc=BC&prx=-2&srt=9&mdl=Prius&yRng=2025%2C2026",
+        "thumb": "",
+        "fetched_at": "2026-06-10T12:00:00"
+      },
+      {
+        "source": "AutoTrader",
+        "source_icon": "🚗",
+        "title": "2026 Prius Prime XSE Premium",
+        "year": 2026,
+        "price": "$46,978",
+        "km": "New",
+        "location": "Pitt Meadows, BC",
+        "seller": "West Coast Toyota",
+        "url": "https://www.autotrader.ca/cars/toyota/bc/?prv=British+Columbia&loc=BC&prx=-2&srt=9&mdl=Prius&yRng=2025%2C2026",
+        "thumb": "",
+        "fetched_at": "2026-06-10T12:00:00"
+      }
+    ]
+  },
+  "corolla-hybrid-new": {
+    "scope": "bc",
+    "scope_label": "BC (Kamloops-priority)",
+    "fetched_at": "2026-06-10T12:00:00",
+    "count_at": 5,
+    "count_cl": 0,
+    "blocked_warning": false,
+    "curated_note": "BC used market for this model (scan 2026-06-10), 5 listings — the value reference vs buying new.",
+    "listings": [
+      {
+        "source": "AutoTrader",
+        "source_icon": "🚗",
+        "title": "2025 Corolla Hybrid LE",
+        "year": 2025,
+        "price": "$30,999",
+        "km": "25,389 km",
+        "location": "Surrey, BC",
+        "seller": "Go Langley Mitsubishi",
+        "url": "https://www.autotrader.ca/cars/toyota/bc/?prv=British+Columbia&loc=BC&prx=-2&srt=9&mdl=Corolla&yRng=2025%2C2026",
+        "thumb": "",
+        "fetched_at": "2026-06-10T12:00:00"
+      },
+      {
+        "source": "AutoTrader",
+        "source_icon": "🚗",
+        "title": "2025 Corolla Hybrid LE CVT AWD",
+        "year": 2025,
+        "price": "$30,999",
+        "km": "29,011 km",
+        "location": "Surrey, BC",
+        "seller": "Dams Ford Lincoln",
+        "url": "https://www.autotrader.ca/cars/toyota/bc/?prv=British+Columbia&loc=BC&prx=-2&srt=9&mdl=Corolla&yRng=2025%2C2026",
+        "thumb": "",
+        "fetched_at": "2026-06-10T12:00:00"
+      },
+      {
+        "source": "AutoTrader",
+        "source_icon": "🚗",
+        "title": "2025 Corolla Hybrid LE (CPO)",
+        "year": 2025,
+        "price": "$31,930",
+        "km": "21,500 km",
+        "location": "Langley, BC",
+        "seller": "Langley Toyota",
+        "url": "https://www.autotrader.ca/cars/toyota/bc/?prv=British+Columbia&loc=BC&prx=-2&srt=9&mdl=Corolla&yRng=2025%2C2026",
+        "thumb": "",
+        "fetched_at": "2026-06-10T12:00:00"
+      },
+      {
+        "source": "AutoTrader",
+        "source_icon": "🚗",
+        "title": "2025 Corolla Hybrid XSE AWD",
+        "year": 2025,
+        "price": "$35,990",
+        "km": "16,424 km",
+        "location": "Abbotsford, BC",
+        "seller": "OpenRoad Toyota Abbotsford",
+        "url": "https://www.autotrader.ca/cars/toyota/bc/?prv=British+Columbia&loc=BC&prx=-2&srt=9&mdl=Corolla&yRng=2025%2C2026",
+        "thumb": "",
+        "fetched_at": "2026-06-10T12:00:00"
+      },
+      {
+        "source": "AutoTrader",
+        "source_icon": "🚗",
+        "title": "2025 Corolla Hybrid SE AWD",
+        "year": 2025,
+        "price": "$35,995",
+        "km": "14,264 km",
+        "location": "Burnaby, BC",
+        "seller": "Destination Honda Burnaby",
+        "url": "https://www.autotrader.ca/cars/toyota/bc/?prv=British+Columbia&loc=BC&prx=-2&srt=9&mdl=Corolla&yRng=2025%2C2026",
+        "thumb": "",
+        "fetched_at": "2026-06-10T12:00:00"
+      }
+    ]
+  },
+  "crv-hybrid-new": {
+    "scope": "bc",
+    "scope_label": "BC (Kamloops-priority)",
+    "fetched_at": "2026-06-10T12:00:00",
+    "count_at": 6,
+    "count_cl": 0,
+    "blocked_warning": false,
+    "curated_note": "BC used market for this model (scan 2026-06-10), 6 listings — the value reference vs buying new.",
+    "listings": [
+      {
+        "source": "AutoTrader",
+        "source_icon": "🚗",
+        "title": "2024 CR-V Hybrid Touring AWD",
+        "year": 2024,
+        "price": "$36,995",
+        "km": "111,842 km",
+        "location": "Vancouver, BC",
+        "seller": "Kingsway Honda",
+        "url": "https://www.autotrader.ca/cars/honda/bc/?prv=British+Columbia&loc=BC&prx=-2&srt=9&mdl=CR-V&yRng=2024%2C2026",
+        "thumb": "",
+        "fetched_at": "2026-06-10T12:00:00"
+      },
+      {
+        "source": "AutoTrader",
+        "source_icon": "🚗",
+        "title": "2024 CR-V Hybrid EX-L AWD",
+        "year": 2024,
+        "price": "$41,895",
+        "km": "28,087 km",
+        "location": "Vancouver, BC",
+        "seller": "Carter Honda",
+        "url": "https://www.autotrader.ca/cars/honda/bc/?prv=British+Columbia&loc=BC&prx=-2&srt=9&mdl=CR-V&yRng=2024%2C2026",
+        "thumb": "",
+        "fetched_at": "2026-06-10T12:00:00"
+      },
+      {
+        "source": "AutoTrader",
+        "source_icon": "🚗",
+        "title": "2024 CR-V Hybrid Touring AWD",
+        "year": 2024,
+        "price": "$42,750",
+        "km": "49,057 km",
+        "location": "North Vancouver, BC",
+        "seller": "North Shore Honda Acura",
+        "url": "https://www.autotrader.ca/cars/honda/bc/?prv=British+Columbia&loc=BC&prx=-2&srt=9&mdl=CR-V&yRng=2024%2C2026",
+        "thumb": "",
+        "fetched_at": "2026-06-10T12:00:00"
+      },
+      {
+        "source": "AutoTrader",
+        "source_icon": "🚗",
+        "title": "2025 CR-V Hybrid EX-L AWD",
+        "year": 2025,
+        "price": "$43,339",
+        "km": "21,858 km",
+        "location": "Prince George, BC",
+        "seller": "Northland CJD",
+        "url": "https://www.autotrader.ca/cars/honda/bc/?prv=British+Columbia&loc=BC&prx=-2&srt=9&mdl=CR-V&yRng=2024%2C2026",
+        "thumb": "",
+        "fetched_at": "2026-06-10T12:00:00"
+      },
+      {
+        "source": "AutoTrader",
+        "source_icon": "🚗",
+        "title": "2025 CR-V Hybrid EX-L AWD",
+        "year": 2025,
+        "price": "$43,500",
+        "km": "48,332 km",
+        "location": "North Vancouver, BC",
+        "seller": "North Shore Honda Acura",
+        "url": "https://www.autotrader.ca/cars/honda/bc/?prv=British+Columbia&loc=BC&prx=-2&srt=9&mdl=CR-V&yRng=2024%2C2026",
+        "thumb": "",
+        "fetched_at": "2026-06-10T12:00:00"
+      },
+      {
+        "source": "AutoTrader",
+        "source_icon": "🚗",
+        "title": "2026 CR-V Hybrid Touring AWD",
+        "year": 2026,
+        "price": "$52,695",
+        "km": "270 km",
+        "location": "Vancouver, BC",
+        "seller": "Vancouver Honda",
+        "url": "https://www.autotrader.ca/cars/honda/bc/?prv=British+Columbia&loc=BC&prx=-2&srt=9&mdl=CR-V&yRng=2024%2C2026",
+        "thumb": "",
+        "fetched_at": "2026-06-10T12:00:00"
+      }
+    ]
+  },
+  "mazda-cx5-new": {
+    "scope": "bc",
+    "scope_label": "BC (Kamloops-priority)",
+    "fetched_at": "2026-06-10T12:00:00",
+    "count_at": 3,
+    "count_cl": 0,
+    "blocked_warning": false,
+    "curated_note": "New-car dealer inventory in BC (AutoTrader scan 2026-06-10), 3 listings.",
+    "listings": [
+      {
+        "source": "AutoTrader",
+        "source_icon": "🚗",
+        "title": "2025 CX-5 GS Comfort AWD",
+        "year": 2025,
+        "price": "$37,395",
+        "km": "New",
+        "location": "Campbell River, BC",
+        "seller": "Island Owl Mazda",
+        "url": "https://www.autotrader.ca/cars/mazda/bc/?prv=British+Columbia&loc=BC&prx=-2&srt=9&mdl=CX-5&yRng=2025%2C2026",
+        "thumb": "",
+        "fetched_at": "2026-06-10T12:00:00"
+      },
+      {
+        "source": "AutoTrader",
+        "source_icon": "🚗",
+        "title": "2026 CX-5 GS AWD",
+        "year": 2026,
+        "price": "$41,795",
+        "km": "New",
+        "location": "Pitt Meadows, BC",
+        "seller": "West Coast Mazda",
+        "url": "https://www.autotrader.ca/cars/mazda/bc/?prv=British+Columbia&loc=BC&prx=-2&srt=9&mdl=CX-5&yRng=2025%2C2026",
+        "thumb": "",
+        "fetched_at": "2026-06-10T12:00:00"
+      },
+      {
+        "source": "AutoTrader",
+        "source_icon": "🚗",
+        "title": "2026 CX-5 GT AWD",
+        "year": 2026,
+        "price": "$46,695",
+        "km": "New",
+        "location": "Pitt Meadows, BC",
+        "seller": "West Coast Mazda",
+        "url": "https://www.autotrader.ca/cars/mazda/bc/?prv=British+Columbia&loc=BC&prx=-2&srt=9&mdl=CX-5&yRng=2025%2C2026",
+        "thumb": "",
+        "fetched_at": "2026-06-10T12:00:00"
+      }
+    ]
+  },
+  "niro-phev-used": {
+    "scope": "bc",
+    "scope_label": "BC (Kamloops-priority)",
+    "fetched_at": "2026-06-10T12:00:00",
+    "count_at": 1,
+    "count_cl": 0,
+    "blocked_warning": false,
+    "curated_note": "BC used market (scan 2026-06-10), Kamloops-priority, 1 listings.",
+    "listings": [
+      {
+        "source": "AutoTrader",
+        "source_icon": "🚗",
+        "title": "2022 Niro Plug-In Hybrid EX (~42 km EV)",
+        "year": 2022,
+        "price": "$22,812",
+        "km": "104,971 km",
+        "location": "North Vancouver, BC",
+        "seller": "North Shore Kia",
+        "url": "https://www.autotrader.ca/cars/kia/bc/?mdl=Niro&loc=Kamloops%2C+BC&prx=500&srt=9",
+        "thumb": "",
+        "fetched_at": "2026-06-10T12:00:00"
+      }
+    ]
+  },
+  "tucson-phev-used": {
+    "scope": "bc",
+    "scope_label": "BC (Kamloops-priority)",
+    "fetched_at": "2026-06-10T12:00:00",
+    "count_at": 0,
+    "count_cl": 0,
+    "blocked_warning": false,
+    "curated_note": "No Hyundai Tucson Plug-in Hybrid in the BC used market at scan 2026-06-10 — only gas and regular-hybrid Tucsons were listed.",
+    "listings": []
+  },
+  "outback-used": {
+    "scope": "bc",
+    "scope_label": "BC (Kamloops-priority)",
+    "fetched_at": "2026-06-10T12:00:00",
+    "count_at": 8,
+    "count_cl": 0,
+    "blocked_warning": false,
+    "curated_note": "BC used market (scan 2026-06-10), Kamloops-priority, 8 listings.",
+    "listings": [
+      {
+        "source": "AutoTrader",
+        "source_icon": "🚗",
+        "title": "2025 Outback Limited XT",
+        "year": 2025,
+        "price": "$47,595",
+        "km": "19,371 km",
+        "location": "Kamloops, BC",
+        "seller": "Kamloops Honda",
+        "url": "https://www.autotrader.ca/cars/subaru/bc/?mdl=Outback&loc=Kamloops%2C+BC&prx=500&srt=9",
+        "thumb": "",
+        "fetched_at": "2026-06-10T12:00:00"
+      },
+      {
+        "source": "AutoTrader",
+        "source_icon": "🚗",
+        "title": "2024 Outback Onyx",
+        "year": 2024,
+        "price": "$36,166",
+        "km": "40,203 km",
+        "location": "Surrey, BC",
+        "seller": "Go Langley Subaru",
+        "url": "https://www.autotrader.ca/cars/subaru/bc/?mdl=Outback&loc=Kamloops%2C+BC&prx=500&srt=9",
+        "thumb": "",
+        "fetched_at": "2026-06-10T12:00:00"
+      },
+      {
+        "source": "AutoTrader",
+        "source_icon": "🚗",
+        "title": "2024 Outback Wilderness",
+        "year": 2024,
+        "price": "$40,998",
+        "km": "53,290 km",
+        "location": "Burnaby, BC",
+        "seller": "Destination Toyota",
+        "url": "https://www.autotrader.ca/cars/subaru/bc/?mdl=Outback&loc=Kamloops%2C+BC&prx=500&srt=9",
+        "thumb": "",
+        "fetched_at": "2026-06-10T12:00:00"
+      },
+      {
+        "source": "AutoTrader",
+        "source_icon": "🚗",
+        "title": "2023 Outback Touring",
+        "year": 2023,
+        "price": "$35,990",
+        "km": "55,505 km",
+        "location": "Duncan, BC",
+        "seller": "Galaxy Motors Duncan",
+        "url": "https://www.autotrader.ca/cars/subaru/bc/?mdl=Outback&loc=Kamloops%2C+BC&prx=500&srt=9",
+        "thumb": "",
+        "fetched_at": "2026-06-10T12:00:00"
+      },
+      {
+        "source": "AutoTrader",
+        "source_icon": "🚗",
+        "title": "2023 Outback Premier XT",
+        "year": 2023,
+        "price": "$39,995",
+        "km": "47,914 km",
+        "location": "Burnaby, BC",
+        "seller": "Destination Honda Burnaby",
+        "url": "https://www.autotrader.ca/cars/subaru/bc/?mdl=Outback&loc=Kamloops%2C+BC&prx=500&srt=9",
+        "thumb": "",
+        "fetched_at": "2026-06-10T12:00:00"
+      },
+      {
+        "source": "AutoTrader",
+        "source_icon": "🚗",
+        "title": "2023 Outback Convenience",
+        "year": 2023,
+        "price": "$28,995",
+        "km": "94,486 km",
+        "location": "Vancouver, BC",
+        "seller": "Docksteader Subaru",
+        "url": "https://www.autotrader.ca/cars/subaru/bc/?mdl=Outback&loc=Kamloops%2C+BC&prx=500&srt=9",
+        "thumb": "",
+        "fetched_at": "2026-06-10T12:00:00"
+      },
+      {
+        "source": "AutoTrader",
+        "source_icon": "🚗",
+        "title": "2022 Outback Touring",
+        "year": 2022,
+        "price": "$30,994",
+        "km": "59,985 km",
+        "location": "North Vancouver, BC",
+        "seller": "Carter GM North Shore",
+        "url": "https://www.autotrader.ca/cars/subaru/bc/?mdl=Outback&loc=Kamloops%2C+BC&prx=500&srt=9",
+        "thumb": "",
+        "fetched_at": "2026-06-10T12:00:00"
+      },
+      {
+        "source": "AutoTrader",
+        "source_icon": "🚗",
+        "title": "2021 Outback Premier XT",
+        "year": 2021,
+        "price": "$32,578",
+        "km": "102,052 km",
+        "location": "Quesnel, BC",
+        "seller": "Regency Chrysler",
+        "url": "https://www.autotrader.ca/cars/subaru/bc/?mdl=Outback&loc=Kamloops%2C+BC&prx=500&srt=9",
         "thumb": "",
         "fetched_at": "2026-06-10T12:00:00"
       }
