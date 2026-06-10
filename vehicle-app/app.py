@@ -687,8 +687,10 @@ def siennas():
                 "is_quote": False,
             }))
 
-    # 2) The active 2026 dealer quote
-    quote_path = DATA_DIR / "sienna_quote_2026.json"
+    # 2) The active dealer quote for sienna-new, if any. Quotes live in
+    # user-<family>/dealer_quotes/<vehicle-id>.json so they generalise to
+    # any nameplate via the same /cross-shop/<vehicle-id> pattern later.
+    quote_path = DATA_DIR / "dealer_quotes" / "sienna-new.json"
     if quote_path.exists():
         with open(quote_path) as f:
             q = json.load(f)
