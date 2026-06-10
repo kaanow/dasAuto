@@ -34,12 +34,15 @@ HORIZON_DEFAULT = 10
 BASE = Path(__file__).parent
 
 def _resolve_data_dir():
-    """VEHICLE_DATA_DIR env var (absolute or relative to CWD) wins;
-    otherwise default to the canonical user-kaan-and-tess folder beside
-    vehicle-app/."""
+    """VEHICLE_DATA_DIR env var wins. An absolute value is used as-is; a
+    relative value (e.g. "user-theo") resolves against the REPO ROOT, not the
+    process CWD — gunicorn runs from vehicle-app/ in production, so resolving
+    against CWD would point at vehicle-app/user-theo and 500. Unset → the
+    canonical user-kaan-and-tess folder beside vehicle-app/."""
     env = os.environ.get("VEHICLE_DATA_DIR")
     if env:
-        return Path(env).resolve()
+        p = Path(env)
+        return p.resolve() if p.is_absolute() else (BASE.parent / p).resolve()
     return (BASE.parent / "user-kaan-and-tess").resolve()
 
 DATA_DIR    = _resolve_data_dir()
