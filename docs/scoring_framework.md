@@ -53,6 +53,34 @@ judgment). For the other 8, the score is a calibrated judgment against the
 1–5 rubric. **Document the judgment in `research/cohort_rationale.md`** so
 future sessions don't second-guess silently.
 
+### Scoring `corridor` for BEVs (calibration rule)
+
+`corridor` blends three things — highway **range**, **recharge cadence**, and
+**NVH** (noise/vibration/harshness). For a BEV, score the range+cadence half
+against the family's **one-way winter corridor leg** (for the BC families,
+Vancouver↔Kamloops, ~355 km over the Coquihalla), NOT a summer one-way rated
+figure and NOT a round trip:
+
+- Use **real winter range ≈ rated × ~0.65** (cold + cabin heat + the mountain
+  climb cut 30–40% off rated).
+- The trip is **one-way per day** (drive up, drive back another day), so
+  round-trip range is not the test.
+- **Charge speed matters as much as range**: a car that needs a top-up but
+  fast-charges in a few minutes beats one that "just makes it" but crawls.
+
+Resulting bands (NVH already favours BEVs, so it nudges the rest up):
+
+| corridor | BEV profile |
+|---:|---|
+| 5 | Does the winter leg on one charge, or needs only a brief (~5–10 min) fast-charge splash. Long-range Tesla / 800 V Hyundai-Kia (Model Y, Model 3, IONIQ 6/9). |
+| 4 | Makes it with one moderate (~15 min) stop on a fast (≥200 kW) charger. Mid-range 800 V (Ioniq 5, EV6, EV9). |
+| 3 | Marginal winter range needing a real stop on a moderate (~135–200 kW) charger. ID.4, ID. Buzz. |
+| 2 | Slow charging (≤100 kW) makes any required stop long — the killer. Bolt EUV (55 kW), bZ4X (100 kW). |
+
+ICE/hybrids with 800–1,000 km range and 5-minute refuels remain the natural
+corridor leaders; a BEV earns a 5 by matching that *effortlessness* via
+single-charge range or quick fast-charging, not by scraping the distance.
+
 ## Weights
 
 Weights are family-specific and live in `weights.json`:
