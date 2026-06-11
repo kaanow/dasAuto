@@ -623,7 +623,9 @@
     "tco_score": 4.79,
     "maint_in_per_year": 525,
     "maint_oow_per_year": 1838,
-    "active": false
+    "active": false,
+    "charge_200km_min": 13,
+    "charge_kw": 250
   },
   {
     "id": "pilot-used",
@@ -831,7 +833,9 @@
     "warranty_years_remaining": 6,
     "maint_in_per_year": 625,
     "maint_oow_per_year": 2188,
-    "active": false
+    "active": false,
+    "charge_200km_min": 14,
+    "charge_kw": 210
   },
   {
     "id": "model-y-new",
@@ -883,7 +887,9 @@
     "tco_score": 3.69,
     "maint_in_per_year": 633,
     "maint_oow_per_year": 2217,
-    "active": false
+    "active": false,
+    "charge_200km_min": 12,
+    "charge_kw": 250
   },
   {
     "id": "ioniq9-new",
@@ -935,7 +941,9 @@
     "warranty_years_remaining": 8,
     "maint_in_per_year": 733,
     "maint_oow_per_year": 2567,
-    "active": false
+    "active": false,
+    "charge_200km_min": 13,
+    "charge_kw": 235
   },
   {
     "id": "bz4x-used",
@@ -987,7 +995,9 @@
     "tco_score": 5.81,
     "maint_in_per_year": 575,
     "maint_oow_per_year": 1438,
-    "active": false
+    "active": false,
+    "charge_200km_min": 30,
+    "charge_kw": 100
   },
   {
     "id": "bz-new",
@@ -1039,7 +1049,9 @@
     "tco_score": 4.29,
     "maint_in_per_year": 575,
     "maint_oow_per_year": 1438,
-    "active": false
+    "active": false,
+    "charge_200km_min": 22,
+    "charge_kw": 150
   },
   {
     "id": "pilot-2016",
@@ -1294,7 +1306,9 @@
     "maint_oow_per_year": 2600,
     "tco_value": 116200,
     "tco_score": 1.27,
-    "active": true
+    "active": true,
+    "charge_200km_min": 19,
+    "charge_kw": 200
   },
   {
     "id": "idbuzz-used",
@@ -1345,7 +1359,9 @@
     "maint_oow_per_year": 2600,
     "tco_value": 99150,
     "tco_score": 2.76,
-    "active": true
+    "active": true,
+    "charge_200km_min": 19,
+    "charge_kw": 200
   },
   {
     "id": "crv-2007",
