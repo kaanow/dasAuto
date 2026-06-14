@@ -135,3 +135,20 @@ This was also the session where the multi-family deployment plan
 solidified: brother (Theo) joins with `user-theo/` and his own Railway
 service at `brudersauto.alti2.de`. The repo structure now supports
 both.
+
+## 2026-06-13 — Decision reached: Sienna purchased. Project parked.
+
+**The family bought a Toyota Sienna AWD Hybrid** — the conclusion of the
+whole search (28-vehicle cohort → minivans-only → Sienna AWD Hybrid → the
+`/siennas` cross-shop). The board's value leader was the **2024 Sienna
+Limited AWD (~43k km, North Vancouver, $48,995)** at ~$88.8k net 10-yr TCO.
+
+Insurance was estimated at **~$1,300/yr** (ICBC Basic + comprehensive with a
+high deductible, Territory D / class 003 / CDF 0.528) — about $300/yr under
+the model's full-coverage assumption.
+
+The tool did its job: from a broad powertrain/body survey down to a specific
+used vehicle, with TCO as the throughline. **Parking the kaan-and-tess
+project here.** The repo, the cross-shop page, listings, and all research
+remain live for reference; the deployment stays up. (Theo's project under
+`user-theo/` is independent and continues.)
